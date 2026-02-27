@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fitnesses on Apoorva Sharma</title>
-    <link>http://localhost:1313/fitness/</link>
+    <link>http://localhost:64243/fitness/</link>
     <description>Recent content in Fitnesses on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 26 Feb 2026 09:15:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/fitness/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:64243/fitness/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building a Sustainable Training Habit</title>
-      <link>http://localhost:1313/fitness/first-fitness-post/</link>
+      <link>http://localhost:64243/fitness/first-fitness-post/</link>
       <pubDate>Thu, 26 Feb 2026 09:15:00 +0000</pubDate>
-      <guid>http://localhost:1313/fitness/first-fitness-post/</guid>
+      <guid>http://localhost:64243/fitness/first-fitness-post/</guid>
       <description>&lt;p&gt;I used to treat training as something I did in intense bursts: a few weeks of focus followed by months of inconsistency. The shift came when I stopped optimizing for short-term results and started optimizing for repeatability.&lt;/p&gt;&#xA;&lt;p&gt;Now, I aim for sessions that I can sustain even on low-energy days. Simple compound lifts, short conditioning work, and a focus on sleep and recovery have made training feel like part of my identity instead of a project.&lt;/p&gt;</description>
     </item>
   </channel>

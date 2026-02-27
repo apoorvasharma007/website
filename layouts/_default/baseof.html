@@ -7,8 +7,13 @@
     {{ with .Site.Params.description }}
     <meta name="description" content="{{ . }}">
     {{ end }}
-    {{ $styles := resources.Get "css/styles.css" | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
+    {{/* load individual stylesheet modules */}}
+    {{ $vars := resources.Get "css/variables.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $vars.Permalink }}" integrity="{{ $vars.Data.Integrity }}">
+    {{ $layout := resources.Get "css/layout.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $layout.Permalink }}" integrity="{{ $layout.Data.Integrity }}">
+    {{ $components := resources.Get "css/components.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $components.Permalink }}" integrity="{{ $components.Data.Integrity }}">
   </head>
   <body>
     <div class="site">
@@ -18,5 +23,21 @@
       </main>
       {{ partial "footer.html" . }}
     </div>
+    <script>
+      // fade-in-on-scroll helper
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
   </body>
 </html>

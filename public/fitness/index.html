@@ -8,12 +8,18 @@
     <meta name="description" content="Cloud engineer, systems thinking, tech and fitness writing.">
     
     
-    <link rel="stylesheet" href="http://localhost:1313/css/styles.min.a03e7d930676ce9becdf3fe721ecb9eb59bd0084a302ba7932d739ee1accf97f.css" integrity="sha256-oD59kwZ2zpvs3z/nIey561m9AISjArp5Mtc57hrM&#43;X8=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/variables.min.35fb6f50fa20c81ece5364b4cf21a767de1e28cc6957027d437fbc5ca7da940a.css" integrity="sha256-NftvUPogyB7OU2S0zyGnZ94eKMxpVwJ9Q3&#43;8XKfalAo=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/layout.min.028e30500442885203ca5edeb466e526f57b9a342d3e3060f998fd175c028f37.css" integrity="sha256-Ao4wUARCiFIDyl7etGblJvV7mjQtPjBg&#43;Zj9F1wCjzc=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/components.min.5c2abd79197c5ce96e0982139e650a434663aa7e33fe830920042dcfd8e64029.css" integrity="sha256-XCq9eRl8XOluCYITnmUKQ0Zjqn4z/oMJIAQtz9jmQCk=">
   </head>
   <body>
     <div class="site">
       <header class="site-header">
   <nav class="nav">
+    
     
       <a href="/" class="nav-link">Home</a>
     
@@ -21,7 +27,7 @@
     
       <a href="/tech/" class="nav-link">Tech</a>
     
-      <a href="/fitness/" class="nav-link">Fitness</a>
+      <a href="/fitness/" class="nav-link active">Fitness</a>
     
       <a href="/about/" class="nav-link">About</a>
     
@@ -30,7 +36,8 @@
 
       <main>
         
-<section class="section">
+<section class="section fade-in">
+  <span class="label">Section</span>
   <h1 class="section-title">Fitnesses</h1>
 
   
@@ -98,5 +105,21 @@
 </footer>
 
     </div>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
   </body>
 </html>

@@ -2,58 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://localhost:64243/categories/</loc>
     <lastmod>2026-02-26T09:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:64243/</loc>
     <lastmod>2026-02-26T09:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tech/first-project-post/</loc>
+    <loc>http://localhost:64243/tech/first-project-post/</loc>
     <lastmod>2026-02-26T09:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/project/</loc>
+    <loc>http://localhost:64243/tags/project/</loc>
     <lastmod>2026-02-26T09:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://localhost:64243/tags/</loc>
     <lastmod>2026-02-26T09:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/tech/</loc>
+    <loc>http://localhost:64243/categories/tech/</loc>
     <lastmod>2026-02-26T09:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/tech/</loc>
+    <loc>http://localhost:64243/tags/tech/</loc>
     <lastmod>2026-02-26T09:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tech/</loc>
+    <loc>http://localhost:64243/tech/</loc>
     <lastmod>2026-02-26T09:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/fitness/first-fitness-post/</loc>
+    <loc>http://localhost:64243/fitness/first-fitness-post/</loc>
     <lastmod>2026-02-26T09:15:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/fitness/</loc>
+    <loc>http://localhost:64243/categories/fitness/</loc>
     <lastmod>2026-02-26T09:15:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/fitness/</loc>
+    <loc>http://localhost:64243/tags/fitness/</loc>
     <lastmod>2026-02-26T09:15:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/fitness/</loc>
+    <loc>http://localhost:64243/fitness/</loc>
     <lastmod>2026-02-26T09:15:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/habit/</loc>
+    <loc>http://localhost:64243/tags/habit/</loc>
     <lastmod>2026-02-26T09:15:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/cloud/</loc>
+    <loc>http://localhost:64243/tags/cloud/</loc>
     <lastmod>2026-02-26T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/first-tech-post/</loc>
+    <loc>http://localhost:64243/posts/first-tech-post/</loc>
     <lastmod>2026-02-26T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://localhost:64243/posts/</loc>
     <lastmod>2026-02-26T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/systems/</loc>
+    <loc>http://localhost:64243/tags/systems/</loc>
     <lastmod>2026-02-26T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>http://localhost:64243/about/</loc>
     <lastmod>2026-02-26T00:00:00+00:00</lastmod>
   </url>
 </urlset>

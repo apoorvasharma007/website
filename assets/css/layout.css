@@ -1,0 +1,83 @@
+/* layout.css - structural and background styles */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: var(--line-height);
+  position: relative;
+  min-height: 100vh;
+}
+
+/* animated background & grid overlay */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* slow-moving radial gradient plus starfield */
+body::before {
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4'><circle cx='2' cy='2' r='1' fill='rgba(255,255,255,0.5)'/></svg>"),
+    radial-gradient(circle at center, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.3) 100%);
+  background-repeat: repeat;
+  animation: bg-pulse 30s linear infinite, stars 60s linear infinite;
+  opacity: 0.06;
+}
+
+@keyframes stars {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 0 1000px, 0 0; }
+}
+
+@keyframes bg-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* faint grid overlay */
+body::after {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.05;
+}
+
+/* main container */
+.site {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3);
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  margin-bottom: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* responsive grid for posts/projects */
+.post-list,
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+
+@media (max-width: 600px) {
+  .site { padding: var(--space-3); }
+}
