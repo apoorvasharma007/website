@@ -1,0 +1,19 @@
+{{ define "main" }}
+<section class="section">
+  <h1 class="section-title">{{ .Title }}</h1>
+
+  {{ if .Data.Terms }}
+    <ul>
+      {{ range .Data.Terms.Alphabetical }}
+        <li>
+          <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+          <span class="muted">({{ .Count }})</span>
+        </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p class="muted">No terms defined yet.</p>
+  {{ end }}
+</section>
+{{ end }}
+

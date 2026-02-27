@@ -1,0 +1,33 @@
+{{ define "main" }}
+<article class="single">
+  <header class="single-header">
+    <h1 class="single-title">{{ .Title }}</h1>
+    <p class="post-meta">
+      <span>{{ .Date.Format "02 Jan 2006" }}</span>
+      {{ with .Params.categories }}
+        <span class="category">{{ index . 0 }}</span>
+      {{ end }}
+    </p>
+    {{ with .Params.tags }}
+      <p class="post-tags">
+        {{ range . }}
+          <a class="tag-pill" href="{{ "/tags/" | relURL }}{{ urlize . }}">{{ . }}</a>
+        {{ end }}
+      </p>
+    {{ end }}
+  </header>
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <nav class="single-nav">
+    {{ with .PrevInSection }}
+      <a class="single-nav-link" href="{{ .RelPermalink }}">← {{ .Title }}</a>
+    {{ end }}
+    {{ with .NextInSection }}
+      <a class="single-nav-link" href="{{ .RelPermalink }}">{{ .Title }} →</a>
+    {{ end }}
+  </nav>
+</article>
+{{ end }}

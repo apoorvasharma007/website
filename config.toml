@@ -1,0 +1,44 @@
+baseURL = "https://apoorvasharma7.github.io/"
+languageCode = "en-us"
+title = "Apoorva Sharma"
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  description = "Cloud engineer, systems thinking, tech and fitness writing."
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "tech"
+    name = "Tech"
+    url = "/tech/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "fitness"
+    name = "Fitness"
+    url = "/fitness/"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 5
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

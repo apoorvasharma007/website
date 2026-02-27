@@ -1,0 +1,51 @@
+{{ define "main" }}
+<section class="section">
+  <h1 class="section-title">{{ .Title }}</h1>
+
+  {{ if .Pages }}
+    {{ with .Site.Taxonomies.tags }}
+      <div class="tag-filter">
+        <span class="tag-filter-label">Filter by tag:</span>
+        {{ range $name, $term := . }}
+          <a class="tag-pill" href="{{ $term.Page.RelPermalink }}">{{ $name }}</a>
+        {{ end }}
+      </div>
+    {{ end }}
+
+    <div class="post-list">
+      {{ range .Pages }}
+        <article class="post-item">
+          <h2 class="post-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h2>
+          <p class="post-meta">
+            <span class="meta-label">Published:</span>
+            <span class="meta-date">{{ .Date.Format "02 Jan, 2006" }}</span>
+            <span>•</span>
+            <span class="meta-read">{{ .ReadingTime }} min read</span>
+            {{ with .Params.categories }}
+              <span class="category">{{ index . 0 }}</span>
+            {{ end }}
+          </p>
+          {{ with .Params.tags }}
+            <p class="post-tags">
+              {{ range . }}
+                <a class="tag-pill" href="{{ "/tags/" | relURL }}{{ urlize . }}">{{ . }}</a>
+              {{ end }}
+            </p>
+          {{ end }}
+          {{ with .Params.summary }}
+            <p class="post-excerpt">{{ . }}</p>
+          {{ else }}
+            <p class="post-excerpt">{{ .Summary }}</p>
+          {{ end }}
+          <a class="read-more" href="{{ .RelPermalink }}">Read more →</a>
+        </article>
+      {{ end }}
+    </div>
+  {{ else }}
+    <p class="muted">No entries for this term yet.</p>
+  {{ end }}
+</section>
+{{ end }}
+

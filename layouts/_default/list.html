@@ -1,0 +1,108 @@
+{{ define "main" }}
+<section class="section">
+  <h1 class="section-title">{{ .Title }}</h1>
+
+  {{ if .Pages }}
+    {{ if eq .Section "posts" }}
+      {{ with .Site.Taxonomies.tags }}
+        <div class="tag-filter">
+          <span class="tag-filter-label">Filter by tag:</span>
+          {{ range $name, $term := . }}
+            <a class="tag-pill" href="{{ $term.Page.RelPermalink }}">{{ $name }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      {{ $pages := .Pages.ByDate.Reverse }}
+      {{ range $year := $pages.GroupByDate "2006" }}
+        <h2 class="year-heading">{{ $year.Key }}</h2>
+        <div class="post-list">
+          {{ range $year.Pages }}
+            <article class="post-item">
+              <h3 class="post-title">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </h3>
+              <p class="post-meta">
+                <span class="meta-label">Published:</span>
+                <span class="meta-date">{{ .Date.Format "02 Jan, 2006" }}</span>
+                <span>•</span>
+                <span class="meta-read">{{ .ReadingTime }} min read</span>
+                {{ with .Params.categories }}
+                  <span class="category">{{ index . 0 }}</span>
+                {{ end }}
+              </p>
+              {{ with .Params.tags }}
+                <p class="post-tags">
+                  {{ range . }}
+                    <a class="tag-pill" href="{{ "/tags/" | relURL }}{{ urlize . }}">{{ . }}</a>
+                  {{ end }}
+                </p>
+              {{ end }}
+              {{ with .Params.summary }}
+                <p class="post-excerpt">{{ . }}</p>
+              {{ else }}
+                <p class="post-excerpt">{{ .Summary }}</p>
+              {{ end }}
+              <a class="read-more" href="{{ .RelPermalink }}">Read more →</a>
+            </article>
+          {{ end }}
+        </div>
+      {{ end }}
+    {{ else }}
+      {{ with .Site.Taxonomies.tags }}
+        <div class="tag-filter">
+          <span class="tag-filter-label">Filter by tag:</span>
+          {{ range $name, $term := . }}
+            <a class="tag-pill" href="{{ $term.Page.RelPermalink }}">{{ $name }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      <div class="post-list">
+        {{ range .Paginator.Pages }}
+          <article class="post-item">
+            <h2 class="post-title">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h2>
+            <p class="post-meta">
+              <span class="meta-label">Published:</span>
+              <span class="meta-date">{{ .Date.Format "02 Jan, 2006" }}</span>
+              <span>•</span>
+              <span class="meta-read">{{ .ReadingTime }} min read</span>
+              {{ with .Params.categories }}
+                <span class="category">{{ index . 0 }}</span>
+              {{ end }}
+            </p>
+            {{ with .Params.tags }}
+              <p class="post-tags">
+                {{ range . }}
+                  <a class="tag-pill" href="{{ "/tags/" | relURL }}{{ urlize . }}">{{ . }}</a>
+                {{ end }}
+              </p>
+            {{ end }}
+            {{ with .Params.summary }}
+              <p class="post-excerpt">{{ . }}</p>
+            {{ else }}
+              <p class="post-excerpt">{{ .Summary }}</p>
+            {{ end }}
+            <a class="read-more" href="{{ .RelPermalink }}">Read more →</a>
+          </article>
+        {{ end }}
+      </div>
+
+      {{ if gt .Paginator.TotalPages 1 }}
+        <nav class="pagination">
+          {{ if .Paginator.HasPrev }}
+            <a class="pagination-link" href="{{ .Paginator.Prev.URL }}">Newer</a>
+          {{ end }}
+          {{ if .Paginator.HasNext }}
+            <a class="pagination-link" href="{{ .Paginator.Next.URL }}">Older</a>
+          {{ end }}
+        </nav>
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    <p class="muted">No entries yet.</p>
+  {{ end }}
+</section>
+{{ end }}

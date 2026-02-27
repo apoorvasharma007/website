@@ -1,0 +1,68 @@
+{{ define "main" }}
+<section class="hero">
+  <h1 class="hero-title">Apoorva Sharma</h1>
+  <p class="hero-subtitle">Cloud Engineer · Azure · Systems Thinking</p>
+  <p class="hero-intro">
+    I build resilient cloud systems and think in long time horizons. This site captures notes on technology, fitness, and the projects that connect them.
+  </p>
+  <div class="hero-actions">
+    <a class="button primary" href="/resume.pdf">Download Resume</a>
+    <a class="button secondary" href="https://github.com/placeholder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a class="button secondary" href="https://linkedin.com/in/placeholder" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Recent Posts</h2>
+  {{ $all := where .Site.RegularPages "Type" "in" (slice "posts" "fitness" "tech") }}
+  {{ $recent := first 3 (sort $all "Date" "desc") }}
+  {{ if $recent }}
+    <div class="post-list">
+      {{ range $recent }}
+        <article class="post-item">
+          <h3 class="post-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+          <p class="post-meta">
+            <span class="meta-label">Published:</span>
+            <span class="meta-date">{{ .Date.Format "02 Jan, 2006" }}</span>
+            <span>•</span>
+            <span class="meta-read">{{ .ReadingTime }} min read</span>
+            {{ with .Params.categories }}
+              <span class="category">{{ index . 0 }}</span>
+            {{ end }}
+          </p>
+          {{ with .Params.summary }}
+            <p class="post-excerpt">{{ . }}</p>
+          {{ else }}
+            <p class="post-excerpt">{{ .Summary }}</p>
+          {{ end }}
+          <a class="read-more" href="{{ .RelPermalink }}">Read more →</a>
+        </article>
+      {{ end }}
+    </div>
+  {{ else }}
+    <p class="muted">No posts yet.</p>
+  {{ end }}
+</section>
+
+<section class="section">
+  <h2 class="section-title">Tech</h2>
+  <p>
+    Experiments, notes, and write-ups on the tools and architectures I am using to build and ship software.
+  </p>
+  <p class="muted">
+    Explore more on the <a href="/tech/">tech page</a>.
+  </p>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Fitness Journey</h2>
+  <p>
+    Training is how I test ideas about consistency, recovery, and incremental progress in the real world. I track what works, what fails, and how it feels over time.
+  </p>
+  <p class="muted">
+    Read more on the <a href="/fitness/">fitness page</a>.
+  </p>
+</section>
+{{ end }}
