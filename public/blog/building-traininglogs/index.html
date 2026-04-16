@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Building traininglogs: A Python Pipeline for My Gym Data · Apoorva Sharma</title>
+    
+    <meta name="description" content="Cloud engineer, systems thinking, tech and fitness writing.">
+    
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/variables.min.35fb6f50fa20c81ece5364b4cf21a767de1e28cc6957027d437fbc5ca7da940a.css" integrity="sha256-NftvUPogyB7OU2S0zyGnZ94eKMxpVwJ9Q3&#43;8XKfalAo=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/layout.min.e3f41ef4de6080b4dada0f36826a27eecfb8124b866ebb99703eb37f8f6bc067.css" integrity="sha256-4/Qe9N5ggLTa2g82gmon7s&#43;4EkuGbruZcD6zf49rwGc=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/components.min.941dff4ed6ce5c1d02191aa539bd5f602cfae9e35c908bb4cd35d8044efa77e4.css" integrity="sha256-lB3/TtbOXB0CGRqlOb1fYCz66eNckIu0zTXYBE76d&#43;Q=">
+  </head>
+  <body>
+    <div class="site">
+      <header class="site-header">
+  <nav class="nav">
+    
+    
+      <a href="/" class="nav-link">Home</a>
+    
+      <a href="/blog/" class="nav-link">Blog</a>
+    
+      <a href="/fitness/" class="nav-link">Movement</a>
+    
+      <a href="/code/" class="nav-link">Code</a>
+    
+      <a href="/music/" class="nav-link">Music</a>
+    
+  </nav>
+</header>
+
+      <main>
+        
+<article class="single fade-in">
+  <header class="single-header">
+    <h1 class="single-title">Building traininglogs: A Python Pipeline for My Gym Data</h1>
+    <div class="single-meta">
+      <span class="meta-date">02 Apr 2026</span>
+      <span>·</span>
+      <span class="meta-read">2 min read</span>
+    </div>
+    
+      <div class="post-tags">
+        
+          <a class="tag-pill" href="/tags/tech">tech</a>
+        
+          <a class="tag-pill" href="/tags/python">python</a>
+        
+          <a class="tag-pill" href="/tags/project">project</a>
+        
+          <a class="tag-pill" href="/tags/fitness">fitness</a>
+        
+          <a class="tag-pill" href="/tags/ai">ai</a>
+        
+      </div>
+    
+  </header>
+
+  <div class="content">
+    <p>For years I kept training logs in a notes app — freeform text, inconsistent formatting, impossible to query. I wanted to fix this without switching to an app I did not control.</p>
+<p>The solution: write a parser that takes my existing format and outputs structured JSON. That is traininglogs.</p>
+<h2 id="the-problem-with-training-data">The problem with training data</h2>
+<p>Most fitness apps are opinionated about how you should log. They give you dropdowns and fields. I do not train like that — I write notes while I am resting between sets, and the format drifts based on how tired I am.</p>
+<p>I needed a system that was tolerant of my input format but strict about its output.</p>
+<h2 id="the-architecture">The architecture</h2>
+<p>The pipeline has three stages:</p>
+<ol>
+<li><strong>Intake</strong> — parse freeform markdown into a rough intermediate representation</li>
+<li><strong>Model</strong> — validate and type the data into Python dataclasses (<code>TrainingSession</code>, <code>Exercise</code>, <code>WorkingSet</code>)</li>
+<li><strong>Persistence</strong> — serialise to a canonical JSON schema and write to storage</li>
+</ol>
+<p>The dataclass layer is the most important piece. Every field has a type, every serialisation has a defined key name, and invalid data raises a <code>TrainingLogValidationError</code> rather than silently passing through.</p>
+<h2 id="the-ai-layer">The AI layer</h2>
+<p>I added an agent layer that lets me describe a session in natural language and have it structured automatically. This is the part I am still iterating on — getting the prompts tight enough that the output is reliable without needing manual correction.</p>
+<h2 id="what-i-learned">What I learned</h2>
+<p>Boring infrastructure matters more than the interesting parts. The parser is fine. The schema is fine. What actually makes the project useful is the fact that the serialisation contract is strictly defined and versioned. Without that, any downstream tool breaks when the format drifts.</p>
+<p>The code is on <a href="https://github.com/apoorvasharma7/traininglogs">GitHub</a>.</p>
+
+  </div>
+</article>
+
+      </main>
+      <footer class="site-footer">
+  <p class="muted">&copy; 2026 Apoorva Sharma</p>
+</footer>
+
+    </div>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GitHub Actions for Personal Projects · Apoorva Sharma</title>
+    
+    <meta name="description" content="Cloud engineer, systems thinking, tech and fitness writing.">
+    
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/variables.min.35fb6f50fa20c81ece5364b4cf21a767de1e28cc6957027d437fbc5ca7da940a.css" integrity="sha256-NftvUPogyB7OU2S0zyGnZ94eKMxpVwJ9Q3&#43;8XKfalAo=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/layout.min.e3f41ef4de6080b4dada0f36826a27eecfb8124b866ebb99703eb37f8f6bc067.css" integrity="sha256-4/Qe9N5ggLTa2g82gmon7s&#43;4EkuGbruZcD6zf49rwGc=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/components.min.941dff4ed6ce5c1d02191aa539bd5f602cfae9e35c908bb4cd35d8044efa77e4.css" integrity="sha256-lB3/TtbOXB0CGRqlOb1fYCz66eNckIu0zTXYBE76d&#43;Q=">
+  </head>
+  <body>
+    <div class="site">
+      <header class="site-header">
+  <nav class="nav">
+    
+    
+      <a href="/" class="nav-link">Home</a>
+    
+      <a href="/blog/" class="nav-link">Blog</a>
+    
+      <a href="/fitness/" class="nav-link">Movement</a>
+    
+      <a href="/code/" class="nav-link">Code</a>
+    
+      <a href="/music/" class="nav-link">Music</a>
+    
+  </nav>
+</header>
+
+      <main>
+        
+<article class="single fade-in">
+  <header class="single-header">
+    <h1 class="single-title">GitHub Actions for Personal Projects</h1>
+    <div class="single-meta">
+      <span class="meta-date">08 Jan 2026</span>
+      <span>·</span>
+      <span class="meta-read">2 min read</span>
+    </div>
+    
+      <div class="post-tags">
+        
+          <a class="tag-pill" href="/tags/tech">tech</a>
+        
+          <a class="tag-pill" href="/tags/devops">devops</a>
+        
+          <a class="tag-pill" href="/tags/ci-cd">ci-cd</a>
+        
+          <a class="tag-pill" href="/tags/github">github</a>
+        
+      </div>
+    
+  </header>
+
+  <div class="content">
+    <p>Enterprise CI/CD setups are often overkill for personal projects — multiple stages, approval gates, deployment environments. For a solo developer, you need something lighter.</p>
+<p>GitHub Actions hits the right balance: free for public repos, simple YAML, no separate server to maintain.</p>
+<h2 id="my-standard-personal-project-workflow">My standard personal project workflow</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">ci</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>: [<span style="color:#ae81ff">main]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pull_request</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>: [<span style="color:#ae81ff">main]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">test</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-python@v5</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">python-version</span>: <span style="color:#e6db74">&#34;3.12&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">pip install -r requirements.txt</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">pytest tests/ -v</span>
+</span></span></code></pre></div><p>This covers the basics: run tests on every push to main and on every PR. If tests pass, I know nothing is obviously broken.</p>
+<h2 id="adding-a-lint-step">Adding a lint step</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">pip install ruff</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">ruff check .</span>
+</span></span></code></pre></div><p>Ruff is fast enough that it adds almost nothing to CI time. I run the same command locally before pushing, so CI is just a safety net.</p>
+<h2 id="deployment">Deployment</h2>
+<p>For this website, the deploy workflow builds the Hugo site and pushes to GitHub Pages:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">rm -rf public &amp;&amp; hugo</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-gh-pages@v4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">${{ secrets.GITHUB_TOKEN }}</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">publish_dir</span>: <span style="color:#ae81ff">./public</span>
+</span></span></code></pre></div><p>The key thing is keeping workflows short and doing one thing well. A workflow that tests, lints, builds, and deploys in a single job is fine for a personal project. A failing step stops the whole thing, which is what you want.</p>
+<h2 id="what-i-avoid">What I avoid</h2>
+<ul>
+<li>Caching dependencies unless build time is actually a problem</li>
+<li>Secrets management complexity until there are real secrets to manage</li>
+<li>Multiple environments until there is a reason to have them</li>
+</ul>
+<p>The goal is to catch obvious mistakes automatically and get out of the way.</p>
+
+  </div>
+</article>
+
+      </main>
+      <footer class="site-footer">
+  <p class="muted">&copy; 2026 Apoorva Sharma</p>
+</footer>
+
+    </div>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

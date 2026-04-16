@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="ebook-layout fade-in">
+  {{ partial "ebook-sidebar.html" . }}
+  <article class="ebook-content single">
+    <header class="single-header">
+      <span class="label">Ebook</span>
+      <h1 class="single-title">{{ .Title }}</h1>
+      {{ with .Params.tags }}
+        <p class="post-tags">
+          {{ range . }}
+            <a class="tag-pill" href="{{ "/tags/" | relURL }}{{ urlize . }}">{{ . }}</a>
+          {{ end }}
+        </p>
+      {{ end }}
+    </header>
+    <div class="content">
+      {{ .Content }}
+    </div>
+    <nav class="single-nav">
+      {{ with .PrevInSection }}
+        <a class="single-nav-link" href="{{ .RelPermalink }}">← {{ .Title }}</a>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a class="single-nav-link" href="{{ .RelPermalink }}">{{ .Title }} →</a>
+      {{ end }}
+    </nav>
+  </article>
+</div>
+{{ end }}

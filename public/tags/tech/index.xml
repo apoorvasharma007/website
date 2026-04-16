@@ -2,25 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tech on Apoorva Sharma</title>
-    <link>http://localhost:64243/tags/tech/</link>
+    <link>http://localhost:1313/tags/tech/</link>
     <description>Recent content in Tech on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Feb 2026 09:30:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:64243/tags/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Apr 2026 09:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Minimal Personal Site with Hugo</title>
-      <link>http://localhost:64243/tech/first-project-post/</link>
-      <pubDate>Thu, 26 Feb 2026 09:30:00 +0000</pubDate>
-      <guid>http://localhost:64243/tech/first-project-post/</guid>
-      <description>&lt;p&gt;This project is a deliberately minimal personal site: no JavaScript bundle, no theme dependency, and a small amount of CSS that I can understand at a glance.&lt;/p&gt;&#xA;&lt;p&gt;The goal is to have a home for long-form writing on cloud engineering, notes on fitness, and concise write-ups of projects I care about—without taking on a maintenance burden.&lt;/p&gt;</description>
+      <title>Building traininglogs: A Python Pipeline for My Gym Data</title>
+      <link>http://localhost:1313/blog/building-traininglogs/</link>
+      <pubDate>Thu, 02 Apr 2026 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/building-traininglogs/</guid>
+      <description>How and why I built a parser that turns my messy training notes into structured JSON.</description>
     </item>
     <item>
-      <title>Designing Reliable Cloud Systems</title>
-      <link>http://localhost:64243/posts/first-tech-post/</link>
-      <pubDate>Thu, 26 Feb 2026 09:00:00 +0000</pubDate>
-      <guid>http://localhost:64243/posts/first-tech-post/</guid>
-      <description>Why I design cloud systems for contained failure, boring reliability, and easy reasoning instead of maximum novelty.</description>
+      <title>Testing in Python: What to Test and What to Skip</title>
+      <link>http://localhost:1313/blog/testing-in-python-what-to-test/</link>
+      <pubDate>Sun, 15 Mar 2026 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/testing-in-python-what-to-test/</guid>
+      <description>Not everything needs a test. Understanding the difference is what makes a test suite useful rather than expensive.</description>
+    </item>
+    <item>
+      <title>What I Learned Deploying on Azure for the First Time</title>
+      <link>http://localhost:1313/blog/what-i-learned-deploying-on-azure/</link>
+      <pubDate>Tue, 10 Mar 2026 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/what-i-learned-deploying-on-azure/</guid>
+      <description>Notes from my first production deployment on Azure — what surprised me, what tripped me up, and what I would do differently.</description>
+    </item>
+    <item>
+      <title>How I Learn a New Codebase</title>
+      <link>http://localhost:1313/blog/learning-a-new-codebase/</link>
+      <pubDate>Thu, 05 Feb 2026 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-a-new-codebase/</guid>
+      <description>A repeatable process for getting up to speed on unfamiliar code quickly.</description>
+    </item>
+    <item>
+      <title>GitHub Actions for Personal Projects</title>
+      <link>http://localhost:1313/blog/github-actions-for-personal-projects/</link>
+      <pubDate>Thu, 08 Jan 2026 10:30:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/github-actions-for-personal-projects/</guid>
+      <description>How I set up lightweight CI/CD for personal projects without overengineering it.</description>
+    </item>
+    <item>
+      <title>Python Dataclasses for Domain Models</title>
+      <link>http://localhost:1313/blog/python-dataclasses-for-domain-models/</link>
+      <pubDate>Tue, 02 Dec 2025 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/python-dataclasses-for-domain-models/</guid>
+      <description>Why I use dataclasses over dicts for domain objects, and the patterns that make them maintainable.</description>
+    </item>
+    <item>
+      <title>Infrastructure as Code: First Principles</title>
+      <link>http://localhost:1313/blog/infrastructure-as-code-first-principles/</link>
+      <pubDate>Wed, 05 Nov 2025 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/infrastructure-as-code-first-principles/</guid>
+      <description>Why IaC is not just about automation, and the principles that make it actually work.</description>
     </item>
   </channel>
 </rss>

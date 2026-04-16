@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Apoorva Sharma</title>
+    <link>http://localhost:1313/tags/python/</link>
+    <description>Recent content in Python on Apoorva Sharma</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Apr 2026 09:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>traininglogs</title>
+      <link>http://localhost:1313/code/traininglogs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/code/traininglogs/</guid>
+      <description>A Python pipeline that parses free-text training session logs into a structured NoSQL/JSON schema. Includes dataclass models, a CLI, and an agent layer for AI-assisted log intake.</description>
+    </item>
+    <item>
+      <title>Building traininglogs: A Python Pipeline for My Gym Data</title>
+      <link>http://localhost:1313/blog/building-traininglogs/</link>
+      <pubDate>Thu, 02 Apr 2026 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/building-traininglogs/</guid>
+      <description>How and why I built a parser that turns my messy training notes into structured JSON.</description>
+    </item>
+    <item>
+      <title>Testing in Python: What to Test and What to Skip</title>
+      <link>http://localhost:1313/blog/testing-in-python-what-to-test/</link>
+      <pubDate>Sun, 15 Mar 2026 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/testing-in-python-what-to-test/</guid>
+      <description>Not everything needs a test. Understanding the difference is what makes a test suite useful rather than expensive.</description>
+    </item>
+    <item>
+      <title>Python Dataclasses for Domain Models</title>
+      <link>http://localhost:1313/blog/python-dataclasses-for-domain-models/</link>
+      <pubDate>Tue, 02 Dec 2025 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/python-dataclasses-for-domain-models/</guid>
+      <description>Why I use dataclasses over dicts for domain objects, and the patterns that make them maintainable.</description>
+    </item>
+  </channel>
+</rss>

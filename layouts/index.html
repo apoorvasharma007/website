@@ -7,64 +7,24 @@
   </p>
   <div class="hero-actions">
     <a class="button primary" href="/resume.pdf">Download Resume</a>
-    <!-- secondary ghost button optional -->
   </div>
 </section>
 
 <section class="section fade-in">
-  <span class="label">Latest</span>
-  <h2 class="section-title">Recent Posts</h2>
-  {{ $all := where .Site.RegularPages "Type" "in" (slice "posts" "fitness" "tech") }}
-  {{ $recent := first 3 (sort $all "Date" "desc") }}
-  {{ if $recent }}
-    <div class="post-list">
-      {{ range $recent }}
-        <article class="post-item">
-          <h3 class="post-title">
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          </h3>
-          <p class="post-meta">
-            <span class="meta-label">Published:</span>
-            <span class="meta-date">{{ .Date.Format "02 Jan, 2006" }}</span>
-            <span>•</span>
-            <span class="meta-read">{{ .ReadingTime }} min read</span>
-            {{ with .Params.categories }}
-              <span class="category">{{ index . 0 }}</span>
-            {{ end }}
-          </p>
-          {{ with .Params.summary }}
-            <p class="post-excerpt">{{ . }}</p>
-          {{ else }}
-            <p class="post-excerpt">{{ .Summary }}</p>
-          {{ end }}
-          <a class="read-more" href="{{ .RelPermalink }}">Read more →</a>
-        </article>
+  <h2 class="section-title">Recently</h2>
+  {{ $posts := (.Site.GetPage "/blog").Pages.ByDate.Reverse }}
+  {{ if $posts }}
+    <div class="recent-list">
+      {{ range first 5 $posts }}
+        <a class="recent-row" href="{{ .RelPermalink }}">
+          <span class="recent-date">{{ .Date.Format "02 Jan 2006" }}</span>
+          <span class="recent-title">{{ .Title }}</span>
+        </a>
       {{ end }}
     </div>
+    <p style="margin-top: var(--space-3); font-size: 0.85rem;"><a href="/blog/">All posts →</a></p>
   {{ else }}
     <p class="muted">No posts yet.</p>
   {{ end }}
-</section>
-
-<section class="section fade-in">
-  <span class="label">Topic</span>
-  <h2 class="section-title">Tech</h2>
-  <p>
-    Experiments, notes, and write-ups on the tools and architectures I am using to build and ship software.
-  </p>
-  <p class="muted">
-    Explore more on the <a href="/tech/">tech page</a>.
-  </p>
-</section>
-
-<section class="section fade-in">
-  <span class="label">Journey</span>
-  <h2 class="section-title">Fitness Journey</h2>
-  <p>
-    Training is how I test ideas about consistency, recovery, and incremental progress in the real world. I track what works, what fails, and how it feels over time.
-  </p>
-  <p class="muted">
-    Read more on the <a href="/fitness/">fitness page</a>.
-  </p>
 </section>
 {{ end }}

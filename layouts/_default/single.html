@@ -1,34 +1,23 @@
 {{ define "main" }}
 <article class="single fade-in">
   <header class="single-header">
-    <span class="label">Article</span>
     <h1 class="single-title">{{ .Title }}</h1>
-    <p class="post-meta">
-      <span>{{ .Date.Format "02 Jan 2006" }}</span>
-      {{ with .Params.categories }}
-        <span class="category">{{ index . 0 }}</span>
-      {{ end }}
-    </p>
+    <div class="single-meta">
+      <span class="meta-date">{{ .Date.Format "02 Jan 2006" }}</span>
+      <span>·</span>
+      <span class="meta-read">{{ .ReadingTime }} min read</span>
+    </div>
     {{ with .Params.tags }}
-      <p class="post-tags">
+      <div class="post-tags">
         {{ range . }}
           <a class="tag-pill" href="{{ "/tags/" | relURL }}{{ urlize . }}">{{ . }}</a>
         {{ end }}
-      </p>
+      </div>
     {{ end }}
   </header>
 
   <div class="content">
     {{ .Content }}
   </div>
-
-  <nav class="single-nav">
-    {{ with .PrevInSection }}
-      <a class="single-nav-link" href="{{ .RelPermalink }}">← {{ .Title }}</a>
-    {{ end }}
-    {{ with .NextInSection }}
-      <a class="single-nav-link" href="{{ .RelPermalink }}">{{ .Title }} →</a>
-    {{ end }}
-  </nav>
 </article>
 {{ end }}

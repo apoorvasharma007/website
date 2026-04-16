@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Strength on Apoorva Sharma</title>
+    <link>http://localhost:1313/tags/strength/</link>
+    <description>Recent content in Strength on Apoorva Sharma</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Apr 2026 07:45:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/strength/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Progressive Overload Is Not Just Adding Weight</title>
+      <link>http://localhost:1313/blog/progressive-overload-is-not-just-weight/</link>
+      <pubDate>Sun, 12 Apr 2026 07:45:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/progressive-overload-is-not-just-weight/</guid>
+      <description>Weight on the bar is one variable. Here are the others.</description>
+    </item>
+    <item>
+      <title>The Deload Week: What It Is and Why Most People Skip It</title>
+      <link>http://localhost:1313/blog/the-deload-week/</link>
+      <pubDate>Wed, 18 Feb 2026 07:45:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/the-deload-week/</guid>
+      <description>A planned reduction in training load is not laziness. It is how you keep accumulating progress over months.</description>
+    </item>
+    <item>
+      <title>What to Eat When Training for Strength</title>
+      <link>http://localhost:1313/blog/what-to-eat-when-training-for-strength/</link>
+      <pubDate>Tue, 20 Jan 2026 08:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/what-to-eat-when-training-for-strength/</guid>
+      <description>Nutrition for strength training is simpler than the industry wants you to believe.</description>
+    </item>
+  </channel>
+</rss>

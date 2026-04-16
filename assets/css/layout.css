@@ -65,9 +65,8 @@ body::after {
 }
 
 .section {
-  margin-bottom: var(--space-6);
-  padding-top: var(--space-6);
-  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: var(--space-5);
+  padding-top: var(--space-4);
 }
 
 /* responsive grid for posts/projects */
@@ -79,5 +78,10 @@ body::after {
 }
 
 @media (max-width: 600px) {
-  .site { padding: var(--space-3); }
+  .site { padding: var(--space-2) var(--space-2); }
+
+  .post-list,
+  .project-list {
+    grid-template-columns: 1fr;
+  }
 }

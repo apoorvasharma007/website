@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How I Learn a New Codebase · Apoorva Sharma</title>
+    
+    <meta name="description" content="Cloud engineer, systems thinking, tech and fitness writing.">
+    
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/variables.min.35fb6f50fa20c81ece5364b4cf21a767de1e28cc6957027d437fbc5ca7da940a.css" integrity="sha256-NftvUPogyB7OU2S0zyGnZ94eKMxpVwJ9Q3&#43;8XKfalAo=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/layout.min.e3f41ef4de6080b4dada0f36826a27eecfb8124b866ebb99703eb37f8f6bc067.css" integrity="sha256-4/Qe9N5ggLTa2g82gmon7s&#43;4EkuGbruZcD6zf49rwGc=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/components.min.941dff4ed6ce5c1d02191aa539bd5f602cfae9e35c908bb4cd35d8044efa77e4.css" integrity="sha256-lB3/TtbOXB0CGRqlOb1fYCz66eNckIu0zTXYBE76d&#43;Q=">
+  </head>
+  <body>
+    <div class="site">
+      <header class="site-header">
+  <nav class="nav">
+    
+    
+      <a href="/" class="nav-link">Home</a>
+    
+      <a href="/blog/" class="nav-link">Blog</a>
+    
+      <a href="/fitness/" class="nav-link">Movement</a>
+    
+      <a href="/code/" class="nav-link">Code</a>
+    
+      <a href="/music/" class="nav-link">Music</a>
+    
+  </nav>
+</header>
+
+      <main>
+        
+<article class="single fade-in">
+  <header class="single-header">
+    <h1 class="single-title">How I Learn a New Codebase</h1>
+    <div class="single-meta">
+      <span class="meta-date">05 Feb 2026</span>
+      <span>·</span>
+      <span class="meta-read">2 min read</span>
+    </div>
+    
+      <div class="post-tags">
+        
+          <a class="tag-pill" href="/tags/tech">tech</a>
+        
+          <a class="tag-pill" href="/tags/engineering">engineering</a>
+        
+          <a class="tag-pill" href="/tags/learning">learning</a>
+        
+      </div>
+    
+  </header>
+
+  <div class="content">
+    <p>Every engineer has to read code they did not write. The skill of learning a codebase quickly is underrated and rarely taught.</p>
+<h2 id="start-with-the-entry-points">Start with the entry points</h2>
+<p>Before reading any code, find where execution starts. For a web service: the server startup, the route definitions, the middleware chain. For a CLI: the argument parser and the main function. For a library: the public API surface.</p>
+<p>Entry points give you the skeleton. Everything else hangs off them.</p>
+<h2 id="read-the-tests-before-the-implementation">Read the tests before the implementation</h2>
+<p>Tests are documentation that runs. A good test suite tells you what the code is supposed to do, what edge cases the author was thinking about, and what the expected inputs and outputs are.</p>
+<p>If there are no tests, that tells you something too — this code has not been verified in a structured way, and surprises are likely.</p>
+<h2 id="trace-one-path-end-to-end">Trace one path end-to-end</h2>
+<p>Pick one feature or one request flow and trace it completely. Follow the execution from the entry point through all the layers it touches to the output. Resist the urge to understand everything — just understand this one path completely.</p>
+<p>Once you have one path mapped, the rest of the codebase is variations on a theme.</p>
+<h2 id="build-a-mental-model-of-the-boundaries">Build a mental model of the boundaries</h2>
+<p>Where does this code talk to external systems? Databases, APIs, file systems, queues. These are the integration points where most production failures occur and where most of the complexity lives.</p>
+<p>Draw it if it helps. A simple diagram of boxes and arrows is worth more than reading every function.</p>
+<h2 id="make-a-small-change">Make a small change</h2>
+<p>There is no substitute for modifying the code and seeing what breaks. A small refactor, a new test, fixing a trivial bug — any change that forces you to understand cause and effect in this specific system.</p>
+<p>The goal is not to be productive immediately. It is to go from &ldquo;I don&rsquo;t know where to look&rdquo; to &ldquo;I know where to look&rdquo;. That transition usually takes one to two focused days on a well-structured codebase.</p>
+
+  </div>
+</article>
+
+      </main>
+      <footer class="site-footer">
+  <p class="muted">&copy; 2026 Apoorva Sharma</p>
+</footer>
+
+    </div>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

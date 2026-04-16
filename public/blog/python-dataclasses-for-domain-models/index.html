@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Python Dataclasses for Domain Models · Apoorva Sharma</title>
+    
+    <meta name="description" content="Cloud engineer, systems thinking, tech and fitness writing.">
+    
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/variables.min.35fb6f50fa20c81ece5364b4cf21a767de1e28cc6957027d437fbc5ca7da940a.css" integrity="sha256-NftvUPogyB7OU2S0zyGnZ94eKMxpVwJ9Q3&#43;8XKfalAo=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/layout.min.e3f41ef4de6080b4dada0f36826a27eecfb8124b866ebb99703eb37f8f6bc067.css" integrity="sha256-4/Qe9N5ggLTa2g82gmon7s&#43;4EkuGbruZcD6zf49rwGc=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/components.min.941dff4ed6ce5c1d02191aa539bd5f602cfae9e35c908bb4cd35d8044efa77e4.css" integrity="sha256-lB3/TtbOXB0CGRqlOb1fYCz66eNckIu0zTXYBE76d&#43;Q=">
+  </head>
+  <body>
+    <div class="site">
+      <header class="site-header">
+  <nav class="nav">
+    
+    
+      <a href="/" class="nav-link">Home</a>
+    
+      <a href="/blog/" class="nav-link">Blog</a>
+    
+      <a href="/fitness/" class="nav-link">Movement</a>
+    
+      <a href="/code/" class="nav-link">Code</a>
+    
+      <a href="/music/" class="nav-link">Music</a>
+    
+  </nav>
+</header>
+
+      <main>
+        
+<article class="single fade-in">
+  <header class="single-header">
+    <h1 class="single-title">Python Dataclasses for Domain Models</h1>
+    <div class="single-meta">
+      <span class="meta-date">02 Dec 2025</span>
+      <span>·</span>
+      <span class="meta-read">2 min read</span>
+    </div>
+    
+      <div class="post-tags">
+        
+          <a class="tag-pill" href="/tags/tech">tech</a>
+        
+          <a class="tag-pill" href="/tags/python">python</a>
+        
+          <a class="tag-pill" href="/tags/architecture">architecture</a>
+        
+      </div>
+    
+  </header>
+
+  <div class="content">
+    <p>Early in a project it is tempting to pass dicts around. They are flexible, fast to write, and require no upfront design. Then the project grows and you spend your time debugging <code>KeyError</code> and wondering what shape a particular dict is supposed to have.</p>
+<p>Dataclasses fix this. They give you typed fields, default values, and <code>__repr__</code> for free, without the overhead of a full ORM or schema library.</p>
+<h2 id="the-basic-pattern">The basic pattern</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> dataclasses <span style="color:#f92672">import</span> dataclass, field
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Optional
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dataclass</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WorkingSet</span>:
+</span></span><span style="display:flex;"><span>    set_number: int
+</span></span><span style="display:flex;"><span>    weight_kg: float
+</span></span><span style="display:flex;"><span>    reps: int
+</span></span><span style="display:flex;"><span>    rpe: Optional[float] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span></code></pre></div><p>Now every working set in your system has a known shape. The type checker can help you. Your editor can autocomplete fields. Errors appear at construction time, not deep in a call stack.</p>
+<h2 id="validation-in-__post_init__">Validation in <code>__post_init__</code></h2>
+<p>Dataclasses have a <code>__post_init__</code> hook that runs after <code>__init__</code>. Use it for validation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__post_init__</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>rpe <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span> <span style="color:#f92672">and</span> <span style="color:#f92672">not</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> self<span style="color:#f92672">.</span>rpe <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;RPE must be 1-10, got </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>rpe<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>weight_kg <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;weight_kg must be positive&#34;</span>)
+</span></span></code></pre></div><p>Now invalid objects cannot be constructed. You catch mistakes at the boundary, not in the middle of your business logic.</p>
+<h2 id="serialisation">Serialisation</h2>
+<p>The standard <code>asdict()</code> from <code>dataclasses</code> gives you a dict recursively. For custom serialisation (e.g. camelCase JSON keys), a <code>to_dict()</code> method is worth writing explicitly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_dict</span>(self) <span style="color:#f92672">-&gt;</span> dict:
+</span></span><span style="display:flex;"><span>    d <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;set&#34;</span>: self<span style="color:#f92672">.</span>set_number,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;weightKg&#34;</span>: self<span style="color:#f92672">.</span>weight_kg,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;repCount&#34;</span>: self<span style="color:#f92672">.</span>reps,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>rpe <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        d[<span style="color:#e6db74">&#34;rpe&#34;</span>] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rpe
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> d
+</span></span></code></pre></div><p>Explicit is better than automatic here because your serialisation contract is part of your public API. You want it to be intentional.</p>
+<h2 id="when-to-use-something-else">When to use something else</h2>
+<p>Dataclasses are not always the answer. If you need runtime schema validation from untrusted input (APIs, user uploads), reach for Pydantic instead. If you need SQL persistence, an ORM model makes more sense. Dataclasses sit in the middle: structured, lightweight, no external dependencies.</p>
+
+  </div>
+</article>
+
+      </main>
+      <footer class="site-footer">
+  <p class="muted">&copy; 2026 Apoorva Sharma</p>
+</footer>
+
+    </div>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>What I Learned Deploying on Azure for the First Time · Apoorva Sharma</title>
+    
+    <meta name="description" content="Cloud engineer, systems thinking, tech and fitness writing.">
+    
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/variables.min.35fb6f50fa20c81ece5364b4cf21a767de1e28cc6957027d437fbc5ca7da940a.css" integrity="sha256-NftvUPogyB7OU2S0zyGnZ94eKMxpVwJ9Q3&#43;8XKfalAo=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/layout.min.e3f41ef4de6080b4dada0f36826a27eecfb8124b866ebb99703eb37f8f6bc067.css" integrity="sha256-4/Qe9N5ggLTa2g82gmon7s&#43;4EkuGbruZcD6zf49rwGc=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/components.min.941dff4ed6ce5c1d02191aa539bd5f602cfae9e35c908bb4cd35d8044efa77e4.css" integrity="sha256-lB3/TtbOXB0CGRqlOb1fYCz66eNckIu0zTXYBE76d&#43;Q=">
+  </head>
+  <body>
+    <div class="site">
+      <header class="site-header">
+  <nav class="nav">
+    
+    
+      <a href="/" class="nav-link">Home</a>
+    
+      <a href="/blog/" class="nav-link">Blog</a>
+    
+      <a href="/fitness/" class="nav-link">Movement</a>
+    
+      <a href="/code/" class="nav-link">Code</a>
+    
+      <a href="/music/" class="nav-link">Music</a>
+    
+  </nav>
+</header>
+
+      <main>
+        
+<article class="single fade-in">
+  <header class="single-header">
+    <h1 class="single-title">What I Learned Deploying on Azure for the First Time</h1>
+    <div class="single-meta">
+      <span class="meta-date">10 Mar 2026</span>
+      <span>·</span>
+      <span class="meta-read">2 min read</span>
+    </div>
+    
+      <div class="post-tags">
+        
+          <a class="tag-pill" href="/tags/tech">tech</a>
+        
+          <a class="tag-pill" href="/tags/cloud">cloud</a>
+        
+          <a class="tag-pill" href="/tags/azure">azure</a>
+        
+          <a class="tag-pill" href="/tags/devops">devops</a>
+        
+      </div>
+    
+  </header>
+
+  <div class="content">
+    <p>I recently shipped a project to Azure for the first time after spending years on AWS. Here are the things that surprised me.</p>
+<h2 id="the-portal-is-more-usable-than-i-expected">The portal is more usable than I expected</h2>
+<p>AWS has trained me to live in the CLI. Azure&rsquo;s portal is actually well-designed for exploration — especially when you are trying to understand how resources relate to each other. I still prefer Infrastructure as Code for anything repeatable, but the portal is useful for learning the topology.</p>
+<h2 id="resource-groups-are-a-genuinely-good-idea">Resource groups are a genuinely good idea</h2>
+<p>Everything goes in a resource group. You can delete a resource group and everything inside it disappears cleanly. No hunting for orphaned security groups or forgotten load balancers. This is one of those small decisions that makes operations much less painful over time.</p>
+<h2 id="managed-identities-are-the-right-default">Managed identities are the right default</h2>
+<p>Stop putting secrets in environment variables. Azure Managed Identities let your compute access other Azure resources — Key Vault, Storage, databases — without credentials. The SDK picks it up automatically. Use this from day one.</p>
+<h2 id="the-pricing-calculator-is-honest">The pricing calculator is honest</h2>
+<p>I found Azure&rsquo;s pricing estimates to be more accurate than AWS&rsquo;s. The cost analysis in the portal is also genuinely useful after deployment — not perfect, but good enough to catch surprises early.</p>
+<p>The overall experience was smoother than I expected. The main friction was learning the naming conventions (everything is slightly different from AWS) rather than anything fundamental.</p>
+
+  </div>
+</article>
+
+      </main>
+      <footer class="site-footer">
+  <p class="muted">&copy; 2026 Apoorva Sharma</p>
+</footer>
+
+    </div>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

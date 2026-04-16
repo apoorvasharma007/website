@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Code · Apoorva Sharma</title>
+    
+    <meta name="description" content="Cloud engineer, systems thinking, tech and fitness writing.">
+    
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/variables.min.35fb6f50fa20c81ece5364b4cf21a767de1e28cc6957027d437fbc5ca7da940a.css" integrity="sha256-NftvUPogyB7OU2S0zyGnZ94eKMxpVwJ9Q3&#43;8XKfalAo=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/layout.min.e3f41ef4de6080b4dada0f36826a27eecfb8124b866ebb99703eb37f8f6bc067.css" integrity="sha256-4/Qe9N5ggLTa2g82gmon7s&#43;4EkuGbruZcD6zf49rwGc=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/components.min.941dff4ed6ce5c1d02191aa539bd5f602cfae9e35c908bb4cd35d8044efa77e4.css" integrity="sha256-lB3/TtbOXB0CGRqlOb1fYCz66eNckIu0zTXYBE76d&#43;Q=">
+  </head>
+  <body>
+    <div class="site">
+      <header class="site-header">
+  <nav class="nav">
+    
+    
+      <a href="/" class="nav-link">Home</a>
+    
+      <a href="/blog/" class="nav-link">Blog</a>
+    
+      <a href="/fitness/" class="nav-link">Movement</a>
+    
+      <a href="/code/" class="nav-link active">Code</a>
+    
+      <a href="/music/" class="nav-link">Music</a>
+    
+  </nav>
+</header>
+
+      <main>
+        
+<section class="section fade-in">
+  <h1 class="section-title">Code</h1>
+  <p class="muted"><p>Projects I have built or am building. Click any card to expand.</p>
+</p>
+
+  <div class="code-project-list">
+    
+      <details class="project-card">
+        <summary class="project-summary">
+          <span class="project-title">traininglogs</span>
+          
+            <span class="project-status active">active</span>
+          
+        </summary>
+        <div class="project-body">
+          <p class="project-desc">A Python pipeline that parses free-text training session logs into a structured NoSQL/JSON schema. Includes dataclass models, a CLI, and an agent layer for AI-assisted log intake.</p>
+          
+            <div class="blog-row-tags">
+              <span class="tag-indicator">python</span><span class="tag-indicator">data</span><span class="tag-indicator">ai</span><span class="tag-indicator">fitness</span>
+            </div>
+          
+          
+            <a class="project-gh-link" href="https://github.com/apoorvasharma7/traininglogs" target="_blank" rel="noopener">View on GitHub →</a>
+          
+        </div>
+      </details>
+    
+      <details class="project-card">
+        <summary class="project-summary">
+          <span class="project-title">This Website</span>
+          
+            <span class="project-status active">active</span>
+          
+        </summary>
+        <div class="project-body">
+          <p class="project-desc">Minimal personal site built with Hugo. No themes, no JS framework. Custom layouts per section. Deployed to GitHub Pages via GitHub Actions.</p>
+          
+            <div class="blog-row-tags">
+              <span class="tag-indicator">hugo</span><span class="tag-indicator">web</span><span class="tag-indicator">static-site</span>
+            </div>
+          
+          
+            <a class="project-gh-link" href="https://github.com/apoorvasharma7/website" target="_blank" rel="noopener">View on GitHub →</a>
+          
+        </div>
+      </details>
+    
+  </div>
+</section>
+
+      </main>
+      <footer class="site-footer">
+  <p class="muted">&copy; 2026 Apoorva Sharma</p>
+</footer>
+
+    </div>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

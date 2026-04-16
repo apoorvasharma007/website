@@ -1,0 +1,147 @@
+{{ define "main" }}
+{{ $tags := slice }}
+{{ range $name, $_ := .Site.Taxonomies.tags }}
+  {{ $tags = $tags | append $name }}
+{{ end }}
+
+<section class="section fade-in">
+  <h1 class="section-title">Blog</h1>
+
+  <div class="search-wrap">
+    <div id="chips-row" class="chips-row"></div>
+    <input
+      type="text"
+      id="post-search"
+      class="search-input"
+      placeholder="Search posts or type a tag to filter..."
+      autocomplete="off"
+    >
+    <ul id="tag-suggestions" class="tag-suggestions" hidden></ul>
+  </div>
+
+  <div id="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+      <article
+        class="blog-row"
+        data-search="{{ lower .Title }} {{ lower .Summary }} {{ lower (delimit .Params.tags " ") }}"
+        data-tags="{{ lower (delimit .Params.tags ",") }}"
+      >
+        <div class="blog-row-meta">
+          <span class="meta-date">{{ .Date.Format "02 Jan 2006" }}</span>
+          {{ with .Params.tags }}
+            <span class="blog-row-tags">
+              {{ range . }}
+                <span class="tag-indicator">{{ . }}</span>
+              {{ end }}
+            </span>
+          {{ end }}
+        </div>
+        <h2 class="blog-row-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="post-excerpt">{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+      </article>
+    {{ end }}
+  </div>
+
+  <p id="no-results" class="muted" style="display:none; margin-top: var(--space-3);">No posts match your search.</p>
+</section>
+
+<script>
+(function() {
+  var ALL_TAGS = {{ $tags | jsonify }};
+  var input      = document.getElementById('post-search');
+  var postList   = document.getElementById('post-list');
+  var suggestEl  = document.getElementById('tag-suggestions');
+  var chipsRow   = document.getElementById('chips-row');
+  var noResults  = document.getElementById('no-results');
+  var activeTags = [];
+
+  function filter() {
+    var q = input.value.toLowerCase().trim();
+    var items = postList.querySelectorAll('.blog-row');
+    var visible = 0;
+    items.forEach(function(item) {
+      var postTags = item.dataset.tags ? item.dataset.tags.split(',').map(function(t){ return t.trim(); }).filter(Boolean) : [];
+      var textMatch = !q || (item.dataset.search || '').indexOf(q) !== -1;
+      var tagMatch  = activeTags.every(function(tag) { return postTags.indexOf(tag) !== -1; });
+      var show = textMatch && tagMatch;
+      item.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    noResults.style.display = (visible === 0) ? '' : 'none';
+  }
+
+  function addChip(tag) {
+    tag = tag.toLowerCase();
+    if (activeTags.indexOf(tag) !== -1) return;
+    activeTags.push(tag);
+    var chip = document.createElement('span');
+    chip.className = 'search-chip';
+    var label = document.createTextNode(tag);
+    chip.appendChild(label);
+    var btn = document.createElement('button');
+    btn.className = 'chip-remove';
+    btn.textContent = '×';
+    btn.setAttribute('aria-label', 'Remove ' + tag);
+    btn.addEventListener('click', function() {
+      activeTags.splice(activeTags.indexOf(tag), 1);
+      chipsRow.removeChild(chip);
+      filter();
+    });
+    chip.appendChild(btn);
+    chipsRow.appendChild(chip);
+    input.value = '';
+    hideSuggestions();
+    filter();
+  }
+
+  function showSuggestions(q) {
+    if (!q) { hideSuggestions(); return; }
+    var matches = ALL_TAGS.filter(function(t) {
+      return t.toLowerCase().indexOf(q) !== -1 && activeTags.indexOf(t.toLowerCase()) === -1;
+    });
+    if (!matches.length) { hideSuggestions(); return; }
+    suggestEl.innerHTML = '';
+    matches.slice(0, 6).forEach(function(tag) {
+      var li = document.createElement('li');
+      li.textContent = tag;
+      li.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        addChip(tag);
+      });
+      suggestEl.appendChild(li);
+    });
+    suggestEl.hidden = false;
+  }
+
+  function hideSuggestions() {
+    suggestEl.hidden = true;
+    suggestEl.innerHTML = '';
+  }
+
+  input.addEventListener('input', function() {
+    showSuggestions(this.value.toLowerCase().trim());
+    filter();
+  });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      var q = this.value.toLowerCase().trim();
+      var exact = ALL_TAGS.find(function(t) { return t.toLowerCase() === q; });
+      if (exact) addChip(exact);
+      e.preventDefault();
+    }
+    if (e.key === 'Escape') hideSuggestions();
+  });
+
+  input.addEventListener('blur', function() { setTimeout(hideSuggestions, 150); });
+
+  var params = new URLSearchParams(window.location.search);
+  var initial = (params.get('q') || '').toLowerCase();
+  if (initial) {
+    var exactTag = ALL_TAGS.find(function(t) { return t.toLowerCase() === initial; });
+    if (exactTag) { addChip(exactTag); }
+    else { input.value = initial; filter(); }
+  }
+})();
+</script>
+{{ end }}

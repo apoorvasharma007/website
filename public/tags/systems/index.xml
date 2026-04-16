@@ -2,18 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Systems on Apoorva Sharma</title>
-    <link>http://localhost:64243/tags/systems/</link>
+    <link>http://localhost:1313/tags/systems/</link>
     <description>Recent content in Systems on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Feb 2026 09:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:64243/tags/systems/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Mar 2026 08:30:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/systems/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Designing Reliable Cloud Systems</title>
-      <link>http://localhost:64243/posts/first-tech-post/</link>
-      <pubDate>Thu, 26 Feb 2026 09:00:00 +0000</pubDate>
-      <guid>http://localhost:64243/posts/first-tech-post/</guid>
-      <description>Why I design cloud systems for contained failure, boring reliability, and easy reasoning instead of maximum novelty.</description>
+      <title>On Systems Over Goals</title>
+      <link>http://localhost:1313/blog/on-systems-over-goals/</link>
+      <pubDate>Sun, 22 Mar 2026 08:30:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/on-systems-over-goals/</guid>
+      <description>Goals tell you where you want to go. Systems determine whether you get there.</description>
+    </item>
+    <item>
+      <title>A Note-Taking System That Actually Works for Engineers</title>
+      <link>http://localhost:1313/blog/note-taking-system-for-engineers/</link>
+      <pubDate>Sun, 01 Mar 2026 09:30:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/note-taking-system-for-engineers/</guid>
+      <description>Most note-taking systems fail because they optimise for capture, not retrieval. Here is what I do instead.</description>
     </item>
   </channel>
 </rss>
