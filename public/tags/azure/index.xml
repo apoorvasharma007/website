@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/azure/</link>
+    <link>http://localhost:54001/tags/azure/</link>
     <description>Recent content in Azure on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Mar 2026 10:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54001/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What I Learned Deploying on Azure for the First Time</title>
-      <link>http://localhost:1313/blog/what-i-learned-deploying-on-azure/</link>
+      <link>http://localhost:54001/blog/what-i-learned-deploying-on-azure/</link>
       <pubDate>Tue, 10 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/what-i-learned-deploying-on-azure/</guid>
+      <guid>http://localhost:54001/blog/what-i-learned-deploying-on-azure/</guid>
       <description>Notes from my first production deployment on Azure — what surprised me, what tripped me up, and what I would do differently.</description>
     </item>
   </channel>

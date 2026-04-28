@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nutrition on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/nutrition/</link>
+    <link>http://localhost:54001/tags/nutrition/</link>
     <description>Recent content in Nutrition on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 20 Jan 2026 08:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/nutrition/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54001/tags/nutrition/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What to Eat When Training for Strength</title>
-      <link>http://localhost:1313/blog/what-to-eat-when-training-for-strength/</link>
+      <link>http://localhost:54001/blog/what-to-eat-when-training-for-strength/</link>
       <pubDate>Tue, 20 Jan 2026 08:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/what-to-eat-when-training-for-strength/</guid>
+      <guid>http://localhost:54001/blog/what-to-eat-when-training-for-strength/</guid>
       <description>Nutrition for strength training is simpler than the industry wants you to believe.</description>
     </item>
   </channel>

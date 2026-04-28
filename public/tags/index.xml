@@ -2,255 +2,255 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>http://localhost:54001/tags/</link>
     <description>Recent content in Tags on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 Apr 2026 07:45:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54001/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fitness</title>
-      <link>http://localhost:1313/tags/fitness/</link>
+      <link>http://localhost:54001/tags/fitness/</link>
       <pubDate>Sun, 12 Apr 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/fitness/</guid>
+      <guid>http://localhost:54001/tags/fitness/</guid>
       <description></description>
     </item>
     <item>
       <title>Programming</title>
-      <link>http://localhost:1313/tags/programming/</link>
+      <link>http://localhost:54001/tags/programming/</link>
       <pubDate>Sun, 12 Apr 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/programming/</guid>
+      <guid>http://localhost:54001/tags/programming/</guid>
       <description></description>
     </item>
     <item>
       <title>Strength</title>
-      <link>http://localhost:1313/tags/strength/</link>
+      <link>http://localhost:54001/tags/strength/</link>
       <pubDate>Sun, 12 Apr 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/strength/</guid>
+      <guid>http://localhost:54001/tags/strength/</guid>
       <description></description>
     </item>
     <item>
       <title>Training</title>
-      <link>http://localhost:1313/tags/training/</link>
+      <link>http://localhost:54001/tags/training/</link>
       <pubDate>Sun, 12 Apr 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/training/</guid>
+      <guid>http://localhost:54001/tags/training/</guid>
       <description></description>
     </item>
     <item>
       <title>Ai</title>
-      <link>http://localhost:1313/tags/ai/</link>
+      <link>http://localhost:54001/tags/ai/</link>
       <pubDate>Thu, 02 Apr 2026 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ai/</guid>
+      <guid>http://localhost:54001/tags/ai/</guid>
       <description></description>
     </item>
     <item>
       <title>Project</title>
-      <link>http://localhost:1313/tags/project/</link>
+      <link>http://localhost:54001/tags/project/</link>
       <pubDate>Thu, 02 Apr 2026 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/project/</guid>
+      <guid>http://localhost:54001/tags/project/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost:1313/tags/python/</link>
+      <link>http://localhost:54001/tags/python/</link>
       <pubDate>Thu, 02 Apr 2026 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/python/</guid>
+      <guid>http://localhost:54001/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Tech</title>
-      <link>http://localhost:1313/tags/tech/</link>
+      <link>http://localhost:54001/tags/tech/</link>
       <pubDate>Thu, 02 Apr 2026 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/tech/</guid>
+      <guid>http://localhost:54001/tags/tech/</guid>
       <description></description>
     </item>
     <item>
       <title>Mindset</title>
-      <link>http://localhost:1313/tags/mindset/</link>
+      <link>http://localhost:54001/tags/mindset/</link>
       <pubDate>Sun, 22 Mar 2026 08:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/mindset/</guid>
+      <guid>http://localhost:54001/tags/mindset/</guid>
       <description></description>
     </item>
     <item>
       <title>Productivity</title>
-      <link>http://localhost:1313/tags/productivity/</link>
+      <link>http://localhost:54001/tags/productivity/</link>
       <pubDate>Sun, 22 Mar 2026 08:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/productivity/</guid>
+      <guid>http://localhost:54001/tags/productivity/</guid>
       <description></description>
     </item>
     <item>
       <title>Systems</title>
-      <link>http://localhost:1313/tags/systems/</link>
+      <link>http://localhost:54001/tags/systems/</link>
       <pubDate>Sun, 22 Mar 2026 08:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/systems/</guid>
+      <guid>http://localhost:54001/tags/systems/</guid>
       <description></description>
     </item>
     <item>
       <title>Testing</title>
-      <link>http://localhost:1313/tags/testing/</link>
+      <link>http://localhost:54001/tags/testing/</link>
       <pubDate>Sun, 15 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/testing/</guid>
+      <guid>http://localhost:54001/tags/testing/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure</title>
-      <link>http://localhost:1313/tags/azure/</link>
+      <link>http://localhost:54001/tags/azure/</link>
       <pubDate>Tue, 10 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/azure/</guid>
+      <guid>http://localhost:54001/tags/azure/</guid>
       <description></description>
     </item>
     <item>
       <title>Cloud</title>
-      <link>http://localhost:1313/tags/cloud/</link>
+      <link>http://localhost:54001/tags/cloud/</link>
       <pubDate>Tue, 10 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/cloud/</guid>
+      <guid>http://localhost:54001/tags/cloud/</guid>
       <description></description>
     </item>
     <item>
       <title>Devops</title>
-      <link>http://localhost:1313/tags/devops/</link>
+      <link>http://localhost:54001/tags/devops/</link>
       <pubDate>Tue, 10 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/devops/</guid>
+      <guid>http://localhost:54001/tags/devops/</guid>
       <description></description>
     </item>
     <item>
       <title>Engineering</title>
-      <link>http://localhost:1313/tags/engineering/</link>
+      <link>http://localhost:54001/tags/engineering/</link>
       <pubDate>Sun, 01 Mar 2026 09:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/engineering/</guid>
+      <guid>http://localhost:54001/tags/engineering/</guid>
       <description></description>
     </item>
     <item>
       <title>Habit</title>
-      <link>http://localhost:1313/tags/habit/</link>
+      <link>http://localhost:54001/tags/habit/</link>
       <pubDate>Thu, 26 Feb 2026 09:15:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/habit/</guid>
+      <guid>http://localhost:54001/tags/habit/</guid>
       <description></description>
     </item>
     <item>
       <title>Recovery</title>
-      <link>http://localhost:1313/tags/recovery/</link>
+      <link>http://localhost:54001/tags/recovery/</link>
       <pubDate>Wed, 18 Feb 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/recovery/</guid>
+      <guid>http://localhost:54001/tags/recovery/</guid>
       <description></description>
     </item>
     <item>
       <title>Learning</title>
-      <link>http://localhost:1313/tags/learning/</link>
+      <link>http://localhost:54001/tags/learning/</link>
       <pubDate>Thu, 05 Feb 2026 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/learning/</guid>
+      <guid>http://localhost:54001/tags/learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Nutrition</title>
-      <link>http://localhost:1313/tags/nutrition/</link>
+      <link>http://localhost:54001/tags/nutrition/</link>
       <pubDate>Tue, 20 Jan 2026 08:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/nutrition/</guid>
+      <guid>http://localhost:54001/tags/nutrition/</guid>
       <description></description>
     </item>
     <item>
       <title>Ci-Cd</title>
-      <link>http://localhost:1313/tags/ci-cd/</link>
+      <link>http://localhost:54001/tags/ci-cd/</link>
       <pubDate>Thu, 08 Jan 2026 10:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ci-cd/</guid>
+      <guid>http://localhost:54001/tags/ci-cd/</guid>
       <description></description>
     </item>
     <item>
       <title>Github</title>
-      <link>http://localhost:1313/tags/github/</link>
+      <link>http://localhost:54001/tags/github/</link>
       <pubDate>Thu, 08 Jan 2026 10:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/github/</guid>
+      <guid>http://localhost:54001/tags/github/</guid>
       <description></description>
     </item>
     <item>
       <title>Architecture</title>
-      <link>http://localhost:1313/tags/architecture/</link>
+      <link>http://localhost:54001/tags/architecture/</link>
       <pubDate>Tue, 02 Dec 2025 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/architecture/</guid>
+      <guid>http://localhost:54001/tags/architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Cardio</title>
-      <link>http://localhost:1313/tags/cardio/</link>
+      <link>http://localhost:54001/tags/cardio/</link>
       <pubDate>Tue, 18 Nov 2025 07:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/cardio/</guid>
+      <guid>http://localhost:54001/tags/cardio/</guid>
       <description></description>
     </item>
     <item>
       <title>Running</title>
-      <link>http://localhost:1313/tags/running/</link>
+      <link>http://localhost:54001/tags/running/</link>
       <pubDate>Tue, 18 Nov 2025 07:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/running/</guid>
+      <guid>http://localhost:54001/tags/running/</guid>
       <description></description>
     </item>
     <item>
       <title>Iac</title>
-      <link>http://localhost:1313/tags/iac/</link>
+      <link>http://localhost:54001/tags/iac/</link>
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/iac/</guid>
+      <guid>http://localhost:54001/tags/iac/</guid>
       <description></description>
     </item>
     <item>
       <title>Back</title>
-      <link>http://localhost:1313/tags/back/</link>
+      <link>http://localhost:54001/tags/back/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/back/</guid>
+      <guid>http://localhost:54001/tags/back/</guid>
       <description></description>
     </item>
     <item>
       <title>Chest</title>
-      <link>http://localhost:1313/tags/chest/</link>
+      <link>http://localhost:54001/tags/chest/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/chest/</guid>
+      <guid>http://localhost:54001/tags/chest/</guid>
       <description></description>
     </item>
     <item>
       <title>Data</title>
-      <link>http://localhost:1313/tags/data/</link>
+      <link>http://localhost:54001/tags/data/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/data/</guid>
+      <guid>http://localhost:54001/tags/data/</guid>
       <description></description>
     </item>
     <item>
       <title>Hugo</title>
-      <link>http://localhost:1313/tags/hugo/</link>
+      <link>http://localhost:54001/tags/hugo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/hugo/</guid>
+      <guid>http://localhost:54001/tags/hugo/</guid>
       <description></description>
     </item>
     <item>
       <title>Hypertrophy</title>
-      <link>http://localhost:1313/tags/hypertrophy/</link>
+      <link>http://localhost:54001/tags/hypertrophy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/hypertrophy/</guid>
+      <guid>http://localhost:54001/tags/hypertrophy/</guid>
       <description></description>
     </item>
     <item>
       <title>Pull</title>
-      <link>http://localhost:1313/tags/pull/</link>
+      <link>http://localhost:54001/tags/pull/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/pull/</guid>
+      <guid>http://localhost:54001/tags/pull/</guid>
       <description></description>
     </item>
     <item>
       <title>Push</title>
-      <link>http://localhost:1313/tags/push/</link>
+      <link>http://localhost:54001/tags/push/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/push/</guid>
+      <guid>http://localhost:54001/tags/push/</guid>
       <description></description>
     </item>
     <item>
       <title>Static-Site</title>
-      <link>http://localhost:1313/tags/static-site/</link>
+      <link>http://localhost:54001/tags/static-site/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/static-site/</guid>
+      <guid>http://localhost:54001/tags/static-site/</guid>
       <description></description>
     </item>
     <item>
       <title>Web</title>
-      <link>http://localhost:1313/tags/web/</link>
+      <link>http://localhost:54001/tags/web/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/web/</guid>
+      <guid>http://localhost:54001/tags/web/</guid>
       <description></description>
     </item>
   </channel>

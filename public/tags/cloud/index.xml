@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cloud on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/cloud/</link>
+    <link>http://localhost:54001/tags/cloud/</link>
     <description>Recent content in Cloud on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Mar 2026 10:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54001/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What I Learned Deploying on Azure for the First Time</title>
-      <link>http://localhost:1313/blog/what-i-learned-deploying-on-azure/</link>
+      <link>http://localhost:54001/blog/what-i-learned-deploying-on-azure/</link>
       <pubDate>Tue, 10 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/what-i-learned-deploying-on-azure/</guid>
+      <guid>http://localhost:54001/blog/what-i-learned-deploying-on-azure/</guid>
       <description>Notes from my first production deployment on Azure — what surprised me, what tripped me up, and what I would do differently.</description>
     </item>
     <item>
       <title>Infrastructure as Code: First Principles</title>
-      <link>http://localhost:1313/blog/infrastructure-as-code-first-principles/</link>
+      <link>http://localhost:54001/blog/infrastructure-as-code-first-principles/</link>
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/infrastructure-as-code-first-principles/</guid>
+      <guid>http://localhost:54001/blog/infrastructure-as-code-first-principles/</guid>
       <description>Why IaC is not just about automation, and the principles that make it actually work.</description>
     </item>
   </channel>

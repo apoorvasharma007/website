@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/data/</link>
+    <link>http://localhost:54001/tags/data/</link>
     <description>Recent content in Data on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/tags/data/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54001/tags/data/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>traininglogs</title>
-      <link>http://localhost:1313/code/traininglogs/</link>
+      <link>http://localhost:54001/code/traininglogs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/code/traininglogs/</guid>
+      <guid>http://localhost:54001/code/traininglogs/</guid>
       <description>A Python pipeline that parses free-text training session logs into a structured NoSQL/JSON schema. Includes dataclass models, a CLI, and an agent layer for AI-assisted log intake.</description>
     </item>
   </channel>

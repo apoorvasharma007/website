@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ci-Cd on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/ci-cd/</link>
+    <link>http://localhost:54001/tags/ci-cd/</link>
     <description>Recent content in Ci-Cd on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 08 Jan 2026 10:30:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ci-cd/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54001/tags/ci-cd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GitHub Actions for Personal Projects</title>
-      <link>http://localhost:1313/blog/github-actions-for-personal-projects/</link>
+      <link>http://localhost:54001/blog/github-actions-for-personal-projects/</link>
       <pubDate>Thu, 08 Jan 2026 10:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/github-actions-for-personal-projects/</guid>
+      <guid>http://localhost:54001/blog/github-actions-for-personal-projects/</guid>
       <description>How I set up lightweight CI/CD for personal projects without overengineering it.</description>
     </item>
   </channel>
