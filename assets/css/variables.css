@@ -1,39 +1,36 @@
 /* variables.css - central custom properties and font imports */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
   /* color tokens */
-  --color-bg: #0b0f14;
-  --color-surface: #1a1e26;
-  --color-text-primary: #e6edf3;
-  --color-text-secondary: #94a3b8;
-  --color-text-muted: #475569;
-  --color-accent-primary: #00f5ff;
-  --color-accent-secondary: #7c3aed;
+  --color-bg: #F1E9D6;
+  --color-surface: #EBE1CB;
+  --color-text-primary: #1A1410;
+  --color-text-secondary: #4a3f35;
+  --color-text-muted: #8A7F6E;
+  --color-accent-primary: #C83C29;
   --color-heading: var(--color-text-primary);
   --color-link: inherit;
   --color-link-hover: var(--color-accent-primary);
 
   /* spacing scale (8px system) */
-  --space-1: 0.5rem;   /* 8px */
-  --space-2: 1rem;     /* 16px */
-  --space-3: 1.5rem;   /* 24px */
-  --space-4: 2rem;     /* 32px */
-  --space-5: 3rem;     /* 48px */
-  --space-6: 5rem;     /* 80px */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 5rem;
   --max-width: 1100px;
 
   /* typography */
   --font-body: 'Inter', sans-serif;
-  --font-heading: 'Space Grotesk', sans-serif;
+  --font-heading: 'Fraunces', 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --line-height: 1.7;
 
   /* animation durations */
   --dur-short: 0.2s;
   --dur-med: 0.3s;
   --dur-long: 0.4s;
-
-  /* glow */
-  --glow-color: var(--color-accent-primary);
 }
