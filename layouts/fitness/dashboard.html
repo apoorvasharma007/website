@@ -1,60 +1,7 @@
 {{ define "main" }}
-{{ $m := .Site.Data.metrics }}
-<section class="section fade-in">
-  <span class="label">Fitness</span>
-  <h1 class="section-title">Progress Dashboard</h1>
-  <p class="muted">Last updated: {{ $m.last_updated }}</p>
-
-  <!-- Body metrics -->
-  <h2 class="dashboard-heading">Body</h2>
-  <div class="stat-grid">
-    <div class="stat-card">
-      <span class="stat-label">Weight</span>
-      <span class="stat-value">{{ $m.body.weight_kg }} <span class="stat-unit">kg</span></span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-label">Body Fat</span>
-      <span class="stat-value">{{ $m.body.body_fat_pct }}<span class="stat-unit">%</span></span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-label">Lean Mass</span>
-      <span class="stat-value">{{ $m.body.lean_mass_kg }} <span class="stat-unit">kg</span></span>
-    </div>
-  </div>
-
-  <!-- Top lifts -->
-  <h2 class="dashboard-heading">Lifetime Bests</h2>
-  <table class="dashboard-table">
-    <thead>
-      <tr><th>Lift</th><th>Weight (kg)</th><th>Reps</th><th>Date</th></tr>
-    </thead>
-    <tbody>
-      {{ range $m.bests }}
-        <tr>
-          <td>{{ .name }}</td>
-          <td>{{ .weight_kg }}</td>
-          <td>{{ .reps }}</td>
-          <td>{{ .date }}</td>
-        </tr>
-      {{ end }}
-    </tbody>
-  </table>
-
-  <!-- Weekly volume -->
-  <h2 class="dashboard-heading">Weekly Volume</h2>
-  <table class="dashboard-table">
-    <thead>
-      <tr><th>Week</th><th>Total Sets</th><th>Sessions</th></tr>
-    </thead>
-    <tbody>
-      {{ range $m.weekly_volume }}
-        <tr>
-          <td>{{ .week }}</td>
-          <td>{{ .sets }}</td>
-          <td>{{ .sessions }}</td>
-        </tr>
-      {{ end }}
-    </tbody>
-  </table>
-</section>
+<meta http-equiv="refresh" content="0; url=https://apoorvasharma007.github.io/traininglogs/">
+<script>window.location.replace("https://apoorvasharma007.github.io/traininglogs/");</script>
+<noscript>
+  <p>Redirecting to <a href="https://apoorvasharma007.github.io/traininglogs/">Training Dashboard</a>…</p>
+</noscript>
 {{ end }}
