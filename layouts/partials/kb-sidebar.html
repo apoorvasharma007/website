@@ -1,0 +1,31 @@
+{{ $kbRoot := .Params.kb_root }}
+{{ $kb := .Site.GetPage $kbRoot }}
+{{ $current := .RelPermalink }}
+<nav class="ebook-sidebar">
+  <a class="ebook-sidebar-title{{ if eq $current $kb.RelPermalink }} active{{ end }}" href="{{ $kb.RelPermalink }}">{{ $kb.Title }}</a>
+  {{ if $kb.Sections }}
+    {{ range $kb.Sections.ByWeight }}
+      {{ $isActive := hasPrefix $current .RelPermalink }}
+      <details{{ if $isActive }} open{{ end }}>
+        <summary>
+          <a href="{{ .RelPermalink }}" class="{{ if eq $current .RelPermalink }}active{{ end }}">{{ .Title }}</a>
+        </summary>
+        <ul class="ebook-sidebar-pages">
+          {{ range .Pages.ByWeight }}
+            <li>
+              <a href="{{ .RelPermalink }}" class="{{ if eq $current .RelPermalink }}active{{ end }}">{{ .Title }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      </details>
+    {{ end }}
+  {{ else }}
+    <ul class="ebook-sidebar-pages" style="padding-left: 0;">
+      {{ range $kb.Pages.ByWeight }}
+        <li>
+          <a href="{{ .RelPermalink }}" class="{{ if eq $current .RelPermalink }}active{{ end }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</nav>

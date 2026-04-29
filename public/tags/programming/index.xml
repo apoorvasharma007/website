@@ -2,24 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Programming on Apoorva Sharma</title>
-    <link>http://localhost:54001/tags/programming/</link>
+    <link>http://localhost:1313/tags/programming/</link>
     <description>Recent content in Programming on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2026 07:45:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:54001/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Periodisation</title>
+      <link>http://localhost:1313/movement/knowledge-base/programming/periodisation/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/movement/knowledge-base/programming/periodisation/</guid>
+      <description>&lt;p&gt;Periodisation is the deliberate variation of training variables over time to manage fatigue, accumulate volume, and peak performance.&lt;/p&gt;&#xA;&lt;h2 id=&#34;linear-periodisation&#34;&gt;Linear Periodisation&lt;/h2&gt;&#xA;&lt;p&gt;Add load every session or every week. Works well for beginners because the nervous system and musculature adapt quickly enough to handle weekly load increases.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Linear periodisation is not just for beginners — many intermediate lifters benefit from returning to simpler models after over-engineering their programme.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;block-periodisation&#34;&gt;Block Periodisation&lt;/h2&gt;&#xA;&lt;p&gt;Organise training into focused blocks: accumulation (high volume, moderate intensity), intensification (lower volume, high intensity), and realisation (peaking). Each block 3–6 weeks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Deload</title>
+      <link>http://localhost:1313/movement/knowledge-base/programming/deload/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/movement/knowledge-base/programming/deload/</guid>
+      <description>&lt;p&gt;A deload is a planned reduction in training stress — lower volume, intensity, or both — to allow accumulated fatigue to dissipate.&lt;/p&gt;&#xA;&lt;h2 id=&#34;when-to-deload&#34;&gt;When to Deload&lt;/h2&gt;&#xA;&lt;p&gt;After 4–8 weeks of hard training, performance often stalls and joints feel beat up. This is the signal to deload. Some programmes schedule deloads automatically; others use autoregulation.&lt;/p&gt;&#xA;&lt;h3 id=&#34;signs-that-a-deload-is-needed&#34;&gt;Signs that a deload is needed&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Performance declining across two or more consecutive sessions&lt;/li&gt;&#xA;&lt;li&gt;Persistent joint soreness (not muscle soreness) at the hips, knees, elbows, or lower back&lt;/li&gt;&#xA;&lt;li&gt;Motivation significantly lower than baseline&lt;/li&gt;&#xA;&lt;li&gt;Sleep disrupted or resting heart rate elevated&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Fatigue masks fitness. When a lifter deloads after a hard block, they often set PRs in the first week back — not because they got stronger during the deload, but because the fatigue finally cleared.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Session Structure</title>
+      <link>http://localhost:1313/movement/knowledge-base/training/session-structure/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/movement/knowledge-base/training/session-structure/</guid>
+      <description>&lt;p&gt;A well-structured session has a clear order: warm-up, main work, accessory work, and a brief cooldown. The order exists for physiological reasons — not convention.&lt;/p&gt;&#xA;&lt;h2 id=&#34;warm-up&#34;&gt;Warm-Up&lt;/h2&gt;&#xA;&lt;p&gt;Raise core temperature and prime movement patterns relevant to the session. A useful warm-up has two phases:&lt;/p&gt;&#xA;&lt;h3 id=&#34;general-warm-up-35-min&#34;&gt;General warm-up (3–5 min)&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Light cardio (bike, row, or jog) to elevate heart rate&lt;/li&gt;&#xA;&lt;li&gt;Joint mobility work for the main movements of the day&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;specific-warm-up-510-min&#34;&gt;Specific warm-up (5–10 min)&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Warm-up sets of the main lift at progressively heavier loads&lt;/li&gt;&#xA;&lt;li&gt;Example for a 140 kg squat day: bar × 10, 60 × 5, 100 × 3, 120 × 2, then work sets&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Never skip the specific warm-up. A 5-minute investment eliminates most acute training injuries.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Block Structure</title>
+      <link>http://localhost:1313/movement/knowledge-base/programming/block-structure/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/movement/knowledge-base/programming/block-structure/</guid>
+      <description>&lt;p&gt;A training block is a defined period (typically 4–8 weeks) with a specific adaptation goal. Structuring training in blocks allows you to build one quality on top of another rather than chasing all qualities simultaneously.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-case-for-blocks&#34;&gt;The Case for Blocks&lt;/h2&gt;&#xA;&lt;p&gt;Training simultaneously for maximum strength, maximum muscle, and maximum endurance produces suboptimal results in all three. The interference effect — where endurance training blunts hypertrophy, and maximal strength work competes with metabolic conditioning — is well-documented.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Progression Models</title>
+      <link>http://localhost:1313/movement/knowledge-base/training/progression-models/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/movement/knowledge-base/training/progression-models/</guid>
+      <description>&lt;p&gt;A progression model is the mechanism by which you apply progressive overload over time. Choosing the right model for your training age and goal prevents stalling and injury.&lt;/p&gt;&#xA;&lt;h2 id=&#34;linear-progression&#34;&gt;Linear Progression&lt;/h2&gt;&#xA;&lt;p&gt;The simplest model: add a fixed amount of weight each session. Works because beginners recover fast enough to set PRs every 48–72 hours.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Session 1: Squat 60 kg × 3 × 5&#xA;Session 2: Squat 62.5 kg × 3 × 5&#xA;Session 3: Squat 65 kg × 3 × 5&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When to use linear progression:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Progressive Overload Is Not Just Adding Weight</title>
-      <link>http://localhost:54001/blog/progressive-overload-is-not-just-weight/</link>
+      <link>http://localhost:1313/blog/progressive-overload-is-not-just-weight/</link>
       <pubDate>Sun, 12 Apr 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:54001/blog/progressive-overload-is-not-just-weight/</guid>
+      <guid>http://localhost:1313/blog/progressive-overload-is-not-just-weight/</guid>
       <description>Weight on the bar is one variable. Here are the others.</description>
     </item>
     <item>
       <title>The Deload Week: What It Is and Why Most People Skip It</title>
-      <link>http://localhost:54001/blog/the-deload-week/</link>
+      <link>http://localhost:1313/blog/the-deload-week/</link>
       <pubDate>Wed, 18 Feb 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:54001/blog/the-deload-week/</guid>
+      <guid>http://localhost:1313/blog/the-deload-week/</guid>
       <description>A planned reduction in training load is not laziness. It is how you keep accumulating progress over months.</description>
     </item>
   </channel>

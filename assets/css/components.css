@@ -12,15 +12,14 @@
 /* ── Typography ──────────────────────────────────────────────────── */
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
-  font-weight: 300;
+  font-weight: 700;
   color: var(--color-heading);
   letter-spacing: -0.01em;
   margin: 0 0 var(--space-2) 0;
   line-height: 1.2;
-  font-variation-settings: "opsz" 72, "SOFT" 20;
 }
 
-h1           { font-size: 2.4rem; letter-spacing: -0.02em; font-variation-settings: "opsz" 144, "SOFT" 0; }
+h1           { font-size: 2.4rem; letter-spacing: -0.02em; }
 h2           { font-size: 1.6rem; }
 h3           { font-size: 1.15rem; }
 .section-title { font-size: 1.6rem; margin-bottom: var(--space-3); }
@@ -309,15 +308,14 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 
 .tag-suggestions li:hover { background: rgba(200,60,41,0.06); color: var(--color-accent-primary); }
 
-/* ── Fitness landing cards ───────────────────────────────────────── */
-.fitness-nav-cards {
+/* ── Movement landing cards ───────────────────────────────────────── */
+.movement-nav-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: var(--space-2);
-  margin-top: var(--space-3);
 }
 
-.fitness-nav-card {
+.movement-nav-card {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
@@ -329,11 +327,34 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   color: inherit;
 }
 
-.fitness-nav-card:hover { border-color: rgba(200,60,41,0.3); }
-.fitness-nav-card.dashboard-card { border-color: rgba(200,60,41,0.15); }
+.movement-nav-card:hover { border-color: rgba(200,60,41,0.3); }
+.movement-nav-card.dashboard-card { border-color: rgba(200,60,41,0.15); }
 
-.fitness-nav-label { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; color: var(--color-text-primary); }
-.fitness-nav-desc  { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.5; }
+.movement-nav-label { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; color: var(--color-text-primary); }
+.movement-nav-desc  { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.5; }
+
+/* ── Landing backdrop sections ───────────────────────────────────── */
+.landing-backdrop-section {
+  background: var(--color-surface);
+  border: 1px solid rgba(26,20,16,0.12);
+  border-radius: 8px;
+  padding: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.landing-backdrop-heading {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-2);
+}
+
+.landing-kb-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.landing-kb-list a { color: var(--color-text-primary); font-size: 1rem; text-decoration: none; }
+.landing-kb-list a:hover { color: var(--color-accent-primary); }
 
 /* ── Ebook layout ────────────────────────────────────────────────── */
 .ebook-layout {
@@ -576,6 +597,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   color: var(--color-text-secondary);
   max-width: 68ch;
   margin: 0 0 var(--space-2);
+  font-weight: 400;
 }
 
 .content ul, .content ol {
@@ -617,10 +639,10 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 
 /* ── Footer ──────────────────────────────────────────────────────── */
 .site-footer {
-  margin-top: var(--space-5);
-  padding-top: var(--space-3);
+  margin-top: 1rem;
+  padding-top: 0.5rem;
   border-top: 1px solid rgba(26,20,16,0.12);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--color-text-muted);
   text-align: center;
 }
@@ -653,7 +675,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   .single-title { font-size: 1.3rem; }
   .search-wrap  { max-width: 100%; }
   .stat-grid    { grid-template-columns: repeat(2, 1fr); }
-  .fitness-nav-cards { grid-template-columns: 1fr; }
+  .movement-nav-cards { grid-template-columns: 1fr; }
   .recent-date  { width: 72px; }
   .dashboard-table { font-size: 0.8rem; }
   .dashboard-table th,

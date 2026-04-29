@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dynamic Programming · Apoorva Sharma</title>
+    
+    <meta name="description" content="Software Engineer, systems thinking, tech and fitness writing.">
+    
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/variables.min.bfe99a3afd09f8bb80a9f77c028c26861e8bb97738795ff4d7052e08d7af2aa3.css" integrity="sha256-v&#43;maOv0J&#43;LuAqfd8Aowmhh6LuXc4eV/01wUuCNevKqM=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/layout.min.80308b36d9531926474907126e4f9f900a7fca153ca19eed19a10d37fc9f4156.css" integrity="sha256-gDCLNtlTGSZHSQcSbk&#43;fkAp/yhU8oZ7tGaENN/yfQVY=">
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/components.min.8c5929745b5b22abaa6317f829417bd2b374098e9229fb93e3e0ebbc434a5ef7.css" integrity="sha256-jFkpdFtbIquqYxf4KUF70rN0CY6SKfuT4&#43;DrvENKXvc=">
+  </head>
+  <body>
+    <div class="site">
+      <header class="site-header">
+  <nav class="nav">
+    
+    
+      <a href="/" class="nav-link">Home</a>
+    
+      <a href="/blog/" class="nav-link">Blog</a>
+    
+      <a href="/movement/" class="nav-link">Movement</a>
+    
+      <a href="/tech/" class="nav-link">Tech</a>
+    
+      <a href="/music/" class="nav-link">Music</a>
+    
+  </nav>
+</header>
+
+      <main>
+        
+<div class="ebook-layout fade-in">
+  
+
+
+<nav class="ebook-sidebar">
+  <a class="ebook-sidebar-title" href="/tech/knowledge-base/dsa/">DSA</a>
+  
+    <ul class="ebook-sidebar-pages" style="padding-left: 0;">
+      
+        <li>
+          <a href="/tech/knowledge-base/dsa/arrays/" class="">Arrays and Hashing</a>
+        </li>
+      
+        <li>
+          <a href="/tech/knowledge-base/dsa/trees/" class="">Trees and Graphs</a>
+        </li>
+      
+        <li>
+          <a href="/tech/knowledge-base/dsa/dynamic-programming/" class="active">Dynamic Programming</a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+  <article class="ebook-content single">
+    <header class="single-header">
+      <span class="label">Knowledge Base</span>
+      <h1 class="single-title">Dynamic Programming</h1>
+      
+        <p class="post-tags">
+          
+            <a class="tag-pill" href="/tags/dsa">dsa</a>
+          
+            <a class="tag-pill" href="/tags/dp">dp</a>
+          
+            <a class="tag-pill" href="/tags/memoization">memoization</a>
+          
+        </p>
+      
+    </header>
+    <div class="content">
+      <p>Dynamic programming solves problems by breaking them into overlapping subproblems and storing solutions to avoid recomputation. It applies when a problem has <strong>optimal substructure</strong> and <strong>overlapping subproblems</strong>.</p>
+<h2 id="recognising-dp-problems">Recognising DP problems</h2>
+<p>A problem is likely DP if:</p>
+<ul>
+<li>It asks for a count, maximum, minimum, or boolean feasibility</li>
+<li>It involves making choices at each step (include/exclude, left/right)</li>
+<li>A recursive brute-force solution has exponential time due to repeated subproblems</li>
+</ul>
+<blockquote>
+<p>If you can write a brute-force recursion, you&rsquo;re 80% of the way to a DP solution. Add memoization and you have top-down DP. Flip the recursion to iteration and you have bottom-up DP.</p></blockquote>
+<h2 id="top-down-memoization">Top-Down (Memoization)</h2>
+<p>Write the recursion naturally. Cache results in a dictionary.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Fibonacci — O(n) with memoization vs O(2^n) without</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> cache
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@cache</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fib</span>(n: int) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> n
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> fib(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><h2 id="bottom-up-tabulation">Bottom-Up (Tabulation)</h2>
+<p>Build up the solution iteratively from base cases.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fib</span>(n: int) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> n
+</span></span><span style="display:flex;"><span>    dp <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> (n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    dp[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>        dp[i] <span style="color:#f92672">=</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dp[n]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Space-optimised: O(1) space</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fib_opt</span>(n: int) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>    a, b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(n):
+</span></span><span style="display:flex;"><span>        a, b <span style="color:#f92672">=</span> b, a <span style="color:#f92672">+</span> b
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a
+</span></span></code></pre></div><h2 id="classic-patterns">Classic patterns</h2>
+<h3 id="01-knapsack">0/1 Knapsack</h3>
+<p>Choose items to maximise value without exceeding weight capacity. Each item can be taken at most once.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">knapsack</span>(weights: list[int], values: list[int], capacity: int) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>    n <span style="color:#f92672">=</span> len(weights)
+</span></span><span style="display:flex;"><span>    dp <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> (capacity <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> w <span style="color:#f92672">in</span> range(capacity <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>            dp[i][w] <span style="color:#f92672">=</span> dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][w]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> weights[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> w:
+</span></span><span style="display:flex;"><span>                dp[i][w] <span style="color:#f92672">=</span> max(dp[i][w], dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][w <span style="color:#f92672">-</span> weights[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]] <span style="color:#f92672">+</span> values[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dp[n][capacity]
+</span></span></code></pre></div><h3 id="longest-common-subsequence-lcs">Longest Common Subsequence (LCS)</h3>
+<p>A string DP template used in diff tools, plagiarism detection, and DNA alignment.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lcs</span>(s1: str, s2: str) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>    m, n <span style="color:#f92672">=</span> len(s1), len(s2)
+</span></span><span style="display:flex;"><span>    dp <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> (n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> s1[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> s2[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]:
+</span></span><span style="display:flex;"><span>                dp[i][j] <span style="color:#f92672">=</span> dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                dp[i][j] <span style="color:#f92672">=</span> max(dp[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j], dp[i][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dp[m][n]
+</span></span></code></pre></div><h2 id="complexity">Complexity</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Problem</th>
+          <th>Time</th>
+          <th>Space</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Fibonacci</td>
+          <td>O(n)</td>
+          <td>O(n) → O(1) optimised</td>
+      </tr>
+      <tr>
+          <td>Knapsack</td>
+          <td>O(n × W)</td>
+          <td>O(n × W) → O(W) optimised</td>
+      </tr>
+      <tr>
+          <td>LCS</td>
+          <td>O(m × n)</td>
+          <td>O(m × n) → O(n) optimised</td>
+      </tr>
+      <tr>
+          <td>Coin change</td>
+          <td>O(amount × coins)</td>
+          <td>O(amount)</td>
+      </tr>
+      <tr>
+          <td>Edit distance</td>
+          <td>O(m × n)</td>
+          <td>O(m × n)</td>
+      </tr>
+  </tbody>
+</table>
+<p>Space optimisation in 2D DP: if each row depends only on the previous row, you can reduce from O(m × n) to O(n) by keeping two rows (or one, with careful ordering).</p>
+
+    </div>
+    <nav class="single-nav">
+      
+      
+        <a class="single-nav-link" href="/tech/knowledge-base/dsa/trees/">Trees and Graphs →</a>
+      
+    </nav>
+  </article>
+</div>
+
+      </main>
+      <footer class="site-footer">
+  <p class="muted">&copy; 2026 Apoorva Sharma</p>
+</footer>
+
+    </div>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

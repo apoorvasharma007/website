@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arrays on Apoorva Sharma</title>
+    <link>http://localhost:1313/tags/arrays/</link>
+    <description>Recent content in Arrays on Apoorva Sharma</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/arrays/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arrays and Hashing</title>
+      <link>http://localhost:1313/tech/knowledge-base/dsa/arrays/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tech/knowledge-base/dsa/arrays/</guid>
+      <description>&lt;p&gt;Arrays are contiguous memory blocks with O(1) random access. Hash maps provide O(1) average-case lookups by key.&lt;/p&gt;&#xA;&lt;h2 id=&#34;complexity-reference&#34;&gt;Complexity reference&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Operation&lt;/th&gt;&#xA;          &lt;th&gt;Array&lt;/th&gt;&#xA;          &lt;th&gt;Hash map&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Access by index&lt;/td&gt;&#xA;          &lt;td&gt;O(1)&lt;/td&gt;&#xA;          &lt;td&gt;—&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Search (unsorted)&lt;/td&gt;&#xA;          &lt;td&gt;O(n)&lt;/td&gt;&#xA;          &lt;td&gt;—&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Search (sorted)&lt;/td&gt;&#xA;          &lt;td&gt;O(log n)&lt;/td&gt;&#xA;          &lt;td&gt;—&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Lookup by key&lt;/td&gt;&#xA;          &lt;td&gt;—&lt;/td&gt;&#xA;          &lt;td&gt;O(1) avg&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Insert&lt;/td&gt;&#xA;          &lt;td&gt;O(n) (shift)&lt;/td&gt;&#xA;          &lt;td&gt;O(1) avg&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Delete&lt;/td&gt;&#xA;          &lt;td&gt;O(n) (shift)&lt;/td&gt;&#xA;          &lt;td&gt;O(1) avg&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;when-to-use-a-hash-map&#34;&gt;When to Use a Hash Map&lt;/h2&gt;&#xA;&lt;p&gt;Whenever a problem asks you to count, group, or look up elements in O(1). Two-sum, group anagrams, and frequency counts are classic examples.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

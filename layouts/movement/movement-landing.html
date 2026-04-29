@@ -1,0 +1,28 @@
+{{ define "main" }}
+<section class="section fade-in">
+  <p>{{ .Content }}</p>
+
+  <div class="landing-backdrop-section">
+    <h2 class="landing-backdrop-heading">Stats</h2>
+    <div class="movement-nav-cards">
+      <a class="movement-nav-card dashboard-card" href="/movement/dashboard/">
+        <span class="movement-nav-label">Dashboard</span>
+        <span class="movement-nav-desc">Progress metrics — body weight, lifts, weekly volume</span>
+      </a>
+      <a class="movement-nav-card" href="/training-almanac/">
+        <span class="movement-nav-label">Training Almanac</span>
+        <span class="movement-nav-desc">Full training history — tonnage, strength progression, volume by muscle, PRs</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="landing-backdrop-section">
+    <h2 class="landing-backdrop-heading">Knowledge Base</h2>
+    <ul class="landing-kb-list">
+      <li><a href="/movement/knowledge-base/training/">Training</a></li>
+      <li><a href="/movement/knowledge-base/nutrition/">Nutrition</a></li>
+      <li><a href="/movement/knowledge-base/programming/">Programming</a></li>
+    </ul>
+  </div>
+</section>
+{{ end }}

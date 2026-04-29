@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="ebook-layout fade-in">
+  {{ partial "kb-sidebar.html" . }}
+  <article class="ebook-content">
+    <span class="label">Knowledge Base</span>
+    <h1 class="section-title">{{ .Title }}</h1>
+    <p>{{ .Content }}</p>
+
+    <div class="ebook-toc">
+      {{ if .Sections }}
+        {{ range .Sections.ByWeight }}
+          <div class="ebook-toc-section">
+            <h2 class="ebook-toc-heading"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            {{ with .Content }}<p class="ebook-toc-desc">{{ . }}</p>{{ end }}
+            {{ if .Pages }}
+              <ul class="ebook-toc-pages">
+                {{ range .Pages.ByWeight }}
+                  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                {{ end }}
+              </ul>
+            {{ end }}
+          </div>
+        {{ end }}
+      {{ else }}
+        <ul class="ebook-toc-pages">
+          {{ range .Pages.ByWeight }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </div>
+  </article>
+</div>
+{{ end }}

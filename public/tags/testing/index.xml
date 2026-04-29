@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Testing on Apoorva Sharma</title>
-    <link>http://localhost:54001/tags/testing/</link>
+    <link>http://localhost:1313/tags/testing/</link>
     <description>Recent content in Testing on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Mar 2026 10:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:54001/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Evaluating AI Systems</title>
+      <link>http://localhost:1313/tech/knowledge-base/ai/evaluation/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tech/knowledge-base/ai/evaluation/</guid>
+      <description>&lt;p&gt;Evaluation is the hardest part of building AI systems. Without it, you cannot tell whether a change to your prompt, retrieval, or model improved anything.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-evaluation-is-hard&#34;&gt;Why evaluation is hard&lt;/h2&gt;&#xA;&lt;p&gt;Unlike traditional software, AI systems don&amp;rsquo;t have deterministic outputs. A change that improves one output may degrade another. Evaluation must:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Cover a representative sample of the input distribution&lt;/li&gt;&#xA;&lt;li&gt;Measure what actually matters to users (not just perplexity or BLEU)&lt;/li&gt;&#xA;&lt;li&gt;Be fast enough to run on every change&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;You can&amp;rsquo;t improve what you don&amp;rsquo;t measure. Build your eval harness before you start tuning.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Testing in Python: What to Test and What to Skip</title>
-      <link>http://localhost:54001/blog/testing-in-python-what-to-test/</link>
+      <link>http://localhost:1313/blog/testing-in-python-what-to-test/</link>
       <pubDate>Sun, 15 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>http://localhost:54001/blog/testing-in-python-what-to-test/</guid>
+      <guid>http://localhost:1313/blog/testing-in-python-what-to-test/</guid>
       <description>Not everything needs a test. Understanding the difference is what makes a test suite useful rather than expensive.</description>
     </item>
   </channel>

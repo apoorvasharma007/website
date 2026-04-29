@@ -22,15 +22,15 @@ title = "Apoorva Sharma"
     weight = 2
 
   [[menu.main]]
-    identifier = "fitness"
+    identifier = "movement"
     name = "Movement"
-    url = "/fitness/"
+    url = "/movement/"
     weight = 3
 
   [[menu.main]]
-    identifier = "code"
-    name = "Code"
-    url = "/code/"
+    identifier = "tech"
+    name = "Tech"
+    url = "/tech/"
     weight = 4
 
   [[menu.main]]

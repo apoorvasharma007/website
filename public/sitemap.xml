@@ -2,17 +2,186 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/fitness/ebook/muscles/chest/</loc>
+    <loc>http://localhost:1313/tech/knowledge-base/dsa/arrays/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/fitness/ebook/muscles/</loc>
+    <loc>http://localhost:1313/movement/knowledge-base/training/principles/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/code/traininglogs/</loc>
+    <loc>http://localhost:1313/movement/knowledge-base/programming/periodisation/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/fitness/ebook/muscles/back/</loc>
+    <loc>http://localhost:1313/tech/knowledge-base/ai/prompting/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/fitness/ebook/programming/</loc>
+    <loc>http://localhost:1313/movement/knowledge-base/nutrition/protein/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/code/website/</loc>
+    <loc>http://localhost:1313/tech/knowledge-base/system-design/scalability/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/system-design/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/training/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/traininglogs/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/system-design/databases/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/programming/deload/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/dsa/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/nutrition/energy-balance/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/nutrition/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/ai/rag/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/training/session-structure/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/dsa/trees/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/website/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/ai/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/programming/block-structure/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/system-design/caching/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/dsa/dynamic-programming/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/ai/evaluation/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/nutrition/nutrient-timing/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/programming/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/training/progression-models/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/ai/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/arrays/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/block/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/caching/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/calories/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/databases/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/dp/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/dsa/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/evaluation/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/fundamentals/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/graphs/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/knowledge-base/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/knowledge-base/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/memoization/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/movement/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/nutrition/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/performance/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/periodisation/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/planning/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/programming/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/progression/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/prompting/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/protein/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/rag/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/recovery/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/retrieval/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/scalability/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/system-design/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/testing/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/timing/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/training/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/trees/</loc>
+    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
     <lastmod>2026-04-12T07:45:00+00:00</lastmod>
@@ -20,26 +189,11 @@
     <loc>http://localhost:1313/tags/fitness/</loc>
     <lastmod>2026-04-12T07:45:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2026-04-12T07:45:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/programming/</loc>
-    <lastmod>2026-04-12T07:45:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/blog/progressive-overload-is-not-just-weight/</loc>
     <lastmod>2026-04-12T07:45:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/strength/</loc>
     <lastmod>2026-04-12T07:45:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-04-12T07:45:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/training/</loc>
-    <lastmod>2026-04-12T07:45:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/ai/</loc>
-    <lastmod>2026-04-02T09:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/building-traininglogs/</loc>
     <lastmod>2026-04-02T09:00:00+00:00</lastmod>
@@ -64,9 +218,6 @@
   </url><url>
     <loc>http://localhost:1313/tags/systems/</loc>
     <lastmod>2026-03-22T08:30:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/testing/</loc>
-    <lastmod>2026-03-15T10:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/testing-in-python-what-to-test/</loc>
     <lastmod>2026-03-15T10:00:00+00:00</lastmod>
@@ -95,9 +246,6 @@
     <loc>http://localhost:1313/tags/habit/</loc>
     <lastmod>2026-02-26T09:15:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/recovery/</loc>
-    <lastmod>2026-02-18T07:45:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/blog/the-deload-week/</loc>
     <lastmod>2026-02-18T07:45:00+00:00</lastmod>
   </url><url>
@@ -106,9 +254,6 @@
   </url><url>
     <loc>http://localhost:1313/tags/learning/</loc>
     <lastmod>2026-02-05T09:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/nutrition/</loc>
-    <lastmod>2026-01-20T08:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/what-to-eat-when-training-for-strength/</loc>
     <lastmod>2026-01-20T08:00:00+00:00</lastmod>
@@ -146,31 +291,15 @@
     <loc>http://localhost:1313/blog/infrastructure-as-code-first-principles/</loc>
     <lastmod>2025-11-05T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/back/</loc>
-  </url><url>
     <loc>http://localhost:1313/categories/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/chest/</loc>
-  </url><url>
-    <loc>http://localhost:1313/code/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/data/</loc>
   </url><url>
-    <loc>http://localhost:1313/fitness/ebook/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/hugo/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/hypertrophy/</loc>
-  </url><url>
-    <loc>http://localhost:1313/fitness/</loc>
   </url><url>
     <loc>http://localhost:1313/music/</loc>
   </url><url>
-    <loc>http://localhost:1313/fitness/dashboard/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/pull/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/push/</loc>
+    <loc>http://localhost:1313/movement/dashboard/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/static-site/</loc>
   </url><url>

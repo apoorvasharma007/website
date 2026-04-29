@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Training on Apoorva Sharma</title>
+    <link>http://localhost:1313/movement/knowledge-base/training/</link>
+    <description>Recent content in Training on Apoorva Sharma</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/movement/knowledge-base/training/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Core Training Principles</title>
+      <link>http://localhost:1313/movement/knowledge-base/training/principles/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/movement/knowledge-base/training/principles/</guid>
+      <description>&lt;p&gt;The foundation of any effective programme is &lt;strong&gt;specificity, overload, and recovery&lt;/strong&gt;. Train the qualities you want to develop, add stress progressively, and recover enough to adapt.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/diagrams/progressive-overload.svg&#34; alt=&#34;Progressive overload model&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;specificity&#34;&gt;Specificity&lt;/h2&gt;&#xA;&lt;p&gt;You get good at what you practise. Strength requires heavy compound movements. Endurance requires sustained aerobic work. Most goals sit somewhere between and need both.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;The body adapts precisely to the demands placed on it — no more, no less. Training for endurance while expecting strength gains is wishful thinking.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Session Structure</title>
+      <link>http://localhost:1313/movement/knowledge-base/training/session-structure/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/movement/knowledge-base/training/session-structure/</guid>
+      <description>&lt;p&gt;A well-structured session has a clear order: warm-up, main work, accessory work, and a brief cooldown. The order exists for physiological reasons — not convention.&lt;/p&gt;&#xA;&lt;h2 id=&#34;warm-up&#34;&gt;Warm-Up&lt;/h2&gt;&#xA;&lt;p&gt;Raise core temperature and prime movement patterns relevant to the session. A useful warm-up has two phases:&lt;/p&gt;&#xA;&lt;h3 id=&#34;general-warm-up-35-min&#34;&gt;General warm-up (3–5 min)&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Light cardio (bike, row, or jog) to elevate heart rate&lt;/li&gt;&#xA;&lt;li&gt;Joint mobility work for the main movements of the day&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;specific-warm-up-510-min&#34;&gt;Specific warm-up (5–10 min)&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Warm-up sets of the main lift at progressively heavier loads&lt;/li&gt;&#xA;&lt;li&gt;Example for a 140 kg squat day: bar × 10, 60 × 5, 100 × 3, 120 × 2, then work sets&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Never skip the specific warm-up. A 5-minute investment eliminates most acute training injuries.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Progression Models</title>
+      <link>http://localhost:1313/movement/knowledge-base/training/progression-models/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/movement/knowledge-base/training/progression-models/</guid>
+      <description>&lt;p&gt;A progression model is the mechanism by which you apply progressive overload over time. Choosing the right model for your training age and goal prevents stalling and injury.&lt;/p&gt;&#xA;&lt;h2 id=&#34;linear-progression&#34;&gt;Linear Progression&lt;/h2&gt;&#xA;&lt;p&gt;The simplest model: add a fixed amount of weight each session. Works because beginners recover fast enough to set PRs every 48–72 hours.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Session 1: Squat 60 kg × 3 × 5&#xA;Session 2: Squat 62.5 kg × 3 × 5&#xA;Session 3: Squat 65 kg × 3 × 5&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When to use linear progression:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
