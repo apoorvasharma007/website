@@ -1,7 +1,7 @@
 +++
 title = "Infrastructure as Code: First Principles"
 date = 2025-11-05T09:00:00Z
-tags = ["tech", "cloud", "devops", "iac"]
+tags = ["tech", "devops"]
 summary = "Why IaC is not just about automation, and the principles that make it actually work."
 +++
 

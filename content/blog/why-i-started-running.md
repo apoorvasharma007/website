@@ -1,7 +1,7 @@
 +++
 title = "Why I Started Running (After Years of Avoiding It)"
 date = 2025-11-18T07:30:00Z
-tags = ["fitness", "running", "cardio"]
+tags = ["fitness"]
 summary = "I spent years treating cardio as optional. Here is what changed my mind."
 +++
 

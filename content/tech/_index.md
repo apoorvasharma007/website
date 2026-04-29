@@ -3,4 +3,4 @@ title = "Tech"
 layout = "tech-landing"
 +++
 
-Projects I have built or am building. Click any card to expand.
+Code I've written, notes and things I'm still figuring out.

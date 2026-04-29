@@ -1,7 +1,7 @@
 +++
 title = "How I Learn a New Codebase"
 date = 2026-02-05T09:00:00Z
-tags = ["tech", "engineering", "learning"]
+tags = ["tech"]
 summary = "A repeatable process for getting up to speed on unfamiliar code quickly."
 +++
 

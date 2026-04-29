@@ -1,7 +1,7 @@
 +++
 title = "The Deload Week: What It Is and Why Most People Skip It"
 date = 2026-02-18T07:45:00Z
-tags = ["fitness", "programming", "recovery", "strength"]
+tags = ["fitness", "recovery"]
 summary = "A planned reduction in training load is not laziness. It is how you keep accumulating progress over months."
 +++
 

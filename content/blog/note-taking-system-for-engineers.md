@@ -1,7 +1,7 @@
 +++
 title = "A Note-Taking System That Actually Works for Engineers"
 date = 2026-03-01T09:30:00Z
-tags = ["productivity", "systems", "engineering"]
+tags = ["tech", "mindset"]
 summary = "Most note-taking systems fail because they optimise for capture, not retrieval. Here is what I do instead."
 +++
 

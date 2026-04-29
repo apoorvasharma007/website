@@ -1,7 +1,7 @@
 +++
 title = "What to Eat When Training for Strength"
 date = 2026-01-20T08:00:00Z
-tags = ["fitness", "nutrition", "strength"]
+tags = ["fitness", "nutrition"]
 summary = "Nutrition for strength training is simpler than the industry wants you to believe."
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "Building traininglogs: A Python Pipeline for My Gym Data"
 date = 2026-04-02T09:00:00Z
-tags = ["tech", "python", "project", "fitness", "ai"]
+tags = ["tech", "fitness"]
 summary = "How and why I built a parser that turns my messy training notes into structured JSON."
 +++
 

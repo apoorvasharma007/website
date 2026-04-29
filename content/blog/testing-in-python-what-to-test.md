@@ -1,7 +1,7 @@
 +++
 title = "Testing in Python: What to Test and What to Skip"
 date = 2026-03-15T10:00:00Z
-tags = ["tech", "python", "testing"]
+tags = ["tech"]
 summary = "Not everything needs a test. Understanding the difference is what makes a test suite useful rather than expensive."
 +++
 

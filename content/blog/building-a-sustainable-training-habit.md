@@ -1,7 +1,7 @@
 +++
 title = "Building a Sustainable Training Habit"
 date = 2026-02-26T09:15:00Z
-tags = ["fitness", "habit", "mindset"]
+tags = ["fitness", "mindset"]
 summary = "How I stopped chasing short-term results and started optimising for repeatability."
 +++
 

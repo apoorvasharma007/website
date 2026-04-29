@@ -1,7 +1,7 @@
 +++
 title = "What I Learned Deploying on Azure for the First Time"
 date = 2026-03-10T10:00:00Z
-tags = ["tech", "cloud", "azure", "devops"]
+tags = ["tech", "devops"]
 summary = "Notes from my first production deployment on Azure — what surprised me, what tripped me up, and what I would do differently."
 +++
 

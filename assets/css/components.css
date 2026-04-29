@@ -78,6 +78,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   padding: var(--space-2) 0;
   font-family: var(--font-mono);
   font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
 }
@@ -197,19 +198,16 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 
 .blog-row:last-child { border-bottom: none; }
 
-.blog-row-meta {
+.blog-row-header {
   display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--color-text-muted);
+  gap: var(--space-3);
+  align-items: baseline;
 }
 
-.blog-row-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+.meta-date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-text-muted); width: 88px; flex-shrink: 0; }
 
 .blog-row-title {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   font-family: var(--font-heading);
   margin: 0;
@@ -330,7 +328,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 .movement-nav-card:hover { border-color: rgba(200,60,41,0.3); }
 .movement-nav-card.dashboard-card { border-color: rgba(200,60,41,0.15); }
 
-.movement-nav-label { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; color: var(--color-text-primary); }
+.movement-nav-label { font-family: var(--font-heading); font-weight: 600; font-size: 0.875rem; color: var(--color-text-primary); }
 .movement-nav-desc  { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.5; }
 
 /* ── Landing backdrop sections ───────────────────────────────────── */
@@ -343,7 +341,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 }
 
 .landing-backdrop-heading {
-  font-size: 0.72rem;
+  font-size: 0.88rem;
   font-family: var(--font-mono);
   font-weight: 700;
   text-transform: uppercase;
@@ -353,7 +351,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 }
 
 .landing-kb-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-1); }
-.landing-kb-list a { color: var(--color-text-primary); font-size: 1rem; text-decoration: none; }
+.landing-kb-list a { color: var(--color-text-primary); font-size: 0.875rem; text-decoration: none; }
 .landing-kb-list a:hover { color: var(--color-accent-primary); }
 
 /* ── Ebook layout ────────────────────────────────────────────────── */

@@ -1,7 +1,7 @@
 +++
 title = "Python Dataclasses for Domain Models"
 date = 2025-12-02T10:00:00Z
-tags = ["tech", "python", "architecture"]
+tags = ["tech"]
 summary = "Why I use dataclasses over dicts for domain objects, and the patterns that make them maintainable."
 +++
 

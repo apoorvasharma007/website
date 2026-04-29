@@ -1,7 +1,7 @@
 +++
 title = "Progressive Overload Is Not Just Adding Weight"
 date = 2026-04-12T07:45:00Z
-tags = ["fitness", "training", "strength", "programming"]
+tags = ["fitness"]
 summary = "Weight on the bar is one variable. Here are the others."
 +++
 

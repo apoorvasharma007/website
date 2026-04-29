@@ -1,7 +1,7 @@
 +++
 title = "On Systems Over Goals"
 date = 2026-03-22T08:30:00Z
-tags = ["mindset", "productivity", "systems"]
+tags = ["mindset"]
 summary = "Goals tell you where you want to go. Systems determine whether you get there."
 +++
 

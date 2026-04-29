@@ -5,6 +5,7 @@
 {{ end }}
 
 <section class="section fade-in">
+  <h1 class="section-title">Blog</h1>
   <div class="search-wrap">
     <div id="chips-row" class="chips-row"></div>
     <input
@@ -24,17 +25,10 @@
         data-search="{{ lower .Title }} {{ lower .Summary }} {{ lower (delimit .Params.tags " ") }}"
         data-tags="{{ lower (delimit .Params.tags ",") }}"
       >
-        <div class="blog-row-meta">
+        <div class="blog-row-header">
           <span class="meta-date">{{ .Date.Format "02 Jan 2006" }}</span>
-          {{ with .Params.tags }}
-            <span class="blog-row-tags">
-              {{ range . }}
-                <span class="tag-indicator">{{ . }}</span>
-              {{ end }}
-            </span>
-          {{ end }}
+          <h2 class="blog-row-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
         </div>
-        <h2 class="blog-row-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
         <p class="post-excerpt">{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
       </article>
     {{ end }}

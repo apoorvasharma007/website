@@ -36,6 +36,7 @@ Push to `main` triggers the GitHub Actions workflow, which builds and publishes 
 - New content via `hugo new <section>/filename.md`
 - Front matter must include: `title`, `date`, `categories`, `tags`
 - Do not modify the deploy workflow without explicit instruction
+- After making changes: run `rm -rf public && hugo && hugo server -D --disableFastRender` to build and serve. Let the user verify manually. Do not inspect rendered output or scan `public/` yourself. Only debug output if the user reports something looks wrong.
 
 ## Pending redesign plan (not yet executed)
 

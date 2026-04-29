@@ -1,7 +1,7 @@
 +++
 title = "GitHub Actions for Personal Projects"
 date = 2026-01-08T10:30:00Z
-tags = ["tech", "devops", "ci-cd", "github"]
+tags = ["tech", "devops"]
 summary = "How I set up lightweight CI/CD for personal projects without overengineering it."
 +++
 
