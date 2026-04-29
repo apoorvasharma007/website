@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Recovery on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/recovery/</link>
+    <link>http://localhost:54790/tags/recovery/</link>
     <description>Recent content in Recovery on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/recovery/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54790/tags/recovery/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deload</title>
-      <link>http://localhost:1313/movement/knowledge-base/programming/deload/</link>
+      <link>http://localhost:54790/movement/knowledge-base/programming/deload/</link>
       <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/movement/knowledge-base/programming/deload/</guid>
+      <guid>http://localhost:54790/movement/knowledge-base/programming/deload/</guid>
       <description>&lt;p&gt;A deload is a planned reduction in training stress — lower volume, intensity, or both — to allow accumulated fatigue to dissipate.&lt;/p&gt;&#xA;&lt;h2 id=&#34;when-to-deload&#34;&gt;When to Deload&lt;/h2&gt;&#xA;&lt;p&gt;After 4–8 weeks of hard training, performance often stalls and joints feel beat up. This is the signal to deload. Some programmes schedule deloads automatically; others use autoregulation.&lt;/p&gt;&#xA;&lt;h3 id=&#34;signs-that-a-deload-is-needed&#34;&gt;Signs that a deload is needed&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Performance declining across two or more consecutive sessions&lt;/li&gt;&#xA;&lt;li&gt;Persistent joint soreness (not muscle soreness) at the hips, knees, elbows, or lower back&lt;/li&gt;&#xA;&lt;li&gt;Motivation significantly lower than baseline&lt;/li&gt;&#xA;&lt;li&gt;Sleep disrupted or resting heart rate elevated&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Fatigue masks fitness. When a lifter deloads after a hard block, they often set PRs in the first week back — not because they got stronger during the deload, but because the fatigue finally cleared.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The Deload Week: What It Is and Why Most People Skip It</title>
-      <link>http://localhost:1313/blog/the-deload-week/</link>
+      <link>http://localhost:54790/blog/the-deload-week/</link>
       <pubDate>Wed, 18 Feb 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/the-deload-week/</guid>
+      <guid>http://localhost:54790/blog/the-deload-week/</guid>
       <description>A planned reduction in training load is not laziness. It is how you keep accumulating progress over months.</description>
     </item>
     <item>
       <title>Sleep Is a Training Variable</title>
-      <link>http://localhost:1313/blog/sleep-is-a-training-variable/</link>
+      <link>http://localhost:54790/blog/sleep-is-a-training-variable/</link>
       <pubDate>Mon, 15 Dec 2025 08:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/sleep-is-a-training-variable/</guid>
+      <guid>http://localhost:54790/blog/sleep-is-a-training-variable/</guid>
       <description>You cannot out-train poor sleep. Treating it as optional is a mistake most lifters make for years.</description>
     </item>
   </channel>

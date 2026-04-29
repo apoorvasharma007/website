@@ -2,115 +2,115 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Apoorva Sharma</title>
-    <link>http://localhost:1313/blog/</link>
+    <link>http://localhost:54790/blog/</link>
     <description>Recent content in Blog on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 Apr 2026 07:45:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54790/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Progressive Overload Is Not Just Adding Weight</title>
-      <link>http://localhost:1313/blog/progressive-overload-is-not-just-weight/</link>
+      <link>http://localhost:54790/blog/progressive-overload-is-not-just-weight/</link>
       <pubDate>Sun, 12 Apr 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/progressive-overload-is-not-just-weight/</guid>
+      <guid>http://localhost:54790/blog/progressive-overload-is-not-just-weight/</guid>
       <description>Weight on the bar is one variable. Here are the others.</description>
     </item>
     <item>
       <title>Building traininglogs: A Python Pipeline for My Gym Data</title>
-      <link>http://localhost:1313/blog/building-traininglogs/</link>
+      <link>http://localhost:54790/blog/building-traininglogs/</link>
       <pubDate>Thu, 02 Apr 2026 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/building-traininglogs/</guid>
+      <guid>http://localhost:54790/blog/building-traininglogs/</guid>
       <description>How and why I built a parser that turns my messy training notes into structured JSON.</description>
     </item>
     <item>
       <title>On Systems Over Goals</title>
-      <link>http://localhost:1313/blog/on-systems-over-goals/</link>
+      <link>http://localhost:54790/blog/on-systems-over-goals/</link>
       <pubDate>Sun, 22 Mar 2026 08:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/on-systems-over-goals/</guid>
+      <guid>http://localhost:54790/blog/on-systems-over-goals/</guid>
       <description>Goals tell you where you want to go. Systems determine whether you get there.</description>
     </item>
     <item>
       <title>Testing in Python: What to Test and What to Skip</title>
-      <link>http://localhost:1313/blog/testing-in-python-what-to-test/</link>
+      <link>http://localhost:54790/blog/testing-in-python-what-to-test/</link>
       <pubDate>Sun, 15 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/testing-in-python-what-to-test/</guid>
+      <guid>http://localhost:54790/blog/testing-in-python-what-to-test/</guid>
       <description>Not everything needs a test. Understanding the difference is what makes a test suite useful rather than expensive.</description>
     </item>
     <item>
       <title>What I Learned Deploying on Azure for the First Time</title>
-      <link>http://localhost:1313/blog/what-i-learned-deploying-on-azure/</link>
+      <link>http://localhost:54790/blog/what-i-learned-deploying-on-azure/</link>
       <pubDate>Tue, 10 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/what-i-learned-deploying-on-azure/</guid>
+      <guid>http://localhost:54790/blog/what-i-learned-deploying-on-azure/</guid>
       <description>Notes from my first production deployment on Azure — what surprised me, what tripped me up, and what I would do differently.</description>
     </item>
     <item>
       <title>A Note-Taking System That Actually Works for Engineers</title>
-      <link>http://localhost:1313/blog/note-taking-system-for-engineers/</link>
+      <link>http://localhost:54790/blog/note-taking-system-for-engineers/</link>
       <pubDate>Sun, 01 Mar 2026 09:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/note-taking-system-for-engineers/</guid>
+      <guid>http://localhost:54790/blog/note-taking-system-for-engineers/</guid>
       <description>Most note-taking systems fail because they optimise for capture, not retrieval. Here is what I do instead.</description>
     </item>
     <item>
       <title>Building a Sustainable Training Habit</title>
-      <link>http://localhost:1313/blog/building-a-sustainable-training-habit/</link>
+      <link>http://localhost:54790/blog/building-a-sustainable-training-habit/</link>
       <pubDate>Thu, 26 Feb 2026 09:15:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/building-a-sustainable-training-habit/</guid>
+      <guid>http://localhost:54790/blog/building-a-sustainable-training-habit/</guid>
       <description>How I stopped chasing short-term results and started optimising for repeatability.</description>
     </item>
     <item>
       <title>The Deload Week: What It Is and Why Most People Skip It</title>
-      <link>http://localhost:1313/blog/the-deload-week/</link>
+      <link>http://localhost:54790/blog/the-deload-week/</link>
       <pubDate>Wed, 18 Feb 2026 07:45:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/the-deload-week/</guid>
+      <guid>http://localhost:54790/blog/the-deload-week/</guid>
       <description>A planned reduction in training load is not laziness. It is how you keep accumulating progress over months.</description>
     </item>
     <item>
       <title>How I Learn a New Codebase</title>
-      <link>http://localhost:1313/blog/learning-a-new-codebase/</link>
+      <link>http://localhost:54790/blog/learning-a-new-codebase/</link>
       <pubDate>Thu, 05 Feb 2026 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/learning-a-new-codebase/</guid>
+      <guid>http://localhost:54790/blog/learning-a-new-codebase/</guid>
       <description>A repeatable process for getting up to speed on unfamiliar code quickly.</description>
     </item>
     <item>
       <title>What to Eat When Training for Strength</title>
-      <link>http://localhost:1313/blog/what-to-eat-when-training-for-strength/</link>
+      <link>http://localhost:54790/blog/what-to-eat-when-training-for-strength/</link>
       <pubDate>Tue, 20 Jan 2026 08:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/what-to-eat-when-training-for-strength/</guid>
+      <guid>http://localhost:54790/blog/what-to-eat-when-training-for-strength/</guid>
       <description>Nutrition for strength training is simpler than the industry wants you to believe.</description>
     </item>
     <item>
       <title>GitHub Actions for Personal Projects</title>
-      <link>http://localhost:1313/blog/github-actions-for-personal-projects/</link>
+      <link>http://localhost:54790/blog/github-actions-for-personal-projects/</link>
       <pubDate>Thu, 08 Jan 2026 10:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/github-actions-for-personal-projects/</guid>
+      <guid>http://localhost:54790/blog/github-actions-for-personal-projects/</guid>
       <description>How I set up lightweight CI/CD for personal projects without overengineering it.</description>
     </item>
     <item>
       <title>Sleep Is a Training Variable</title>
-      <link>http://localhost:1313/blog/sleep-is-a-training-variable/</link>
+      <link>http://localhost:54790/blog/sleep-is-a-training-variable/</link>
       <pubDate>Mon, 15 Dec 2025 08:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/sleep-is-a-training-variable/</guid>
+      <guid>http://localhost:54790/blog/sleep-is-a-training-variable/</guid>
       <description>You cannot out-train poor sleep. Treating it as optional is a mistake most lifters make for years.</description>
     </item>
     <item>
       <title>Python Dataclasses for Domain Models</title>
-      <link>http://localhost:1313/blog/python-dataclasses-for-domain-models/</link>
+      <link>http://localhost:54790/blog/python-dataclasses-for-domain-models/</link>
       <pubDate>Tue, 02 Dec 2025 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/python-dataclasses-for-domain-models/</guid>
+      <guid>http://localhost:54790/blog/python-dataclasses-for-domain-models/</guid>
       <description>Why I use dataclasses over dicts for domain objects, and the patterns that make them maintainable.</description>
     </item>
     <item>
       <title>Why I Started Running (After Years of Avoiding It)</title>
-      <link>http://localhost:1313/blog/why-i-started-running/</link>
+      <link>http://localhost:54790/blog/why-i-started-running/</link>
       <pubDate>Tue, 18 Nov 2025 07:30:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/why-i-started-running/</guid>
+      <guid>http://localhost:54790/blog/why-i-started-running/</guid>
       <description>I spent years treating cardio as optional. Here is what changed my mind.</description>
     </item>
     <item>
       <title>Infrastructure as Code: First Principles</title>
-      <link>http://localhost:1313/blog/infrastructure-as-code-first-principles/</link>
+      <link>http://localhost:54790/blog/infrastructure-as-code-first-principles/</link>
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/infrastructure-as-code-first-principles/</guid>
+      <guid>http://localhost:54790/blog/infrastructure-as-code-first-principles/</guid>
       <description>Why IaC is not just about automation, and the principles that make it actually work.</description>
     </item>
   </channel>

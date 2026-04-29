@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Block on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/block/</link>
+    <link>http://localhost:54790/tags/block/</link>
     <description>Recent content in Block on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/block/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54790/tags/block/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Block Structure</title>
-      <link>http://localhost:1313/movement/knowledge-base/programming/block-structure/</link>
+      <link>http://localhost:54790/movement/knowledge-base/programming/block-structure/</link>
       <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/movement/knowledge-base/programming/block-structure/</guid>
+      <guid>http://localhost:54790/movement/knowledge-base/programming/block-structure/</guid>
       <description>&lt;p&gt;A training block is a defined period (typically 4–8 weeks) with a specific adaptation goal. Structuring training in blocks allows you to build one quality on top of another rather than chasing all qualities simultaneously.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-case-for-blocks&#34;&gt;The Case for Blocks&lt;/h2&gt;&#xA;&lt;p&gt;Training simultaneously for maximum strength, maximum muscle, and maximum endurance produces suboptimal results in all three. The interference effect — where endurance training blunts hypertrophy, and maximal strength work competes with metabolic conditioning — is well-documented.&lt;/p&gt;</description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Iac on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/iac/</link>
+    <link>http://localhost:54790/tags/iac/</link>
     <description>Recent content in Iac on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 05 Nov 2025 09:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/iac/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54790/tags/iac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Infrastructure as Code: First Principles</title>
-      <link>http://localhost:1313/blog/infrastructure-as-code-first-principles/</link>
+      <link>http://localhost:54790/blog/infrastructure-as-code-first-principles/</link>
       <pubDate>Wed, 05 Nov 2025 09:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/infrastructure-as-code-first-principles/</guid>
+      <guid>http://localhost:54790/blog/infrastructure-as-code-first-principles/</guid>
       <description>Why IaC is not just about automation, and the principles that make it actually work.</description>
     </item>
   </channel>

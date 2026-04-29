@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dp on Apoorva Sharma</title>
-    <link>http://localhost:1313/tags/dp/</link>
+    <link>http://localhost:54790/tags/dp/</link>
     <description>Recent content in Dp on Apoorva Sharma</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/dp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54790/tags/dp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dynamic Programming</title>
-      <link>http://localhost:1313/tech/knowledge-base/dsa/dynamic-programming/</link>
+      <link>http://localhost:54790/tech/knowledge-base/dsa/dynamic-programming/</link>
       <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tech/knowledge-base/dsa/dynamic-programming/</guid>
+      <guid>http://localhost:54790/tech/knowledge-base/dsa/dynamic-programming/</guid>
       <description>&lt;p&gt;Dynamic programming solves problems by breaking them into overlapping subproblems and storing solutions to avoid recomputation. It applies when a problem has &lt;strong&gt;optimal substructure&lt;/strong&gt; and &lt;strong&gt;overlapping subproblems&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;recognising-dp-problems&#34;&gt;Recognising DP problems&lt;/h2&gt;&#xA;&lt;p&gt;A problem is likely DP if:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;It asks for a count, maximum, minimum, or boolean feasibility&lt;/li&gt;&#xA;&lt;li&gt;It involves making choices at each step (include/exclude, left/right)&lt;/li&gt;&#xA;&lt;li&gt;A recursive brute-force solution has exponential time due to repeated subproblems&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;If you can write a brute-force recursion, you&amp;rsquo;re 80% of the way to a DP solution. Add memoization and you have top-down DP. Flip the recursion to iteration and you have bottom-up DP.&lt;/p&gt;</description>
     </item>
   </channel>
