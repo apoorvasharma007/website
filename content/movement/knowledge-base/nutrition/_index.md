@@ -10,4 +10,4 @@ date = "2026-04-29"
   kb_root = "/movement/knowledge-base/nutrition/"
 +++
 
-Eating to support training — protein, energy balance, and practical meal strategy.
+Eating to support training. The goal is a no-nonsense reference on the basics — protein targets, energy balance, and practical meal habits that actually hold up alongside a training schedule. No fads, no supplements, just the fundamentals.

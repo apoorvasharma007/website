@@ -77,7 +77,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   align-items: center;
   padding: var(--space-2) 0;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -164,6 +164,41 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+}
+
+/* ── Home project cards ──────────────────────────────────────────── */
+.home-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.home-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid rgba(26,20,16,0.12);
+  border-radius: 8px;
+  transition: border-color var(--dur-short);
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-card:hover { border-color: rgba(200,60,41,0.3); }
+
+.home-card-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+}
+
+.home-card-link {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
 }
 
 /* ── Recently list (home page) ───────────────────────────────────── */
@@ -353,6 +388,11 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 .landing-kb-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-1); }
 .landing-kb-list a { color: var(--color-text-primary); font-size: 0.875rem; text-decoration: none; }
 .landing-kb-list a:hover { color: var(--color-accent-primary); }
+
+.dashboard-link { display: block; text-decoration: none; color: inherit; transition: border-color 0.15s ease; }
+.dashboard-link .landing-backdrop-heading { margin: 0; }
+.dashboard-link:hover { border-color: rgba(200,60,41,0.4); }
+.dashboard-link:hover .landing-backdrop-heading { color: var(--color-accent-primary); }
 
 /* ── Ebook layout ────────────────────────────────────────────────── */
 .ebook-layout {
@@ -668,11 +708,12 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   h2            { font-size: 1.25rem; }
   .hero         { padding: var(--space-3); }
   .hero-title   { font-size: 1.5rem; }
-  .nav          { gap: var(--space-2); font-size: 0.75rem; }
+  .nav          { gap: var(--space-2); }
   .single       { max-width: 100%; }
   .single-title { font-size: 1.3rem; }
   .search-wrap  { max-width: 100%; }
   .stat-grid    { grid-template-columns: repeat(2, 1fr); }
+  .home-cards         { grid-template-columns: 1fr; }
   .movement-nav-cards { grid-template-columns: 1fr; }
   .recent-date  { width: 72px; }
   .dashboard-table { font-size: 0.8rem; }

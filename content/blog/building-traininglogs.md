@@ -33,4 +33,4 @@ I added an agent layer that lets me describe a session in natural language and h
 
 Boring infrastructure matters more than the interesting parts. The parser is fine. The schema is fine. What actually makes the project useful is the fact that the serialisation contract is strictly defined and versioned. Without that, any downstream tool breaks when the format drifts.
 
-The code is on [GitHub](https://github.com/apoorvasharma7/traininglogs).
+The code is on [GitHub](https://github.com/apoorvasharma007/traininglogs).

@@ -11,7 +11,20 @@
 </section>
 
 <section class="section fade-in">
-  <h2 class="section-title">Lately...</h2>
+  <div class="home-cards">
+    <a class="home-card" href="/movement/dashboard/">
+      <span class="label">Movement</span>
+      <span class="home-card-name">Training Data</span>
+    </a>
+    <a class="home-card" href="https://github.com/apoorvasharma007/traininglogs" target="_blank" rel="noopener">
+      <span class="label">Tech</span>
+      <span class="home-card-name">traininglogs</span>
+      <span class="home-card-link"> CLI app for logging and tracking training sessions.</span>
+    </a>
+  </div>
+</section>
+
+<section class="section fade-in">
   {{ $posts := (.Site.GetPage "/blog").Pages.ByDate.Reverse }}
   {{ if $posts }}
     <div class="recent-list">
@@ -22,7 +35,7 @@
         </a>
       {{ end }}
     </div>
-    <p style="margin-top: var(--space-3); font-size: 0.85rem;"><a href="/blog/">All posts →</a></p>
+    <p style="margin-top: var(--space-3); font-size: 0.85rem;"><a href="/blog/">All blog posts →</a></p>
   {{ else }}
     <p class="muted">No posts yet.</p>
   {{ end }}

@@ -26,8 +26,8 @@
         data-tags="{{ lower (delimit .Params.tags ",") }}"
       >
         <div class="blog-row-header">
-          <span class="meta-date">{{ .Date.Format "02 Jan 2006" }}</span>
           <h2 class="blog-row-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          <span class="meta-date">{{ .Date.Format "02 Jan 2006" }}</span>
         </div>
         <p class="post-excerpt">{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
       </article>

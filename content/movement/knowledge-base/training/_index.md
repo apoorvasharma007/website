@@ -10,4 +10,4 @@ date = "2026-04-29"
   kb_root = "/movement/knowledge-base/training/"
 +++
 
-Fundamentals of strength training — how to structure sessions, track progress, and build durable habits.
+Fundamentals of strength training. The goal is to build a clear, practical reference for how to train well — session structure, progressive overload, tracking, and staying consistent over the long run. Start here if you want a first-principles understanding of how to get stronger.
