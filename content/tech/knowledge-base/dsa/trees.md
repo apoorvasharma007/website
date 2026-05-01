@@ -2,7 +2,6 @@
 title = "Trees and Graphs"
 weight = 2
 date = "2026-04-29"
-tags = ["dsa", "trees", "graphs"]
 +++
 
 Trees and graphs are the most common interview topics after arrays. Most tree problems reduce to DFS or BFS.

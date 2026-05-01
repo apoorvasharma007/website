@@ -59,6 +59,17 @@ Push to `main` triggers the GitHub Actions workflow, which builds and publishes 
 7. ~~Build + manual mobile render check (`rm -rf public && hugo`, then `hugo server -D`).~~ **DONE** — 150-page clean build.
 8. ~~UI polish pass — fix footer, remove redundant headings, add section backdrops to landing pages, expand KB content.~~ **DONE** — footer pinned via flex, h1s stripped from blog/movement/tech/music list layouts, landing pages use `landing-backdrop-section` boxes, all 6 KBs at 3 chapters each with tables/blockquotes/code, 3 SVG diagrams in `static/diagrams/`, sidebar + kb-index fixed to handle flat KB structure (pages directly under KB root, no sub-sections). 174-page clean build.
 
+### Wave 3 — Done
+9. ~~Home page redesign: hero with resume CTA, home-cards (Movement Dashboard + traininglogs GitHub), recent blog posts list.~~ **DONE**
+10. ~~Blog search/filter: tag chips + text search via inline JS (no external deps).~~ **DONE** — `layouts/blog/list.html`
+11. ~~Tech project pages: `traininglogs.md` and `website.md` with github/status/summary front matter.~~ **DONE**
+12. ~~CSS split into modules: `variables.css`, `layout.css`, `components.css` (replaces monolithic `styles.css`).~~ **DONE** — loaded via `baseof.html` with SRI fingerprints
+13. ~~Fade-in scroll animation on `.fade-in` elements.~~ **DONE** — IntersectionObserver in `baseof.html`
+14. ~~Contact page (`content/contact.md`).~~ **DONE** — moved out of nav, contact links now live in the footer.
+
+### Deferred / Not needed yet
+- **Sitewide search** — preferred over tagging; implement only when the volume of content justifies it. Tags + tag-filtering are lower priority and likely not worth the complexity. If/when implemented, sitewide search wins over a tag taxonomy.
+
 ### Risk notes
 - URL renames break any inbound links to `/fitness/...` or `/code/...`.
 - Do not touch `.github/workflows/deploy.yml`.

@@ -2,7 +2,6 @@
 title = "Protein"
 weight = 1
 date = "2026-04-29"
-tags = ["nutrition", "protein"]
 +++
 
 Protein is the primary dietary variable for anyone training for strength or muscle. Everything else matters less.

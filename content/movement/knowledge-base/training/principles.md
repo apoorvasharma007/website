@@ -2,7 +2,6 @@
 title = "Core Training Principles"
 weight = 1
 date = "2026-04-29"
-tags = ["training", "fundamentals"]
 +++
 
 The foundation of any effective programme is **specificity, overload, and recovery**. Train the qualities you want to develop, add stress progressively, and recover enough to adapt.

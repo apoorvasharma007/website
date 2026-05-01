@@ -2,7 +2,6 @@
 title = "Databases"
 weight = 2
 date = "2026-04-29"
-tags = ["system-design", "databases"]
 +++
 
 Choosing and designing database systems is one of the most consequential decisions in system design.

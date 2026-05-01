@@ -39,11 +39,6 @@ title = "Apoorva Sharma"
     url = "/blog/"
     weight = 5
 
-  [[menu.main]]
-    identifier = "contact"
-    name = "Contact"
-    url = "/contact/"
-    weight = 6
 
 [taxonomies]
   category = "categories"

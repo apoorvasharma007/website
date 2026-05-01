@@ -3,7 +3,7 @@
    Sections: reset · typography · links · focus · nav · hero ·
              buttons · cards · blog · search · ebook · dashboard ·
              code · music · single post · markdown content ·
-             mobile
+             footer · mobile
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ── Reset ───────────────────────────────────────────────────────── */
@@ -36,12 +36,15 @@ a {
   transition: color var(--dur-short);
 }
 
+/* global hover fallback — all scoped hover rules below have higher specificity and override this */
+a:hover { color: var(--color-accent-primary); }
+
 /* underline only on inline text links */
 .content a,
 .single-header a {
   color: var(--color-accent-primary);
   text-decoration: underline;
-  text-decoration-color: rgba(200,60,41,0.3);
+  text-decoration-color: rgba(var(--color-accent-rgb),0.3);
   text-underline-offset: 3px;
   transition: text-decoration-color var(--dur-short);
 }
@@ -53,20 +56,20 @@ a {
 
 /* ── Focus (keyboard only — never on click) ──────────────────────── */
 :focus          { outline: none; }
-:focus-visible  { outline: 1px solid rgba(200,60,41,0.5); outline-offset: 3px; border-radius: 2px; }
+:focus-visible  { outline: 1px solid rgba(var(--color-accent-rgb),0.5); outline-offset: 3px; border-radius: 2px; }
 
 /* details/summary gets its own focus treatment */
 details > summary:focus         { outline: none; }
-details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outline-offset: 3px; }
+details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb),0.4); outline-offset: 3px; }
 
 /* ── Navigation ──────────────────────────────────────────────────── */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(241,233,214,0.90);
+  background: rgba(var(--color-bg-rgb),0.90);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(26,20,16,0.12);
+  border-bottom: 1px solid rgba(var(--color-base-rgb),0.12);
   margin-bottom: var(--space-4);
 }
 
@@ -95,7 +98,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 .hero {
   padding: var(--space-5) var(--space-4);
   background: var(--color-surface);
-  border: 1px solid rgba(26,20,16,0.10);
+  border: 1px solid rgba(var(--color-base-rgb),0.10);
   border-radius: 10px;
   margin-bottom: var(--space-5);
 }
@@ -116,7 +119,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   padding: 0.5rem var(--space-3);
   font-size: 0.85rem;
   border-radius: 4px;
-  border: 1px solid rgba(26,20,16,0.18);
+  border: 1px solid rgba(var(--color-base-rgb),0.18);
   background: transparent;
   color: var(--color-text-secondary);
   cursor: pointer;
@@ -124,7 +127,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 }
 
 .button:hover  { border-color: var(--color-accent-primary); color: var(--color-accent-primary); }
-.button.primary { border-color: rgba(200,60,41,0.4); color: var(--color-accent-primary); }
+.button.primary { border-color: rgba(var(--color-accent-rgb),0.4); color: var(--color-accent-primary); }
 
 /* ── Small label ─────────────────────────────────────────────────── */
 .label {
@@ -143,20 +146,20 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   font-size: 0.72rem;
   padding: 0.2rem 0.55rem;
   border-radius: 3px;
-  background: rgba(26,20,16,0.10);
-  border: 1px solid rgba(26,20,16,0.14);
+  background: rgba(var(--color-base-rgb),0.10);
+  border: 1px solid rgba(var(--color-base-rgb),0.14);
   color: var(--color-text-muted);
   transition: background var(--dur-short), color var(--dur-short);
 }
 
-.tag-pill:hover { background: rgba(200,60,41,0.08); color: var(--color-accent-primary); }
+.tag-pill:hover { background: rgba(var(--color-accent-rgb),0.08); color: var(--color-accent-primary); }
 
 .tag-indicator {
   display: inline-block;
   font-size: 0.68rem;
   padding: 0.15rem 0.45rem;
   border-radius: 3px;
-  background: rgba(26,20,16,0.07);
+  background: rgba(var(--color-base-rgb),0.07);
   color: var(--color-text-muted);
 }
 
@@ -179,14 +182,19 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   gap: var(--space-1);
   padding: var(--space-3);
   background: var(--color-surface);
-  border: 1px solid rgba(26,20,16,0.12);
+  border: 1px solid rgba(var(--color-base-rgb),0.12);
   border-radius: 8px;
-  transition: border-color var(--dur-short);
+  box-shadow: 0 1px 4px rgba(var(--color-base-rgb),0.06);
+  transition: border-color var(--dur-short), transform var(--dur-short), box-shadow var(--dur-short);
   color: inherit;
   text-decoration: none;
 }
 
-.home-card:hover { border-color: rgba(200,60,41,0.3); }
+.home-card:hover {
+  border-color: rgba(var(--color-accent-rgb),0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(var(--color-base-rgb),0.12);
+}
 
 .home-card-name {
   font-family: var(--font-heading);
@@ -208,7 +216,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   display: flex;
   gap: var(--space-3);
   padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(26,20,16,0.07);
+  border-bottom: 1px solid rgba(var(--color-base-rgb),0.07);
   align-items: baseline;
   color: inherit;
   transition: color var(--dur-short);
@@ -225,7 +233,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 
 .blog-row {
   padding: var(--space-3) 0;
-  border-bottom: 1px solid rgba(26,20,16,0.07);
+  border-bottom: 1px solid rgba(var(--color-base-rgb),0.07);
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
@@ -280,8 +288,8 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  background: rgba(200,60,41,0.08);
-  border: 1px solid rgba(200,60,41,0.25);
+  background: rgba(var(--color-accent-rgb),0.08);
+  border: 1px solid rgba(var(--color-accent-rgb),0.25);
   color: var(--color-accent-primary);
   border-radius: 3px;
   font-size: 0.76rem;
@@ -304,7 +312,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 .search-input {
   width: 100%;
   background: var(--color-surface);
-  border: 1px solid rgba(26,20,16,0.14);
+  border: 1px solid rgba(var(--color-base-rgb),0.14);
   border-radius: 6px;
   color: var(--color-text-primary);
   font-family: var(--font-body);
@@ -314,7 +322,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   transition: border-color var(--dur-short);
 }
 
-.search-input:focus { border-color: rgba(200,60,41,0.4); }
+.search-input:focus { border-color: rgba(var(--color-accent-rgb),0.4); }
 .search-input::placeholder { color: var(--color-text-muted); }
 
 .tag-suggestions {
@@ -323,7 +331,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   left: 0;
   right: 0;
   background: var(--color-surface);
-  border: 1px solid rgba(26,20,16,0.14);
+  border: 1px solid rgba(var(--color-base-rgb),0.14);
   border-top: none;
   border-radius: 0 0 6px 6px;
   list-style: none;
@@ -339,7 +347,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   color: var(--color-text-secondary);
 }
 
-.tag-suggestions li:hover { background: rgba(200,60,41,0.06); color: var(--color-accent-primary); }
+.tag-suggestions li:hover { background: rgba(var(--color-accent-rgb),0.06); color: var(--color-accent-primary); }
 
 /* ── Movement landing cards ───────────────────────────────────────── */
 .movement-nav-cards {
@@ -354,14 +362,20 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   gap: var(--space-1);
   padding: var(--space-3);
   background: var(--color-surface);
-  border: 1px solid rgba(26,20,16,0.12);
+  border: 1px solid rgba(var(--color-base-rgb),0.12);
   border-radius: 8px;
-  transition: border-color var(--dur-short);
+  box-shadow: 0 1px 4px rgba(var(--color-base-rgb),0.06);
+  transition: border-color var(--dur-short), transform var(--dur-short), box-shadow var(--dur-short);
   color: inherit;
 }
 
-.movement-nav-card:hover { border-color: rgba(200,60,41,0.3); }
-.movement-nav-card.dashboard-card { border-color: rgba(200,60,41,0.15); }
+.movement-nav-card:hover {
+  border-color: rgba(var(--color-accent-rgb),0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(var(--color-base-rgb),0.12);
+}
+
+.movement-nav-card.dashboard-card { border-color: rgba(var(--color-accent-rgb),0.15); }
 
 .movement-nav-label { font-family: var(--font-heading); font-weight: 600; font-size: 0.875rem; color: var(--color-text-primary); }
 .movement-nav-desc  { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.5; }
@@ -369,7 +383,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 /* ── Landing backdrop sections ───────────────────────────────────── */
 .landing-backdrop-section {
   background: var(--color-surface);
-  border: 1px solid rgba(26,20,16,0.12);
+  border: 1px solid rgba(var(--color-base-rgb),0.12);
   border-radius: 8px;
   padding: var(--space-3);
   margin-top: var(--space-3);
@@ -389,9 +403,22 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 .landing-kb-list a { color: var(--color-text-primary); font-size: 0.875rem; text-decoration: none; }
 .landing-kb-list a:hover { color: var(--color-accent-primary); }
 
-.dashboard-link { display: block; text-decoration: none; color: inherit; transition: border-color 0.15s ease; }
+.dashboard-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 4px rgba(var(--color-base-rgb),0.06);
+  transition: border-color var(--dur-short), transform var(--dur-short), box-shadow var(--dur-short);
+}
+
 .dashboard-link .landing-backdrop-heading { margin: 0; }
-.dashboard-link:hover { border-color: rgba(200,60,41,0.4); }
+
+.dashboard-link:hover {
+  border-color: rgba(var(--color-accent-rgb),0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(var(--color-base-rgb),0.12);
+}
+
 .dashboard-link:hover .landing-backdrop-heading { color: var(--color-accent-primary); }
 
 /* ── Ebook layout ────────────────────────────────────────────────── */
@@ -421,9 +448,8 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   color: var(--color-text-muted);
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-1);
-  border-bottom: 1px solid rgba(26,20,16,0.12);
+  border-bottom: 1px solid rgba(var(--color-base-rgb),0.12);
   display: block;
-  color: var(--color-text-muted);
 }
 
 .ebook-sidebar details { border: none; }
@@ -475,6 +501,8 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 .ebook-toc-desc    { color: var(--color-text-secondary); font-size: 0.88rem; margin: 0 0 var(--space-1); }
 .ebook-toc-pages   { margin: 0; padding-left: var(--space-3); }
 .ebook-toc-pages li { padding: 0.25rem 0; }
+.ebook-toc-pages a { color: var(--color-text-secondary); }
+.ebook-toc-pages a:hover { color: var(--color-accent-primary); }
 
 /* ── Dashboard ───────────────────────────────────────────────────── */
 .dashboard-heading {
@@ -494,7 +522,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 
 .stat-card {
   background: var(--color-surface);
-  border: 1px solid rgba(26,20,16,0.12);
+  border: 1px solid rgba(var(--color-base-rgb),0.12);
   border-radius: 8px;
   padding: var(--space-3);
   display: flex;
@@ -520,13 +548,13 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  border-bottom: 1px solid rgba(26,20,16,0.14);
+  border-bottom: 1px solid rgba(var(--color-base-rgb),0.14);
   font-weight: 500;
 }
 
 .dashboard-table td {
   padding: 0.6rem var(--space-2);
-  border-bottom: 1px solid rgba(26,20,16,0.07);
+  border-bottom: 1px solid rgba(var(--color-base-rgb),0.07);
   color: var(--color-text-secondary);
 }
 
@@ -542,13 +570,13 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 
 .project-card {
   background: var(--color-surface);
-  border: 1px solid rgba(26,20,16,0.12);
+  border: 1px solid rgba(var(--color-base-rgb),0.12);
   border-radius: 8px;
   overflow: hidden;
   transition: border-color var(--dur-short);
 }
 
-.project-card[open] { border-color: rgba(200,60,41,0.2); }
+.project-card[open] { border-color: rgba(var(--color-accent-rgb),0.2); }
 
 .project-summary {
   list-style: none;
@@ -576,18 +604,18 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   letter-spacing: 0.08em;
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
-  background: rgba(26,20,16,0.07);
+  background: rgba(var(--color-base-rgb),0.07);
   color: var(--color-text-muted);
 }
 
 .project-status.active {
-  background: rgba(200,60,41,0.07);
+  background: rgba(var(--color-accent-rgb),0.07);
   color: var(--color-accent-primary);
 }
 
 .project-body {
   padding: var(--space-3);
-  border-top: 1px solid rgba(26,20,16,0.10);
+  border-top: 1px solid rgba(var(--color-base-rgb),0.10);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -650,15 +678,15 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 .content code {
   font-family: 'Courier New', monospace;
   font-size: 0.84em;
-  background: rgba(26,20,16,0.12);
+  background: rgba(var(--color-base-rgb),0.12);
   padding: 0.1em 0.4em;
   border-radius: 3px;
   color: var(--color-accent-primary);
 }
 
 .content pre {
-  background: rgba(26,20,16,0.04);
-  border: 1px solid rgba(26,20,16,0.12);
+  background: rgba(var(--color-base-rgb),0.04);
+  border: 1px solid rgba(var(--color-base-rgb),0.12);
   border-radius: 6px;
   padding: var(--space-2) var(--space-3);
   overflow-x: auto;
@@ -668,7 +696,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 .content pre code { background: none; padding: 0; color: var(--color-text-primary); font-size: 0.87rem; }
 
 .content blockquote {
-  border-left: 2px solid rgba(200,60,41,0.35);
+  border-left: 2px solid rgba(var(--color-accent-rgb),0.35);
   padding-left: var(--space-2);
   margin: 0 0 var(--space-3);
   color: var(--color-text-muted);
@@ -679,10 +707,22 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
 .site-footer {
   margin-top: 1rem;
   padding-top: 0.5rem;
-  border-top: 1px solid rgba(26,20,16,0.12);
+  border-top: 1px solid rgba(var(--color-base-rgb),0.12);
   font-size: 0.72rem;
   color: var(--color-text-muted);
   text-align: center;
+}
+
+.site-footer p { font-size: 0.72rem; }
+
+.footer-contact {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
 }
 
 /* ── Utilities ───────────────────────────────────────────────────── */
@@ -697,7 +737,7 @@ details > summary:focus-visible { outline: 1px solid rgba(200,60,41,0.4); outlin
   .ebook-layout { grid-template-columns: 1fr; }
   .ebook-sidebar {
     position: static;
-    border-bottom: 1px solid rgba(26,20,16,0.12);
+    border-bottom: 1px solid rgba(var(--color-base-rgb),0.12);
     padding-bottom: var(--space-3);
     margin-bottom: var(--space-3);
   }

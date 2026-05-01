@@ -2,7 +2,6 @@
 title = "Prompting"
 weight = 1
 date = "2026-04-29"
-tags = ["ai", "prompting"]
 +++
 
 Prompting is the primary interface for directing language model behaviour. The quality of the prompt determines the quality of the output.

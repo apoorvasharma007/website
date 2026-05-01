@@ -2,7 +2,6 @@
 title = "Evaluating AI Systems"
 weight = 3
 date = "2026-04-29"
-tags = ["ai", "evaluation", "testing"]
 +++
 
 Evaluation is the hardest part of building AI systems. Without it, you cannot tell whether a change to your prompt, retrieval, or model improved anything.

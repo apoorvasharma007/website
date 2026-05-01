@@ -2,7 +2,6 @@
 title = "Block Structure"
 weight = 3
 date = "2026-04-29"
-tags = ["programming", "block", "planning"]
 +++
 
 A training block is a defined period (typically 4–8 weeks) with a specific adaptation goal. Structuring training in blocks allows you to build one quality on top of another rather than chasing all qualities simultaneously.

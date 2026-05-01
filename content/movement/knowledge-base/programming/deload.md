@@ -2,7 +2,6 @@
 title = "Deload"
 weight = 2
 date = "2026-04-29"
-tags = ["programming", "recovery"]
 +++
 
 A deload is a planned reduction in training stress — lower volume, intensity, or both — to allow accumulated fatigue to dissipate.

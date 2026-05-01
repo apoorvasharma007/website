@@ -2,7 +2,6 @@
 title = "Arrays and Hashing"
 weight = 1
 date = "2026-04-29"
-tags = ["dsa", "arrays"]
 +++
 
 Arrays are contiguous memory blocks with O(1) random access. Hash maps provide O(1) average-case lookups by key.

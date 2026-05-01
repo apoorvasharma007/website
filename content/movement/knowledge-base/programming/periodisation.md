@@ -2,7 +2,6 @@
 title = "Periodisation"
 weight = 1
 date = "2026-04-29"
-tags = ["programming", "periodisation"]
 +++
 
 Periodisation is the deliberate variation of training variables over time to manage fatigue, accumulate volume, and peak performance.

@@ -2,7 +2,6 @@
 title = "Dynamic Programming"
 weight = 3
 date = "2026-04-29"
-tags = ["dsa", "dp", "memoization"]
 +++
 
 Dynamic programming solves problems by breaking them into overlapping subproblems and storing solutions to avoid recomputation. It applies when a problem has **optimal substructure** and **overlapping subproblems**.

@@ -2,7 +2,6 @@
 title = "Caching Strategies"
 weight = 3
 date = "2026-04-29"
-tags = ["system-design", "caching", "performance"]
 +++
 
 Caching is one of the highest-leverage performance interventions in distributed systems. A well-placed cache can reduce database load by 90% and cut latency by an order of magnitude.

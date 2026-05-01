@@ -2,7 +2,6 @@
 title = "Progression Models"
 weight = 3
 date = "2026-04-29"
-tags = ["training", "programming", "progression"]
 +++
 
 A progression model is the mechanism by which you apply progressive overload over time. Choosing the right model for your training age and goal prevents stalling and injury.

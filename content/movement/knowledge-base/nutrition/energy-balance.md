@@ -2,7 +2,6 @@
 title = "Energy Balance"
 weight = 2
 date = "2026-04-29"
-tags = ["nutrition", "calories"]
 +++
 
 Body composition changes according to the difference between calories consumed and expended. This is not the whole picture, but it is the largest lever.

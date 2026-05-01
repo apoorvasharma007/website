@@ -2,7 +2,6 @@
 title = "Scalability"
 weight = 1
 date = "2026-04-29"
-tags = ["system-design", "scalability"]
 +++
 
 Scalability is the ability to handle increased load without proportional increases in resources or degraded performance.

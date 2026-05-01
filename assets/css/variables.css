@@ -14,6 +14,12 @@
   --color-link: inherit;
   --color-link-hover: var(--color-accent-primary);
 
+  /* RGB component tokens — used for rgba() variants throughout components.css.
+     Update these when changing the palette so all alpha variants stay in sync. */
+  --color-accent-rgb: 200,60,41;   /* matches --color-accent-primary */
+  --color-base-rgb: 26,20,16;      /* matches --color-text-primary */
+  --color-bg-rgb: 241,233,214;     /* matches --color-bg */
+
   /* spacing scale (8px system) */
   --space-1: 0.5rem;
   --space-2: 1rem;

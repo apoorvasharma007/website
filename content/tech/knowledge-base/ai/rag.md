@@ -2,7 +2,6 @@
 title = "Retrieval-Augmented Generation"
 weight = 2
 date = "2026-04-29"
-tags = ["ai", "rag", "retrieval"]
 +++
 
 RAG extends a language model's knowledge by retrieving relevant documents at inference time and including them in the context window.

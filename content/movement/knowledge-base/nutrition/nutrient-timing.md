@@ -2,7 +2,6 @@
 title = "Nutrient Timing"
 weight = 3
 date = "2026-04-29"
-tags = ["nutrition", "timing", "performance"]
 +++
 
 Nutrient timing is the practice of structuring when you eat to support training performance and recovery. Its impact is real but smaller than total intake — get the fundamentals right first.

@@ -2,7 +2,6 @@
 title = "Session Structure"
 weight = 2
 date = "2026-04-29"
-tags = ["training", "programming"]
 +++
 
 A well-structured session has a clear order: warm-up, main work, accessory work, and a brief cooldown. The order exists for physiological reasons — not convention.
