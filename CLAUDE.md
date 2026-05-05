@@ -5,8 +5,9 @@ Personal site for Apoorva Sharma. Built with Hugo — no themes, no JS, minimal 
 
 ## Stack
 - Static site generator: Hugo (extended)
-- No JavaScript, no external fonts, no analytics
-- Dark background (`#0f1115`), system font stack only
+- No JavaScript (except blog tag/search filter in `layouts/blog/list.html`)
+- Fonts: Inter via Google Fonts CDN; system mono for code only
+- White background (`#FFFFFF`), accent red (`#C83C29`)
 - Deployed via GitHub Actions to GitHub Pages
 - Custom domain: apoorvasharma7.com
 - DNS managed via Hostinger
@@ -15,10 +16,12 @@ Personal site for Apoorva Sharma. Built with Hugo — no themes, no JS, minimal 
 - `content/_index.md` — home page
 - `content/about.md` — about page
 - `content/posts/` — blog posts
-- `content/fitness/` — fitness content
+- `content/fitness/` — fitness content (URL section: `/movement/`)
 - `content/tech/` — tech notes and projects
 - `layouts/` — HTML templates (no theme)
-- `assets/css/styles.css` — all styles
+- `assets/css/variables.css` — design tokens (palette, spacing, type, motion)
+- `assets/css/layout.css` — structural styles (container, page fade, grid)
+- `assets/css/components.css` — all component styles
 - `static/resume.pdf` — resume served at `/resume.pdf`
 - `.github/workflows/deploy.yml` — CI/CD deploy to GitHub Pages
 
@@ -73,3 +76,37 @@ Push to `main` triggers the GitHub Actions workflow, which builds and publishes 
 ### Risk notes
 - URL renames break any inbound links to `/fitness/...` or `/code/...`.
 - Do not touch `.github/workflows/deploy.yml`.
+
+## Wave 4 — Visual redesign — DONE
+
+Status: implemented and verified locally.
+
+### What was done
+- White bg (`#FFFFFF`), warm surface (`#F5F4F1`), original red accent (`#C83C29`) kept
+- Inter only — mono removed from nav, dates, labels, stat-labels, footer; `var(--font-mono)` now code-only
+- Fluid type via `clamp()` on h1/h2/hero/single-title
+- Hero unboxed (no background card)
+- Section titles: red left-border (`border-left: 3px solid`) instead of top rule
+- Cards (home, stat, project, landing-backdrop): resting shadow + 3-layer hover lift
+- Frosted nav: `blur(20px) saturate(1.6)` at 82% opacity
+- Animated underline on inline content links (`background-size` transition)
+- `::selection` styled in accent red
+- Drop cap on first paragraph of `.content` pages
+- Blockquote: 3px red left bar, slightly larger text, italic
+- Primary button: red default, black hover
+- JS `IntersectionObserver` removed; CSS `@keyframes pageFadeIn` on `main` (with `prefers-reduced-motion` guard)
+- `scroll-padding-top: 4.5rem` added to fix anchor-under-sticky-nav
+- Dead `.movement-nav-cards` block removed from CSS
+- Inline `style=` on "All blog posts" link replaced with `.cta-row` class
+
+### Remaining known issues (deferred)
+- `_default/list.html` and taxonomy templates emit unstyled classes (`post-item`, `post-title`, `read-more`, etc.) — tag/category pages look plain. Unify with blog-row design in a future pass.
+- Two date formats still coexist (`02 Jan 2006` vs `02 Jan, 2006`) across templates.
+- `blog/list.html` has one remaining `style="display:none"` on `#no-results` (JS-controlled, needs template change to remove).
+
+### Constraints (do not violate)
+- One UI font (Inter). Mono only for `<code>` and `<pre>`.
+- One accent color. No second hue.
+- All styling via tokens in `variables.css` + rules in `components.css`. No per-page CSS, no per-template overrides, no inline `style=` in production templates.
+- No JavaScript for any visual/animation effect (CSS-only). JS budget: UX-functional only (search filter, copy-code, scroll-spy).
+- Google Fonts CDN for Inter is acceptable. Do not add more external deps.

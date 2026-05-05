@@ -1,26 +1,23 @@
-/* variables.css - central custom properties and font imports */
+/* variables.css — design tokens */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* color tokens */
-  --color-bg: #F1E9D6;
-  --color-surface: #EBE1CB;
-  --color-text-primary: #1A1410;
-  --color-text-secondary: #4a3f35;
-  --color-text-muted: #8A7F6E;
+  /* ── Palette ──────────────────────────────────────────────────── */
+  --color-bg:             #FFFFFF;
+  --color-surface:        #F5F4F1;
+  --color-text-primary:   #141210;
+  --color-text-secondary: #4A3F35;
+  --color-text-muted:     #8A7F6E;
+  --color-rule:           #E8E4DC;
   --color-accent-primary: #C83C29;
-  --color-heading: var(--color-text-primary);
-  --color-link: inherit;
-  --color-link-hover: var(--color-accent-primary);
 
-  /* RGB component tokens — used for rgba() variants throughout components.css.
-     Update these when changing the palette so all alpha variants stay in sync. */
-  --color-accent-rgb: 200,60,41;   /* matches --color-accent-primary */
-  --color-base-rgb: 26,20,16;      /* matches --color-text-primary */
-  --color-bg-rgb: 241,233,214;     /* matches --color-bg */
+  /* RGB components for rgba() usage — keep in sync with hex above */
+  --color-accent-rgb: 200,60,41;
+  --color-base-rgb:   20,18,16;
+  --color-bg-rgb:     255,255,255;
 
-  /* spacing scale (8px system) */
+  /* ── Spacing ──────────────────────────────────────────────────── */
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -29,14 +26,19 @@
   --space-6: 5rem;
   --max-width: 1100px;
 
-  /* typography */
-  --font-body: 'Inter', sans-serif;
-  --font-heading: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --line-height: 1.7;
+  /* ── Typography ───────────────────────────────────────────────── */
+  --font-body:    'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, monospace;
+  --line-height:  1.7;
 
-  /* animation durations */
-  --dur-short: 0.2s;
-  --dur-med: 0.3s;
-  --dur-long: 0.4s;
+  /* ── Motion ───────────────────────────────────────────────────── */
+  --dur-short: 0.18s;
+  --dur-med:   0.28s;
+  --dur-long:  0.4s;
+  --ease:      cubic-bezier(.2,.7,.2,1);
+
+  /* ── Shape ────────────────────────────────────────────────────── */
+  --radius-sm: 4px;
+  --radius:    8px;
 }

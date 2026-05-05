@@ -1,7 +1,9 @@
-/* layout.css - structural and background styles */
+/* layout.css — structural styles */
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -11,10 +13,22 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
   position: relative;
   min-height: 100vh;
 }
 
+/* page-level fade in (CSS-only, replaces JS IntersectionObserver) */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+main { animation: pageFadeIn 0.4s var(--ease) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  main { animation: none; }
+  html { scroll-behavior: auto; }
+}
 
 /* main container */
 .site {
@@ -28,28 +42,21 @@ body {
   min-height: 100vh;
 }
 
-main {
-  flex: 1;
-}
+main { flex: 1; }
 
 .section {
   margin-bottom: var(--space-5);
   padding-top: var(--space-4);
 }
 
-/* responsive grid for posts/projects */
-.post-list,
-.project-list {
+/* tag/taxonomy post list (used by _default/list.html and taxonomy.html) */
+.post-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-3);
 }
 
 @media (max-width: 600px) {
-  .site { padding: var(--space-2) var(--space-2); }
-
-  .post-list,
-  .project-list {
-    grid-template-columns: 1fr;
-  }
+  .site      { padding: var(--space-2) var(--space-2); }
+  .post-list { grid-template-columns: 1fr; }
 }
