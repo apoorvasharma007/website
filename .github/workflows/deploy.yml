@@ -29,6 +29,17 @@ jobs:
       - name: Build
         run: hugo --minify
 
+      - name: Checkout traininglogs (dashboard source)
+        uses: actions/checkout@v4
+        with:
+          repository: apoorvasharma007/traininglogs
+          path: traininglogs
+
+      - name: Copy dashboard into site
+        run: |
+          mkdir -p public/dashboard
+          cp traininglogs/docs/index.html public/dashboard/index.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

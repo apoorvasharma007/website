@@ -753,6 +753,46 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
   font-style: italic;
 }
 
+/* callouts — Obsidian-style > [!note] blocks (render-blockquote.html) */
+.content blockquote.callout {
+  border: 1px solid var(--color-rule);
+  border-left: 3px solid var(--color-accent-primary);
+  border-radius: var(--radius-sm);
+  background: rgba(var(--color-base-rgb), 0.03);
+  padding: var(--space-2) var(--space-3);
+  font-style: normal;
+  font-size: 0.95rem;
+}
+
+.callout-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent-primary);
+  margin-bottom: var(--space-1);
+}
+
+.callout-body p:last-child { margin-bottom: 0; }
+
+/* video embeds (youtube shortcode) */
+.video-embed {
+  aspect-ratio: 16 / 9;
+  margin: var(--space-3) 0;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-rest);
+  background: rgba(var(--color-base-rgb), 0.03);
+}
+
+.video-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* drop cap on first paragraph of long-form posts */
 .content > p:first-of-type::first-letter {
   float: left;
