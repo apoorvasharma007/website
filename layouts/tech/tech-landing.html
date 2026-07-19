@@ -25,6 +25,9 @@
             {{ with .Params.github }}
               <a class="project-gh-link" href="{{ . }}" target="_blank" rel="noopener">View on GitHub →</a>
             {{ end }}
+            {{ with .Params.design }}
+              <a class="project-gh-link" href="{{ . }}" target="_blank" rel="noopener">Design doc →</a>
+            {{ end }}
           </div>
         </details>
       {{ end }}
