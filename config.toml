@@ -6,37 +6,37 @@ title = "Apoorva Sharma"
   pagerSize = 10
 
 [params]
-  description = "Software Engineer, systems thinking, tech and fitness writing."
+  description = "Movement generalist. Strength, power, calisthenics, conditioning — grounded in kinesiology theory, tracked with software I build."
 
 [menu]
   [[menu.main]]
-    identifier = "home"
-    name = "Home"
-    url = "/"
+    identifier = "training"
+    name = "Training"
+    url = "/training/"
     weight = 1
 
   [[menu.main]]
-    identifier = "movement"
-    name = "Movement"
-    url = "/movement/"
+    identifier = "programs"
+    name = "Programs & Protocols"
+    url = "/programs/"
     weight = 2
 
   [[menu.main]]
-    identifier = "tech"
-    name = "Tech"
-    url = "/tech/"
+    identifier = "nutrition"
+    name = "Nutrition"
+    url = "/nutrition/"
     weight = 3
-
-  [[menu.main]]
-    identifier = "music"
-    name = "Music"
-    url = "/music/"
-    weight = 4
 
   [[menu.main]]
     identifier = "blog"
     name = "Blog"
     url = "/blog/"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "work-with-me"
+    name = "Work with me"
+    url = "/work-with-me/"
     weight = 5
 
 

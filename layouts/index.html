@@ -1,26 +1,35 @@
 {{ define "main" }}
 <section class="hero fade-in">
   <h1 class="hero-title">Apoorva Sharma</h1>
-  <p class="hero-subtitle">Software Engineer · Wannabe Athlete</p>
+  <p class="hero-subtitle">Movement Generalist <span>·</span> Software Developer</p>
   <p class="hero-intro">
-    Tech, training, and the overlap between the two.
+    I train in as many ways as I can find, learn the ideas behind them, put them to the test on my own body, and document the journey with tools I build myself.
   </p>
-  <div class="hero-actions">
-    <a class="button primary" href="/resume.pdf">Download Resume</a>
+</section>
+
+<section class="section fade-in">
+  <h2 class="section-title">What I train</h2>
+  <div class="domain-list">
+    {{ range (.Site.GetPage "/training").Sections.ByWeight }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ end }}
   </div>
 </section>
 
 <section class="section fade-in">
-  <h2 class="section-title">Projects</h2>
+  <h2 class="section-title">Under the hood</h2>
   <div class="home-cards">
-    <a class="home-card" href="/movement/dashboard/">
-      <span class="label">Movement</span>
-      <span class="home-card-name">Training Data</span>
+    <a class="home-card" href="/dashboard/">
+      <span class="label">Dashboard</span>
+      <span class="home-card-name">My training data, live</span>
+      <span class="home-card-link"> Every session logged — where the data stops being polite.</span>
+      <span class="home-card-go">Open the dashboard →</span>
     </a>
-    <a class="home-card" href="https://apoorvasharma007.github.io/traininglogs/design.html" target="_blank" rel="noopener">
+    <a class="home-card" href="/tech/">
       <span class="label">Tech</span>
-      <span class="home-card-name">traininglogs</span>
-      <span class="home-card-link"> CLI app for logging and tracking training sessions.</span>
+      <span class="home-card-name">The tech behind my training</span>
+      <span class="home-card-link"> traininglogs, the live dashboard, and engineering notes.</span>
+      <span class="home-card-go">See the tech →</span>
     </a>
   </div>
 </section>

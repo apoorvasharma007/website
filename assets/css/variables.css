@@ -5,7 +5,7 @@
 :root {
   /* ── Palette ──────────────────────────────────────────────────── */
   --color-bg:             #FFFFFF;
-  --color-surface:        #F5F4F1;
+  --color-surface:        #FFFFFF;
   --color-text-primary:   #141210;
   --color-text-secondary: #4A3F35;
   --color-text-muted:     #8A7F6E;
@@ -24,7 +24,7 @@
   --space-4: 2rem;
   --space-5: 3rem;
   --space-6: 5rem;
-  --max-width: 1100px;
+  --max-width: 960px;
 
   /* ── Typography ───────────────────────────────────────────────── */
   --font-body:    'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -41,4 +41,8 @@
   /* ── Shape ────────────────────────────────────────────────────── */
   --radius-sm: 4px;
   --radius:    8px;
+
+  /* ── Elevation ────────────────────────────────────────────────── */
+  --shadow-rest: 0 1px 2px rgba(var(--color-base-rgb),0.04), 0 6px 18px rgba(var(--color-base-rgb),0.05);
+  --shadow-lift: 0 4px 10px rgba(var(--color-base-rgb),0.06), 0 18px 44px rgba(var(--color-base-rgb),0.10);
 }

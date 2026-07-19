@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V2 — Engine Room (full-bleed dark band)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#141414; --muted:#6e6a66; --red:#C83C29; --red-bright:#E05340;
+  --rule:#eceae7; --band:#111110; --band-card:#1B1A19; --band-rule:rgba(255,255,255,.09);
+  --radius:12px;
+  --shadow-rest:0 1px 2px rgba(20,20,20,.04), 0 6px 18px rgba(20,20,20,.05);
+  --shadow-lift:0 4px 10px rgba(20,20,20,.06), 0 18px 44px rgba(20,20,20,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+::selection{background:var(--red);color:#fff}
+
+.nav{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(18px) saturate(1.5);border-bottom:1px solid var(--rule);z-index:10}
+.nav-inner{display:flex;align-items:center;gap:26px;padding:16px 24px;max-width:860px;margin:0 auto;font-size:.875rem}
+.brand{font-weight:800;letter-spacing:-.01em}
+.nav-link{color:var(--muted);font-weight:500;transition:color .15s}
+.nav-link:hover{color:var(--ink)}
+.nav-link.active{color:var(--red);font-weight:600}
+
+.hero{padding:88px 0 44px}
+.hero h1{font-size:clamp(2.6rem,6vw,3.9rem);font-weight:800;letter-spacing:-.035em;line-height:1.05}
+.hero .sub{margin-top:14px;font-size:.95rem;font-weight:600;color:var(--red);letter-spacing:.02em}
+.hero .sub span{color:var(--muted);font-weight:500}
+.hero p.bio{margin-top:22px;font-size:1.12rem;color:#3c3936;max-width:36em}
+
+section{padding:34px 0}
+.sec-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);border-left:3px solid var(--red);padding-left:12px;margin-bottom:22px}
+
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{padding:9px 16px;border:1px solid var(--rule);border-radius:999px;font-size:.9rem;font-weight:500;background:#fff;box-shadow:var(--shadow-rest);transition:all .18s ease}
+.pill:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+
+/* ── full-bleed dark band ── */
+.band{background:var(--band);width:100vw;margin-left:calc(50% - 50vw);margin-top:26px;margin-bottom:10px;position:relative;overflow:hidden}
+.band::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(224,83,64,.55),transparent)}
+.band-inner{max-width:860px;margin:0 auto;padding:52px 24px 56px}
+.band .sec-title{color:rgba(255,255,255,.55);border-left-color:var(--red-bright)}
+.band-note{color:rgba(255,255,255,.45);font-size:.9rem;margin:-12px 0 24px;max-width:34em}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){.cards{grid-template-columns:1fr}}
+.card{background:var(--band-card);border:1px solid var(--band-rule);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:8px;transition:all .22s ease}
+.card:hover{transform:translateY(-4px);border-color:rgba(224,83,64,.5);box-shadow:0 18px 44px rgba(0,0,0,.5)}
+.card .label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--red-bright);display:flex;align-items:center;gap:8px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--red-bright);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.card .name{font-weight:700;font-size:1.08rem;letter-spacing:-.01em;color:#fff}
+.card .desc{font-size:.88rem;color:rgba(255,255,255,.55)}
+.card .go{margin-top:10px;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.8)}
+.card:hover .go{color:var(--red-bright)}
+
+.rows{border-top:1px solid var(--rule)}
+.row{display:flex;gap:22px;align-items:baseline;padding:15px 4px;border-bottom:1px solid var(--rule);transition:background .15s}
+.row:hover{background:#faf9f8}
+.row .date{font-size:.8rem;color:var(--muted);min-width:86px}
+.row .t{font-weight:600;font-size:.96rem;transition:color .15s}
+.row:hover .t{color:var(--red)}
+.cta{margin-top:18px;font-size:.9rem;font-weight:600}
+.cta a{color:var(--red)}
+
+footer{margin-top:56px;padding:28px 0 40px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.a{animation:up .55s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.32s}.d5{animation-delay:.41s}
+@media(prefers-reduced-motion:reduce){.a{animation:none}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+  <a class="brand" href="#">Apoorva Sharma</a>
+  <a class="nav-link active" href="#">Training</a>
+  <a class="nav-link" href="#">Programs</a>
+  <a class="nav-link" href="#">Nutrition</a>
+  <a class="nav-link" href="#">Blog</a>
+  <a class="nav-link" href="#">Work with me</a>
+</div></nav>
+
+<div class="wrap">
+  <header class="hero a d1">
+    <h1>Apoorva Sharma</h1>
+    <p class="sub">Movement Generalist <span>·</span> Software Developer</p>
+    <p class="bio">I train in as many ways as I can find, learn the ideas behind them, put them to the test on my own body, and document the journey with tools I build myself.</p>
+  </header>
+
+  <section class="a d2">
+    <h2 class="sec-title">What I train</h2>
+    <div class="pills">
+      <a class="pill" href="#">Foundations</a><a class="pill" href="#">Strength</a>
+      <a class="pill" href="#">Power</a><a class="pill" href="#">Calisthenics</a>
+      <a class="pill" href="#">Conditioning</a><a class="pill" href="#">Speed, Agility &amp; Reaction</a>
+      <a class="pill" href="#">Mobility</a><a class="pill" href="#">Movement Skills</a>
+      <a class="pill" href="#">Programming</a>
+    </div>
+  </section>
+</div>
+
+<div class="band a d3">
+  <div class="band-inner">
+    <h2 class="sec-title">Under the hood</h2>
+    <p class="band-note">The claims above are checkable — real data, real code.</p>
+    <div class="cards">
+      <a class="card" href="#">
+        <span class="label"><span class="dot"></span>Dashboard</span>
+        <span class="name">My training data, live</span>
+        <span class="desc">Every session logged — where the data stops being polite.</span>
+        <span class="go">Open the dashboard →</span>
+      </a>
+      <a class="card" href="#">
+        <span class="label">Tech</span>
+        <span class="name">The tech behind my training</span>
+        <span class="desc">traininglogs, the live dashboard, and engineering notes.</span>
+        <span class="go">See the tech →</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="a d4">
+    <h2 class="sec-title">Blog</h2>
+    <div class="rows">
+      <a class="row" href="#"><span class="date">18 Nov 2025</span><span class="t">Why I Started Running (After Years of Avoiding It)</span></a>
+      <a class="row" href="#"><span class="date">02 Oct 2025</span><span class="t">Progressive Overload Is Not Just Weight</span></a>
+      <a class="row" href="#"><span class="date">14 Aug 2025</span><span class="t">Sleep Is a Training Variable</span></a>
+      <a class="row" href="#"><span class="date">29 Jun 2025</span><span class="t">The Deload Week</span></a>
+    </div>
+    <p class="cta"><a href="#">All blog posts →</a></p>
+  </section>
+
+  <footer class="a d5">Contact &nbsp;·&nbsp; © 2026 Apoorva Sharma</footer>
+</div>
+</body>
+</html>

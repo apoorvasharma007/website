@@ -97,6 +97,12 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
   font-weight: 500;
 }
 
+.nav-brand {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  margin-right: var(--space-2);
+}
+
 .nav-link {
   color: var(--color-text-muted);
   position: relative;
@@ -124,7 +130,8 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
 }
 
 .hero-title    { font-size: clamp(2rem, 1.4rem + 2.5vw, 2.8rem); margin: 0 0 var(--space-1); letter-spacing: -0.03em; line-height: 1.05; }
-.hero-subtitle { margin: 0 0 var(--space-3); color: var(--color-text-muted); font-size: 0.9rem; font-weight: 400; }
+.hero-subtitle { margin: 0 0 var(--space-3); color: var(--color-accent-primary); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em; }
+.hero-subtitle span { color: var(--color-text-muted); font-weight: 400; }
 .hero-intro    { margin: 0 0 var(--space-4); color: var(--color-text-secondary); max-width: 52ch; font-size: 1.05rem; line-height: 1.7; }
 
 .hero-actions {
@@ -210,7 +217,7 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
   background: var(--color-surface);
   border: 1px solid var(--color-rule);
   border-radius: var(--radius);
-  box-shadow: 0 1px 3px rgba(var(--color-base-rgb),0.04), 0 4px 12px rgba(var(--color-base-rgb),0.05);
+  box-shadow: var(--shadow-rest);
   transition: border-color var(--dur-short), transform var(--dur-short) var(--ease), box-shadow var(--dur-med) var(--ease);
   color: inherit;
   text-decoration: none;
@@ -218,7 +225,7 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
 
 .home-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(var(--color-base-rgb),0.05), 0 16px 40px rgba(var(--color-base-rgb),0.10), 0 28px 56px -12px rgba(var(--color-base-rgb),0.07);
+  box-shadow: var(--shadow-lift);
   border-color: rgba(var(--color-base-rgb),0.12);
 }
 
@@ -232,6 +239,15 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
   font-size: 0.82rem;
   color: var(--color-text-muted);
 }
+
+.home-card-go {
+  margin-top: var(--space-1);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  transition: color var(--dur-short);
+}
+.home-card:hover .home-card-go { color: var(--color-accent-primary); }
 
 /* ── CTA row (e.g. "All blog posts →") ──────────────────────────── */
 .cta-row {
@@ -389,7 +405,7 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
   border-radius: var(--radius);
   padding: var(--space-3);
   margin-top: var(--space-3);
-  box-shadow: 0 1px 3px rgba(var(--color-base-rgb),0.04), 0 4px 12px rgba(var(--color-base-rgb),0.05);
+  box-shadow: var(--shadow-rest);
 }
 
 .landing-backdrop-heading {
@@ -405,6 +421,29 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
 .landing-kb-list a { color: var(--color-text-primary); font-size: 0.875rem; }
 .landing-kb-list a:hover { color: var(--color-accent-primary); }
 
+.domain-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+.domain-list a {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  border: 1px solid var(--color-rule);
+  border-radius: 999px;
+  box-shadow: var(--shadow-rest);
+  transition: color var(--dur-short), border-color var(--dur-short), transform var(--dur-short) var(--ease), box-shadow var(--dur-med) var(--ease);
+}
+.domain-list a:hover {
+  color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
 .dashboard-link {
   display: block;
   text-decoration: none;
@@ -416,7 +455,7 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
 
 .dashboard-link:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(var(--color-base-rgb),0.05), 0 16px 40px rgba(var(--color-base-rgb),0.10);
+  box-shadow: var(--shadow-lift);
   border-color: rgba(var(--color-accent-rgb),0.25);
 }
 
@@ -528,13 +567,13 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  box-shadow: 0 1px 3px rgba(var(--color-base-rgb),0.04), 0 4px 12px rgba(var(--color-base-rgb),0.05);
+  box-shadow: var(--shadow-rest);
   transition: transform var(--dur-short) var(--ease), box-shadow var(--dur-med) var(--ease), border-color var(--dur-short);
 }
 
 .stat-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(var(--color-base-rgb),0.06), 0 14px 32px rgba(var(--color-base-rgb),0.09);
+  box-shadow: var(--shadow-lift);
   border-color: rgba(var(--color-base-rgb), 0.15);
 }
 
@@ -581,12 +620,12 @@ details > summary:focus-visible { outline: 1px solid rgba(var(--color-accent-rgb
   border: 1px solid var(--color-rule);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(var(--color-base-rgb),0.04), 0 4px 12px rgba(var(--color-base-rgb),0.05);
+  box-shadow: var(--shadow-rest);
   transition: border-color var(--dur-short), transform var(--dur-short) var(--ease), box-shadow var(--dur-med) var(--ease);
 }
 
 .project-card[open] { border-color: rgba(var(--color-accent-rgb),0.2); }
-.project-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(var(--color-base-rgb),0.05), 0 16px 40px rgba(var(--color-base-rgb),0.09); }
+.project-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
 
 .project-summary {
   list-style: none;
