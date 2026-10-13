@@ -5,7 +5,7 @@ Status: approved 2026-10-14 (decisions 1-8, CLAUDE.md rule changes, branch namin
 ## Goal and motivation
 
 The site looks static and dated, and it can't take drafts from the Notion pipeline (see
-`~/Projects/pipeline-plan.md`, step 9). Rebuild it on Astro: static pages by default, React only
+`~/Projects/alfred/plans/pipeline-plan.md`, step 9). Rebuild it on Astro: static pages by default, React only
 where a page needs interaction. Give it a Notion-like reading design across article-type pages,
 pull published Notion pages through the official API, rebuild twice a day, and deploy to
 Cloudflare Pages so every PR gets a free preview link.
