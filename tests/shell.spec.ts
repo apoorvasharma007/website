@@ -68,7 +68,7 @@ test('book page lists its chapters and section headings, with no outline or page
 
   await page.goto('/fitness/knowledge-base/training/');
   await expect(page.locator('.items > *')).toHaveCount(4);
-  await expect(page.locator('.items .heading')).toHaveText('Foundations');
+  await expect(page.locator('.items .section h2')).toHaveText('Foundations');
   await expect(page.locator('.items .card strong')).toHaveText([
     'Core Training Principles',
     'Session Structure',
@@ -196,13 +196,20 @@ test('Fitness overview links the dashboard out and has no dead rows', async ({ p
 
 test('blog lists posts newest first, as separate cards, per side and for both', async ({ page }) => {
   await page.goto('/tech/blog/');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Blog');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Tech Blog');
+  await expect(page.locator('#side')).toHaveCount(0);
+  await expect(page.getByRole('navigation', { name: 'Main' }).getByRole('link')).toHaveText([
+    'Tech',
+    'Fitness',
+    'Blog',
+    'About',
+    'Contact',
+  ]);
   await expect(page.locator('.items .card strong')).toHaveText([
     'Building traininglogs: A Python Pipeline for My Gym Data',
     'Testing in Python: What to Test and What to Skip',
   ]);
   await expect(page.locator('.items .card').first()).toContainText('2 Apr 2026');
-  await expect(page.getByRole('navigation', { name: 'Breadcrumb' })).toHaveText('Tech/Blog');
 
   await page.goto('/fitness/blog/');
   await expect(page.locator('.items .card strong')).toHaveText(['Building a Sustainable Training Habit']);
@@ -259,4 +266,21 @@ test('the focus row on a phone moves down with the scroll, never jumps back, and
   }
   expect(seen).toEqual([...seen].sort((a, b) => a - b));
   expect(seen.at(-1)).toBe(count - 1);
+});
+
+test('cards stay small on a phone however long the text is', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const path of ['/tech/blog/', '/tech/knowledge-base/system-design/']) {
+    await page.goto(path);
+    for (const height of await page.locator('.items .card').evaluateAll((all) => all.map((c) => c.getBoundingClientRect().height))) {
+      expect(height).toBeLessThan(150);
+    }
+  }
+});
+
+test('a section heading is bigger than the chapter cards under it', async ({ page }) => {
+  await page.goto('/fitness/knowledge-base/training/');
+  const section = await page.locator('.items .section h2').evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+  const card = await page.locator('.items .card strong').first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+  expect(section).toBeGreaterThan(card * 1.3);
 });

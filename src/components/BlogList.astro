@@ -1,34 +1,24 @@
 ---
 import { site } from '../data/site';
-import Doc from './Doc.astro';
 import DocHead from './DocHead.astro';
 import ItemCard from './ItemCard.astro';
 import ItemList from './ItemList.astro';
-import ShellLayout from '../layouts/ShellLayout.astro';
-import { formatDate, pageUrl, sides, type Page, type Side } from '../lib/pages';
+import FullLayout from '../layouts/FullLayout.astro';
+import { formatDate, pageUrl, sides, type Page } from '../lib/pages';
 
 interface Props {
-  pages: Page[];
   posts: Page[];
-  side?: Side;
+  title: string;
   intro: string;
-  current: string;
+  showSide?: boolean;
 }
 
-const { pages, posts, side = 'tech', intro, current } = Astro.props;
-const everySide = Astro.props.side === undefined;
+const { posts, title, intro, showSide = false } = Astro.props;
 ---
 
-<ShellLayout
-  title={`Blog | ${site.name}`}
-  description={intro}
-  side={side}
-  crumbs={everySide ? [{ label: 'Blog' }] : [{ label: sides[side].label, href: `/${sides[side].dir}/` }, { label: 'Blog' }]}
-  pages={pages}
-  current={current}
->
-  <Doc>
-    <DocHead title="Blog" intro={intro} />
+<FullLayout title={`${title} | ${site.name}`} description={intro}>
+  <div class="wrap">
+    <DocHead title={title} intro={intro} />
     <ItemList>
       {
         posts.map((post) => (
@@ -36,10 +26,18 @@ const everySide = Astro.props.side === undefined;
             href={pageUrl(post)}
             title={post.data.title}
             description={post.data.description}
-            meta={everySide ? `${sides[post.data.side].label}, ${formatDate(post.data.date)}` : formatDate(post.data.date)}
+            meta={showSide ? `${sides[post.data.side].label}, ${formatDate(post.data.date)}` : formatDate(post.data.date)}
           />
         ))
       }
     </ItemList>
-  </Doc>
-</ShellLayout>
+  </div>
+</FullLayout>
+
+<style>
+  .wrap {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem) 6rem;
+  }
+</style>

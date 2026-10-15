@@ -21,9 +21,9 @@ const { href, title, description, meta, external = false } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    padding: 1rem 1.125rem 1.125rem;
+    padding: 0.875rem 1rem;
     border: 1px solid var(--line);
-    border-radius: 0.875rem;
+    border-radius: 0.75rem;
     background: var(--panel);
     transition:
       border-color 0.2s,
@@ -35,20 +35,32 @@ const { href, title, description, meta, external = false } = Astro.props;
     transform: translateY(-2px);
   }
 
+  strong,
+  .desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
   strong {
+    -webkit-line-clamp: 2;
+    font-size: 0.9375rem;
+    line-height: 1.35;
     font-weight: 550;
     letter-spacing: -0.01em;
   }
 
   .desc {
-    font-size: 0.9375rem;
-    line-height: 1.5;
+    -webkit-line-clamp: 2;
+    font-size: 0.875rem;
+    line-height: 1.45;
     color: var(--body);
   }
 
   .meta {
-    margin-top: 0.25rem;
-    font-size: 0.8125rem;
+    margin-top: auto;
+    padding-top: 0.25rem;
+    font-size: 0.75rem;
     color: var(--dim);
   }
 </style>

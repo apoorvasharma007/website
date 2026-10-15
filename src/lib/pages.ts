@@ -46,8 +46,25 @@ const groups: Record<Side, { label: string; blurb: string; type?: Page['data']['
 const bySequence = (a: Page, b: Page) =>
   a.data.order - b.data.order || a.data.date.getTime() - b.data.date.getTime();
 
+const maxDepth = 2;
+
+function checkDepth(pages: Page[]) {
+  for (const page of pages) {
+    let depth = 0;
+    for (let at = page; at.data.parent; depth++) {
+      const parent = pages.find((p) => p.id === at.data.parent);
+      if (!parent) throw new Error(`${page.id}: parent "${at.data.parent}" is not a published page`);
+      at = parent;
+    }
+    if (depth > maxDepth) {
+      throw new Error(`${page.id} sits ${depth} levels under its first page. The limit is ${maxDepth} (book, section, chapter).`);
+    }
+  }
+}
+
 export async function getPublished() {
   const all = await getCollection('pages', ({ data }) => data.status === 'Published');
+  checkDepth(all);
   return all.sort(bySequence);
 }
 

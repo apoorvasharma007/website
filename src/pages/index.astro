@@ -76,7 +76,6 @@ const socials = [
               <a href={s.href} target="_blank" rel="noopener">
                 <Icon name={s.icon} />
                 <span>{s.label}</span>
-                <i aria-hidden="true">↗</i>
               </a>
             </li>
           ))
@@ -370,6 +369,12 @@ const socials = [
     color: var(--body);
   }
 
+  @media (max-width: 899px) {
+    .row-text {
+      display: none;
+    }
+  }
+
   .reveal.shown {
     animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
   }
@@ -378,7 +383,7 @@ const socials = [
     display: grid;
     gap: 2.5rem;
     margin-top: clamp(4rem, 9vw, 7rem);
-    padding-top: clamp(2.5rem, 6vw, 4rem);
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(0.75rem, 2vw, 1.25rem) 0;
     border-top: 1px solid var(--line);
   }
 
@@ -405,7 +410,8 @@ const socials = [
   }
 
   .socials {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
 
@@ -413,10 +419,11 @@ const socials = [
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    min-height: 3.25rem;
-    padding: 0 1.125rem;
+    min-height: 2.5rem;
+    padding: 0 0.875rem;
     border: 1px solid var(--line);
-    border-radius: 0.75rem;
+    border-radius: 99px;
+    font-size: 0.9375rem;
     background: var(--panel);
     color: var(--muted);
     transition:
@@ -428,17 +435,11 @@ const socials = [
   .socials a:hover {
     color: var(--fg);
     border-color: var(--line-2);
-    transform: translateX(4px);
+    transform: translateY(-1px);
   }
 
   .socials span {
-    flex: 1;
     font-weight: 500;
-  }
-
-  .socials i {
-    font-style: normal;
-    color: var(--dim);
   }
 </style>
 
