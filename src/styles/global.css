@@ -100,11 +100,10 @@ ul {
   opacity: 1;
 }
 
-/* A tap lights the row quickly and holds it until the page changes. */
-.row:active::before,
-.row.go::before {
+/* A press lights the row at once, so nothing visibly fills in. */
+.row:active::before {
   opacity: 1;
-  transition-duration: var(--dur-quick);
+  transition: none;
 }
 
 @media (hover: hover) {
@@ -248,11 +247,27 @@ ul {
 :where(.prose p a, .prose li a, .crumb a, .footer-links a, .side-foot a, .pager a, h2 a, .brand, .side-head):active {
   background: var(--plate-hot);
   box-shadow: 0 0 0 0.3em var(--plate-hot);
+  transition: none;
 }
 
 @media (hover: hover) {
   :where(.prose p a, .prose li a, .crumb a, .footer-links a, .side-foot a, .pager a, h2 a, .brand, .side-head):hover {
     background: var(--plate);
     box-shadow: 0 0 0 0.3em var(--plate);
+  }
+}
+
+/* iOS adds its own grey tap box, a link preview and text selection on a long press. We draw our own pressed look. */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+@media (hover: none) {
+  a,
+  button {
+    -webkit-user-select: none;
+    user-select: none;
   }
 }

@@ -455,15 +455,6 @@ test('the stylesheet has one page transition and the chrome keeps its place', as
   expect(css).not.toMatch(/:active\s*\{\s*opacity/);
 });
 
-test('a tapped row keeps its glow for a moment before the page changes', async ({ page }) => {
-  await page.goto('/');
-  const row = page.locator('.rows .row').first();
-  await row.click();
-  await expect(row).toHaveClass(/go/);
-  expect(new URL(page.url()).pathname).toBe('/');
-  await expect(page).toHaveURL(/\/tech\/$/);
-});
-
 test('each drawing is nudged left so its figure sits under the middle of the spotlight', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('/');
@@ -500,10 +491,30 @@ test('pressing never greys text, and hovering a link shows a plate, not an under
   await expect.poll(() => entry.evaluate((el) => getComputedStyle(el, '::before').opacity)).toBe('1');
 });
 
-test('a tap changes the page within half a second', async ({ page }) => {
+
+test('a pressed row lights at once with no fade, and iOS tap extras are switched off', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/tech/');
+  const row = page.locator('.rows .row').first();
+  const highlight = await row.evaluate((el) => getComputedStyle(el).getPropertyValue('-webkit-tap-highlight-color'));
+  expect(highlight).toMatch(/rgba\(0, 0, 0, 0\)|transparent/);
+  const box = (await row.boundingBox())!;
+  await page.mouse.move(box.x + 20, box.y + 20);
+  await page.mouse.down();
+  const glow = await row.evaluate((el) => {
+    const css = getComputedStyle(el, '::before');
+    return { opacity: css.opacity, duration: css.transitionDuration };
+  });
+  expect(glow).toEqual({ opacity: '1', duration: '0s' });
+  await page.mouse.move(box.x + 20, 5);
+  await page.mouse.up();
+  await expect(page).toHaveURL(/\/tech\/$/);
+});
+
+test('a tap changes the page without waiting', async ({ page }) => {
   await page.goto('/');
   const started = Date.now();
   await page.locator('.rows .row').first().click();
   await page.waitForURL(/\/tech\/$/);
-  expect(Date.now() - started).toBeLessThan(900);
+  expect(Date.now() - started).toBeLessThan(700);
 });
