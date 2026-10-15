@@ -47,5 +47,9 @@ const preview = new URL('/og.png', Astro.site);
   <body>
     <a class="skip" href="#main">Skip To Content</a>
     <slot />
+    <script>
+      // iOS Safari only styles :active when some touch listener exists on the page.
+      document.addEventListener('touchstart', () => {}, { passive: true });
+    </script>
   </body>
 </html>

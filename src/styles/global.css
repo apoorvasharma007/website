@@ -96,8 +96,8 @@ ul {
   );
 }
 
-.row:focus-visible::before,
-.row.on::before {
+.row:active::before,
+.row:focus-visible::before {
   opacity: 1;
 }
 
