@@ -22,6 +22,9 @@ Cloudflare Pages so every PR gets a free preview link.
 | 6 | Every current URL and alias keeps working (redirects file) | Approved |
 | 7 | Perf budget gate in CI (first load JS budget, Lighthouse) | Approved, numbers TBD |
 | 8 | Notion token only as a GitHub Actions / Cloudflare secret, never in the repo | Approved |
+| 9 | IA (2026-10-14): two equal sides, Tech and Fitness, plus About and Contact. Tech: knowledge bases (AI, System Design, Coding), projects, demos, tutorials, articles. Fitness: knowledge bases (Training, Nutrition, Programming), programs, dashboard, articles. Home is a single timeline mixing commits and training sessions. Blog is no longer its own section. Radical visual redesign from scratch, no carry-over from the Wave 4 look | Approved (page set); look pending mockup |
+| 10 | Visual direction locked 2026-10-14. Dark docs shell for knowledge bases, articles and projects (text-led pages with embedded video and demos): artifact https://claude.ai/artifact/EATnq7F4r6e33J5wKYkhwE, file `mockups/astro-rebuild/docs-shell.html`. Landing 1.0 locked: the "Reveal" treatment, a centered hero with four floating cards, then Tech and Fitness as huge hover-reveal rows, then a contact and social footer. File `mockups/astro-rebuild/landing-v1.html`, artifact https://claude.ai/artifact/QC1vVJF4HUVnzsd7w5q93f. The earlier hero-plus-two-tiles first pass is kept as `landing-v0-first-pass.html` (artifact https://claude.ai/artifact/PzurXRkU4NXA22Y3vcuCWZ). Dark default with light toggle, Inter, muted blue for Tech and amber for Fitness. Landing links YouTube and Instagram, which reverses the July rule that the site never links Instagram | Approved |
+| 11 | Confirmed 2026-10-15. Row focus is a static glow from the left, sweep style: Fitness magenta to violet (#F0289C to #7A3CFF), Tech electric blue (#3B82FF to #00D1FF); the full-row color wipe is dropped. These colors replace yellow and pink for dots, labels and the outline across the whole site. Resume button stays bright yellow (#FFE600) with dark text. Title Case on every heading and label. Search is left out of the first build. Landing art: a clean-and-jerk animation (plates 2, 4, 6, 8, Wham! at the lockout, PR animation on the 8-plate rep) and a Neo-style dodge of an android's lasers, same anime-style character, neon night scene. Sketch artifacts: glow https://claude.ai/artifact/GSNxnVbkycnitWKmwomfSv, animations https://claude.ai/artifact/JSrFCATp3GpLGSfi2wYbi5. Still open: what replaces the uppercase monospace labels, and the character's look | Approved except the open items |
 
 ## `website/CLAUDE.md` rule changes (approved 2026-10-14)
 
@@ -65,6 +68,8 @@ sub-branches `refactor/astro-rebuild-N-<step>`, squash-merged back; base merges 
 
 ## ▶ Resume here
 
-Next action: step 2, design mockup (article page + homepage) as an Artifact. First question: keep
-Inter + accent #C83C29 as the starting tokens, or explore new ones? Open: perf budget numbers, whether to create a `dev`
-branch first, Cloudflare account exists or not.
+Design is LOCKED (2026-10-15). Spec: `website-build-spec.md`. Final prototype: `mockups/astro-rebuild/site-final.html`
+(artifact https://claude.ai/artifact/DkCam7qZ8EYGGcHaLHGWAc). Branch `refactor/astro-rebuild` (cut from main, docs and
+mockups committed on it). Next action: write the build plan for step 1 (Astro project scaffold on Cloudflare Pages
+with the design tokens, shell and Home) and show it to Apoorva before writing code. Open at build time: confirm hero
+captions, minify the two SVGs, real About text, Cloudflare account and AI-crawler blocking check at hosting setup.
