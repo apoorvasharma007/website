@@ -127,3 +127,4 @@ Design record: `website-rebuild-plan.md` rows 9, 10, 11. Mockup: `mockups/astro-
 - Overview pages (2026-10-15, supersede "just the side name"): the heading is Overview in the side color and the breadcrumb is Side / Overview, matching the tree item and the rule that a page's heading is its last breadcrumb item.
 - The top nav is sticky on every page: the docs top bar already was, and the Home, Blog and 404 header now is too, frosted like the docs bar. On a phone it is two rows, about 130px.
 - Home: the Tech and Fitness descriptions show on phone and laptop again.
+- Overview heading uses the same size and color as every other page title (2026-10-15, supersedes the side-colored huge heading). Home has one line between the Fitness row and Say Hello, not two.

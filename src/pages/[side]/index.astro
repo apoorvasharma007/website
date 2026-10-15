@@ -1,5 +1,6 @@
 ---
 import { site } from '../../data/site';
+import DocHead from '../../components/DocHead.astro';
 import ShellLayout from '../../layouts/ShellLayout.astro';
 import { getPublished, overviewRows, sides } from '../../lib/pages';
 
@@ -25,8 +26,7 @@ const rows = overviewRows(pages, side);
   current={`/${dir}/`}
 >
   <div class="overview">
-    <h1>Overview</h1>
-    <p class="lede">{intro}</p>
+    <DocHead title="Overview" intro={intro} />
     <div class="rows">
       {
         rows.map((row) => {
@@ -59,25 +59,8 @@ const rows = overviewRows(pages, side);
     padding: clamp(2.5rem, 7vw, 5rem) clamp(1rem, 4vw, 2rem) 6rem;
   }
 
-  h1 {
-    margin: 0;
-    font-size: clamp(3.5rem, 1rem + 10.5vw, 9.5rem);
-    line-height: 0.9;
-    font-weight: 600;
-    letter-spacing: -0.065em;
-    color: var(--side);
-  }
-
-  .lede {
-    margin-top: 1.5rem;
-    max-width: 36rem;
-    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
-    line-height: 1.55;
-    color: var(--body);
-  }
-
   .rows {
-    margin-top: clamp(2rem, 5vw, 3.5rem);
+    margin-top: 2rem;
     border-top: 1px solid var(--line);
   }
 
