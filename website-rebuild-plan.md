@@ -53,7 +53,7 @@ Cloudflare Pages so every PR gets a free preview link.
 
 - [x] 1. Approve this plan: decisions, names, branch naming (2026-10-14)
 - [x] 2. Design mockups for every page, approved and locked (2026-10-15). Spec `website-build-spec.md`, prototype `mockups/astro-rebuild/site-final.html`
-- [ ] 3. Scaffold Astro + Cloudflare Pages; tokens, shell, Home, 404, robots, sitemap; PR preview working (detail below)
+- [x] 3. (Done 2026-10-15 locally, Cloudflare part moved to `website-deploy-plan.md` Phase 2) Scaffold Astro + Cloudflare Pages; tokens, shell, Home, 404, robots, sitemap; PR preview working (detail below)
 - [ ] 4. Page layouts and body components for Knowledge Base chapter and book, Article, Project, Program (callout, table, code with copy, YouTube embed, video and demo slots, Previous and Next, Links, Sources)
 - [ ] 5. Migrate the 54 Markdown pages into content collections (Parent hierarchy, Side, Type, Date, Description), blog posts split Tech 8 and Fitness 7, generate the redirects file and show the full list before checking every old URL
 - [ ] 6. Overview pages, tree and breadcrumb generated from the hierarchy, About and Contact with real text
@@ -79,6 +79,19 @@ Sub-branch `refactor/astro-rebuild-3-scaffold` from the base branch. Hugo files 
 7. Gate before squash-merge: `astro check` and build pass, a Playwright smoke test (Home renders, tabs switch at 390 wide, footer on every page, no horizontal scroll, dark and light), a manual screenshot comparison with `site-final.html` at 1440 and 390 in both themes, first-load JS at most 120 KB, contrast at least 4.5 to 1.
 
 Not in step 3: knowledge base, article, project and program pages (step 4), content (step 5), Notion (step 8).
+
+## Step 4 detail (proposed, awaiting Apoorva's yes)
+
+Sub-branch `refactor/astro-rebuild-4-layouts` from `refactor/astro-rebuild`. Nothing goes live and nothing is pushed.
+
+1. Content shape. `src/content.config.ts` defines one collection with the spec's fields: Title, Slug, Side, Type, Parent, Order, Description, Date, Status, plus Source URL, Docs URL and Live URL for Project and Demo, Sources for Program, Tags for Article. Markdown files fill it now (step 5 migrates the 54 pages, step 8 adds the Notion loader that produces the same shape). Only Published entries build.
+2. `ShellLayout`: left tree built from the Parent links (groups collapsible, collapsed by default, only the group with the current page open, slides in on phone), top bar with menu button, breadcrumb (full path on laptop, parent plus current on phone) and theme button, right "On This Page" outline (only with two or more headings, highlights the section in view), the shared footer.
+3. Body parts: Callout (`> [!note]` through a small remark plugin), styled tables, code blocks with a Copy button and the four prototype token colors, YouTube embed, video and demo slot, Previous and Next, Links, Sources.
+4. Templates chosen by Type through one catch-all page: Knowledge Base book, Knowledge Base chapter, Article, Project, Program. Demo reuses Project and Tutorial reuses Article, as in the spec. Overview pages for Tech and Fitness are step 6.
+5. Sample content is four real existing pages moved by hand (one Knowledge Base chapter, one Article, one Project, one Program) so every template is tested on real text. They are the first four of the 54 that step 5 migrates.
+6. Gate before squash: `astro check`, build, Playwright in Chromium and WebKit for each template (outline only with two or more headings, Previous and Next link correctly, Copy works, only the current group is open, phone drawer opens and closes, no sideways scroll at 390), screenshots against `site-final.html` views at 1440 and 390 in both themes, first-load JS at most 120 KB, contrast at least 4.5 to 1.
+
+Not in step 4: migrating the other 50 pages (step 5), Tech and Fitness overview pages, About and Contact text (step 6), Notion (step 8).
 
 ## ▶ Resume here
 

@@ -44,20 +44,27 @@ Branches follow the rebuild plan: base `refactor/astro-rebuild`, sub-branch `ref
 
 ### Phase 2. Cloudflare preview (rebuild plan step 3, point 6)
 
-Apoorva does the dashboard clicks; I give them one at a time and check each result.
+Paused by Apoorva 2026-10-15: build more locally first, test Cloudflare later. What we learned from his first attempt:
 
-- [ ] 2.1 Push `refactor/astro-rebuild-3-scaffold` to GitHub (needs his yes)
-- [ ] 2.2 Cloudflare dashboard: Workers & Pages, create Pages project, connect `apoorvasharma007/website`, build command `npm run build`, output directory `dist`, production branch `main`
-- [ ] 2.3 Confirm the Cloudflare build picks the Node version in `.nvmrc` or `NODE_VERSION`, and that the branch preview URL (`<hash>.<project>.pages.dev`) loads
-- [x] 2.4 Decide preview privacy: preview URLs are public by default. Either accept (nothing secret before launch) or put Cloudflare Access in front. Needs his call
-- [ ] 2.5 Apoorva reviews the preview on his phone and laptop. Squash-merge into the base branch only after his yes
+- The Cloudflare dashboard created a Workers project (Workers Builds), not a Pages project. It runs `npx wrangler deploy` after the build. It cloned `main`, found Hugo and Zola and stopped with "multiple frameworks were found". The live site on GitHub Pages was not affected.
+- Workers Builds is free for this size: 3,000 build minutes per month, static asset requests free and unlimited (both from Cloudflare docs). The docs do not say what happens past the build-minute limit, so check billing after the first week.
+- Branches: Settings, Build has a "Git branch" field (the production branch, default `main`) and a Preview command for every other branch (default `npx wrangler preview`, which gives a preview URL). So a branch can be tested without touching `main`.
+- Deploy hooks exist for Workers Builds (Settings, Builds, Deploy Hooks, one URL per branch, POST starts a build, 10 builds per minute per Worker). Phase 3 is unchanged.
+
+Resume this phase with:
+
+- [ ] 2.1 Add `wrangler.jsonc` to the repo (name, `assets.directory` set to `./dist`) so Cloudflare skips framework detection. Show the file first
+- [ ] 2.2 In Cloudflare, Settings, Build: build command `npm run build`, deploy command `npx wrangler deploy`, Node version from `.nvmrc`
+- [ ] 2.3 Test without touching `main`: either set the Git branch to `refactor/astro-rebuild`, or merge to `main` once the whole site is ready (his plan). Merging to `main` is safe for the live site only while `deploy.yml` still builds Hugo, so replace that workflow in the same merge
+- [x] 2.4 Decide preview privacy: public preview URLs are fine
+- [ ] 2.5 Apoorva reviews the preview on his phone and laptop
 
 ### Phase 3. Notion to site (rebuild plan step 8)
 
 - [ ] 3.1 Create the Notion integration (read-only), share the content database with it; token into `.env` (gitignored) and Cloudflare env vars (Preview and Production)
 - [ ] 3.2 Loader pulls only Status = Published, maps fields from the spec's Notion pipeline section, downloads images at build (Notion image URLs expire)
 - [ ] 3.3 Local check: mark one test page Published, run the build, see it at `localhost`; set it back to Draft, rebuild, see it vanish
-- [ ] 3.4 Create the deploy hook in Cloudflare (Settings, Builds, Add deploy hook) for branch `main`; save the URL as GitHub secret `CF_DEPLOY_HOOK` and nowhere else
+- [ ] 3.4 Create the deploy hook in Cloudflare (Settings, Builds, Deploy Hooks) for the production branch; save the URL as GitHub secret `CF_DEPLOY_HOOK` and nowhere else
 - [ ] 3.5 Add `.github/workflows/rebuild.yml`: cron every 6 hours plus `workflow_dispatch`, one `curl -X POST "$CF_DEPLOY_HOOK"` step. Show the diff before pushing
 - [ ] 3.6 Test: publish a test card, trigger the workflow by hand, watch the Cloudflare deployment log show Source = deploy hook, and the page appear
 - [x] 3.7 skip: free Notion plan, revisit later. If Notion is on a paid plan: add the database automation (When Status is set to Published, Send webhook, POST to the hook URL). Test the same way. If free plan, skip and rely on 3.5
@@ -104,12 +111,10 @@ Every DNS change is shown first and made only on his explicit yes in that sessio
 
 ## ▶ Resume here
 
-Phase 1 done 2026-10-15 on branch `refactor/astro-rebuild-3-scaffold` (not yet squash-merged into `refactor/astro-rebuild`, not pushed). Gate: `astro check` 0 errors, 8 Playwright smoke tests pass, first-load JS 0.8 KB gzip inline, contrast at least 4.9 to 1 on every text and side color, screenshots compared with `site-final.html` at 1440 and 390 in both themes. Known differences from the prototype: the phone side gutter is 16px here and 24px there (the prototype has no doctype, so it got a default 8px body margin), and `ShellLayout` is deferred to rebuild step 4 because nothing uses it yet. Placeholders to fix: YouTube and Instagram URLs in `src/data/site.ts` (generic site roots), hero captions in `src/data/home.ts`, site description in `src/data/site.ts`. Nav links to `/tech/`, `/fitness/`, `/about/`, `/contact/` 404 until rebuild steps 4 to 6.
+2026-10-15. Step 3 is squashed into `refactor/astro-rebuild` (commit `69254ce`), not pushed. Nothing is on GitHub except `main`. Apoorva wants to keep building locally and test Cloudflare later (Phase 2 above is paused). His Cloudflare Workers project exists and fails harmlessly on `main` (Hugo and Zola detected).
 
-SVG note: the first svgo pass broke the art animations (28 of 66 and 47 of 74 survived). `svgo.config.mjs` now turns off every plugin that touches classes, ids or structure; smoke tests assert 66 and 74 animations. Rerun with `npx svgo --config svgo.config.mjs <in> -o <out>` for any new art.
+Next action: Apoorva approves the "Step 4 detail" in `website-rebuild-plan.md`, then cut `refactor/astro-rebuild-4-layouts` from `refactor/astro-rebuild`.
 
-Dev note: Astro's dev toolbar froze the art animations in WebKit (Safari, all iPhone browsers) on the dev server only; `devToolbar.enabled: false` in `astro.config.mjs` fixes it. Production builds were never affected. Smoke tests now run in Chromium and WebKit.
+Open placeholders: YouTube and Instagram URLs in `src/data/site.ts`, hero captions in `src/data/home.ts`, site description in `src/data/site.ts`, phone side margin 16px versus 24px (his call).
 
-Run locally: `npm run dev` (http://localhost:4321) or `npm run build && npm run preview`. Tests: `npm test`.
-
-Next action: Phase 2. Apoorva looks at the local build and says yes; then push the branch (needs his yes) and connect Cloudflare Pages (2.1 to 2.3).
+Run locally: `npm run dev` (http://localhost:4321) or `npm run build && npm run preview`. Tests: `npm test`. Dev toolbar is off because it froze the art animations in WebKit.
