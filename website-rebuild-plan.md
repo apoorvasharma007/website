@@ -86,7 +86,7 @@ Design is LOCKED (2026-10-15) and committed on branch `refactor/astro-rebuild` (
 `website-build-spec.md`. Prototype: `mockups/astro-rebuild/site-final.html` (artifact
 https://claude.ai/artifact/DkCam7qZ8EYGGcHaLHGWAc). Step 3 detail is written above and has been shown to Apoorva but not yet
 approved. First action next session: ask Apoorva (1) yes to the step 3 plan, (2) does a Cloudflare account exist and will
-he connect the repo, (3) are the two hero captions final. Then cut `refactor/astro-rebuild-3-scaffold` and start. No
+he connect the repo, (3) hero captions are NOT final (2026-10-15): build them as placeholder text in one editable file. Cloudflare account exists (Apoorva said yes); he connects the repo at step 3 point 6 and I give him the clicks then. Then cut `refactor/astro-rebuild-3-scaffold` and start. No
 code written yet. Untracked scratch files in `mockups/astro-rebuild/` (landing v2 to v8, animations-attempt-1,
 tech-landing.html, art-fit-test.html) and the root `clean-and-jerk.svg` and `whack-a-bug.svg` are intentionally not
 committed; the committed copies of the SVGs are in `mockups/astro-rebuild/art/`.
