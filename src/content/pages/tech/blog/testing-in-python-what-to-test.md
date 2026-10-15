@@ -1,7 +1,7 @@
 ---
 title: "Testing in Python: What to Test and What to Skip"
 side: "tech"
-type: "Article"
+type: "Blog"
 order: 1
 description: "Not everything needs a test. Understanding the difference is what makes a test suite useful rather than expensive."
 date: "2026-03-15"

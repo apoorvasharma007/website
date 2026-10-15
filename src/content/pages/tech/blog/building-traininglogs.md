@@ -1,7 +1,7 @@
 ---
 title: "Building traininglogs: A Python Pipeline for My Gym Data"
 side: "tech"
-type: "Article"
+type: "Blog"
 order: 2
 description: "How and why I built a parser that turns my messy training notes into structured JSON."
 date: "2026-04-02"

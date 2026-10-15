@@ -1,23 +1,40 @@
-const rows = document.querySelectorAll<HTMLElement>('.row');
+const rows = [...document.querySelectorAll<HTMLElement>('.row')];
 const narrow = matchMedia('(hover:none),(max-width:899px)');
+let marked: HTMLElement | undefined;
+let queued = false;
 
-function markMiddleRow() {
-  rows.forEach((r) => r.classList.remove('on'));
-  if (!narrow.matches) return;
-  const middle = innerHeight / 2;
-  let best: HTMLElement | null = null;
+// The focus line slides from 30% of the screen at the top of the page to the bottom edge at the end,
+// so the last row can be reached. Progress is clamped, so iOS overscroll cannot move it.
+function markFocusRow() {
+  queued = false;
+  const reach = document.documentElement.scrollHeight - innerHeight;
+  const progress = reach > 0 ? Math.min(Math.max(scrollY / reach, 0), 1) : 0;
+  const line = innerHeight * (0.3 + 0.7 * progress);
+  let best: HTMLElement | undefined;
   let bestDistance = Infinity;
-  rows.forEach((r) => {
-    const box = r.getBoundingClientRect();
-    const distance = Math.abs(box.top + box.height / 2 - middle);
-    if (distance < bestDistance) {
-      bestDistance = distance;
-      best = r;
+  if (narrow.matches) {
+    for (const row of rows) {
+      const box = row.getBoundingClientRect();
+      if (box.bottom < 0 || box.top > innerHeight) continue;
+      const distance = Math.abs(box.top + box.height / 2 - line);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        best = row;
+      }
     }
-  });
-  if (best && bestDistance < innerHeight * 0.35) (best as HTMLElement).classList.add('on');
+  }
+  if (best === marked) return;
+  marked?.classList.remove('on');
+  best?.classList.add('on');
+  marked = best;
 }
 
-addEventListener('scroll', markMiddleRow, { passive: true });
-addEventListener('resize', markMiddleRow);
-markMiddleRow();
+function queue() {
+  if (queued) return;
+  queued = true;
+  requestAnimationFrame(markFocusRow);
+}
+
+addEventListener('scroll', queue, { passive: true });
+addEventListener('resize', queue);
+markFocusRow();

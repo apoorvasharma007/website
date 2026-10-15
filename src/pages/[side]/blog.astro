@@ -1,0 +1,18 @@
+---
+import BlogList from '../../components/BlogList.astro';
+import { blogPosts, blogUrl, getPublished } from '../../lib/pages';
+
+export function getStaticPaths() {
+  return [
+    { params: { side: 'tech' }, props: { side: 'tech' } },
+    { params: { side: 'fitness' }, props: { side: 'fit' } },
+  ] as const;
+}
+
+const { side } = Astro.props;
+const pages = await getPublished();
+const intro =
+  side === 'tech' ? 'Notes on building and operating systems.' : 'What I tried, and what held up.';
+---
+
+<BlogList pages={pages} posts={blogPosts(pages, side)} side={side} intro={intro} current={blogUrl(side)} />

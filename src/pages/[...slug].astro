@@ -2,6 +2,9 @@
 import { render } from 'astro:content';
 import { site } from '../data/site';
 import ShellLayout from '../layouts/ShellLayout.astro';
+import Doc from '../components/Doc.astro';
+import DocHead from '../components/DocHead.astro';
+import ItemList from '../components/ItemList.astro';
 import ChapterList from '../components/ChapterList.astro';
 import LinkCards from '../components/LinkCards.astro';
 import Outline from '../components/Outline.astro';
@@ -34,9 +37,9 @@ const bottom =
 const outline = [
   ...headings.filter((heading) => heading.depth === 2),
   ...(bottom.items.length > 0 ? [{ slug: bottom.heading.toLowerCase(), text: bottom.heading }] : []),
-];
+].map(({ slug, text }) => ({ slug, text }));
 
-const paged = !isBook && ['Knowledge Base', 'Article', 'Tutorial'].includes(data.type);
+const paged = !isBook && ['Knowledge Base', 'Blog', 'Tutorial'].includes(data.type);
 const siblings = siblingsOf(pages, page);
 const at = siblings.findIndex((sibling) => sibling.id === page.id);
 ---
@@ -49,72 +52,22 @@ const at = siblings.findIndex((sibling) => sibling.id === page.id);
   pages={pages}
   current={pageUrl(page)}
 >
-  <div class="doc">
-    <article class="prose">
-      <h1 class="title">{data.title}</h1>
-      <p class="intro">{data.description}</p>
-      <p class="meta">{formatDate(data.date)}</p>
-      {
-        isBook ? (
-          <div class="chapters">
-            <ChapterList pages={pages} parent={page} />
-          </div>
-        ) : (
-          <>
-            <Outline headings={outline.map(({ slug, text }) => ({ slug, text }))} inline />
-            <Content />
-            <LinkCards heading={bottom.heading} items={bottom.items} />
-            {paged && <Pager prev={siblings[at - 1]} next={siblings[at + 1]} />}
-          </>
-        )
-      }
-    </article>
-    {!isBook && <Outline headings={outline.map(({ slug, text }) => ({ slug, text }))} />}
-  </div>
-</ShellLayout>
-
-<style>
-  .doc {
-    position: relative;
-    max-width: 66rem;
-    margin: 0 auto;
-    padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem) 6rem;
-  }
-
-  @media (min-width: 1280px) {
-    .doc {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 13.5rem;
-      column-gap: 4rem;
+  <Doc>
+    <DocHead title={data.title} intro={data.description} date={formatDate(data.date)} />
+    {
+      isBook ? (
+        <ItemList>
+          <ChapterList pages={pages} parent={page} />
+        </ItemList>
+      ) : (
+        <>
+          <Outline headings={outline} inline />
+          <Content />
+          <LinkCards heading={bottom.heading} items={bottom.items} />
+          {paged && <Pager prev={siblings[at - 1]} next={siblings[at + 1]} />}
+        </>
+      )
     }
-  }
-
-  .title {
-    margin: 0.75rem 0 0;
-    font-size: clamp(2rem, 1.4rem + 2.2vw, 2.875rem);
-    line-height: 1.08;
-    font-weight: 600;
-    letter-spacing: -0.04em;
-    text-wrap: balance;
-  }
-
-  .intro {
-    margin-top: 1.25rem;
-    font-size: 1.1875rem;
-    line-height: 1.6;
-    color: var(--muted);
-  }
-
-  .meta {
-    margin-top: 1rem;
-    font-size: 0.875rem;
-    color: var(--muted);
-  }
-
-  .chapters {
-    margin-top: 2rem;
-    border: 1px solid var(--line);
-    border-radius: 0.875rem;
-    overflow: hidden;
-  }
-</style>
+    {!isBook && <Outline slot="outline" headings={outline} />}
+  </Doc>
+</ShellLayout>

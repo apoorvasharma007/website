@@ -20,7 +20,7 @@ export const sideRows = [
     word: 'Tech',
     href: '/tech/',
     description:
-      'Knowledge bases on AI, system design and coding, plus projects, demos, tutorials and articles.',
+      'Knowledge bases on AI, system design and coding, plus projects, demos, tutorials and blog posts.',
   },
   {
     side: 'fit',

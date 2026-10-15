@@ -1,0 +1,45 @@
+---
+import { site } from '../data/site';
+import Doc from './Doc.astro';
+import DocHead from './DocHead.astro';
+import ItemCard from './ItemCard.astro';
+import ItemList from './ItemList.astro';
+import ShellLayout from '../layouts/ShellLayout.astro';
+import { formatDate, pageUrl, sides, type Page, type Side } from '../lib/pages';
+
+interface Props {
+  pages: Page[];
+  posts: Page[];
+  side?: Side;
+  intro: string;
+  current: string;
+}
+
+const { pages, posts, side = 'tech', intro, current } = Astro.props;
+const everySide = Astro.props.side === undefined;
+---
+
+<ShellLayout
+  title={`Blog | ${site.name}`}
+  description={intro}
+  side={side}
+  crumbs={everySide ? [{ label: 'Blog' }] : [{ label: sides[side].label, href: `/${sides[side].dir}/` }, { label: 'Blog' }]}
+  pages={pages}
+  current={current}
+>
+  <Doc>
+    <DocHead title="Blog" intro={intro} />
+    <ItemList>
+      {
+        posts.map((post) => (
+          <ItemCard
+            href={pageUrl(post)}
+            title={post.data.title}
+            description={post.data.description}
+            meta={everySide ? `${sides[post.data.side].label}, ${formatDate(post.data.date)}` : formatDate(post.data.date)}
+          />
+        ))
+      }
+    </ItemList>
+  </Doc>
+</ShellLayout>

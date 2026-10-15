@@ -2,8 +2,8 @@ import { expect, test } from '@playwright/test';
 
 const chapter = '/tech/knowledge-base/system-design/caching/';
 const book = '/tech/knowledge-base/system-design/';
-const article = '/tech/articles/building-traininglogs/';
-const bareArticle = '/fitness/articles/building-a-sustainable-training-habit/';
+const article = '/tech/blog/building-traininglogs/';
+const bareArticle = '/fitness/blog/building-a-sustainable-training-habit/';
 const project = '/tech/projects/traininglogs/';
 const program = '/fitness/programs/morning-sunlight/';
 const fitChapter = '/fitness/knowledge-base/training/foundations/principles/';
@@ -33,14 +33,15 @@ test('chapter shows breadcrumb, callout, table, code, and only a Previous link',
   await expect(page.locator('.tbl table').first()).toBeVisible();
   await expect(page.locator('.code-h span').first()).toHaveText('python');
   const pager = page.getByRole('navigation', { name: 'Previous and Next' });
-  await expect(pager.getByRole('link')).toHaveText(['PreviousDatabases']);
+  await expect(pager.getByRole('link')).toHaveText(['Previous']);
+  await expect(pager.getByRole('link')).toHaveAttribute('aria-label', 'Previous: Databases');
 });
 
 test('middle chapter links to both neighbours', async ({ page }) => {
   await page.goto('/tech/knowledge-base/system-design/databases/');
   await expect(
     page.getByRole('navigation', { name: 'Previous and Next' }).getByRole('link'),
-  ).toHaveText(['PreviousScalability', 'NextCaching Strategies']);
+  ).toHaveText(['Previous', 'Next']);
 });
 
 test('Copy puts the code on the clipboard and says so', async ({ page, context, browserName }) => {
@@ -57,7 +58,7 @@ test('Copy puts the code on the clipboard and says so', async ({ page, context, 
 
 test('book page lists its chapters and section headings, with no outline or pager', async ({ page }) => {
   await page.goto(book);
-  await expect(page.locator('.chapters .row strong')).toHaveText([
+  await expect(page.locator('.items .card strong')).toHaveText([
     'Scalability',
     'Databases',
     'Caching Strategies',
@@ -66,15 +67,20 @@ test('book page lists its chapters and section headings, with no outline or page
   await expect(page.getByRole('navigation', { name: 'Previous and Next' })).toHaveCount(0);
 
   await page.goto('/fitness/knowledge-base/training/');
-  await expect(page.locator('.chapters > *')).toHaveCount(4);
-  await expect(page.locator('.chapters .heading')).toHaveText('Foundations');
+  await expect(page.locator('.items > *')).toHaveCount(4);
+  await expect(page.locator('.items .heading')).toHaveText('Foundations');
+  await expect(page.locator('.items .card strong')).toHaveText([
+    'Core Training Principles',
+    'Session Structure',
+    'Progression Models',
+  ]);
 });
 
 test('article has Previous only, outline from its headings', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(article);
   const pager = page.getByRole('navigation', { name: 'Previous and Next' });
-  await expect(pager.getByRole('link')).toHaveText([/^Previous/]);
+  await expect(pager.getByRole('link')).toHaveText(['Previous']);
   const outline = page.getByRole('navigation', { name: 'On This Page' }).last();
   await expect(outline).toBeVisible();
   await expect(outline.getByRole('link')).toHaveCount(4);
@@ -172,7 +178,7 @@ test('Tech on Home opens the Tech overview, whose rows lead to real pages', asyn
     'Projects',
     'DemosSoon',
     'TutorialsSoon',
-    'Articles',
+    'Blog',
   ]);
   await page.locator('.rows .row', { hasText: 'Knowledge Base' }).click();
   await expect(page).toHaveURL('/tech/knowledge-base/system-design/');
@@ -186,4 +192,71 @@ test('Fitness overview links the dashboard out and has no dead rows', async ({ p
   await expect(dashboard).toHaveAttribute('target', '_blank');
   await expect(page.locator('.rows .row.soon')).toHaveCount(0);
   await expect(page.getByRole('navigation', { name: 'Breadcrumb' })).toHaveText('Fitness');
+});
+
+test('blog lists posts newest first, as separate cards, per side and for both', async ({ page }) => {
+  await page.goto('/tech/blog/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Blog');
+  await expect(page.locator('.items .card strong')).toHaveText([
+    'Building traininglogs: A Python Pipeline for My Gym Data',
+    'Testing in Python: What to Test and What to Skip',
+  ]);
+  await expect(page.locator('.items .card').first()).toContainText('2 Apr 2026');
+  await expect(page.getByRole('navigation', { name: 'Breadcrumb' })).toHaveText('Tech/Blog');
+
+  await page.goto('/fitness/blog/');
+  await expect(page.locator('.items .card strong')).toHaveText(['Building a Sustainable Training Habit']);
+
+  await page.goto('/blog/');
+  await expect(page.locator('.items .card')).toHaveCount(3);
+  await expect(page.locator('.items .card').first()).toContainText('Tech, 2 Apr 2026');
+});
+
+test('sidebar has no Home item and lists no posts, only a Blog link', async ({ page }) => {
+  await page.goto('/tech/blog/building-traininglogs/');
+  const tree = page.getByRole('navigation', { name: 'Pages' });
+  await expect(tree.getByRole('link', { name: 'Home' })).toHaveCount(0);
+  await expect(tree.getByRole('link', { name: 'Building traininglogs' })).toHaveCount(0);
+  await expect(tree.getByRole('link', { name: 'Blog' }).first()).toHaveAttribute('href', '/tech/blog/');
+  await expect(page.getByRole('link', { name: 'Apoorva Sharma' })).toHaveAttribute('href', '/');
+  await expect(page.getByRole('navigation', { name: 'Breadcrumb' }).getByRole('link', { name: 'Blog' })).toHaveAttribute(
+    'href',
+    '/tech/blog/',
+  );
+});
+
+test('sidebar never scrolls sideways', async ({ page }) => {
+  for (const path of [chapter, article, fitChapter]) {
+    await page.goto(path);
+    const over = await page.locator('.side-nav').evaluate((el) => el.scrollWidth - el.clientWidth);
+    expect(over).toBe(0);
+  }
+});
+
+test('Home footer is only the copyright, other pages keep Home and Contact', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('navigation', { name: 'Footer' })).toHaveCount(0);
+  await expect(page.locator('footer')).toContainText('All Rights Reserved.');
+  await page.goto('/404.html');
+  await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText(['Home', 'Contact']);
+});
+
+test('the focus row on a phone moves down with the scroll, never jumps back, and reaches the last row', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/fitness/');
+  const rows = page.locator('.rows .row');
+  const count = await rows.count();
+  const reach = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
+  const seen: number[] = [];
+  for (let y = 0; y <= reach; y += 40) {
+    await page.evaluate((top) => scrollTo(0, top), y);
+    await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+    const on = await rows.evaluateAll((all) => all.flatMap((r, i) => (r.classList.contains('on') ? [i] : [])));
+    expect(on.length).toBeLessThanOrEqual(1);
+    if (on.length === 1) seen.push(on[0]);
+  }
+  expect(seen).toEqual([...seen].sort((a, b) => a - b));
+  expect(seen.at(-1)).toBe(count - 1);
 });

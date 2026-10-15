@@ -10,7 +10,8 @@ interface Props {
 
 const { node, current, dot } = Astro.props;
 const open = holds(node, current);
-const here = node.href === current ? 'page' : undefined;
+const here =
+  node.href === current ? 'page' : node.section && current.startsWith(node.section) ? 'true' : undefined;
 ---
 
 {

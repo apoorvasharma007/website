@@ -1,0 +1,8 @@
+---
+import BlogList from '../components/BlogList.astro';
+import { blogPosts, getPublished } from '../lib/pages';
+
+const pages = await getPublished();
+---
+
+<BlogList pages={pages} posts={blogPosts(pages)} intro="Everything I write, on both sides." current="/blog/" />

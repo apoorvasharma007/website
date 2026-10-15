@@ -8,7 +8,7 @@ export const pageTypes = [
   'Demo',
   'Tutorial',
   'Program',
-  'Article',
+  'Blog',
 ] as const;
 
 const pages = defineCollection({

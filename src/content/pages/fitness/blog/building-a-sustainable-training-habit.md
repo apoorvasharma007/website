@@ -1,7 +1,7 @@
 ---
 title: "Building a Sustainable Training Habit"
 side: "fit"
-type: "Article"
+type: "Blog"
 order: 1
 description: "How I stopped chasing short-term results and started optimising for repeatability."
 date: "2026-02-26"

@@ -2,7 +2,7 @@ export const site = {
   name: 'Apoorva Sharma',
   url: 'https://apoorvasharma7.com',
   description:
-    'Apoorva Sharma builds cloud software and trains movement. Knowledge bases, projects, programs and articles on both.',
+    'Apoorva Sharma builds cloud software and trains movement. Knowledge bases, projects, programs and blog posts on both.',
   resume: '/resume.pdf',
   youtube: 'https://www.youtube.com',
   instagram: 'https://www.instagram.com',
@@ -13,6 +13,7 @@ export const site = {
 export const nav = [
   { label: 'Tech', href: '/tech/' },
   { label: 'Fitness', href: '/fitness/' },
+  { label: 'Blog', href: '/blog/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ] as const;

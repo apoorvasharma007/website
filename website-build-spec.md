@@ -114,3 +114,10 @@ Design record: `website-rebuild-plan.md` rows 9, 10, 11. Mockup: `mockups/astro-
 - Whether these two SVGs are final. The card is built so a new SVG drops in. Loading plan confirmed: minify, load after the text, pause off-screen, one still frame under reduced motion.
 - Content-page details to confirm against the flow prototype: project page, program (protocol) page, article page.
 - Light mode and tablet width checks of the new glow and colors.
+
+## Feedback round 2026-10-15 (supersedes earlier lines where they differ)
+- Articles is renamed Blog everywhere (Type, tree, overview row, URLs `/tech/blog/<slug>/`, `/fitness/blog/<slug>/`). The tree shows Blog as one link that opens that side's list page (`/tech/blog/`, `/fitness/blog/`), never the posts. `/blog/` lists every post from both sides, newest first, and the top nav (Home and 404) gets a Blog link between Fitness and About.
+- Previous and Next are plain small text links (arrow, the word, no title or box). The title stays in the link's accessible label.
+- Chapter lists and blog lists use separate cards with a gap, not rows in one box. One component for both; blog cards add the date. Design choice among three variants pending (A separate cards is wired in).
+- The left tree has no Home item (the name and AS mark at its top link home). The Home page footer is only the copyright line; its Home and Contact links are removed because the nav shows Contact and we are on Home. Other pages keep the Home and Contact footer links.
+- The overview rows' focus glow on phones follows scroll progress: the focus line slides from 30 percent of the screen to the bottom edge, so the last row can be reached, and overscroll cannot move it.

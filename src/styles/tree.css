@@ -4,10 +4,11 @@
   gap: 0.625rem;
   width: 100%;
   min-height: 2.5rem;
-  padding: 0 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   color: var(--muted);
   font-size: 0.9375rem;
+  line-height: 1.35;
   text-align: left;
   transition:
     background-color 0.15s,
@@ -25,7 +26,7 @@
   color: var(--fg);
 }
 
-.nl[aria-current='page'] {
+.nl[aria-current] {
   background: var(--panel-2);
   color: var(--fg);
 }
@@ -88,6 +89,9 @@
 }
 
 .grp-b > div {
+  display: grid;
+  align-content: start;
+  gap: 2px;
   overflow: hidden;
   min-height: 0;
   margin-left: 1.2rem;

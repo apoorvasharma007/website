@@ -14,12 +14,11 @@ const { pages, current } = Astro.props;
 ---
 
 <aside class="side" id="side" aria-label="Site">
-  <div class="side-head">
-    <a class="logo" href="/" aria-label="Home">AS</a>
+  <a class="side-head" href="/">
+    <span class="logo">AS</span>
     <b>{site.name}</b>
-  </div>
+  </a>
   <nav class="side-nav" aria-label="Pages">
-    <a class="nl" href="/"><Icon name="grid" />Home</a>
     <TreeNode node={sideTree(pages, 'tech')} current={current} dot="tech" />
     <TreeNode node={sideTree(pages, 'fit')} current={current} dot="fit" />
     <a class="nl" href="/about/"><Icon name="user" />About</a>
@@ -99,6 +98,12 @@ const { pages, current } = Astro.props;
   .side-nav {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-2) transparent;
+    display: grid;
+    align-content: start;
+    gap: 2px;
     padding: 0.75rem 0.75rem 1.5rem;
   }
 

@@ -9,10 +9,12 @@ for (const path of pages) {
     await expect(page.locator('footer')).toContainText(
       `© ${new Date().getFullYear()} Apoorva Sharma. All Rights Reserved.`,
     );
-    await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText([
-      'Home',
-      'Contact',
-    ]);
+    if (path === '/404.html') {
+      await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText([
+        'Home',
+        'Contact',
+      ]);
+    }
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
     );
@@ -26,6 +28,7 @@ test('home lists both sides and the four nav links', async ({ page }) => {
   await expect(page.getByRole('navigation', { name: 'Main' }).getByRole('link')).toHaveText([
     'Tech',
     'Fitness',
+    'Blog',
     'About',
     'Contact',
   ]);

@@ -1,15 +1,24 @@
 ---
 import { site } from '../data/site';
 
+interface Props {
+  links?: boolean;
+}
+
+const { links = true } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
   <span>© {year} {site.name}. All Rights Reserved.</span>
-  <nav class="footer-links" aria-label="Footer">
-    <a href="/">Home</a>
-    <a href="/contact/">Contact</a>
-  </nav>
+  {
+    links && (
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    )
+  }
 </footer>
 
 <style>

@@ -4,7 +4,6 @@ export const icons = {
   youtube: '<rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="M10.5 9.5l4 2.5-4 2.5z"/>',
   instagram: '<rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><path d="M16.8 7.2h.01"/>',
   github: '<path d="M9 19c-4 1-4-2-6-2m12 4v-3a3 3 0 0 0-1-2c3 0 6-2 6-5a5 5 0 0 0-1-3 5 5 0 0 0 0-3s-1 0-3 1a10 10 0 0 0-6 0c-2-1-3-1-3-1a5 5 0 0 0 0 3 5 5 0 0 0-1 3c0 3 3 5 6 5a3 3 0 0 0-1 2v3"/>',
-  grid: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
   user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>',
   doc: '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',
   chev: '<path d="M9 6l6 6-6 6"/>',
