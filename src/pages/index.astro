@@ -239,10 +239,10 @@ const socials = [
 
   .caption {
     margin: 0;
-    max-width: 22rem;
-    min-height: 3.2em;
-    font-size: 1rem;
-    line-height: 1.6;
+    max-width: 24rem;
+    font-family: 'Kalam', cursive;
+    font-size: 1.25rem;
+    line-height: 1.4;
     color: var(--body);
   }
 
@@ -253,6 +253,7 @@ const socials = [
   @media (max-width: 800px) {
     .scenes {
       margin-top: var(--space-block);
+      column-gap: 0;
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
@@ -422,13 +423,47 @@ const socials = [
     { passive: true },
   );
 
-  picks.forEach((pick, i) =>
-    pick.addEventListener('click', () =>
-      scenes.scrollTo({
-        left: i * scenes.clientWidth,
-        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      }),
-    ),
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let slide = 0;
+  let autoplay: ReturnType<typeof setTimeout> | undefined;
+
+  // Moves the carousel with our own easing, because the browser's smooth scroll is too fast to notice.
+  function slideTo(index: number, ms: number) {
+    const id = ++slide;
+    const from = scenes.scrollLeft;
+    const to = index * scenes.clientWidth;
+    const start = performance.now();
+    scenes.style.scrollSnapType = 'none';
+    const step = (now: number) => {
+      if (id !== slide) return;
+      const t = ms === 0 ? 1 : Math.min((now - start) / ms, 1);
+      scenes.scrollLeft = from + (to - from) * (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
+      if (t < 1) requestAnimationFrame(step);
+      else scenes.style.scrollSnapType = '';
+    };
+    requestAnimationFrame(step);
+  }
+
+  const stop = () => {
+    slide++;
+    scenes.style.scrollSnapType = '';
+    clearTimeout(autoplay);
+  };
+
+  picks.forEach((pick, i) => pick.addEventListener('click', () => (stop(), slideTo(i, calm ? 0 : 600))));
+
+  // The tech art's robot flies out of frame at about 7s of its 8s loop. Right then the carousel slides
+  // to the fitness scene, where the mirrored robot waits on the left. Once per visit, any touch cancels it.
+  const AUTO_AFTER_MS = 7000;
+  const firstArt = slides[0].querySelector('img')!;
+  const arm = () => {
+    if (calm || !phone.matches) return;
+    autoplay = setTimeout(() => phone.matches && slideTo(1, 1600), AUTO_AFTER_MS);
+  };
+  if (firstArt.complete) arm();
+  else firstArt.addEventListener('load', arm, { once: true });
+  ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach((type) =>
+    scenes.addEventListener(type, stop, { passive: true, once: true }),
   );
 
   const revealer = new IntersectionObserver(

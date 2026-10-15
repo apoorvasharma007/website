@@ -161,3 +161,51 @@ test('the phone scene art moves, including after switching scenes', async ({ pag
     expect(first.equals(second), `scene ${index} art changed between frames`).toBe(false);
   }
 });
+
+test.describe('phone carousel autoplay', () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
+  const sceneIndex = (page: import('@playwright/test').Page) =>
+    page.locator('.scenes').evaluate((el) => Math.round(el.scrollLeft / el.clientWidth));
+
+  test('slides to Working Out by itself after about 7 seconds, slowly', async ({ page }) => {
+    await page.clock.install();
+    await page.goto('/');
+    await page.locator('.scene img').first().evaluate((img: HTMLImageElement) => img.decode());
+    await page.clock.runFor(6500);
+    expect(await sceneIndex(page)).toBe(0);
+    await page.clock.runFor(1000);
+    const mid = await page.locator('.scenes').evaluate((el) => el.scrollLeft / el.clientWidth);
+    expect(mid).toBeGreaterThan(0);
+    expect(mid).toBeLessThan(1);
+    await page.clock.runFor(1500);
+    expect(await sceneIndex(page)).toBe(1);
+    await expect(page.getByRole('tab').nth(1)).toHaveAttribute('aria-selected', 'true');
+  });
+
+  test('a touch on the scene cancels it', async ({ page }) => {
+    await page.clock.install();
+    await page.goto('/');
+    await page.locator('.scene img').first().evaluate((img: HTMLImageElement) => img.decode());
+    await page.locator('.scenes').dispatchEvent('touchstart');
+    await page.clock.runFor(10000);
+    expect(await sceneIndex(page)).toBe(0);
+  });
+
+  test('it does not run with reduced motion', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.clock.install();
+    await page.goto('/');
+    await page.clock.runFor(10000);
+    expect(await sceneIndex(page)).toBe(0);
+  });
+
+  test('the captions are handwritten and the fitness art is mirrored', async ({ page }) => {
+    await page.goto('/');
+    const family = await page.locator('.caption').first().evaluate((el) => getComputedStyle(el).fontFamily);
+    expect(family).toContain('Kalam');
+    await expect(page.locator('.scene').nth(1).locator('img')).toHaveAttribute('src', '/art/clean-and-jerk.svg');
+    const svg = await (await page.request.get('/art/clean-and-jerk.svg')).text();
+    expect(svg).toContain('scale(-1 1)');
+  });
+});

@@ -1,17 +1,17 @@
-// Placeholder copy: captions are not final (2026-10-15). Edit here only.
+// Captions: Tech is Apoorva's own wording (2026-10-16). The Fitness caption is a placeholder until he picks one.
 export const heroScenes = [
   {
     side: 'tech',
     lead: 'I like',
     phrase: 'Building Tech',
-    caption: 'I build the software that shows where the cloud money goes.',
+    caption: 'Cloud backends, AI agents, DevOps, mobile apps and a smaller cloud bill to name a few.',
     art: '/art/whack-a-bug.svg',
   },
   {
     side: 'fit',
     lead: 'I love',
     phrase: 'Working Out',
-    caption: 'I train the body that carries the laptop.',
+    caption: 'Cleans, handstands, muscle-ups, takedowns and a lot of falling over.',
     art: '/art/clean-and-jerk.svg',
   },
 ] as const;
