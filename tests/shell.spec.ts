@@ -257,7 +257,7 @@ test('cards stay small on a phone however long the text is', async ({ page }) =>
   for (const path of ['/tech/blog/', '/tech/knowledge-base/system-design/']) {
     await page.goto(path);
     for (const height of await page.locator('.items .entry').evaluateAll((all) => all.map((c) => c.getBoundingClientRect().height))) {
-      expect(height).toBeLessThan(175);
+      expect(height).toBeLessThan(230);
     }
   }
 });
@@ -402,4 +402,55 @@ test('a row has a pressed glow for touch and no row is lit by scrolling', async 
   );
   expect(pressed).toBe(true);
   await expect(page.locator('.rows .row.on')).toHaveCount(0);
+});
+
+test('every description on the site is one size, and no text is smaller than 14px', async ({ page }) => {
+  const sizes = async (selector: string) => page.locator(selector).evaluateAll((all) => [...new Set(all.map((el) => getComputedStyle(el).fontSize))]);
+  await page.setViewportSize({ width: 390, height: 844 });
+  const found: string[] = [];
+  await page.goto('/tech/knowledge-base/system-design/');
+  found.push(...(await sizes('.intro')), ...(await sizes('.entry .desc')));
+  await page.goto('/fitness/knowledge-base/training/');
+  found.push(...(await sizes('.section p')));
+  await page.goto('/tech/');
+  found.push(...(await sizes('.lede')), ...(await sizes('.blurb')));
+  await page.goto('/');
+  found.push(...(await sizes('.row-desc')), ...(await sizes('.caption')), ...(await sizes('.hello p')));
+  await page.goto('/tech/blog/');
+  found.push(...(await sizes('.entry .desc')));
+  expect([...new Set(found)]).toEqual(['17px']);
+
+  for (const path of ['/', '/tech/', '/blog/', '/tech/knowledge-base/system-design/caching/', '/fitness/knowledge-base/training/']) {
+    await page.goto(path);
+    const smallest = await page.evaluate(() => {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      let min = 99;
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        const el = node.parentElement!;
+        if (!node.textContent!.trim() || getComputedStyle(el).display === 'none' || el.closest('.sr-only, script, style')) continue;
+        min = Math.min(min, parseFloat(getComputedStyle(el).fontSize));
+      }
+      return min;
+    });
+    expect(smallest, path).toBeGreaterThanOrEqual(13.9);
+  }
+});
+
+test('nothing fades in on scroll, so nothing can flash while scrolling', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await page.evaluate(() => scrollTo(0, 1e6));
+  await page.waitForTimeout(300);
+  const names = await page.locator('.rows .row, .hello').evaluateAll((all) => all.map((el) => getComputedStyle(el).animationName));
+  expect(new Set(names)).toEqual(new Set(['none']));
+});
+
+test('the stylesheet has one page transition, a pressed state, and the chrome keeps its place', async ({ page }) => {
+  await page.goto('/');
+  const hrefs = await page.locator('link[rel="stylesheet"][href^="/_astro"]').evaluateAll((all) => all.map((l) => (l as HTMLLinkElement).href));
+  const inline = await page.locator('style').allTextContents();
+  const css = [...inline, ...(await Promise.all(hrefs.map(async (href) => (await page.request.get(href)).text())))].join('\n');
+  expect(css).toContain('@view-transition');
+  expect(css).toContain('view-transition-name:topbar');
+  expect(css).toMatch(/:active\{opacity:\.7\}|:active \{\s*opacity: 0\.7/);
 });

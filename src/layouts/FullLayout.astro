@@ -66,4 +66,13 @@ const { title, description = site.description, onHome = false } = Astro.props;
       transform: translate3d(7%, 2rem, 0) scale(1.1);
     }
   }
+
+  /* Frosted bars over moving art flicker on phones, so touch screens get a plain bar. */
+  @media (hover: none) {
+    .float {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+    }
+  }
 </style>

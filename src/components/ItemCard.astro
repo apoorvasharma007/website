@@ -26,8 +26,8 @@ const { href, title, description, meta, external = false } = Astro.props;
     border-radius: var(--r-md);
     background: var(--panel);
     transition:
-      border-color 0.2s,
-      transform 0.25s var(--ease);
+      border-color var(--dur),
+      transform var(--dur) var(--ease);
   }
 
   .card:hover {
@@ -44,7 +44,7 @@ const { href, title, description, meta, external = false } = Astro.props;
 
   strong {
     -webkit-line-clamp: 2;
-    font-size: 0.9375rem;
+    font-size: var(--fs-ui);
     line-height: 1.35;
     font-weight: 550;
     letter-spacing: -0.01em;
@@ -52,15 +52,15 @@ const { href, title, description, meta, external = false } = Astro.props;
 
   .desc {
     -webkit-line-clamp: 2;
-    font-size: 0.875rem;
-    line-height: 1.45;
+    font-size: var(--fs-desc);
+    line-height: var(--lh-desc);
     color: var(--body);
   }
 
   .meta {
     margin-top: auto;
     padding-top: 0.25rem;
-    font-size: 0.75rem;
+    font-size: var(--fs-small);
     color: var(--dim);
   }
 </style>

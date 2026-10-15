@@ -24,14 +24,14 @@ const { title, intro, date } = Astro.props;
 
   .intro {
     margin-top: 1.25rem;
-    font-size: 1.1875rem;
-    line-height: 1.6;
+    font-size: var(--fs-desc);
+    line-height: var(--lh-desc);
     color: var(--muted);
   }
 
   .meta {
     margin-top: 1rem;
-    font-size: 0.875rem;
+    font-size: var(--fs-small);
     color: var(--muted);
   }
 </style>

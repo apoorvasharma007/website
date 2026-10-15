@@ -64,21 +64,50 @@ test('phone: both phrases fit on one line each from 360px up', async ({ page }) 
   }
 });
 
-test('the hero is one handwritten group, the name bigger than its two lines', async ({ page }) => {
+test('the hero keeps Inter for the name and phrases and uses Kalam only for the two small stickers', async ({ page }) => {
   const style = (selector: string) =>
     page.locator(selector).first().evaluate((el) => {
       const css = getComputedStyle(el);
       return { size: parseFloat(css.fontSize), family: css.fontFamily };
     });
-  for (const [width, line] of [[390, '.pick .hand'], [1280, '.scene h2']] as const) {
+  for (const [width, sticker, phrase] of [[390, '.pick .sticker', '.pick .phrase'], [1280, '.scene .sticker', '.scene h2']] as const) {
     await page.setViewportSize({ width, height: 844 });
     await page.goto('/');
-    const [name, phrase, section] = [await style('.hero-name'), await style(line), await style('.rows .display')];
-    expect(name.family).toContain('Kalam');
-    expect(phrase.family).toContain('Kalam');
-    expect(name.size).toBeGreaterThan(phrase.size);
-    expect(section.family).not.toContain('Kalam');
+    const [name, small, big] = [await style('.hero-name'), await style(sticker), await style(phrase)];
+    expect(name.family).not.toContain('Kalam');
+    expect(big.family).not.toContain('Kalam');
+    expect(small.family).toContain('Kalam');
+    expect(small.size).toBeLessThan(big.size);
+    expect(name.size).toBeGreaterThan(big.size);
   }
+});
+
+test('phone: both phrases sit side by side with the underline under the lit one', async ({ page }) => {
+  for (const width of [360, 390, 430]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto('/');
+    const boxes = await page.locator('.pick').evaluateAll((all) => all.map((el) => {
+      const phrase = el.querySelector('.phrase')!.getBoundingClientRect();
+      const box = el.getBoundingClientRect();
+      return { top: Math.round(phrase.top), right: phrase.right, left: phrase.left, boxLeft: box.left, boxRight: box.right, height: phrase.height };
+    }));
+    expect(boxes[0].top).toBe(boxes[1].top);
+    expect(boxes[0].right).toBeLessThan(boxes[1].left);
+    for (const box of boxes) {
+      expect(box.height).toBeLessThan(40);
+      expect(box.left).toBeGreaterThanOrEqual(box.boxLeft);
+      expect(box.right).toBeLessThanOrEqual(box.boxRight);
+    }
+  }
+});
+
+test('phone: the underline follows the swipe', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const barX = () => page.locator('.bar').evaluate((el) => el.getBoundingClientRect().left);
+  const start = await barX();
+  await page.getByRole('tab').nth(1).click();
+  await expect.poll(barX).toBeGreaterThan(start + 100);
 });
 
 test('laptop: both headings sit on one line so the art lines up', async ({ page }) => {
@@ -200,12 +229,18 @@ test.describe('phone carousel autoplay', () => {
     expect(await sceneIndex(page)).toBe(0);
   });
 
-  test('the captions are handwritten and the fitness art is mirrored', async ({ page }) => {
+  test('the captions are plain text in the same size as every other description, and the fitness art is mirrored', async ({ page }) => {
     await page.goto('/');
-    const family = await page.locator('.caption').first().evaluate((el) => getComputedStyle(el).fontFamily);
-    expect(family).toContain('Kalam');
+    const caption = await page.locator('.caption').first().evaluate((el) => {
+      const css = getComputedStyle(el);
+      return { family: css.fontFamily, size: css.fontSize };
+    });
+    expect(caption.family).not.toContain('Kalam');
+    const row = await page.locator('.row-desc').first().evaluate((el) => getComputedStyle(el).fontSize);
+    expect(caption.size).toBe(row);
     await expect(page.locator('.scene').nth(1).locator('img')).toHaveAttribute('src', '/art/clean-and-jerk.svg');
     const svg = await (await page.request.get('/art/clean-and-jerk.svg')).text();
     expect(svg).toContain('scale(-1 1)');
   });
+
 });

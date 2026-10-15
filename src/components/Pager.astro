@@ -30,9 +30,9 @@ const { prev, next } = Astro.props;
     align-items: center;
     gap: 0.5rem;
     min-height: 2.75rem;
-    font-size: 0.9375rem;
+    font-size: var(--fs-ui);
     color: var(--muted);
-    transition: color 0.15s;
+    transition: color var(--dur-fast);
   }
 
   a:hover {

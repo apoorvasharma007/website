@@ -7,12 +7,12 @@
   padding: 0.5rem 0.75rem;
   border-radius: var(--r-sm);
   color: var(--muted);
-  font-size: 0.9375rem;
+  font-size: var(--fs-ui);
   line-height: 1.35;
   text-align: left;
   transition:
-    background-color 0.15s,
-    color 0.15s;
+    background-color var(--dur-fast),
+    color var(--dur-fast);
 }
 
 @media (pointer: coarse) {
@@ -64,7 +64,7 @@
 
 .chev {
   margin-left: auto;
-  transition: transform 0.25s;
+  transition: transform var(--dur);
   color: var(--dim);
 }
 
@@ -78,8 +78,8 @@
   grid-template-rows: 0fr;
   visibility: hidden;
   transition:
-    grid-template-rows 0.3s var(--ease),
-    visibility 0s 0.3s;
+    grid-template-rows var(--dur) var(--ease),
+    visibility 0s var(--dur);
 }
 
 .sgrp.open > .grp-b {
@@ -106,7 +106,7 @@
 
 .sgrp .sgrp .sgrp .nl {
   padding-left: 0.5rem;
-  font-size: 0.875rem;
+  font-size: var(--fs-ui);
 }
 
 .sgrow {

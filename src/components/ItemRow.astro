@@ -19,8 +19,8 @@ const { href, title, description, meta } = Astro.props;
   .entry {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    padding: 1.125rem 0;
+    gap: 0.375rem;
+    padding: 1.25rem 0;
     border-top: 1px solid var(--line);
   }
 
@@ -33,7 +33,7 @@ const { href, title, description, meta } = Astro.props;
 
   strong {
     -webkit-line-clamp: 2;
-    font-size: 1.0625rem;
+    font-size: var(--fs-item);
     line-height: 1.35;
     font-weight: 550;
     letter-spacing: -0.01em;
@@ -47,14 +47,14 @@ const { href, title, description, meta } = Astro.props;
 
   .desc {
     -webkit-line-clamp: 2;
-    font-size: 0.9375rem;
-    line-height: 1.5;
+    font-size: var(--fs-desc);
+    line-height: var(--lh-desc);
     color: var(--muted);
   }
 
   .meta {
     margin-top: 0.25rem;
-    font-size: 0.8125rem;
+    font-size: var(--fs-small);
     color: var(--dim);
   }
 </style>

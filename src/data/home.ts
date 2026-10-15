@@ -1,4 +1,4 @@
-// Captions: Tech is Apoorva's own wording (2026-10-16). The Fitness caption is a placeholder until he picks one.
+// Captions are Apoorva's own wording (2026-10-16).
 export const heroScenes = [
   {
     side: 'tech',
@@ -11,7 +11,7 @@ export const heroScenes = [
     side: 'fit',
     lead: 'I love',
     phrase: 'Working Out',
-    caption: 'Cleans, handstands, muscle-ups, takedowns and a lot of falling over.',
+    caption: 'Squats, pull-ups, rings, wrestling and a lot of falling over.',
     art: '/art/clean-and-jerk.svg',
   },
 ] as const;

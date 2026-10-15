@@ -17,6 +17,11 @@
   --t-hero: clamp(3rem, 1rem + 8vw, 7.5rem);
   --t-section: clamp(2.25rem, 1rem + 4.8vw, 4.75rem);
   --t-hand: clamp(1.625rem, 0.9rem + 3.4vw, 3rem);
+  --fs-small: 0.875rem;
+  --fs-ui: 1rem;
+  --fs-desc: 1.0625rem;
+  --fs-item: 1.1875rem;
+  --lh-desc: 1.55;
   --t-title: clamp(2rem, 1.4rem + 2.2vw, 2.875rem);
 }
 

@@ -70,8 +70,8 @@ ul {
 }
 
 .row-desc {
-  font-size: 0.9375rem;
-  line-height: 1.5;
+  font-size: var(--fs-desc);
+  line-height: var(--lh-desc);
   color: var(--body);
 }
 
@@ -87,7 +87,7 @@ ul {
   z-index: -1;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity var(--dur);
   background: linear-gradient(
     90deg,
     color-mix(in srgb, var(--side) 50%, transparent),
@@ -133,11 +133,11 @@ ul {
   border-radius: var(--r-md);
   background: var(--panel);
   font-weight: 500;
-  font-size: 0.9375rem;
+  font-size: var(--fs-ui);
   transition:
-    background-color 0.15s,
-    border-color 0.15s,
-    transform 0.2s;
+    background-color var(--dur-fast),
+    border-color var(--dur-fast),
+    transform var(--dur);
 }
 
 .btn:hover {
@@ -193,4 +193,44 @@ ul {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* One motion system for every page. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--dur);
+  animation-timing-function: var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+/* The page chrome stays put while the content cross-fades. */
+.bar,
+.top {
+  view-transition-name: topbar;
+}
+
+.side {
+  view-transition-name: sidebar;
+}
+
+.footer {
+  view-transition-name: footer;
+}
+
+.float {
+  view-transition-name: theme;
+}
+
+/* Pressing anything dims it at once, on every page. Rows light up instead. */
+:where(a[href], button):not(.row):active {
+  opacity: 0.7;
 }
