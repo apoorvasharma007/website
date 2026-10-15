@@ -21,18 +21,18 @@ export const sideRows = [
     side: 'tech',
     word: 'Tech',
     href: '/tech/',
-    description: 'Software, AI, projects and tutorials. Hop on for the ride.',
+    description: 'Software engineering, AI, projects and tutorials. Hop on for the ride.',
   },
   {
     side: 'fit',
     word: 'Fitness',
     href: '/fitness/',
-    description: 'Getting freakishly strong, fast, bendy, jumpy and flippy, and moving like the wind.',
+    description: 'How to get freakishly strong, fast, bendy, jumpy, flippy, and move like the wind.',
   },
   {
     side: 'blog',
     word: 'Blog',
     href: '/blog/',
-    description: 'Posts from both sides.',
+    description: 'Unfiltered opinions and unconfirmed theories.',
   },
 ] as const;
