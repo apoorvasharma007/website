@@ -14,6 +14,7 @@ const { title, description = site.description, footerLinks = true } = Astro.prop
 ---
 
 <BaseLayout title={title} description={description}>
+  <div class="full">
   <div class="page">
     <div class="glow" aria-hidden="true"></div>
     <Header />
@@ -22,10 +23,19 @@ const { title, description = site.description, footerLinks = true } = Astro.prop
     </main>
   </div>
   <Footer links={footerLinks} />
+  </div>
 </BaseLayout>
 
 <style>
+  .full {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
   .page {
+    flex: 1;
     position: relative;
     overflow-x: clip;
   }

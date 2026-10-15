@@ -295,3 +295,22 @@ test('the top nav stays on screen while scrolling Home, Blog and a content page'
     expect(top).toBe(0);
   }
 });
+
+test('on a short page the footer sits at the bottom of the screen', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  for (const path of ['/fitness/blog/', '/404.html', '/fitness/knowledge-base/training/foundations/']) {
+    await page.goto(path);
+    const bottom = await page.locator('footer').evaluate((el) => el.getBoundingClientRect().bottom);
+    expect(Math.round(bottom)).toBe(900);
+  }
+});
+
+test('the footer rule is as wide as the text above it', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/tech/blog/');
+  const [rule, title] = await Promise.all([
+    page.locator('footer .inner').evaluate((el) => el.getBoundingClientRect().left),
+    page.locator('h1').evaluate((el) => el.getBoundingClientRect().left),
+  ]);
+  expect(Math.round(rule)).toBe(Math.round(title));
+});
