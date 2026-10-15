@@ -454,3 +454,24 @@ test('the stylesheet has one page transition, a pressed state, and the chrome ke
   expect(css).toContain('view-transition-name:topbar');
   expect(css).toMatch(/:active\{opacity:\.7\}|:active \{\s*opacity: 0\.7/);
 });
+
+test('a tapped row keeps its glow for a moment before the page changes', async ({ page }) => {
+  await page.goto('/');
+  const row = page.locator('.rows .row').first();
+  await row.click();
+  await expect(row).toHaveClass(/go/);
+  expect(new URL(page.url()).pathname).toBe('/');
+  await expect(page).toHaveURL(/\/tech\/$/);
+});
+
+test('each drawing is nudged left so its figure sits under the middle of the spotlight', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/');
+  for (const [side, min] of [['tech', 0.04], ['fit', 0.06]] as const) {
+    const shift = await page.locator(`.scene[data-side="${side}"] .art img`).evaluate((img) => {
+      const matrix = new DOMMatrix(getComputedStyle(img).transform);
+      return -matrix.m41 / img.getBoundingClientRect().width;
+    });
+    expect(shift).toBeGreaterThan(min);
+  }
+});

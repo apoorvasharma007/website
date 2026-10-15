@@ -240,6 +240,15 @@ const socials = [
     margin: 0;
   }
 
+  /* Each drawing is nudged so its figure sits under the middle of the spotlight. */
+  .scene[data-side='tech'] .art img {
+    transform: translateX(-5%);
+  }
+
+  .scene[data-side='fit'] .art img {
+    transform: translateX(-7%);
+  }
+
   .art img {
     position: absolute;
     inset: 0;
@@ -483,12 +492,22 @@ const socials = [
   picks.forEach((pick, i) => pick.addEventListener('click', () => (stop(), slideTo(i, calm ? 0 : 600))));
 
   // The tech art's robot flies out of frame at about 7s of its 8s loop. Right then the carousel slides
-  // to the fitness scene, where the mirrored robot waits on the left. Once per visit, any touch cancels it.
+  // to the fitness scene, where the mirrored robot waits on the left. Both loops last 8s, so sliding every
+  // 8s keeps going back and forth in step with them, for about a minute or until the first touch.
   const AUTO_AFTER_MS = 7000;
+  const EVERY_MS = 8000;
+  const SLIDES = 8;
+  let shown = 0;
+  const flip = () => {
+    if (!phone.matches) return;
+    shown++;
+    slideTo(shown % 2, 1600);
+    if (shown < SLIDES) autoplay = setTimeout(flip, EVERY_MS);
+  };
   const firstArt = slides[0].querySelector('img')!;
   const arm = () => {
     if (calm || !phone.matches) return;
-    autoplay = setTimeout(() => phone.matches && slideTo(1, 1600), AUTO_AFTER_MS);
+    autoplay = setTimeout(flip, AUTO_AFTER_MS);
   };
   if (firstArt.complete) arm();
   else firstArt.addEventListener('load', arm, { once: true });

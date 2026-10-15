@@ -87,7 +87,7 @@ ul {
   z-index: -1;
   pointer-events: none;
   opacity: 0;
-  transition: opacity var(--dur);
+  transition: opacity var(--dur-slow);
   background: linear-gradient(
     90deg,
     color-mix(in srgb, var(--side) 50%, transparent),
@@ -96,9 +96,15 @@ ul {
   );
 }
 
-.row:active::before,
 .row:focus-visible::before {
   opacity: 1;
+}
+
+/* A tap lights the row quickly and holds it until the page changes. */
+.row:active::before,
+.row.go::before {
+  opacity: 1;
+  transition-duration: var(--dur-fast);
 }
 
 @media (hover: hover) {

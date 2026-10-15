@@ -197,7 +197,7 @@ test.describe('phone carousel autoplay', () => {
   const sceneIndex = (page: import('@playwright/test').Page) =>
     page.locator('.scenes').evaluate((el) => Math.round(el.scrollLeft / el.clientWidth));
 
-  test('slides to Working Out by itself after about 7 seconds, slowly', async ({ page }) => {
+  test('slides to Working Out after about 7 seconds, slowly, then back to Building Tech 8 seconds later', async ({ page }) => {
     await page.clock.install();
     await page.goto('/');
     await page.locator('.scene img').first().evaluate((img: HTMLImageElement) => img.decode());
@@ -207,10 +207,16 @@ test.describe('phone carousel autoplay', () => {
     const mid = await page.locator('.scenes').evaluate((el) => el.scrollLeft / el.clientWidth);
     expect(mid).toBeGreaterThan(0);
     expect(mid).toBeLessThan(1);
-    await page.clock.runFor(1500);
+    await page.clock.runFor(1200);
     expect(await sceneIndex(page)).toBe(1);
     await expect(page.getByRole('tab').nth(1)).toHaveAttribute('aria-selected', 'true');
+    await page.clock.runFor(8000);
+    expect(await sceneIndex(page)).toBe(0);
+    await expect(page.getByRole('tab').nth(0)).toHaveAttribute('aria-selected', 'true');
+    await page.clock.runFor(8000);
+    expect(await sceneIndex(page)).toBe(1);
   });
+
 
   test('a touch on the scene cancels it', async ({ page }) => {
     await page.clock.install();
