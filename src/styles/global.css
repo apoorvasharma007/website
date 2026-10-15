@@ -64,6 +64,12 @@ ul {
   letter-spacing: -0.055em;
 }
 
+.row-desc {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--body);
+}
+
 .row {
   position: relative;
   isolation: isolate;

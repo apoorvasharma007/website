@@ -42,7 +42,7 @@ const rows = overviewRows(pages, side);
                 {row.label}
                 {!row.href && <span class="tag">Soon</span>}
               </span>
-              <span class="blurb">{row.blurb}</span>
+              <span class="blurb row-desc">{row.blurb}</span>
               {row.href && <span class="go" aria-hidden="true">{row.external ? '↗' : '→'}</span>}
             </Row>
           );
@@ -56,7 +56,7 @@ const rows = overviewRows(pages, side);
   .overview {
     max-width: var(--wrap-doc);
     margin: 0 auto;
-    padding: clamp(2.5rem, 7vw, 5rem) var(--gutter) 6rem;
+    padding: var(--top) var(--gutter) 6rem;
   }
 
   .rows {
@@ -85,7 +85,6 @@ const rows = overviewRows(pages, side);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: var(--body);
   }
 
   .go {

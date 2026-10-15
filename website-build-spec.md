@@ -137,3 +137,6 @@ Design record: `website-rebuild-plan.md` rows 9, 10, 11. Mockup: `mockups/astro-
 - Top bars are more transparent (frosted, page shows through): dark 55 percent, light 60 percent. Phone header links are spaced evenly between the name and the theme button.
 - Overview pages (2026-10-15, supersede the Overview heading): no visible title, because the breadcrumb already says Side / Overview (the h1 stays in the page for screen readers). The side's intro line leads, then the rows. Every row description is one line (shortened where needed) so all rows are the same height. Rows keep the shared section size, so nothing else needs resizing.
 - Home rows stack the word above the description on a phone for both rows (side by side on a laptop). The row glow runs to the full row width before fading.
+- Top gap (2026-10-15): every page starts `--top` (20 to 32px) under the top bar, set once in `tokens.css` and used by docs pages, Blog lists, Overview and the Home hero.
+- Row descriptions on Home and Overview share one smaller style (`.row-desc`, 15px).
+- Phone focus row: on a page that scrolls more than a quarter of the screen, the row nearest the middle is lit, and the last row is lit at the very end (overscroll counts as the end). A page that barely scrolls lights none. This replaced the scroll-progress sweep, which raced through the rows on short pages.

@@ -54,7 +54,7 @@ const socials = [
         sideRows.map((row) => (
           <a class="row reveal" data-side={row.side} href={row.href}>
             <span class="display">{row.word}</span>
-            <span class="row-text">{row.description}</span>
+            <span class="row-text row-desc">{row.description}</span>
           </a>
         ))
       }
@@ -109,12 +109,11 @@ const socials = [
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-block: 2.5rem 0;
+    padding-block: var(--top) 0;
     text-align: center;
   }
 
   .hero-name {
-    margin-top: 1.25rem;
     font-size: var(--t-hero);
     line-height: 0.98;
     font-weight: 600;
@@ -317,7 +316,6 @@ const socials = [
   .row-text {
     flex: 1 1 16rem;
     max-width: 21rem;
-    color: var(--body);
   }
 
   @media (max-width: 899px) {

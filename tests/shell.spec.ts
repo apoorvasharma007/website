@@ -397,3 +397,34 @@ test('on a phone each Home row shows its word above its description', async ({ p
     }
   }
 });
+
+test('each Home row stays lit for a stretch of scrolling instead of flashing past', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const reach = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
+  const lit: number[] = [];
+  for (let y = 0; y <= reach; y += 20) {
+    await page.evaluate((top) => scrollTo(0, top), y);
+    await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+    lit.push(await page.locator('.rows .row').evaluateAll((all) => all.findIndex((r) => r.classList.contains('on'))));
+  }
+  for (const row of [0, 1]) expect(lit.filter((i) => i === row).length * 20).toBeGreaterThanOrEqual(200);
+  expect(lit.filter((_, i) => i > 0 && lit[i] !== lit[i - 1]).length).toBeLessThanOrEqual(1);
+});
+
+test('a page that barely scrolls lights no row on a phone', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const path of ['/tech/', '/fitness/']) {
+    await page.goto(path);
+    await expect(page.locator('.rows .row.on')).toHaveCount(0);
+  }
+});
+
+test('page content starts close under the top bar on every page type', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  for (const [path, selector] of [['/tech/knowledge-base/system-design/caching/', 'h1'], ['/tech/blog/', 'h1'], ['/tech/', '.lede']] as const) {
+    await page.goto(path);
+    const gap = await page.locator(selector).first().evaluate((el) => el.getBoundingClientRect().top - 64);
+    expect(gap).toBeLessThanOrEqual(40);
+  }
+});
