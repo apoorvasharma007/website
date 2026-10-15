@@ -5,6 +5,8 @@
   --wrap-doc: 66rem;
   --bar-h: 4rem;
   --top: clamp(1.25rem, 3vw, 2rem);
+  --space-block: clamp(1.5rem, 4vw, 2.25rem);
+  --space-section: clamp(3rem, 8vw, 5rem);
   --r-sm: 0.5rem;
   --r-md: 0.75rem;
   --r-lg: 1rem;
@@ -19,7 +21,7 @@
   --bg: #0a0a0b;
   --panel: #111113;
   --panel-2: #17171a;
-  --line: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 255, 255, 0.05);
   --line-2: rgba(255, 255, 255, 0.15);
   --fg: #ededef;
   --body: #d0d2d8;
@@ -44,7 +46,7 @@
   --bg: #ffffff;
   --panel: #f6f6f7;
   --panel-2: #eeeef0;
-  --line: rgba(0, 0, 0, 0.08);
+  --line: rgba(0, 0, 0, 0.06);
   --line-2: rgba(0, 0, 0, 0.16);
   --fg: #15161a;
   --body: #2a2c32;
