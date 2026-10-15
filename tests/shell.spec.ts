@@ -343,3 +343,26 @@ test('the hero has no rule under the phone tabs', async ({ page }) => {
   const width = await page.locator('.tabs').evaluate((el) => getComputedStyle(el).borderBottomWidth);
   expect(width).toBe('0px');
 });
+
+test('Home rows, Say Hello, Overview rows and the 404 heading share one display size; only the name is bigger', async ({ page }) => {
+  const size = (selector: string) => page.locator(selector).first().evaluate((el) => getComputedStyle(el).fontSize);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const [row, hello, name] = [await size('.rows .display'), await size('.hello .display'), await size('h1')];
+  await page.goto('/tech/');
+  const overview = await size('.rows .display');
+  await page.goto('/404.html');
+  const missing = await size('h1');
+  expect(new Set([row, hello, overview, missing]).size).toBe(1);
+  expect(parseFloat(name)).toBeGreaterThan(parseFloat(row));
+});
+
+test('phone nav links are spaced evenly between the name and the theme button', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 700 });
+  await page.goto('/');
+  const gaps = await page.evaluate(() => {
+    const edges = [document.querySelector('.brand'), ...document.querySelectorAll('header .link:not(.secondary)'), document.querySelector('.theme-toggle')].map((e) => e!.getBoundingClientRect());
+    return edges.slice(1).map((r, i) => r.left - edges[i].right);
+  });
+  expect(Math.max(...gaps) - Math.min(...gaps)).toBeLessThan(4);
+});

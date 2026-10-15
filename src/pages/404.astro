@@ -4,7 +4,7 @@ import FullLayout from '../layouts/FullLayout.astro';
 
 <FullLayout title="Page Not Found">
   <div class="missing">
-    <h1>Page Not Found</h1>
+    <h1 class="display">Page Not Found</h1>
     <p>This page may have moved.</p>
     <div class="cta">
       <a class="btn primary" href="/">Home</a>
@@ -25,10 +25,6 @@ import FullLayout from '../layouts/FullLayout.astro';
   }
 
   h1 {
-    font-size: clamp(3rem, 1rem + 9vw, 8rem);
-    line-height: 0.92;
-    font-weight: 600;
-    letter-spacing: -0.06em;
     color: var(--tech);
   }
 

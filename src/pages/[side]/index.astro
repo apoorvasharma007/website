@@ -38,7 +38,7 @@ const rows = overviewRows(pages, side);
               target={row.external ? '_blank' : undefined}
               rel={row.external ? 'noopener' : undefined}
             >
-              <span class="word">
+              <span class="word display">
                 {row.label}
                 {!row.href && <span class="tag">Soon</span>}
               </span>
@@ -71,14 +71,6 @@ const rows = overviewRows(pages, side);
     gap: 0.25rem 1.5rem;
     padding: clamp(1.1rem, 2.6vw, 1.75rem) 0;
     border-bottom: 1px solid var(--line);
-  }
-
-  .word {
-    grid-column: 1;
-    font-size: clamp(2.25rem, 1rem + 4.8vw, 4.75rem);
-    line-height: 0.95;
-    font-weight: 600;
-    letter-spacing: -0.055em;
   }
 
   .blurb {

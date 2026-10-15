@@ -9,6 +9,9 @@
   --r-lg: 1rem;
   --r-pill: 99px;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --t-hero: clamp(3rem, 1rem + 8vw, 7.5rem);
+  --t-section: clamp(2.25rem, 1rem + 4.8vw, 4.75rem);
+  --t-title: clamp(2rem, 1.4rem + 2.2vw, 2.875rem);
 }
 
 :root {
@@ -27,7 +30,7 @@
   --fit: #f0289c;
   --f2: #7a3cff;
   --glow: rgba(59, 130, 255, 0.13);
-  --bar: rgba(10, 10, 11, 0.74);
+  --bar: rgba(10, 10, 11, 0.55);
   --code: #0e0e10;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --k: #a9b6ff;
@@ -52,7 +55,7 @@
   --fit: #c81780;
   --f2: #5b26d6;
   --glow: rgba(51, 71, 201, 0.09);
-  --bar: rgba(255, 255, 255, 0.78);
+  --bar: rgba(255, 255, 255, 0.6);
   --code: #f6f6f7;
   --k: #3347c9;
   --s: #1f7a3a;

@@ -53,7 +53,7 @@ const socials = [
       {
         sideRows.map((row) => (
           <a class="row reveal" data-side={row.side} href={row.href}>
-            <span class="row-word">{row.word}</span>
+            <span class="display">{row.word}</span>
             <span class="row-text">{row.description}</span>
           </a>
         ))
@@ -62,7 +62,7 @@ const socials = [
 
     <section class="hello reveal">
       <div>
-        <h2 class="hello-title">Say Hello</h2>
+        <h2 class="display">Say Hello</h2>
         <p class="hello-lede">Hiring, collaborating, or training together. Send a note.</p>
         <div class="cta">
           <a class="btn primary" href="/contact/">Contact Me</a>
@@ -115,7 +115,7 @@ const socials = [
 
   .hero-name {
     margin-top: 1.25rem;
-    font-size: clamp(3rem, 1rem + 8vw, 7.5rem);
+    font-size: var(--t-hero);
     line-height: 0.98;
     font-weight: 600;
     letter-spacing: -0.06em;
@@ -314,13 +314,6 @@ const socials = [
     border-bottom: 1px solid var(--line);
   }
 
-  .row-word {
-    font-size: clamp(3.5rem, 1rem + 10.5vw, 9.5rem);
-    line-height: 0.9;
-    font-weight: 600;
-    letter-spacing: -0.065em;
-  }
-
   .row-text {
     flex: 1 1 16rem;
     max-width: 21rem;
@@ -343,13 +336,6 @@ const socials = [
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
       align-items: end;
     }
-  }
-
-  .hello-title {
-    font-size: clamp(2.75rem, 1.2rem + 5.6vw, 5rem);
-    line-height: 1;
-    font-weight: 600;
-    letter-spacing: -0.055em;
   }
 
   .hello-lede {

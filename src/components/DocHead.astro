@@ -15,7 +15,7 @@ const { title, intro, date } = Astro.props;
 <style>
   .title {
     margin: 0.75rem 0 0;
-    font-size: clamp(2rem, 1.4rem + 2.2vw, 2.875rem);
+    font-size: var(--t-title);
     line-height: 1.08;
     font-weight: 600;
     letter-spacing: -0.04em;

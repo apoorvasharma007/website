@@ -57,6 +57,13 @@ ul {
   --side-2: var(--f2);
 }
 
+.display {
+  font-size: var(--t-section);
+  line-height: 0.95;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+}
+
 .row {
   position: relative;
   isolation: isolate;
