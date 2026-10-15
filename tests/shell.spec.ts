@@ -340,7 +340,7 @@ test('phone nav links are spaced evenly between the name and the theme button', 
 });
 
 test('every Overview row has a one-line description, on a phone too', async ({ page }) => {
-  for (const [width, path] of [[390, '/tech/'], [390, '/fitness/'], [1440, '/tech/']] as const) {
+  for (const [width, path] of [[360, '/tech/'], [360, '/fitness/'], [390, '/tech/'], [390, '/fitness/'], [1440, '/tech/']] as const) {
     await page.setViewportSize({ width, height: 800 });
     await page.goto(path);
     const heights = await page.locator('.rows .row').evaluateAll((all) => all.map((r) => r.getBoundingClientRect().height));

@@ -17,29 +17,28 @@ export const sides = {
   tech: {
     label: 'Tech',
     dir: 'tech',
-    intro: 'Things I build, things I learn, and the notes I keep so I can build them again.',
+    intro: "My understanding of the tech topics I'm learning.",
   },
   fit: {
     label: 'Fitness',
     dir: 'fitness',
-    intro:
-      'Calisthenics, rings, strength, conditioning, juggling and reaction drills, and the theory behind them.',
+    intro: 'In the gym since 7 Jan 2019, and this is my 50 cents on training.',
   },
 } as const;
 
 const groups: Record<Side, { label: string; blurb: string; type?: Page['data']['type']; href?: string }[]> = {
   tech: [
-    { label: 'Knowledge Base', blurb: 'AI, System Design and Coding.', type: 'Knowledge Base' },
-    { label: 'Projects', blurb: 'traininglogs and this website.', type: 'Project' },
-    { label: 'Demos', blurb: 'Small things you can run in the page.', type: 'Demo' },
-    { label: 'Tutorials', blurb: 'Step by step, from nothing to working.', type: 'Tutorial' },
-    { label: 'Blog', blurb: 'Notes from building systems.', type: 'Blog' },
+    { label: 'Knowledge Base', blurb: "Deep dives on what I've learned.", type: 'Knowledge Base' },
+    { label: 'Projects', blurb: 'Code that solves problems I face.', type: 'Project' },
+    { label: 'Demos', blurb: "Can't host it live? Here's a demo.", type: 'Demo' },
+    { label: 'Tutorials', blurb: 'Stuff you might find useful.', type: 'Tutorial' },
+    { label: 'Blog', blurb: 'Watching my ideas evolve.', type: 'Blog' },
   ],
   fit: [
-    { label: 'Knowledge Base', blurb: 'Training, Nutrition and Programming.', type: 'Knowledge Base' },
-    { label: 'Programs', blurb: 'Protocols and plans, with sources.', type: 'Program' },
-    { label: 'Dashboard', blurb: 'Live data from traininglogs.', href: site.dashboard },
-    { label: 'Blog', blurb: 'What I tried, and what held up.', type: 'Blog' },
+    { label: 'Knowledge Base', blurb: 'Training, nutrition, programming.', type: 'Knowledge Base' },
+    { label: 'Programs', blurb: 'Plans I follow, with sources.', type: 'Program' },
+    { label: 'Dashboard', blurb: 'See my most recent lifts.', href: site.dashboard },
+    { label: 'Blog', blurb: 'Watching my ideas evolve.', type: 'Blog' },
   ],
 };
 

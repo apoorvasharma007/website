@@ -198,7 +198,8 @@ test.describe('phone carousel autoplay', () => {
     page.locator('.scenes').evaluate((el) => Math.round(el.scrollLeft / el.clientWidth));
 
   test('slides to Working Out after about 7 seconds, slowly, then back to Building Tech 8 seconds later', async ({ page }) => {
-    await page.clock.install();
+    await page.clock.install({ time: 0 });
+    await page.clock.pauseAt(1000);
     await page.goto('/');
     await page.locator('.scene img').first().evaluate((img: HTMLImageElement) => img.decode());
     await page.clock.runFor(6500);
@@ -219,7 +220,8 @@ test.describe('phone carousel autoplay', () => {
 
 
   test('a touch on the scene cancels it', async ({ page }) => {
-    await page.clock.install();
+    await page.clock.install({ time: 0 });
+    await page.clock.pauseAt(1000);
     await page.goto('/');
     await page.locator('.scene img').first().evaluate((img: HTMLImageElement) => img.decode());
     await page.locator('.scenes').dispatchEvent('touchstart');
@@ -229,7 +231,8 @@ test.describe('phone carousel autoplay', () => {
 
   test('it does not run with reduced motion', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.clock.install();
+    await page.clock.install({ time: 0 });
+    await page.clock.pauseAt(1000);
     await page.goto('/');
     await page.clock.runFor(10000);
     expect(await sceneIndex(page)).toBe(0);
