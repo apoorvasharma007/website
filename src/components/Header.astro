@@ -3,21 +3,31 @@ import { nav, site } from '../data/site';
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<header class="header">
-  <a class="brand" href="/">
-    <span class="logo">AS</span>
-    <b>{site.name}</b>
-  </a>
-  <nav class="links" aria-label="Main">
-    {nav.map((item) => <a class="link" href={item.href}>{item.label}</a>)}
-  </nav>
-  <ThemeToggle />
+<header class="bar">
+  <div class="header">
+    <a class="brand" href="/">
+      <span class="logo">AS</span>
+      <b>{site.name}</b>
+    </a>
+    <nav class="links" aria-label="Main">
+      {nav.map((item) => <a class="link" href={item.href}>{item.label}</a>)}
+    </nav>
+    <ThemeToggle />
+  </div>
 </header>
 
 <style>
+  .bar {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: var(--bar);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid var(--line);
+  }
+
   .header {
-    position: relative;
-    z-index: 2;
     max-width: 72rem;
     margin: 0 auto;
     padding: 1.25rem clamp(1rem, 4vw, 2rem);

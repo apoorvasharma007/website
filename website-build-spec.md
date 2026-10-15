@@ -124,3 +124,6 @@ Design record: `website-rebuild-plan.md` rows 9, 10, 11. Mockup: `mockups/astro-
 - Depth limit (2026-10-15): a knowledge base nests at most book, section, chapter. The build fails with the page name if anything sits deeper or names a parent that is not published. Section headings on a book page are real headings (section title, its description) above their chapter cards.
 - Cards are compact: title and description each clamp to two lines, two columns on a laptop, one on a phone. Blog list pages (`/blog/`, `/tech/blog/`, `/fitness/blog/`) use the top nav layout with no left tree.
 - Home: Tech and Fitness row descriptions are hidden on phone (shown on laptop), Say Hello lines up with the row text, and the social links are small pills.
+- Overview pages (2026-10-15, supersede "just the side name"): the heading is Overview in the side color and the breadcrumb is Side / Overview, matching the tree item and the rule that a page's heading is its last breadcrumb item.
+- The top nav is sticky on every page: the docs top bar already was, and the Home, Blog and 404 header now is too, frosted like the docs bar. On a phone it is two rows, about 130px.
+- Home: the Tech and Fitness descriptions show on phone and laptop again.

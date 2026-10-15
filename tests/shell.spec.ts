@@ -172,7 +172,8 @@ test('Tech on Home opens the Tech overview, whose rows lead to real pages', asyn
   await page.goto('/');
   await page.locator('.row[data-side="tech"]').click();
   await expect(page).toHaveURL('/tech/');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Tech');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Overview');
+  await expect(page.getByRole('navigation', { name: 'Breadcrumb' })).toHaveText('Tech/Overview');
   await expect(page.locator('.rows .word')).toHaveText([
     'Knowledge Base',
     'Projects',
@@ -186,12 +187,12 @@ test('Tech on Home opens the Tech overview, whose rows lead to real pages', asyn
 
 test('Fitness overview links the dashboard out and has no dead rows', async ({ page }) => {
   await page.goto('/fitness/');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Fitness');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Overview');
   const dashboard = page.locator('.rows .row', { hasText: 'Dashboard' });
   await expect(dashboard).toHaveAttribute('href', 'https://apoorvasharma007.github.io/traininglogs/');
   await expect(dashboard).toHaveAttribute('target', '_blank');
   await expect(page.locator('.rows .row.soon')).toHaveCount(0);
-  await expect(page.getByRole('navigation', { name: 'Breadcrumb' })).toHaveText('Fitness');
+  await expect(page.getByRole('navigation', { name: 'Breadcrumb' })).toHaveText('Fitness/Overview');
 });
 
 test('blog lists posts newest first, as separate cards, per side and for both', async ({ page }) => {
@@ -283,4 +284,14 @@ test('a section heading is bigger than the chapter cards under it', async ({ pag
   const section = await page.locator('.items .section h2').evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
   const card = await page.locator('.items .card strong').first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
   expect(section).toBeGreaterThan(card * 1.3);
+});
+
+test('the top nav stays on screen while scrolling Home, Blog and a content page', async ({ page }) => {
+  for (const path of ['/', '/blog/', '/tech/knowledge-base/system-design/caching/']) {
+    await page.goto(path);
+    await page.evaluate(() => scrollTo(0, 1e6));
+    await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+    const top = await page.locator('header').first().evaluate((el) => el.getBoundingClientRect().top);
+    expect(top).toBe(0);
+  }
 });

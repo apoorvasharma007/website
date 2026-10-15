@@ -17,15 +17,15 @@ const rows = overviewRows(pages, side);
 ---
 
 <ShellLayout
-  title={`${label} | ${site.name}`}
+  title={`${label} Overview | ${site.name}`}
   description={intro}
   side={side}
-  crumbs={[{ label }]}
+  crumbs={[{ label }, { label: 'Overview' }]}
   pages={pages}
   current={`/${dir}/`}
 >
   <div class="overview">
-    <h1>{label}</h1>
+    <h1>Overview</h1>
     <p class="lede">{intro}</p>
     <div class="rows">
       {
