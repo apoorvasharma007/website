@@ -412,12 +412,34 @@ test('each Home row stays lit for a stretch of scrolling instead of flashing pas
   expect(lit.filter((_, i) => i > 0 && lit[i] !== lit[i - 1]).length).toBeLessThanOrEqual(1);
 });
 
-test('a page that barely scrolls lights no row on a phone', async ({ page }) => {
+test('a short page on a phone still lights one row, and holds it while the page nudges', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   for (const path of ['/tech/', '/fitness/']) {
     await page.goto(path);
-    await expect(page.locator('.rows .row.on')).toHaveCount(0);
+    await expect(page.locator('.rows .row.on')).toHaveCount(1);
+    const reach = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
+    const lit: number[] = [];
+    for (let y = 0; y <= reach; y += 10) {
+      await page.evaluate((top) => scrollTo(0, top), y);
+      await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+      lit.push(await page.locator('.rows .row').evaluateAll((all) => all.findIndex((r) => r.classList.contains('on'))));
+    }
+    expect(lit.filter((_, i) => i > 0 && lit[i] !== lit[i - 1]).length).toBeLessThanOrEqual(1);
   }
+});
+
+test('the row glow also applies while a row is pressed, which is the touch feedback', async ({ page }) => {
+  await page.goto('/tech/');
+  const pressed = await page.evaluate(() =>
+    [...document.styleSheets].some((sheet) => {
+      try {
+        return [...sheet.cssRules].some((rule) => rule instanceof CSSStyleRule && rule.selectorText.includes('.row:active::before'));
+      } catch {
+        return false;
+      }
+    }),
+  );
+  expect(pressed).toBe(true);
 });
 
 test('page content starts close under the top bar on every page type', async ({ page }) => {

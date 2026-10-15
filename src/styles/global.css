@@ -92,6 +92,7 @@ ul {
 }
 
 .row:hover::before,
+.row:active::before,
 .row:focus-visible::before,
 .row.on::before {
   opacity: 1;
