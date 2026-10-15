@@ -445,14 +445,14 @@ test('nothing fades in on scroll, so nothing can flash while scrolling', async (
   expect(new Set(names)).toEqual(new Set(['none']));
 });
 
-test('the stylesheet has one page transition, a pressed state, and the chrome keeps its place', async ({ page }) => {
+test('the stylesheet has one page transition and the chrome keeps its place', async ({ page }) => {
   await page.goto('/');
   const hrefs = await page.locator('link[rel="stylesheet"][href^="/_astro"]').evaluateAll((all) => all.map((l) => (l as HTMLLinkElement).href));
   const inline = await page.locator('style').allTextContents();
   const css = [...inline, ...(await Promise.all(hrefs.map(async (href) => (await page.request.get(href)).text())))].join('\n');
   expect(css).toContain('@view-transition');
   expect(css).toContain('view-transition-name:topbar');
-  expect(css).toMatch(/:active\{opacity:\.7\}|:active \{\s*opacity: 0\.7/);
+  expect(css).not.toMatch(/:active\s*\{\s*opacity/);
 });
 
 test('a tapped row keeps its glow for a moment before the page changes', async ({ page }) => {
@@ -474,4 +474,36 @@ test('each drawing is nudged left so its figure sits under the middle of the spo
     });
     expect(shift).toBeGreaterThan(min);
   }
+});
+
+test('pressing never greys text, and hovering a link shows a plate, not an underline', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/tech/knowledge-base/system-design/caching/');
+  const crumb = page.locator('.crumb a').first();
+  const look = () => crumb.evaluate((el) => {
+    const css = getComputedStyle(el);
+    return { opacity: css.opacity, decoration: css.textDecorationLine, plate: css.boxShadow !== 'none' && css.backgroundColor !== 'rgba(0, 0, 0, 0)' };
+  });
+  expect((await look()).plate).toBe(false);
+  await crumb.hover();
+  await expect.poll(async () => (await look()).plate).toBe(true);
+  await page.mouse.down();
+  const pressed = await look();
+  expect(pressed.opacity).toBe('1');
+  expect(pressed.decoration).toBe('none');
+  await page.mouse.up();
+
+  await page.goto('/tech/blog/');
+  const entry = page.locator('.entry').first();
+  await entry.hover();
+  expect(await entry.locator('strong').evaluate((el) => getComputedStyle(el).textDecorationLine)).toBe('none');
+  await expect.poll(() => entry.evaluate((el) => getComputedStyle(el, '::before').opacity)).toBe('1');
+});
+
+test('a tap changes the page within half a second', async ({ page }) => {
+  await page.goto('/');
+  const started = Date.now();
+  await page.locator('.rows .row').first().click();
+  await page.waitForURL(/\/tech\/$/);
+  expect(Date.now() - started).toBeLessThan(900);
 });

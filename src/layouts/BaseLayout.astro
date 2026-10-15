@@ -59,7 +59,7 @@ const preview = new URL('/og.png', Astro.site);
         if (!link || !plain || calm || event.defaultPrevented || link.target === '_blank') return;
         event.preventDefault();
         link.classList.add('go');
-        setTimeout(() => location.assign(link.href), 260);
+        setTimeout(() => location.assign(link.href), 120);
       });
     </script>
   </body>

@@ -104,7 +104,7 @@ ul {
 .row:active::before,
 .row.go::before {
   opacity: 1;
-  transition-duration: var(--dur-fast);
+  transition-duration: var(--dur-quick);
 }
 
 @media (hover: hover) {
@@ -208,7 +208,7 @@ ul {
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: var(--dur);
+  animation-duration: var(--dur-page);
   animation-timing-function: var(--ease);
 }
 
@@ -236,7 +236,23 @@ ul {
   view-transition-name: theme;
 }
 
-/* Pressing anything dims it at once, on every page. Rows light up instead. */
-:where(a[href], button):not(.row):active {
-  opacity: 0.7;
+
+/* One hover for every link: a soft grey plate behind it, never an underline and never greyed text. */
+:where(.prose p a, .prose li a, .crumb a, .footer-links a, .side-foot a, .pager a, h2 a, .brand, .side-head) {
+  border-radius: var(--r-sm);
+  transition:
+    background-color var(--dur),
+    box-shadow var(--dur);
+}
+
+:where(.prose p a, .prose li a, .crumb a, .footer-links a, .side-foot a, .pager a, h2 a, .brand, .side-head):active {
+  background: var(--plate-hot);
+  box-shadow: 0 0 0 0.3em var(--plate-hot);
+}
+
+@media (hover: hover) {
+  :where(.prose p a, .prose li a, .crumb a, .footer-links a, .side-foot a, .pager a, h2 a, .brand, .side-head):hover {
+    background: var(--plate);
+    box-shadow: 0 0 0 0.3em var(--plate);
+  }
 }

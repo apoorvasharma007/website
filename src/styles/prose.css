@@ -78,11 +78,6 @@ html {
   text-decoration: underline;
   text-decoration-color: var(--line-2);
   text-underline-offset: 0.2em;
-  transition: text-decoration-color var(--dur);
-}
-
-.prose :is(p, li) a:hover {
-  text-decoration-color: var(--fg);
 }
 
 .prose ul {
@@ -186,7 +181,7 @@ html {
 }
 
 .copy:hover {
-  background: var(--panel-2);
+  background: var(--plate);
   color: var(--fg);
 }
 

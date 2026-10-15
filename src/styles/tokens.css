@@ -15,9 +15,13 @@
   --dur-fast: 0.15s;
   --dur: 0.3s;
   --dur-slow: 0.5s;
+  --dur-quick: 0.1s;
+  --dur-page: 0.2s;
   --t-hero: clamp(3rem, 1rem + 8vw, 7.5rem);
   --t-section: clamp(2.25rem, 1rem + 4.8vw, 4.75rem);
   --t-hand: clamp(1.625rem, 0.9rem + 3.4vw, 3rem);
+  --plate: color-mix(in srgb, var(--fg) 8%, transparent);
+  --plate-hot: color-mix(in srgb, var(--fg) 14%, transparent);
   --fs-small: 0.875rem;
   --fs-ui: 1rem;
   --fs-desc: 1.0625rem;

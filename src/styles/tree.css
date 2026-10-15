@@ -22,7 +22,7 @@
 }
 
 .nl:hover {
-  background: var(--panel);
+  background: var(--plate);
   color: var(--fg);
 }
 
