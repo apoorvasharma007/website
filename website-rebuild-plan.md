@@ -52,24 +52,41 @@ Cloudflare Pages so every PR gets a free preview link.
 ## Steps
 
 - [x] 1. Approve this plan: decisions, names, branch naming (2026-10-14)
-- [ ] 2. Design mockup: article page (Notion-like) + homepage, as an Artifact; approve before code
-- [ ] 3. Scaffold Astro + Cloudflare Pages project; PR preview working on an empty page
-- [ ] 4. Article layout + components (callout, YouTube embed, table, image) from the approved mockup
-- [ ] 5. Migrate content + redirects; check every old URL resolves
-- [ ] 6. Homepage, section landings, KB sidebar, blog list
-- [ ] 7. Dashboard copy from traininglogs kept working at `/dashboard/`
-- [ ] 8. Notion loader: published pages from the pipeline database to content; scheduled build twice a day
-- [ ] 9. Perf gate in CI
-- [ ] 10. Cutover: DNS to Cloudflare (needs explicit yes), verify, retire GitHub Pages deploy
+- [x] 2. Design mockups for every page, approved and locked (2026-10-15). Spec `website-build-spec.md`, prototype `mockups/astro-rebuild/site-final.html`
+- [ ] 3. Scaffold Astro + Cloudflare Pages; tokens, shell, Home, 404, robots, sitemap; PR preview working (detail below)
+- [ ] 4. Page layouts and body components for Knowledge Base chapter and book, Article, Project, Program (callout, table, code with copy, YouTube embed, video and demo slots, Previous and Next, Links, Sources)
+- [ ] 5. Migrate the 54 Markdown pages into content collections (Parent hierarchy, Side, Type, Date, Description), blog posts split Tech 8 and Fitness 7, generate the redirects file and show the full list before checking every old URL
+- [ ] 6. Overview pages, tree and breadcrumb generated from the hierarchy, About and Contact with real text
+- [ ] 7. `/dashboard/` and `/movement/dashboard/` redirect to the traininglogs dashboard
+- [ ] 8. Notion loader on the one content database (fields in the spec), Draft and Published, scheduled build twice a day
+- [ ] 9. Perf gate in CI (first-load JS at most 120 KB, Lighthouse mobile 95 or higher)
+- [ ] 10. Cutover: DNS to Cloudflare (needs explicit yes, each DNS change shown first), verify, retire the GitHub Pages deploy; confirm AI-crawler blocking in Cloudflare
 - [ ] 11. Rewrite `website/CLAUDE.md`
 
 Branches (proposed): base `refactor/astro-rebuild` cut from `main` (this repo has no `dev`),
 sub-branches `refactor/astro-rebuild-N-<step>`, squash-merged back; base merges to `main` at cutover.
 
+## Step 3 detail (proposed, awaiting Apoorva's yes)
+
+Sub-branch `refactor/astro-rebuild-3-scaffold` from the base branch. Hugo files stay until step 5 deletes them, so the old site and its content remain available. The deploy workflow only runs on `main`, so nothing here goes live.
+
+1. Astro minimal template in the repo root, TypeScript strict, `@astrojs/sitemap`. No React yet. The phone tabs and the mid-screen row glow are small vanilla scripts.
+2. `src/styles/tokens.css` and `global.css` from the spec: dark default and light theme, side colors, text tones (descriptions #D0D2D8, nav #A4A7AF, small #868991; light #2A2C32, #484A52, #6B6D75), Inter with display=swap, 13px label style, system monospace for code only.
+3. Components: Header (one grid, two rows on phone), Footer (same on every page), ThemeToggle (inline script, localStorage in try/catch, no flash), Skip To Content link. Layouts `FullLayout` (Home, About, Contact, 404) and `ShellLayout` (tree, breadcrumb, outline slots, tree data placeholder).
+4. Home exactly as `site-final.html`: hero with spotlight scenes, phone tabs, rows with the sweep glow, Say Hello, footer. The two SVGs minified with svgo and lazy-loaded; one still frame under reduced motion.
+5. 404 page, `robots.txt` (AI crawlers disallowed), sitemap, favicon (AS mark), no-AI-training meta tag, one shared preview image.
+6. Cloudflare Pages project connected to the repo so the branch gets a private preview URL. This needs Apoorva's Cloudflare account and his action to connect. No DNS change.
+7. Gate before squash-merge: `astro check` and build pass, a Playwright smoke test (Home renders, tabs switch at 390 wide, footer on every page, no horizontal scroll, dark and light), a manual screenshot comparison with `site-final.html` at 1440 and 390 in both themes, first-load JS at most 120 KB, contrast at least 4.5 to 1.
+
+Not in step 3: knowledge base, article, project and program pages (step 4), content (step 5), Notion (step 8).
+
 ## ▶ Resume here
 
-Design is LOCKED (2026-10-15). Spec: `website-build-spec.md`. Final prototype: `mockups/astro-rebuild/site-final.html`
-(artifact https://claude.ai/artifact/DkCam7qZ8EYGGcHaLHGWAc). Branch `refactor/astro-rebuild` (cut from main, docs and
-mockups committed on it). Next action: write the build plan for step 1 (Astro project scaffold on Cloudflare Pages
-with the design tokens, shell and Home) and show it to Apoorva before writing code. Open at build time: confirm hero
-captions, minify the two SVGs, real About text, Cloudflare account and AI-crawler blocking check at hosting setup.
+Design is LOCKED (2026-10-15) and committed on branch `refactor/astro-rebuild` (commit b80f613 and later). Spec:
+`website-build-spec.md`. Prototype: `mockups/astro-rebuild/site-final.html` (artifact
+https://claude.ai/artifact/DkCam7qZ8EYGGcHaLHGWAc). Step 3 detail is written above and has been shown to Apoorva but not yet
+approved. First action next session: ask Apoorva (1) yes to the step 3 plan, (2) does a Cloudflare account exist and will
+he connect the repo, (3) are the two hero captions final. Then cut `refactor/astro-rebuild-3-scaffold` and start. No
+code written yet. Untracked scratch files in `mockups/astro-rebuild/` (landing v2 to v8, animations-attempt-1,
+tech-landing.html, art-fit-test.html) and the root `clean-and-jerk.svg` and `whack-a-bug.svg` are intentionally not
+committed; the committed copies of the SVGs are in `mockups/astro-rebuild/art/`.
