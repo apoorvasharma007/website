@@ -26,6 +26,7 @@ const socials = [
               data-side={scene.side}
               data-index={i}
             >
+              <span class="sticker">{scene.lead}</span>
               {scene.phrase}
             </button>
           ))
@@ -35,7 +36,10 @@ const socials = [
         {
           heroScenes.map((scene, i) => (
             <div class:list={['scene', { on: i === 0 }]} data-side={scene.side} data-index={i}>
-              <h2>{scene.phrase}</h2>
+              <h2>
+                <span class="sticker">{scene.lead}</span>
+                {scene.phrase}
+              </h2>
               <div class="stage" aria-hidden="true">
                 <div class="fx" />
                 <figure class="art">
@@ -148,6 +152,46 @@ const socials = [
     font-weight: 600;
     letter-spacing: -0.04em;
     color: var(--side);
+  }
+
+  .sticker {
+    display: block;
+    font-family: 'Kalam', cursive;
+    font-size: 1.75em;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1;
+    color: var(--fg);
+    transform: rotate(var(--tilt));
+    animation: boil 0.9s steps(1) infinite;
+  }
+
+  .tab:not(.on) .sticker {
+    opacity: 0.55;
+  }
+
+  [data-side='tech'] {
+    --tilt: -4deg;
+  }
+
+  [data-side='fit'] {
+    --tilt: 3deg;
+  }
+
+  [data-side='fit'] .sticker {
+    animation-delay: -0.45s;
+  }
+
+  @keyframes boil {
+    0% {
+      transform: rotate(var(--tilt)) translateY(0);
+    }
+    33% {
+      transform: rotate(calc(var(--tilt) + 1.4deg)) translateY(-1px);
+    }
+    66% {
+      transform: rotate(calc(var(--tilt) - 1deg)) translateY(1px);
+    }
   }
 
   .stage {

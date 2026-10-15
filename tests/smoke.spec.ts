@@ -40,10 +40,10 @@ test('phone shows one scene at a time and tabs switch it', async ({ page }) => {
   const fit = page.locator('.scene[data-side="fit"]');
   await expect(tech).toBeVisible();
   await expect(fit).toBeHidden();
-  await page.getByRole('tab', { name: 'Training Movement' }).click();
+  await page.getByRole('tab', { name: /Beating Gravity/ }).click();
   await expect(fit).toBeVisible();
   await expect(tech).toBeHidden();
-  await expect(page.getByRole('tab', { name: 'Training Movement' })).toHaveAttribute(
+  await expect(page.getByRole('tab', { name: /Beating Gravity/ })).toHaveAttribute(
     'aria-selected',
     'true',
   );
@@ -108,8 +108,8 @@ test('both hero scenes visibly move on the laptop layout', async ({ page }) => {
 test('the phone scene moves, including after switching tabs', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  for (const tab of ['Engineering Systems', 'Training Movement']) {
-    await page.getByRole('tab', { name: tab }).click();
+  for (const tab of ['Building Tech', 'Beating Gravity']) {
+    await page.getByRole('tab', { name: new RegExp(tab) }).click();
     const art = page.locator('.scene.on .art');
     const first = await art.screenshot();
     await page.waitForTimeout(1500);

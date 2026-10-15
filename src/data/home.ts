@@ -2,13 +2,15 @@
 export const heroScenes = [
   {
     side: 'tech',
-    phrase: 'Engineering Systems',
+    lead: 'I like',
+    phrase: 'Building Tech',
     caption: 'I build the software that shows where the cloud money goes.',
     art: '/art/whack-a-bug.svg',
   },
   {
     side: 'fit',
-    phrase: 'Training Movement',
+    lead: 'I love',
+    phrase: 'Beating Gravity',
     caption: 'I train the body that carries the laptop.',
     art: '/art/clean-and-jerk.svg',
   },
