@@ -4,7 +4,6 @@ import { site } from '../data/site';
 import ShellLayout from '../layouts/ShellLayout.astro';
 import Doc from '../components/Doc.astro';
 import DocHead from '../components/DocHead.astro';
-import ItemList from '../components/ItemList.astro';
 import ChapterList from '../components/ChapterList.astro';
 import LinkCards from '../components/LinkCards.astro';
 import Outline from '../components/Outline.astro';
@@ -56,9 +55,7 @@ const at = siblings.findIndex((sibling) => sibling.id === page.id);
     <DocHead title={data.title} intro={data.description} date={formatDate(data.date)} />
     {
       isBook ? (
-        <ItemList>
-          <ChapterList pages={pages} parent={page} />
-        </ItemList>
+        <ChapterList pages={pages} parent={page} />
       ) : (
         <>
           <Outline headings={outline} inline />

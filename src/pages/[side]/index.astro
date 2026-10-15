@@ -71,14 +71,14 @@ const rows = overviewRows(pages, side);
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 0.25rem 1.5rem;
-    padding: clamp(1.1rem, 2.6vw, 1.75rem) clamp(0.75rem, 2vw, 1.25rem);
+    padding: clamp(1.1rem, 2.6vw, 1.75rem) 0;
     border-bottom: 1px solid var(--line);
   }
 
   .row::before {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 0 calc(-1 * clamp(0.75rem, 2vw, 1.25rem));
     z-index: -1;
     pointer-events: none;
     opacity: 0;
@@ -103,15 +103,6 @@ const rows = overviewRows(pages, side);
     line-height: 0.95;
     font-weight: 600;
     letter-spacing: -0.055em;
-    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .row:hover .word {
-    transform: translateX(0.75rem);
-  }
-
-  .row.on .word {
-    transform: translateX(0.75rem);
   }
 
   .blurb {

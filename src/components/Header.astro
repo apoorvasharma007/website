@@ -86,19 +86,22 @@ import ThemeToggle from './ThemeToggle.astro';
 
   @media (max-width: 640px) {
     .header {
-      grid-template-columns: 1fr auto;
-      grid-template-areas: 'brand theme' 'nav nav';
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: 'brand nav theme';
+      gap: 0 0.5rem;
+    }
+
+    .brand b {
+      display: none;
     }
 
     .links {
       justify-content: space-between;
-      margin-inline: -0.5rem;
     }
-  }
 
-  @media (max-width: 520px) {
     .link {
-      padding: 0 0.5rem;
+      padding: 0 0.3125rem;
+      font-size: 0.875rem;
     }
   }
 </style>

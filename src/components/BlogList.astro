@@ -1,7 +1,7 @@
 ---
 import { site } from '../data/site';
 import DocHead from './DocHead.astro';
-import ItemCard from './ItemCard.astro';
+import ItemRow from './ItemRow.astro';
 import ItemList from './ItemList.astro';
 import FullLayout from '../layouts/FullLayout.astro';
 import { formatDate, pageUrl, sides, type Page } from '../lib/pages';
@@ -9,20 +9,21 @@ import { formatDate, pageUrl, sides, type Page } from '../lib/pages';
 interface Props {
   posts: Page[];
   title: string;
-  intro: string;
+  description: string;
   showSide?: boolean;
 }
 
-const { posts, title, intro, showSide = false } = Astro.props;
+const { posts, title, description, showSide = false } = Astro.props;
 ---
 
-<FullLayout title={`${title} | ${site.name}`} description={intro}>
+<FullLayout title={`${title} | ${site.name}`} description={description}>
   <div class="wrap">
-    <DocHead title={title} intro={intro} />
+    <DocHead title={title} />
+    <div class="narrow">
     <ItemList>
       {
         posts.map((post) => (
-          <ItemCard
+          <ItemRow
             href={pageUrl(post)}
             title={post.data.title}
             description={post.data.description}
@@ -31,13 +32,18 @@ const { posts, title, intro, showSide = false } = Astro.props;
         ))
       }
     </ItemList>
+    </div>
   </div>
 </FullLayout>
 
 <style>
   .wrap {
-    max-width: 52rem;
+    max-width: 72rem;
     margin: 0 auto;
     padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem) 6rem;
+  }
+
+  .narrow {
+    max-width: 46rem;
   }
 </style>

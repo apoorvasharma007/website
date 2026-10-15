@@ -128,3 +128,5 @@ Design record: `website-rebuild-plan.md` rows 9, 10, 11. Mockup: `mockups/astro-
 - The top nav is sticky on every page: the docs top bar already was, and the Home, Blog and 404 header now is too, frosted like the docs bar. On a phone it is two rows, about 130px.
 - Home: the Tech and Fitness descriptions show on phone and laptop again.
 - Overview heading uses the same size and color as every other page title (2026-10-15, supersedes the side-colored huge heading). Home has one line between the Fitness row and Say Hello, not two.
+- Alignment rule (2026-10-15): every page's text shares one left edge. Rows and lists have no side padding, the glow behind a row bleeds past the text instead, and nothing shifts on hover. Chapter and blog lists are open rows (title, two-line description, date) between hairlines, not boxes, so their text lines up with the page title; Links and Sources keep boxed cards. Blog list pages have no intro line.
+- Phone header is one row: AS mark, the five links, theme button. The name text is hidden below 640px.

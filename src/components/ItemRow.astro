@@ -1,0 +1,60 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description?: string;
+  meta?: string;
+}
+
+const { href, title, description, meta } = Astro.props;
+---
+
+<a class="entry" href={href}>
+  <strong>{title}</strong>
+  {description && <span class="desc">{description}</span>}
+  {meta && <span class="meta">{meta}</span>}
+</a>
+
+<style>
+  .entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.125rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  strong,
+  .desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  strong {
+    -webkit-line-clamp: 2;
+    font-size: 1.0625rem;
+    line-height: 1.35;
+    font-weight: 550;
+    letter-spacing: -0.01em;
+  }
+
+  .entry:hover strong {
+    text-decoration: underline;
+    text-decoration-color: var(--line-2);
+    text-underline-offset: 0.2em;
+  }
+
+  .desc {
+    -webkit-line-clamp: 2;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .meta {
+    margin-top: 0.25rem;
+    font-size: 0.8125rem;
+    color: var(--dim);
+  }
+</style>

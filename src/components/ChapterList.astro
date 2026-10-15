@@ -1,5 +1,6 @@
 ---
-import ItemCard from './ItemCard.astro';
+import ItemList from './ItemList.astro';
+import ItemRow from './ItemRow.astro';
 import { childrenOf, pageUrl, type Page } from '../lib/pages';
 
 interface Props {
@@ -8,35 +9,46 @@ interface Props {
 }
 
 const { pages, parent } = Astro.props;
+
+const groups: { section?: Page; rows: Page[] }[] = [];
+for (const item of childrenOf(pages, parent)) {
+  const chapters = childrenOf(pages, item);
+  const last = groups.at(-1);
+  if (chapters.length > 0) groups.push({ section: item, rows: chapters });
+  else if (last && !last.section) last.rows.push(item);
+  else groups.push({ rows: [item] });
+}
 ---
 
 {
-  childrenOf(pages, parent).map((item) => {
-    const chapters = childrenOf(pages, item);
-    return chapters.length === 0 ? (
-      <ItemCard href={pageUrl(item)} title={item.data.title} description={item.data.description} />
-    ) : (
-      <>
+  groups.map(({ section, rows }) => (
+    <section>
+      {section && (
         <div class="section">
-          <h2><a href={pageUrl(item)}>{item.data.title}</a></h2>
-          <p>{item.data.description}</p>
+          <h2><a href={pageUrl(section)}>{section.data.title}</a></h2>
+          <p>{section.data.description}</p>
         </div>
-        {chapters.map((chapter) => (
-          <ItemCard href={pageUrl(chapter)} title={chapter.data.title} description={chapter.data.description} />
+      )}
+      <ItemList>
+        {rows.map((row) => (
+          <ItemRow href={pageUrl(row)} title={row.data.title} description={row.data.description} />
         ))}
-      </>
-    );
-  })
+      </ItemList>
+    </section>
+  ))
 }
 
 <style>
-  .section {
-    grid-column: 1 / -1;
-    margin-top: 1.5rem;
+  section {
+    margin-top: 2.5rem;
   }
 
-  .section:first-child {
+  section:first-child {
     margin-top: 0;
+  }
+
+  .section {
+    margin-top: 2rem;
   }
 
   h2 {
@@ -54,6 +66,10 @@ const { pages, parent } = Astro.props;
   }
 
   p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
     margin: 0.25rem 0 0;
     max-width: 40rem;
     font-size: 0.9375rem;

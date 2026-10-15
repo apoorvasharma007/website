@@ -11,8 +11,8 @@ export function getStaticPaths() {
 
 const { side } = Astro.props;
 const posts = blogPosts(await getPublished(), side);
-const intro =
+const description =
   side === 'tech' ? 'Notes on building and operating systems.' : 'What I tried, and what held up.';
 ---
 
-<BlogList posts={posts} title={`${sides[side].label} Blog`} intro={intro} />
+<BlogList posts={posts} title={`${sides[side].label} Blog`} description={description} />

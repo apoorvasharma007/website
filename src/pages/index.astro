@@ -309,14 +309,14 @@ const socials = [
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem 2rem;
-    padding: clamp(1.25rem, 3vw, 2.25rem) clamp(0.75rem, 2vw, 1.25rem);
+    padding: clamp(1.25rem, 3vw, 2.25rem) 0;
     border-bottom: 1px solid var(--line);
   }
 
   .row::before {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 0 calc(-1 * clamp(0.75rem, 2vw, 1.25rem));
     z-index: -1;
     pointer-events: none;
     opacity: 0;
@@ -352,15 +352,6 @@ const socials = [
     line-height: 0.9;
     font-weight: 600;
     letter-spacing: -0.065em;
-    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .row:hover .row-word {
-    transform: translateX(1rem);
-  }
-
-  .row.on .row-word {
-    transform: translateX(0.75rem);
   }
 
   .row-text {
@@ -378,7 +369,6 @@ const socials = [
     display: grid;
     gap: 2.5rem;
     margin-top: clamp(3rem, 7vw, 5rem);
-    padding: 0 clamp(0.75rem, 2vw, 1.25rem);
   }
 
   @media (min-width: 900px) {

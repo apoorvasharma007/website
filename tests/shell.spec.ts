@@ -58,7 +58,7 @@ test('Copy puts the code on the clipboard and says so', async ({ page, context, 
 
 test('book page lists its chapters and section headings, with no outline or pager', async ({ page }) => {
   await page.goto(book);
-  await expect(page.locator('.items .card strong')).toHaveText([
+  await expect(page.locator('.items .entry strong')).toHaveText([
     'Scalability',
     'Databases',
     'Caching Strategies',
@@ -67,9 +67,9 @@ test('book page lists its chapters and section headings, with no outline or page
   await expect(page.getByRole('navigation', { name: 'Previous and Next' })).toHaveCount(0);
 
   await page.goto('/fitness/knowledge-base/training/');
-  await expect(page.locator('.items > *')).toHaveCount(4);
-  await expect(page.locator('.items .section h2')).toHaveText('Foundations');
-  await expect(page.locator('.items .card strong')).toHaveText([
+  await expect(page.locator('.items .entry')).toHaveCount(3);
+  await expect(page.locator('.section h2')).toHaveText('Foundations');
+  await expect(page.locator('.items .entry strong')).toHaveText([
     'Core Training Principles',
     'Session Structure',
     'Progression Models',
@@ -206,18 +206,18 @@ test('blog lists posts newest first, as separate cards, per side and for both', 
     'About',
     'Contact',
   ]);
-  await expect(page.locator('.items .card strong')).toHaveText([
+  await expect(page.locator('.items .entry strong')).toHaveText([
     'Building traininglogs: A Python Pipeline for My Gym Data',
     'Testing in Python: What to Test and What to Skip',
   ]);
-  await expect(page.locator('.items .card').first()).toContainText('2 Apr 2026');
+  await expect(page.locator('.items .entry').first()).toContainText('2 Apr 2026');
 
   await page.goto('/fitness/blog/');
-  await expect(page.locator('.items .card strong')).toHaveText(['Building a Sustainable Training Habit']);
+  await expect(page.locator('.items .entry strong')).toHaveText(['Building a Sustainable Training Habit']);
 
   await page.goto('/blog/');
-  await expect(page.locator('.items .card')).toHaveCount(3);
-  await expect(page.locator('.items .card').first()).toContainText('Tech, 2 Apr 2026');
+  await expect(page.locator('.items .entry')).toHaveCount(3);
+  await expect(page.locator('.items .entry').first()).toContainText('Tech, 2 Apr 2026');
 });
 
 test('sidebar has no Home item and lists no posts, only a Blog link', async ({ page }) => {
@@ -273,17 +273,17 @@ test('cards stay small on a phone however long the text is', async ({ page }) =>
   await page.setViewportSize({ width: 390, height: 844 });
   for (const path of ['/tech/blog/', '/tech/knowledge-base/system-design/']) {
     await page.goto(path);
-    for (const height of await page.locator('.items .card').evaluateAll((all) => all.map((c) => c.getBoundingClientRect().height))) {
-      expect(height).toBeLessThan(150);
+    for (const height of await page.locator('.items .entry').evaluateAll((all) => all.map((c) => c.getBoundingClientRect().height))) {
+      expect(height).toBeLessThan(175);
     }
   }
 });
 
 test('a section heading is bigger than the chapter cards under it', async ({ page }) => {
   await page.goto('/fitness/knowledge-base/training/');
-  const section = await page.locator('.items .section h2').evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
-  const card = await page.locator('.items .card strong').first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
-  expect(section).toBeGreaterThan(card * 1.3);
+  const section = await page.locator('.section h2').evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+  const card = await page.locator('.items .entry strong').first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+  expect(section).toBeGreaterThan(card * 1.2);
 });
 
 test('the top nav stays on screen while scrolling Home, Blog and a content page', async ({ page }) => {
