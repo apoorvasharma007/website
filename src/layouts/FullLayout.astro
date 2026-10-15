@@ -7,10 +7,10 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
-  footerLinks?: boolean;
+  onHome?: boolean;
 }
 
-const { title, description = site.description, footerLinks = true } = Astro.props;
+const { title, description = site.description, onHome = false } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -22,7 +22,7 @@ const { title, description = site.description, footerLinks = true } = Astro.prop
       <slot />
     </main>
   </div>
-  <Footer links={footerLinks} />
+  <Footer onHome={onHome} />
   </div>
 </BaseLayout>
 

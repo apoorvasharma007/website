@@ -14,10 +14,7 @@ const { pages, current } = Astro.props;
 ---
 
 <aside class="side" id="side" aria-label="Site">
-  <a class="side-head" href="/">
-    <span class="logo">AS</span>
-    <b>{site.name}</b>
-  </a>
+  <a class="side-head" href="/">{site.name}</a>
   <nav class="side-nav" aria-label="Pages">
     <TreeNode node={sideTree(pages, 'tech')} current={current} dot="tech" />
     <TreeNode node={sideTree(pages, 'fit')} current={current} dot="fit" />
@@ -45,7 +42,7 @@ const { pages, current } = Astro.props;
     transform: translateX(-102%);
     visibility: hidden;
     transition:
-      transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
+      transform 0.32s var(--ease),
       visibility 0s 0.32s;
   }
 
@@ -69,30 +66,14 @@ const { pages, current } = Astro.props;
   }
 
   .side-head {
-    height: 4rem;
+    height: var(--bar-h);
     flex: none;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
     padding: 0 1.25rem;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .logo {
-    width: 1.75rem;
-    height: 1.75rem;
-    border-radius: 0.5rem;
-    background: var(--fg);
-    color: var(--bg);
-    display: grid;
-    place-items: center;
-    font: 600 0.75rem/1 'Inter', sans-serif;
-    letter-spacing: -0.02em;
-  }
-
-  .side-head b {
     font-weight: 550;
     letter-spacing: -0.01em;
+    border-bottom: 1px solid var(--line);
   }
 
   .side-nav {

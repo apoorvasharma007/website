@@ -241,12 +241,16 @@ test('sidebar never scrolls sideways', async ({ page }) => {
   }
 });
 
-test('Home footer is only the copyright, other pages keep Home and Contact', async ({ page }) => {
+test('Home footer is only the copyright on a laptop, other pages keep Home, About and Contact', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('navigation', { name: 'Footer' })).toHaveCount(0);
+  await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveCount(0);
   await expect(page.locator('footer')).toContainText('All Rights Reserved.');
   await page.goto('/404.html');
-  await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText(['Home', 'Contact']);
+  await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText([
+    'Home',
+    'About',
+    'Contact',
+  ]);
 });
 
 test('the focus row on a phone moves down with the scroll, never jumps back, and reaches the last row', async ({
@@ -313,4 +317,29 @@ test('the footer rule is as wide as the text above it', async ({ page }) => {
     page.locator('h1').evaluate((el) => el.getBoundingClientRect().left),
   ]);
   expect(Math.round(rule)).toBe(Math.round(title));
+});
+
+test('phone header is one row with the full name, Tech, Fitness, Blog and the theme button', async ({ page }) => {
+  for (const width of [360, 390]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto('/');
+    await expect(page.getByRole('link', { name: 'Apoorva Sharma' })).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Main' }).getByRole('link')).toHaveText(['Tech', 'Fitness', 'Blog']);
+    await expect(page.getByRole('button', { name: 'Switch theme' })).toBeVisible();
+    expect(await page.locator('header').evaluate((el) => el.getBoundingClientRect().height)).toBe(64);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBe(0);
+  }
+});
+
+test('About and Contact leave the phone header but stay reachable from the footer', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.goto('/');
+  await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText(['About', 'Contact']);
+});
+
+test('the hero has no rule under the phone tabs', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.goto('/');
+  const width = await page.locator('.tabs').evaluate((el) => getComputedStyle(el).borderBottomWidth);
+  expect(width).toBe('0px');
 });

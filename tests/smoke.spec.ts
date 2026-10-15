@@ -12,6 +12,7 @@ for (const path of pages) {
     if (path === '/404.html') {
       await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText([
         'Home',
+        'About',
         'Contact',
       ]);
     }

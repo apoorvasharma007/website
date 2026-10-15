@@ -1,4 +1,17 @@
 :root {
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --bleed: clamp(0.75rem, 2vw, 1.25rem);
+  --wrap: 72rem;
+  --wrap-doc: 66rem;
+  --bar-h: 4rem;
+  --r-sm: 0.5rem;
+  --r-md: 0.75rem;
+  --r-lg: 1rem;
+  --r-pill: 99px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+:root {
   --bg: #0a0a0b;
   --panel: #111113;
   --panel-2: #17171a;

@@ -37,7 +37,7 @@ const { crumbs } = Astro.props;
     position: sticky;
     top: env(safe-area-inset-top, 0px);
     z-index: 10;
-    height: 4rem;
+    height: var(--bar-h);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,7 +61,7 @@ const { crumbs } = Astro.props;
     height: 2.75rem;
     display: grid;
     place-items: center;
-    border-radius: 0.625rem;
+    border-radius: var(--r-sm);
     color: var(--muted);
     transition:
       background-color 0.15s,

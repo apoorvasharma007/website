@@ -14,6 +14,6 @@ export const nav = [
   { label: 'Tech', href: '/tech/' },
   { label: 'Fitness', href: '/fitness/' },
   { label: 'Blog', href: '/blog/' },
-  { label: 'About', href: '/about/' },
-  { label: 'Contact', href: '/contact/' },
+  { label: 'About', href: '/about/', secondary: true },
+  { label: 'Contact', href: '/contact/', secondary: true },
 ] as const;

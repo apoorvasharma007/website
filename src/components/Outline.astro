@@ -55,14 +55,14 @@ const { headings, inline = false } = Astro.props;
     height: 0;
     background: var(--fg);
     transition:
-      transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+      transform 0.28s var(--ease),
       height 0.28s;
   }
 
   .inline {
     margin-top: 1.5rem;
     border: 1px solid var(--line);
-    border-radius: 0.75rem;
+    border-radius: var(--r-md);
     background: var(--panel);
     padding: 1rem 1.125rem;
   }

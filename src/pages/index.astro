@@ -11,7 +11,7 @@ const socials = [
 ] as const;
 ---
 
-<FullLayout title={site.name} footerLinks={false}>
+<FullLayout title={site.name} onHome>
   <div class="wrap">
     <section class="hero">
       <h1 class="hero-name rise" style="--i:0">Hi, I'm Apoorva.</h1>
@@ -88,13 +88,13 @@ const socials = [
 <style>
   .wrap {
     position: relative;
-    max-width: 72rem;
+    max-width: var(--wrap);
     margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 2rem) 5rem;
+    padding: 0 var(--gutter) 5rem;
   }
 
   .rise {
-    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation: rise 0.7s var(--ease) backwards;
     animation-delay: calc(var(--i, 0) * 55ms);
   }
 
@@ -256,11 +256,11 @@ const socials = [
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -1px;
+    bottom: 0;
     height: 2px;
     background: var(--side);
     transform: scaleX(0);
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 0.3s var(--ease);
   }
 
   .tab.on {
@@ -284,7 +284,10 @@ const socials = [
       width: 100%;
       max-width: 26rem;
       margin-top: 1.5rem;
-      border-bottom: 1px solid var(--line);
+    }
+
+    .fx::before {
+      clip-path: polygon(22% 0, 78% 0, 98% 100%, 2% 100%);
     }
 
     .scene h2 {
@@ -302,8 +305,6 @@ const socials = [
   }
 
   .row {
-    position: relative;
-    isolation: isolate;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -311,40 +312,6 @@ const socials = [
     gap: 0.5rem 2rem;
     padding: clamp(1.25rem, 3vw, 2.25rem) 0;
     border-bottom: 1px solid var(--line);
-  }
-
-  .row::before {
-    content: '';
-    position: absolute;
-    inset: 0 calc(-1 * clamp(0.75rem, 2vw, 1.25rem));
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .row[data-side='tech']::before {
-    background: linear-gradient(
-      90deg,
-      color-mix(in srgb, var(--tech) 50%, transparent),
-      color-mix(in srgb, var(--t2) 18%, transparent) 45%,
-      transparent 70%
-    );
-  }
-
-  .row[data-side='fit']::before {
-    background: linear-gradient(
-      90deg,
-      color-mix(in srgb, var(--fit) 50%, transparent),
-      color-mix(in srgb, var(--f2) 18%, transparent) 45%,
-      transparent 70%
-    );
-  }
-
-  .row:hover::before,
-  .row:focus-visible::before,
-  .row.on::before {
-    opacity: 1;
   }
 
   .row-word {
@@ -362,7 +329,7 @@ const socials = [
 
 
   .reveal.shown {
-    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation: rise 0.7s var(--ease) backwards;
   }
 
   .hello {
@@ -406,7 +373,7 @@ const socials = [
     min-height: 2.5rem;
     padding: 0 0.875rem;
     border: 1px solid var(--line);
-    border-radius: 99px;
+    border-radius: var(--r-pill);
     font-size: 0.9375rem;
     background: var(--panel);
     color: var(--muted);

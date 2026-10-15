@@ -5,7 +5,7 @@
   width: 100%;
   min-height: 2.5rem;
   padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
+  border-radius: var(--r-sm);
   color: var(--muted);
   font-size: 0.9375rem;
   line-height: 1.35;
@@ -44,7 +44,7 @@
 .dot {
   width: 0.5rem;
   height: 0.5rem;
-  border-radius: 99px;
+  border-radius: var(--r-pill);
   flex: none;
 }
 
@@ -78,7 +78,7 @@
   grid-template-rows: 0fr;
   visibility: hidden;
   transition:
-    grid-template-rows 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    grid-template-rows 0.3s var(--ease),
     visibility 0s 0.3s;
 }
 
