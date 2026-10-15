@@ -33,20 +33,61 @@ test('home has no top nav, three rows, and the name only once', async ({ page })
   await expect(page.locator('.row .display')).toHaveText(['Tech', 'Fitness', 'Blog']);
 });
 
-test('phone shows one scene at a time and tabs switch it', async ({ page }) => {
+const sceneIndex = (page: import('@playwright/test').Page) =>
+  page.locator('.scenes').evaluate((el) => Math.round(el.scrollLeft / el.clientWidth));
+
+test('phone: both phrases show at once, tapping one moves the carousel and the lit phrase follows', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  const tech = page.locator('.scene[data-side="tech"]');
-  const fit = page.locator('.scene[data-side="fit"]');
-  await expect(tech).toBeVisible();
-  await expect(fit).toBeHidden();
-  await page.getByRole('tab', { name: /Beating Gravity/ }).click();
-  await expect(fit).toBeVisible();
-  await expect(tech).toBeHidden();
-  await expect(page.getByRole('tab', { name: /Beating Gravity/ })).toHaveAttribute(
-    'aria-selected',
-    'true',
-  );
+  const picks = page.getByRole('tab');
+  await expect(picks).toHaveText(['I likeBuilding Tech', 'I loveWorking Out']);
+  for (const pick of await picks.all()) await expect(pick).toBeVisible();
+  await expect(picks.nth(0)).toHaveAttribute('aria-selected', 'true');
+  await picks.nth(1).click();
+  await expect.poll(() => sceneIndex(page)).toBe(1);
+  await expect(picks.nth(1)).toHaveAttribute('aria-selected', 'true');
+  await picks.nth(0).click();
+  await expect.poll(() => sceneIndex(page)).toBe(0);
+  await expect(picks.nth(0)).toHaveAttribute('aria-selected', 'true');
+});
+
+test('phone: both phrases fit on one line each from 360px up', async ({ page }) => {
+  for (const width of [360, 390, 430]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto('/');
+    for (const pick of await page.locator('.pick').all()) {
+      const line = await pick.locator('.phrase').evaluate((el) => el.getBoundingClientRect().height);
+      const overflow = await pick.evaluate((el) => el.scrollWidth - el.clientWidth);
+      expect(line).toBeLessThan(50);
+      expect(overflow).toBeLessThanOrEqual(0);
+    }
+  }
+});
+
+test('the hero is one handwritten group, the name bigger than its two lines', async ({ page }) => {
+  const style = (selector: string) =>
+    page.locator(selector).first().evaluate((el) => {
+      const css = getComputedStyle(el);
+      return { size: parseFloat(css.fontSize), family: css.fontFamily };
+    });
+  for (const [width, line] of [[390, '.pick .hand'], [1280, '.scene h2']] as const) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto('/');
+    const [name, phrase, section] = [await style('.hero-name'), await style(line), await style('.rows .display')];
+    expect(name.family).toContain('Kalam');
+    expect(phrase.family).toContain('Kalam');
+    expect(name.size).toBeGreaterThan(phrase.size);
+    expect(section.family).not.toContain('Kalam');
+  }
+});
+
+test('laptop: both headings sit on one line so the art lines up', async ({ page }) => {
+  for (const width of [1100, 1280, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const tops = await page.locator('.scene .stage').evaluateAll((all) => all.map((el) => Math.round(el.getBoundingClientRect().top)));
+    expect(tops[0]).toBe(tops[1]);
+  }
 });
 
 test('laptop shows both scenes side by side', async ({ page }) => {
@@ -54,6 +95,7 @@ test('laptop shows both scenes side by side', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('.scene[data-side="tech"]')).toBeVisible();
   await expect(page.locator('.scene[data-side="fit"]')).toBeVisible();
+  await expect(page.locator('.dots')).toBeHidden();
 });
 
 test('theme defaults to dark, toggles to light, and the choice persists', async ({ page }) => {
@@ -105,15 +147,17 @@ test('both hero scenes visibly move on the laptop layout', async ({ page }) => {
   }
 });
 
-test('the phone scene moves, including after switching tabs', async ({ page }) => {
+test('the phone scene art moves, including after switching scenes', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  for (const tab of ['Building Tech', 'Beating Gravity']) {
-    await page.getByRole('tab', { name: new RegExp(tab) }).click();
+  for (const index of [0, 1]) {
+    await page.getByRole('tab').nth(index).click();
+    await expect.poll(() => sceneIndex(page)).toBe(index);
+    await page.waitForTimeout(400);
     const art = page.locator('.scene.on .art');
     const first = await art.screenshot();
     await page.waitForTimeout(1500);
     const second = await art.screenshot();
-    expect(first.equals(second), `${tab} art changed between frames`).toBe(false);
+    expect(first.equals(second), `scene ${index} art changed between frames`).toBe(false);
   }
 });

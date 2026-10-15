@@ -10,6 +10,6 @@ export default defineConfig({
   use: { baseURL: 'http://localhost:4321' },
   projects: [
     { name: 'chromium', use: { browserName: 'chromium' } },
-    { name: 'webkit', use: { browserName: 'webkit' } },
+    { name: 'webkit', use: { browserName: 'webkit' }, testIgnore: /.*\.chromium\.spec\.ts/ },
   ],
 });

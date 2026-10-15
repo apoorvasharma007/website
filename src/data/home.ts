@@ -10,7 +10,7 @@ export const heroScenes = [
   {
     side: 'fit',
     lead: 'I love',
-    phrase: 'Beating Gravity',
+    phrase: 'Working Out',
     caption: 'I train the body that carries the laptop.',
     art: '/art/clean-and-jerk.svg',
   },

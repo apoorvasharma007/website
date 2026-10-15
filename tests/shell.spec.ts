@@ -316,13 +316,6 @@ test('About and Contact leave the phone header but stay reachable from the foote
   await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText(['About', 'Contact']);
 });
 
-test('the hero has no rule under the phone tabs', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 800 });
-  await page.goto('/');
-  const width = await page.locator('.tabs').evaluate((el) => getComputedStyle(el).borderBottomWidth);
-  expect(width).toBe('0px');
-});
-
 test('Home rows, Say Hello, Overview rows and the 404 heading share one display size; only the name is bigger', async ({ page }) => {
   const size = (selector: string) => page.locator(selector).first().evaluate((el) => getComputedStyle(el).fontSize);
   await page.setViewportSize({ width: 1440, height: 900 });

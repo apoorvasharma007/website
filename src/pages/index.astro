@@ -15,19 +15,17 @@ const socials = [
   <div class="wrap">
     <section class="hero">
       <h1 class="hero-name rise" style="--i:0">Hi, I'm Apoorva.</h1>
-      <div class="tabs rise" style="--i:1" role="tablist">
+      <div class="picks rise" style="--i:1" role="tablist" aria-label="Choose a story">
         {
           heroScenes.map((scene, i) => (
             <button
-              class:list={['tab', { on: i === 0 }]}
+              class:list={['pick', { on: i === 0 }]}
               type="button"
               role="tab"
               aria-selected={i === 0}
               data-side={scene.side}
-              data-index={i}
             >
-              <span class="sticker">{scene.lead}</span>
-              {scene.phrase}
+              <span class="hand"><span class="sticker">{scene.lead}</span><span class="phrase">{scene.phrase}</span></span>
             </button>
           ))
         }
@@ -36,9 +34,8 @@ const socials = [
         {
           heroScenes.map((scene, i) => (
             <div class:list={['scene', { on: i === 0 }]} data-side={scene.side} data-index={i}>
-              <h2>
-                <span class="sticker">{scene.lead}</span>
-                {scene.phrase}
+              <h2 class="hand">
+                <span class="sticker">{scene.lead}</span>{scene.phrase}
               </h2>
               <div class="stage" aria-hidden="true">
                 <div class="fx" />
@@ -118,15 +115,11 @@ const socials = [
   }
 
   .hero-name {
+    font-family: 'Kalam', cursive;
     font-size: var(--t-hero);
-    line-height: 0.98;
-    font-weight: 600;
-    letter-spacing: -0.06em;
+    line-height: 1.05;
+    font-weight: 700;
     text-wrap: balance;
-  }
-
-  .tabs {
-    display: none;
   }
 
   .scenes {
@@ -134,8 +127,7 @@ const socials = [
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     column-gap: clamp(1.5rem, 4vw, 4rem);
     width: 100%;
-    max-width: 64rem;
-    margin: clamp(2rem, 5vw, 3.5rem) auto 0;
+    margin: var(--space-section) auto 0;
   }
 
   .scene {
@@ -147,51 +139,22 @@ const socials = [
     min-width: 0;
   }
 
+  .hand {
+    font-family: 'Kalam', cursive;
+    font-size: var(--t-hand);
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
   .scene h2 {
-    font-size: clamp(1.5rem, 1rem + 1.7vw, 2.25rem);
-    font-weight: 600;
-    letter-spacing: -0.04em;
+    margin: 0;
     color: var(--side);
   }
 
   .sticker {
-    display: block;
-    font-family: 'Kalam', cursive;
-    font-size: 1.75em;
-    font-weight: 700;
-    letter-spacing: 0;
-    line-height: 1;
+    margin-right: 0.3em;
     color: var(--fg);
-    transform: rotate(var(--tilt));
-    animation: boil 0.9s steps(1) infinite;
-  }
-
-  .tab:not(.on) .sticker {
-    opacity: 0.55;
-  }
-
-  [data-side='tech'] {
-    --tilt: -4deg;
-  }
-
-  [data-side='fit'] {
-    --tilt: 3deg;
-  }
-
-  [data-side='fit'] .sticker {
-    animation-delay: -0.45s;
-  }
-
-  @keyframes boil {
-    0% {
-      transform: rotate(var(--tilt)) translateY(0);
-    }
-    33% {
-      transform: rotate(calc(var(--tilt) + 1.4deg)) translateY(-1px);
-    }
-    66% {
-      transform: rotate(calc(var(--tilt) - 1deg)) translateY(1px);
-    }
   }
 
   .stage {
@@ -283,61 +246,67 @@ const socials = [
     color: var(--body);
   }
 
-  .tab {
-    position: relative;
-    min-height: 3rem;
-    padding: 0.5rem 0.25rem 1rem;
-    color: var(--dim);
-    font-size: clamp(0.95rem, 0.7rem + 1.2vw, 1.625rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    transition: color 0.25s;
-  }
-
-  .tab::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: var(--side);
-    transform: scaleX(0);
-    transition: transform 0.3s var(--ease);
-  }
-
-  .tab.on {
-    color: var(--side);
-  }
-
-  .tab.on::after {
-    transform: scaleX(1);
+  .picks {
+    display: none;
   }
 
   @media (max-width: 800px) {
     .scenes {
-      grid-template-columns: 1fr;
       margin-top: var(--space-block);
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
     }
 
-    .tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-      width: 100%;
-      max-width: 26rem;
-      margin-top: var(--space-section);
+    .scenes::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scene {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
     }
 
     .fx::before {
       clip-path: polygon(22% 0, 78% 0, 98% 100%, 2% 100%);
     }
 
-    .scene h2 {
-      display: none;
+    .picks {
+      display: grid;
+      justify-items: start;
+      width: max-content;
+      max-width: 100%;
+      margin: var(--space-section) auto 0;
+      gap: 0.25rem;
     }
 
-    .scene:not(.on) {
+    .pick {
+      min-height: 2.75rem;
+      text-align: left;
+    }
+
+    .pick .sticker {
+      opacity: 0.6;
+      transition: opacity var(--dur);
+    }
+
+    .pick .phrase {
+      color: var(--dim);
+      transition: color var(--dur);
+    }
+
+    .pick.on .sticker {
+      opacity: 1;
+    }
+
+    .pick.on .phrase {
+      color: var(--side);
+    }
+
+    .scene h2 {
       display: none;
     }
   }
@@ -434,19 +403,33 @@ const socials = [
 </style>
 
 <script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('.tab');
-  const scenes = document.querySelectorAll<HTMLElement>('.scene');
+  const scenes = document.querySelector<HTMLElement>('.scenes')!;
+  const slides = [...scenes.querySelectorAll<HTMLElement>('.scene')];
+  const picks = [...document.querySelectorAll<HTMLButtonElement>('.pick')];
+  const phone = matchMedia('(max-width: 800px)');
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach((t) => {
-        const on = t === tab;
-        t.classList.toggle('on', on);
-        t.setAttribute('aria-selected', String(on));
-      });
-      scenes.forEach((s) => s.classList.toggle('on', s.dataset.index === tab.dataset.index));
+  function show(index: number) {
+    picks.forEach((pick, i) => {
+      pick.classList.toggle('on', i === index);
+      pick.setAttribute('aria-selected', String(i === index));
     });
-  });
+    slides.forEach((slide, i) => slide.classList.toggle('on', i === index));
+  }
+
+  scenes.addEventListener(
+    'scroll',
+    () => phone.matches && show(Math.round(scenes.scrollLeft / scenes.clientWidth)),
+    { passive: true },
+  );
+
+  picks.forEach((pick, i) =>
+    pick.addEventListener('click', () =>
+      scenes.scrollTo({
+        left: i * scenes.clientWidth,
+        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      }),
+    ),
+  );
 
   const revealer = new IntersectionObserver(
     (entries) => {
