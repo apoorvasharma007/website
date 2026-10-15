@@ -21,15 +21,13 @@ export const sideRows = [
     side: 'tech',
     word: 'Tech',
     href: '/tech/',
-    description:
-      'Knowledge bases on AI, system design and coding, plus projects, demos, tutorials and blog posts.',
+    description: 'Software, AI, projects and tutorials. Hop on for the ride.',
   },
   {
     side: 'fit',
     word: 'Fitness',
     href: '/fitness/',
-    description:
-      'Knowledge bases on training, nutrition and programming, plus programs and my live dashboard.',
+    description: 'Getting freakishly strong, fast, bendy, jumpy and flippy, and moving like the wind.',
   },
   {
     side: 'blog',
