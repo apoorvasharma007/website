@@ -35,7 +35,7 @@ Branches follow the rebuild plan: base `refactor/astro-rebuild`, sub-branch `ref
 
 ### Phase 1. Local server (rebuild plan step 3, points 1 to 5)
 
-- [ ] 1.1 Apoorva says yes to the step 3 detail in `website-rebuild-plan.md`
+- [x] 1.1 Apoorva says yes to the step 3 detail in `website-rebuild-plan.md`
 - [ ] 1.2 Cut `refactor/astro-rebuild-3-scaffold` from `refactor/astro-rebuild`
 - [ ] 1.3 Scaffold Astro (TypeScript strict, `@astrojs/sitemap`), tokens, Header, Footer, Home, 404, robots, favicon
 - [ ] 1.4 Run `npm run dev`, open `http://localhost:4321`, compare against `mockups/astro-rebuild/site-final.html` at 1440 and 390 wide, both themes
@@ -49,7 +49,7 @@ Apoorva does the dashboard clicks; I give them one at a time and check each resu
 - [ ] 2.1 Push `refactor/astro-rebuild-3-scaffold` to GitHub (needs his yes)
 - [ ] 2.2 Cloudflare dashboard: Workers & Pages, create Pages project, connect `apoorvasharma007/website`, build command `npm run build`, output directory `dist`, production branch `main`
 - [ ] 2.3 Confirm the Cloudflare build picks the Node version in `.nvmrc` or `NODE_VERSION`, and that the branch preview URL (`<hash>.<project>.pages.dev`) loads
-- [ ] 2.4 Decide preview privacy: preview URLs are public by default. Either accept (nothing secret before launch) or put Cloudflare Access in front. Needs his call
+- [x] 2.4 Decide preview privacy: preview URLs are public by default. Either accept (nothing secret before launch) or put Cloudflare Access in front. Needs his call
 - [ ] 2.5 Apoorva reviews the preview on his phone and laptop. Squash-merge into the base branch only after his yes
 
 ### Phase 3. Notion to site (rebuild plan step 8)
@@ -60,7 +60,7 @@ Apoorva does the dashboard clicks; I give them one at a time and check each resu
 - [ ] 3.4 Create the deploy hook in Cloudflare (Settings, Builds, Add deploy hook) for branch `main`; save the URL as GitHub secret `CF_DEPLOY_HOOK` and nowhere else
 - [ ] 3.5 Add `.github/workflows/rebuild.yml`: cron every 6 hours plus `workflow_dispatch`, one `curl -X POST "$CF_DEPLOY_HOOK"` step. Show the diff before pushing
 - [ ] 3.6 Test: publish a test card, trigger the workflow by hand, watch the Cloudflare deployment log show Source = deploy hook, and the page appear
-- [ ] 3.7 If Notion is on a paid plan: add the database automation (When Status is set to Published, Send webhook, POST to the hook URL). Test the same way. If free plan, skip and rely on 3.5
+- [x] 3.7 skip: free Notion plan, revisit later. If Notion is on a paid plan: add the database automation (When Status is set to Published, Send webhook, POST to the hook URL). Test the same way. If free plan, skip and rely on 3.5
 - [ ] 3.8 Decide whether Unpublish (Published back to Draft) also fires the hook, so removals go live too
 
 ### Phase 4. Push to the world (rebuild plan step 10)
@@ -68,7 +68,8 @@ Apoorva does the dashboard clicks; I give them one at a time and check each resu
 Every DNS change is shown first and made only on his explicit yes in that session.
 
 - [ ] 4.1 Pre-flight on the preview URL: all old URLs redirect (`_redirects` list shown in full), sitemap, robots, 404, Lighthouse mobile 95 or higher, contrast
-- [ ] 4.2 Read Cloudflare's current docs on custom domains for an apex domain before choosing: moving the domain's nameservers to Cloudflare (my expectation for an apex domain, to verify) versus a CNAME from Hostinger DNS. Show him the exact records and the email/MX records that must survive
+- [x] 4.2 Researched 2026-10-15. Cloudflare's custom-domain docs require an apex domain to be a Cloudflare zone, so the nameservers must move; an external CNAME works only for subdomains. The Free zone plan is $0. Current DNS (read with `dig`): nameservers `ns1/ns2.dns-parking.com` (Hostinger), four GitHub Pages A records on the apex, `www` CNAME to `apoorvasharma007.github.io`, no MX and no TXT records, so no email depends on this DNS. Registration stays at Hostinger; only DNS hosting moves
+- [ ] 4.2b Before the switch: add the zone on Cloudflare Free, let it import records, show him the full record list, confirm no card or upgrade prompt appeared. Rollback is setting the nameservers back to `ns1/ns2.dns-parking.com` at Hostinger
 - [ ] 4.3 Lower the DNS TTL at Hostinger a day ahead
 - [ ] 4.4 Merge base `refactor/astro-rebuild` into `main` (needs his yes). Cloudflare builds production
 - [ ] 4.5 Add `apoorvasharma7.com` and `www` as custom domains on the Pages project; switch DNS per 4.2
@@ -81,6 +82,15 @@ Every DNS change is shown first and made only on his explicit yes in that sessio
 - [ ] 5.1 Rewrite `website/CLAUDE.md` for Astro, Cloudflare and the Notion flow (rebuild plan step 11), including this publishing table
 - [ ] 5.2 Update `~/Projects/PLAN.md` log
 
+## Cost guard (decided 2026-10-15: nothing may cost money)
+
+- Stay on Cloudflare Free for the zone and Pages (500 builds per month; the plan uses about 125 with a 6-hour cron plus pushes).
+- Never click Upgrade, and decline every add-on prompt (Automatic Platform Optimization is $5 per month even on Free, Workers Paid, Argo, Load Balancing).
+- If any step asks for a card, stop and tell Apoorva.
+- Pages Functions count toward Workers quotas (free tier 100k requests per day, then paid). The first build has no functions. The later contact form is the first thing that would; revisit cost then.
+- Pages docs do not say what happens past the free build limit, so check the Cloudflare billing page after the first week.
+- The domain registration renewal stays at Hostinger and is unchanged.
+
 ## Risks
 
 | Risk | Where | Watch |
@@ -89,9 +99,9 @@ Every DNS change is shown first and made only on his explicit yes in that sessio
 | Deploy hook URL leaks | 3.4 | Only in a GitHub secret and the Notion automation; rotate by recreating |
 | This repo has no `dev` branch | Phase 2 and 4 | `main` is production and the old Hugo site until 4.4 |
 | Old deploy workflow triggers on `main` push | 4.4 | Replace or disable it in the same merge, or GitHub Pages and Cloudflare both deploy |
-| Email breaks at DNS move | 4.2 | List MX/TXT records first, carry them over |
+| Email breaks at DNS move | 4.2b | No MX or TXT records exist today; re-run `dig` for MX/TXT right before the switch in case he added mail since |
 | Notion API rate or outage during build | 3.2 | Build fails, old site stays live; Cloudflare keeps the last good deploy |
 
 ## ▶ Resume here
 
-Plan written 2026-10-15, nothing executed. No Astro code exists yet, so Phase 1 is the first action. Branch `refactor/astro-rebuild`, last code commit `6c1c6ab`. Next action: Apoorva answers (a) yes to the step 3 detail (task 1.1), (b) is Notion on a paid plan (decides 3.7), (c) are the preview URLs allowed to be public (2.4). Then cut `refactor/astro-rebuild-3-scaffold`.
+Plan written 2026-10-15, nothing executed. Answers given 2026-10-15: step 3 detail approved (1.1 done), Notion is on the free plan so 3.7 is skipped for now and the 6-hour cron is the trigger, public preview URLs are fine (2.4 done), and nothing may cost money (Cost guard). Next action: cut `refactor/astro-rebuild-3-scaffold` from `refactor/astro-rebuild` and start 1.3. No Astro code exists yet. Last code commit `6c1c6ab`.
