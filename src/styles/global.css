@@ -49,10 +49,12 @@ ul {
 
 [data-side='tech'] {
   --side: var(--tech);
+  --side-2: var(--t2);
 }
 
 [data-side='fit'] {
   --side: var(--fit);
+  --side-2: var(--f2);
 }
 
 .skip {

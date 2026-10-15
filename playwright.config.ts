@@ -5,7 +5,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run build && npm run preview -- --port 4321 --ignore-lock',
     url: 'http://localhost:4321',
-    reuseExistingServer: true,
+    reuseExistingServer: false,
   },
   use: { baseURL: 'http://localhost:4321' },
   projects: [

@@ -56,7 +56,7 @@ Cloudflare Pages so every PR gets a free preview link.
 - [x] 3. (Done 2026-10-15 locally, Cloudflare part moved to `website-deploy-plan.md` Phase 2) Scaffold Astro + Cloudflare Pages; tokens, shell, Home, 404, robots, sitemap; PR preview working (detail below)
 - [x] 4. (Done 2026-10-15 locally, detail below) Page layouts and body components for Knowledge Base chapter and book, Article, Project, Program (callout, table, code with copy, YouTube embed, video and demo slots, Previous and Next, Links, Sources)
 - [ ] 5. Migrate the 54 Markdown pages into content collections (Parent hierarchy, Side, Type, Date, Description), blog posts split Tech 8 and Fitness 7, generate the redirects file and show the full list before checking every old URL
-- [ ] 6. Overview pages, tree and breadcrumb generated from the hierarchy, About and Contact with real text
+- [ ] 6. Overview pages (Tech and Fitness done 2026-10-15), tree and breadcrumb generated from the hierarchy (done in step 4), About and Contact with real text (not done)
 - [ ] 7. `/dashboard/` and `/movement/dashboard/` redirect to the traininglogs dashboard
 - [ ] 8. Notion loader on the one content database (fields in the spec), Draft and Published, scheduled build twice a day
 - [ ] 9. Perf gate in CI (first-load JS at most 120 KB, Lighthouse mobile 95 or higher)
@@ -104,7 +104,7 @@ Decisions made while building, for step 5 and 8:
 - Plain Hugo blockquotes stay blockquotes. Only `> [!note]` becomes a callout. Step 5 decides which blockquotes become callouts.
 - Page title in the browser tab is `<Title> | Apoorva Sharma`.
 - Not built, by design: the video and demo placeholder boxes (a YouTube link on its own line becomes an embed; Demo has no pages yet), the animated flow diagram in the prototype, the pointer-following glow on cards, the entrance animation. Say if any should come back.
-- Tech and Fitness Overview pages are step 6, so the Overview link, the side name in the breadcrumb and the header Tech and Fitness links 404 until then. About and Contact the same.
+- Tech and Fitness Overview pages were pulled forward from step 6 on 2026-10-15 because Home linked to them (`src/pages/[side]/index.astro`, rows from `overviewRows` in `src/lib/pages.ts`). About and Contact still 404 until step 6.
 - The sample migration script lives in the session scratchpad only. Step 5 should turn it into a committed script (Python, `scripts/`) that also writes the redirects file.
 
 ## ▶ Resume here

@@ -1,0 +1,178 @@
+---
+import { site } from '../../data/site';
+import ShellLayout from '../../layouts/ShellLayout.astro';
+import { getPublished, overviewRows, sides } from '../../lib/pages';
+
+export function getStaticPaths() {
+  return [
+    { params: { side: 'tech' }, props: { side: 'tech' } },
+    { params: { side: 'fitness' }, props: { side: 'fit' } },
+  ] as const;
+}
+
+const { side } = Astro.props;
+const { label, dir, intro } = sides[side];
+const pages = await getPublished();
+const rows = overviewRows(pages, side);
+---
+
+<ShellLayout
+  title={`${label} | ${site.name}`}
+  description={intro}
+  side={side}
+  crumbs={[{ label }]}
+  pages={pages}
+  current={`/${dir}/`}
+>
+  <div class="overview">
+    <h1>{label}</h1>
+    <p class="lede">{intro}</p>
+    <div class="rows">
+      {
+        rows.map((row) => {
+          const Row = row.href ? 'a' : 'div';
+          return (
+            <Row
+              class:list={['row', { soon: !row.href }]}
+              href={row.href}
+              target={row.external ? '_blank' : undefined}
+              rel={row.external ? 'noopener' : undefined}
+            >
+              <span class="word">
+                {row.label}
+                {!row.href && <span class="tag">Soon</span>}
+              </span>
+              <span class="blurb">{row.blurb}</span>
+              {row.href && <span class="go" aria-hidden="true">{row.external ? '↗' : '→'}</span>}
+            </Row>
+          );
+        })
+      }
+    </div>
+  </div>
+</ShellLayout>
+
+<style>
+  .overview {
+    max-width: 66rem;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 7vw, 5rem) clamp(1rem, 4vw, 2rem) 6rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(3.5rem, 1rem + 10.5vw, 9.5rem);
+    line-height: 0.9;
+    font-weight: 600;
+    letter-spacing: -0.065em;
+    color: var(--side);
+  }
+
+  .lede {
+    margin-top: 1.5rem;
+    max-width: 36rem;
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--body);
+  }
+
+  .rows {
+    margin-top: clamp(2rem, 5vw, 3.5rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .row {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.25rem 1.5rem;
+    padding: clamp(1.1rem, 2.6vw, 1.75rem) clamp(0.75rem, 2vw, 1.25rem);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .row::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--side) 50%, transparent),
+      color-mix(in srgb, var(--side-2) 18%, transparent) 45%,
+      transparent 70%
+    );
+  }
+
+  .row:hover::before,
+  .row:focus-visible::before,
+  .row.on::before {
+    opacity: 1;
+  }
+
+  .word {
+    grid-column: 1;
+    font-size: clamp(2.25rem, 1rem + 4.8vw, 4.75rem);
+    line-height: 0.95;
+    font-weight: 600;
+    letter-spacing: -0.055em;
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .row:hover .word {
+    transform: translateX(0.75rem);
+  }
+
+  .row.on .word {
+    transform: translateX(0.75rem);
+  }
+
+  .blurb {
+    grid-column: 1;
+    max-width: 34rem;
+    color: var(--body);
+  }
+
+  .go {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    font-size: 1.5rem;
+    color: var(--dim);
+    transition:
+      transform 0.3s,
+      color 0.3s;
+  }
+
+  .row:hover .go {
+    transform: translateX(6px);
+    color: var(--fg);
+  }
+
+  .soon {
+    opacity: 0.55;
+  }
+
+  .soon::before {
+    display: none;
+  }
+
+  .tag {
+    margin-left: 0.75rem;
+    vertical-align: middle;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    padding: 0.3rem 0.5rem;
+    font: 500 0.8125rem/1.3 'Inter', sans-serif;
+    letter-spacing: 0;
+    color: var(--dim);
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  import '../../scripts/middle-row';
+</script>

@@ -13,23 +13,32 @@ export interface TreeItem {
 }
 
 export const sides = {
-  tech: { label: 'Tech', dir: 'tech' },
-  fit: { label: 'Fitness', dir: 'fitness' },
+  tech: {
+    label: 'Tech',
+    dir: 'tech',
+    intro: 'Things I build, things I learn, and the notes I keep so I can build them again.',
+  },
+  fit: {
+    label: 'Fitness',
+    dir: 'fitness',
+    intro:
+      'Calisthenics, rings, strength, conditioning, juggling and reaction drills, and the theory behind them.',
+  },
 } as const;
 
-const groups: Record<Side, { label: string; type?: Page['data']['type']; href?: string }[]> = {
+const groups: Record<Side, { label: string; blurb: string; type?: Page['data']['type']; href?: string }[]> = {
   tech: [
-    { label: 'Knowledge Base', type: 'Knowledge Base' },
-    { label: 'Projects', type: 'Project' },
-    { label: 'Demos', type: 'Demo' },
-    { label: 'Tutorials', type: 'Tutorial' },
-    { label: 'Articles', type: 'Article' },
+    { label: 'Knowledge Base', blurb: 'AI, System Design and Coding.', type: 'Knowledge Base' },
+    { label: 'Projects', blurb: 'traininglogs, this website and what comes next.', type: 'Project' },
+    { label: 'Demos', blurb: 'Small things you can run in the page.', type: 'Demo' },
+    { label: 'Tutorials', blurb: 'Step by step, from nothing to working.', type: 'Tutorial' },
+    { label: 'Articles', blurb: 'Notes on building and operating systems.', type: 'Article' },
   ],
   fit: [
-    { label: 'Knowledge Base', type: 'Knowledge Base' },
-    { label: 'Programs', type: 'Program' },
-    { label: 'Dashboard', href: site.dashboard },
-    { label: 'Articles', type: 'Article' },
+    { label: 'Knowledge Base', blurb: 'Training, Nutrition and Programming.', type: 'Knowledge Base' },
+    { label: 'Programs', blurb: 'Protocols and plans, with sources.', type: 'Program' },
+    { label: 'Dashboard', blurb: 'Live training data, straight from traininglogs.', href: site.dashboard },
+    { label: 'Articles', blurb: 'What I tried, and what held up.', type: 'Article' },
   ],
 };
 
@@ -69,6 +78,13 @@ export function sideTree(pages: Page[], side: Side): TreeItem {
     return { label: group.label, soon: roots.length === 0, children: roots.map((p) => nodeOf(pages, p)) };
   });
   return { label, children: [overview, ...groupNodes] };
+}
+
+export function overviewRows(pages: Page[], side: Side) {
+  return groups[side].map(({ label, blurb, type, href }) => {
+    const first = pages.find((p) => p.data.side === side && p.data.type === type && !p.data.parent);
+    return { label, blurb, href: href ?? (first && pageUrl(first)), external: Boolean(href) };
+  });
 }
 
 export const holds = (node: TreeItem, href: string): boolean =>

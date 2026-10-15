@@ -161,3 +161,29 @@ test('theme toggle works in the shell and the choice persists', async ({ page })
   await page.goto(book);
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 });
+
+test('Tech on Home opens the Tech overview, whose rows lead to real pages', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('.row[data-side="tech"]').click();
+  await expect(page).toHaveURL('/tech/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Tech');
+  await expect(page.locator('.rows .word')).toHaveText([
+    'Knowledge Base',
+    'Projects',
+    'DemosSoon',
+    'TutorialsSoon',
+    'Articles',
+  ]);
+  await page.locator('.rows .row', { hasText: 'Knowledge Base' }).click();
+  await expect(page).toHaveURL('/tech/knowledge-base/system-design/');
+});
+
+test('Fitness overview links the dashboard out and has no dead rows', async ({ page }) => {
+  await page.goto('/fitness/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Fitness');
+  const dashboard = page.locator('.rows .row', { hasText: 'Dashboard' });
+  await expect(dashboard).toHaveAttribute('href', 'https://apoorvasharma007.github.io/traininglogs/');
+  await expect(dashboard).toHaveAttribute('target', '_blank');
+  await expect(page.locator('.rows .row.soon')).toHaveCount(0);
+  await expect(page.getByRole('navigation', { name: 'Breadcrumb' })).toHaveText('Fitness');
+});
