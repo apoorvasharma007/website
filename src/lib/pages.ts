@@ -30,15 +30,15 @@ export const sides = {
 const groups: Record<Side, { label: string; blurb: string; type?: Page['data']['type']; href?: string }[]> = {
   tech: [
     { label: 'Knowledge Base', blurb: 'AI, System Design and Coding.', type: 'Knowledge Base' },
-    { label: 'Projects', blurb: 'traininglogs, this website and what comes next.', type: 'Project' },
+    { label: 'Projects', blurb: 'traininglogs and this website.', type: 'Project' },
     { label: 'Demos', blurb: 'Small things you can run in the page.', type: 'Demo' },
     { label: 'Tutorials', blurb: 'Step by step, from nothing to working.', type: 'Tutorial' },
-    { label: 'Blog', blurb: 'Notes on building and operating systems.', type: 'Blog' },
+    { label: 'Blog', blurb: 'Notes from building systems.', type: 'Blog' },
   ],
   fit: [
     { label: 'Knowledge Base', blurb: 'Training, Nutrition and Programming.', type: 'Knowledge Base' },
     { label: 'Programs', blurb: 'Protocols and plans, with sources.', type: 'Program' },
-    { label: 'Dashboard', blurb: 'Live training data, straight from traininglogs.', href: site.dashboard },
+    { label: 'Dashboard', blurb: 'Live data from traininglogs.', href: site.dashboard },
     { label: 'Blog', blurb: 'What I tried, and what held up.', type: 'Blog' },
   ],
 };

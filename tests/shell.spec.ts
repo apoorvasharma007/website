@@ -257,7 +257,7 @@ test('the focus row on a phone moves down with the scroll, never jumps back, and
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/fitness/');
+  await page.goto('/');
   const rows = page.locator('.rows .row');
   const count = await rows.count();
   const reach = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
@@ -365,4 +365,35 @@ test('phone nav links are spaced evenly between the name and the theme button', 
     return edges.slice(1).map((r, i) => r.left - edges[i].right);
   });
   expect(Math.max(...gaps) - Math.min(...gaps)).toBeLessThan(4);
+});
+
+test('every Overview row has a one-line description, on a phone too', async ({ page }) => {
+  for (const [width, path] of [[390, '/tech/'], [390, '/fitness/'], [1440, '/tech/']] as const) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto(path);
+    const heights = await page.locator('.rows .row').evaluateAll((all) => all.map((r) => r.getBoundingClientRect().height));
+    expect(Math.max(...heights) - Math.min(...heights)).toBeLessThan(2);
+    const clipped = await page.locator('.blurb').evaluateAll((all) => all.filter((b) => b.scrollWidth > b.clientWidth).length);
+    expect(clipped).toBe(0);
+  }
+});
+
+test('Overview has no visible title, only the intro and rows', async ({ page }) => {
+  await page.goto('/tech/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Overview');
+  expect(await page.locator('h1').evaluate((el) => el.getBoundingClientRect().width)).toBeLessThanOrEqual(1);
+});
+
+test('on a phone each Home row shows its word above its description', async ({ page }) => {
+  for (const width of [360, 390, 600]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto('/');
+    for (const row of await page.locator('.rows .row').all()) {
+      const [word, text] = await Promise.all([
+        row.locator('.display').evaluate((el) => el.getBoundingClientRect().bottom),
+        row.locator('.row-text').evaluate((el) => el.getBoundingClientRect().top),
+      ]);
+      expect(text).toBeGreaterThanOrEqual(word - 1);
+    }
+  }
 });

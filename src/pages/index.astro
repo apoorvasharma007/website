@@ -320,6 +320,17 @@ const socials = [
     color: var(--body);
   }
 
+  @media (max-width: 899px) {
+    .row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .row-text {
+      flex: none;
+    }
+  }
+
 
   .reveal.shown {
     animation: rise 0.7s var(--ease) backwards;
