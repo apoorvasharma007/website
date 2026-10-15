@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import { holds, type TreeItem } from '../lib/pages';
+
+interface Props {
+  node: TreeItem;
+  current: string;
+  dot?: 'tech' | 'fit';
+}
+
+const { node, current, dot } = Astro.props;
+const open = holds(node, current);
+const here = node.href === current ? 'page' : undefined;
+---
+
+{
+  node.external ? (
+    <a class="nl" href={node.href} target="_blank" rel="noopener">
+      {node.label}
+      <span class="chev" aria-hidden="true">↗</span>
+    </a>
+  ) : node.children.length === 0 ? (
+    node.soon ? (
+      <span class="nl soon">{node.label}</span>
+    ) : (
+      <a class="nl" href={node.href} aria-current={here}>{node.label}</a>
+    )
+  ) : (
+    <div class:list={['sgrp', { open, top: dot }]}>
+      {node.href ? (
+        <div class="sgrow">
+          <a class="nl" href={node.href} aria-current={here}>{node.label}</a>
+          <button class="tg" type="button" aria-label={`Expand ${node.label}`} aria-expanded={open}>
+            <Icon name="chev" class="chev" />
+          </button>
+        </div>
+      ) : (
+        <button class="nl" type="button" aria-expanded={open}>
+          {dot && <span class={`dot ${dot}`} />}
+          {node.label}
+          <Icon name="chev" class="chev" />
+        </button>
+      )}
+      <div class="grp-b">
+        <div>
+          {node.children.map((child) => <Astro.self node={child} current={current} />)}
+        </div>
+      </div>
+    </div>
+  )
+}

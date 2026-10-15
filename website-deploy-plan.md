@@ -111,9 +111,9 @@ Every DNS change is shown first and made only on his explicit yes in that sessio
 
 ## ▶ Resume here
 
-2026-10-15. Step 3 is squashed into `refactor/astro-rebuild` (commit `69254ce`), not pushed. Nothing is on GitHub except `main`. Apoorva wants to keep building locally and test Cloudflare later (Phase 2 above is paused). His Cloudflare Workers project exists and fails harmlessly on `main` (Hugo and Zola detected).
+2026-10-15. Steps 3 and 4 are squashed into `refactor/astro-rebuild`, not pushed. Nothing is on GitHub except `main`. Apoorva wants to keep building locally and test Cloudflare later (Phase 2 above is paused). His Cloudflare Workers project exists and fails harmlessly on `main` (Hugo and Zola detected).
 
-Next action: Apoorva approves the "Step 4 detail" in `website-rebuild-plan.md`, then cut `refactor/astro-rebuild-4-layouts` from `refactor/astro-rebuild`.
+Next action: Apoorva reviews the step 4 template pages locally (see `website-rebuild-plan.md` Resume), then step 5 (content migration) gets his yes.
 
 Open placeholders: YouTube and Instagram URLs in `src/data/site.ts`, hero captions in `src/data/home.ts`, site description in `src/data/site.ts`, phone side margin 16px versus 24px (his call).
 

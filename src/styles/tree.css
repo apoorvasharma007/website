@@ -1,0 +1,125 @@
+.nl {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  text-align: left;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+@media (pointer: coarse) {
+  .nl {
+    min-height: 2.75rem;
+  }
+}
+
+.nl:hover {
+  background: var(--panel);
+  color: var(--fg);
+}
+
+.nl[aria-current='page'] {
+  background: var(--panel-2);
+  color: var(--fg);
+}
+
+.nl.soon {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.nl.soon:hover {
+  background: none;
+  color: var(--muted);
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 99px;
+  flex: none;
+}
+
+.dot.tech {
+  background: var(--tech);
+}
+
+.dot.fit {
+  background: var(--fit);
+}
+
+.sgrp.top > .nl {
+  color: var(--fg);
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.chev {
+  margin-left: auto;
+  transition: transform 0.25s;
+  color: var(--dim);
+}
+
+.sgrp.open > .nl .chev,
+.sgrp.open > .sgrow .tg .chev {
+  transform: rotate(90deg);
+}
+
+.grp-b {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 0s 0.3s;
+}
+
+.sgrp.open > .grp-b {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.grp-b > div {
+  overflow: hidden;
+  min-height: 0;
+  margin-left: 1.2rem;
+  border-left: 1px solid var(--line);
+  padding-left: 0.5rem;
+}
+
+.sgrp .sgrp .sgrp > .grp-b > div {
+  margin-left: 0.375rem;
+  padding-left: 0.25rem;
+}
+
+.sgrp .sgrp .sgrp .nl {
+  padding-left: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.sgrow {
+  position: relative;
+}
+
+.sgrow > .nl {
+  padding-right: 2.75rem;
+}
+
+.sgrow .tg {
+  position: absolute;
+  right: 0.25rem;
+  top: 0;
+  bottom: 0;
+  width: 2.5rem;
+  display: grid;
+  place-items: center;
+  color: var(--dim);
+}

@@ -54,7 +54,7 @@ Cloudflare Pages so every PR gets a free preview link.
 - [x] 1. Approve this plan: decisions, names, branch naming (2026-10-14)
 - [x] 2. Design mockups for every page, approved and locked (2026-10-15). Spec `website-build-spec.md`, prototype `mockups/astro-rebuild/site-final.html`
 - [x] 3. (Done 2026-10-15 locally, Cloudflare part moved to `website-deploy-plan.md` Phase 2) Scaffold Astro + Cloudflare Pages; tokens, shell, Home, 404, robots, sitemap; PR preview working (detail below)
-- [ ] 4. Page layouts and body components for Knowledge Base chapter and book, Article, Project, Program (callout, table, code with copy, YouTube embed, video and demo slots, Previous and Next, Links, Sources)
+- [x] 4. (Done 2026-10-15 locally, detail below) Page layouts and body components for Knowledge Base chapter and book, Article, Project, Program (callout, table, code with copy, YouTube embed, video and demo slots, Previous and Next, Links, Sources)
 - [ ] 5. Migrate the 54 Markdown pages into content collections (Parent hierarchy, Side, Type, Date, Description), blog posts split Tech 8 and Fitness 7, generate the redirects file and show the full list before checking every old URL
 - [ ] 6. Overview pages, tree and breadcrumb generated from the hierarchy, About and Contact with real text
 - [ ] 7. `/dashboard/` and `/movement/dashboard/` redirect to the traininglogs dashboard
@@ -80,7 +80,7 @@ Sub-branch `refactor/astro-rebuild-3-scaffold` from the base branch. Hugo files 
 
 Not in step 3: knowledge base, article, project and program pages (step 4), content (step 5), Notion (step 8).
 
-## Step 4 detail (proposed, awaiting Apoorva's yes)
+## Step 4 detail (approved 2026-10-15, built)
 
 Sub-branch `refactor/astro-rebuild-4-layouts` from `refactor/astro-rebuild`. Nothing goes live and nothing is pushed.
 
@@ -93,7 +93,25 @@ Sub-branch `refactor/astro-rebuild-4-layouts` from `refactor/astro-rebuild`. Not
 
 Not in step 4: migrating the other 50 pages (step 5), Tech and Fitness overview pages, About and Contact text (step 6), Notion (step 8).
 
+## Step 4 result and notes for step 5
+
+Built on `refactor/astro-rebuild-4-layouts`: one `pages` collection (`src/content.config.ts`), `ShellLayout` with tree, breadcrumb, drawer and outline, a catch-all `src/pages/[...slug].astro` that picks the view by whether the page has children and by Type, body parts (callout, wrapped tables, code with Copy, YouTube link to embed), Previous and Next, Links and Sources cards. 11 hand-migrated sample pages cover every template. 66 Playwright tests pass in Chromium and WebKit, first-load JavaScript is about 0.8 KB gzipped, contrast at least 4.5 to 1 in both themes (code comments moved to the dim text tone to get there).
+
+Decisions made while building, for step 5 and 8:
+- Astro 7 renders Markdown with Sätteri, not unified. Plugins are objects in `src/plugins/markdown.mjs` passed to `satteri()`. Do not add remark or rehype plugins.
+- A page's URL is its file path under `src/content/pages/` (`tech/knowledge-base/system-design/caching` gives `/tech/knowledge-base/system-design/caching/`). `parent` is the parent page's id. A book is `system-design.md` next to a `system-design/` folder, not `index.md`.
+- Description is plain text and is the intro. Migration moves the first paragraph of a Hugo knowledge base page into `description` and removes it from the body, and strips Markdown markers (`**`) from it.
+- Plain Hugo blockquotes stay blockquotes. Only `> [!note]` becomes a callout. Step 5 decides which blockquotes become callouts.
+- Page title in the browser tab is `<Title> | Apoorva Sharma`.
+- Not built, by design: the video and demo placeholder boxes (a YouTube link on its own line becomes an embed; Demo has no pages yet), the animated flow diagram in the prototype, the pointer-following glow on cards, the entrance animation. Say if any should come back.
+- Tech and Fitness Overview pages are step 6, so the Overview link, the side name in the breadcrumb and the header Tech and Fitness links 404 until then. About and Contact the same.
+- The sample migration script lives in the session scratchpad only. Step 5 should turn it into a committed script (Python, `scripts/`) that also writes the redirects file.
+
 ## ▶ Resume here
 
-2026-10-15. Step 3 (Astro scaffold) is done locally and squashed into `refactor/astro-rebuild` (commit `69254ce`, not pushed). Cloudflare is paused by Apoorva until more is built locally; see `website-deploy-plan.md` for the Cloudflare, Notion hook and DNS plan. Next action: Apoorva approves "Step 4 detail" above, then cut `refactor/astro-rebuild-4-layouts`. Open placeholders: YouTube and Instagram URLs, hero captions, site description, phone side margin 16px or 24px.
+2026-10-15. Step 4 (page templates) is done locally on `refactor/astro-rebuild-4-layouts`, gate green, squashed into `refactor/astro-rebuild`. Nothing is pushed. Cloudflare is paused by Apoorva; see `website-deploy-plan.md`.
+
+Next action: Apoorva reviews the six template pages in the local preview (`npm run dev`, then open `/tech/knowledge-base/system-design/caching/`, `/tech/articles/building-traininglogs/`, `/tech/projects/traininglogs/`, `/fitness/programs/morning-sunlight/`, `/fitness/knowledge-base/training/foundations/principles/`) and says whether anything should change. Then step 5 detail goes to him for a yes before any build.
+
+Open placeholders: YouTube and Instagram URLs in `src/data/site.ts`, hero captions in `src/data/home.ts`, site description in `src/data/site.ts`, phone side margin 16px versus 24px (his call), the not-built prototype extras listed above.
 Untracked scratch files in `mockups/astro-rebuild/` (landing v2 to v8, animations-attempt-1, tech-landing.html, art-fit-test.html) and the root `clean-and-jerk.svg` and `whack-a-bug.svg` are intentionally not committed; the committed copies of the SVGs are in `mockups/astro-rebuild/art/` and the site's minified copies in `static/art/`.

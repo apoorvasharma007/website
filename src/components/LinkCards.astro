@@ -1,0 +1,67 @@
+---
+interface Props {
+  heading: string;
+  items: { title: string; url: string; note?: string }[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section>
+      <h2 id={heading.toLowerCase()}>{heading}</h2>
+      <div class="cards">
+        {items.map((item) => (
+          <a class="card" href={item.url} target="_blank" rel="noopener">
+            <strong>{item.title}</strong>
+            {item.note && <span>{item.note}</span>}
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .cards {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 1.125rem 1.125rem;
+    border: 1px solid var(--line);
+    border-radius: 0.875rem;
+    background: var(--panel);
+    transition:
+      border-color 0.2s,
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .card:hover {
+    border-color: var(--line-2);
+    transform: translateY(-2px);
+  }
+
+  strong {
+    font-weight: 550;
+    letter-spacing: -0.01em;
+  }
+
+  span {
+    font-size: 0.9375rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+import { childrenOf, pageUrl, type Page } from '../lib/pages';
+
+interface Props {
+  pages: Page[];
+  parent: Page;
+}
+
+const { pages, parent } = Astro.props;
+---
+
+{
+  childrenOf(pages, parent).map((item) =>
+    childrenOf(pages, item).length > 0 ? (
+      <>
+        <a class="heading" href={pageUrl(item)}>{item.data.title}</a>
+        <Astro.self pages={pages} parent={item} />
+      </>
+    ) : (
+      <a class="row" href={pageUrl(item)}>
+        <strong>{item.data.title}</strong>
+        <span>{item.data.description}</span>
+      </a>
+    ),
+  )
+}
+
+<style>
+  .row,
+  .heading {
+    border-top: 1px solid var(--line);
+    transition: background-color 0.15s;
+  }
+
+  :global(.chapters > :first-child) {
+    border-top: 0;
+  }
+
+  .row {
+    display: grid;
+    gap: 0.125rem;
+    padding: 0.875rem 1.125rem;
+  }
+
+  .row:hover,
+  .heading:hover {
+    background: var(--panel-2);
+  }
+
+  strong {
+    font-weight: 550;
+    letter-spacing: -0.01em;
+  }
+
+  span {
+    color: var(--body);
+    font-size: 0.9375rem;
+  }
+
+  .heading {
+    display: block;
+    padding: 0.75rem 1.125rem;
+    background: var(--panel);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+</style>

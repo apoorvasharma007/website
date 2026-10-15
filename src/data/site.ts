@@ -7,6 +7,7 @@ export const site = {
   youtube: 'https://www.youtube.com',
   instagram: 'https://www.instagram.com',
   github: 'https://github.com/apoorvasharma007',
+  dashboard: 'https://apoorvasharma007.github.io/traininglogs/',
 } as const;
 
 export const nav = [
