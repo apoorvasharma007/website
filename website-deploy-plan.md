@@ -36,11 +36,11 @@ Branches follow the rebuild plan: base `refactor/astro-rebuild`, sub-branch `ref
 ### Phase 1. Local server (rebuild plan step 3, points 1 to 5)
 
 - [x] 1.1 Apoorva says yes to the step 3 detail in `website-rebuild-plan.md`
-- [ ] 1.2 Cut `refactor/astro-rebuild-3-scaffold` from `refactor/astro-rebuild`
-- [ ] 1.3 Scaffold Astro (TypeScript strict, `@astrojs/sitemap`), tokens, Header, Footer, Home, 404, robots, favicon
-- [ ] 1.4 Run `npm run dev`, open `http://localhost:4321`, compare against `mockups/astro-rebuild/site-final.html` at 1440 and 390 wide, both themes
-- [ ] 1.5 Run `npm run build && npm run preview` (serves the real build output, not the dev server) and re-check; this is the server that matches what Cloudflare will serve
-- [ ] 1.6 Gate: `astro check` and build pass, Playwright smoke test, first-load JS at most 120 KB
+- [x] 1.2 Cut `refactor/astro-rebuild-3-scaffold` from `refactor/astro-rebuild`
+- [x] 1.3 Scaffold Astro (TypeScript strict, `@astrojs/sitemap`), tokens, Header, Footer, Home, 404, robots, favicon
+- [x] 1.4 Run `npm run dev`, open `http://localhost:4321`, compare against `mockups/astro-rebuild/site-final.html` at 1440 and 390 wide, both themes
+- [x] 1.5 Run `npm run build && npm run preview` (serves the real build output, not the dev server) and re-check; this is the server that matches what Cloudflare will serve
+- [x] 1.6 Gate: `astro check` and build pass, Playwright smoke test, first-load JS at most 120 KB
 
 ### Phase 2. Cloudflare preview (rebuild plan step 3, point 6)
 
@@ -104,4 +104,12 @@ Every DNS change is shown first and made only on his explicit yes in that sessio
 
 ## ▶ Resume here
 
-Plan written 2026-10-15, nothing executed. Answers given 2026-10-15: step 3 detail approved (1.1 done), Notion is on the free plan so 3.7 is skipped for now and the 6-hour cron is the trigger, public preview URLs are fine (2.4 done), and nothing may cost money (Cost guard). Next action: cut `refactor/astro-rebuild-3-scaffold` from `refactor/astro-rebuild` and start 1.3. No Astro code exists yet. Last code commit `6c1c6ab`.
+Phase 1 done 2026-10-15 on branch `refactor/astro-rebuild-3-scaffold` (not yet squash-merged into `refactor/astro-rebuild`, not pushed). Gate: `astro check` 0 errors, 8 Playwright smoke tests pass, first-load JS 0.8 KB gzip inline, contrast at least 4.9 to 1 on every text and side color, screenshots compared with `site-final.html` at 1440 and 390 in both themes. Known differences from the prototype: the phone side gutter is 16px here and 24px there (the prototype has no doctype, so it got a default 8px body margin), and `ShellLayout` is deferred to rebuild step 4 because nothing uses it yet. Placeholders to fix: YouTube and Instagram URLs in `src/data/site.ts` (generic site roots), hero captions in `src/data/home.ts`, site description in `src/data/site.ts`. Nav links to `/tech/`, `/fitness/`, `/about/`, `/contact/` 404 until rebuild steps 4 to 6.
+
+SVG note: the first svgo pass broke the art animations (28 of 66 and 47 of 74 survived). `svgo.config.mjs` now turns off every plugin that touches classes, ids or structure; smoke tests assert 66 and 74 animations. Rerun with `npx svgo --config svgo.config.mjs <in> -o <out>` for any new art.
+
+Dev note: Astro's dev toolbar froze the art animations in WebKit (Safari, all iPhone browsers) on the dev server only; `devToolbar.enabled: false` in `astro.config.mjs` fixes it. Production builds were never affected. Smoke tests now run in Chromium and WebKit.
+
+Run locally: `npm run dev` (http://localhost:4321) or `npm run build && npm run preview`. Tests: `npm test`.
+
+Next action: Phase 2. Apoorva looks at the local build and says yes; then push the branch (needs his yes) and connect Cloudflare Pages (2.1 to 2.3).

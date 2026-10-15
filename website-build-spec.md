@@ -50,7 +50,7 @@ Design record: `website-rebuild-plan.md` rows 9, 10, 11. Mockup: `mockups/astro-
 - "On Systems Over Goals" goes to Fitness (confirmed 2026-10-15), so the split is Tech 8, Fitness 7.
 
 ## 404
-- One simple Reveal-style page: huge "Page Not Found" in Tech blue, one line saying the page may have moved, two buttons (Home, and Tech or Fitness depending on the old URL). Nav stays. No art. Confirmed 2026-10-15.
+- One simple Reveal-style page: huge "Page Not Found" in Tech blue, one line saying the page may have moved, one Home button (a second Tech or Fitness button was dropped 2026-10-15 because those pages did not exist yet and it led back to the same 404; revisit when they do). Nav stays. No art. Confirmed 2026-10-15.
 
 ## SEO and sharing
 - One shared preview image for the whole site: dark card, "Apoorva Sharma" and the hero line in blue and magenta, made once. Each page takes its own title and description from Notion (a Description field), plus a sitemap and robots.txt. Per-page generated images are a later upgrade. Confirmed 2026-10-15.

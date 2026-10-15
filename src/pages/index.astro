@@ -1,0 +1,495 @@
+---
+import FullLayout from '../layouts/FullLayout.astro';
+import Icon from '../components/Icon.astro';
+import { heroScenes, sideRows } from '../data/home';
+import { site } from '../data/site';
+
+const socials = [
+  { label: 'YouTube', href: site.youtube, icon: 'youtube' },
+  { label: 'Instagram', href: site.instagram, icon: 'instagram' },
+  { label: 'GitHub', href: site.github, icon: 'github' },
+] as const;
+---
+
+<FullLayout title={site.name}>
+  <div class="wrap">
+    <section class="hero">
+      <h1 class="hero-name rise" style="--i:0">Hi, I'm Apoorva.</h1>
+      <div class="tabs rise" style="--i:1" role="tablist">
+        {
+          heroScenes.map((scene, i) => (
+            <button
+              class:list={['tab', { on: i === 0 }]}
+              type="button"
+              role="tab"
+              aria-selected={i === 0}
+              data-side={scene.side}
+              data-index={i}
+            >
+              {scene.phrase}
+            </button>
+          ))
+        }
+      </div>
+      <div class="scenes rise" style="--i:2">
+        {
+          heroScenes.map((scene, i) => (
+            <div class:list={['scene', { on: i === 0 }]} data-side={scene.side} data-index={i}>
+              <h2>{scene.phrase}</h2>
+              <div class="stage" aria-hidden="true">
+                <div class="fx" />
+                <figure class="art">
+                  <img src={scene.art} alt="" loading="lazy" />
+                </figure>
+              </div>
+              <p class="caption">{scene.caption}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="rows" aria-label="Two sides">
+      {
+        sideRows.map((row) => (
+          <a class="row reveal" data-side={row.side} href={row.href}>
+            <span class="row-word">{row.word}</span>
+            <span class="row-text">{row.description}</span>
+          </a>
+        ))
+      }
+    </section>
+
+    <section class="hello reveal">
+      <div>
+        <h2 class="hello-title">Say Hello</h2>
+        <p class="hello-lede">Hiring, collaborating, or training together. Send a note.</p>
+        <div class="cta">
+          <a class="btn primary" href="/contact/">Contact Me</a>
+          <a class="btn resume" href={site.resume}>Résumé</a>
+        </div>
+      </div>
+      <ul class="socials">
+        {
+          socials.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener">
+                <Icon name={s.icon} />
+                <span>{s.label}</span>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</FullLayout>
+
+<style>
+  .wrap {
+    position: relative;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem) 5rem;
+  }
+
+  .rise {
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation-delay: calc(var(--i, 0) * 55ms);
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 2.5rem 0;
+    text-align: center;
+  }
+
+  .hero-name {
+    margin-top: 1.25rem;
+    font-size: clamp(3rem, 1rem + 8vw, 7.5rem);
+    line-height: 0.98;
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    text-wrap: balance;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  .scenes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 4vw, 4rem);
+    width: 100%;
+    max-width: 64rem;
+    margin: clamp(2rem, 5vw, 3.5rem) auto 0;
+  }
+
+  .scene {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    align-content: start;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .scene h2 {
+    font-size: clamp(1.5rem, 1rem + 1.7vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--side);
+  }
+
+  .stage {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .fx {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 36% 48% at 50% 60%,
+      color-mix(in srgb, var(--side) 30%, transparent),
+      transparent
+    );
+  }
+
+  .fx::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(36% 0, 64% 0, 96% 100%, 4% 100%);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--side) 2%, transparent) 0%,
+      color-mix(in srgb, var(--side) 2.9%, transparent) 8%,
+      color-mix(in srgb, var(--side) 5.6%, transparent) 17%,
+      color-mix(in srgb, var(--side) 9.5%, transparent) 25%,
+      color-mix(in srgb, var(--side) 14.4%, transparent) 33%,
+      color-mix(in srgb, var(--side) 20.1%, transparent) 42%,
+      color-mix(in srgb, var(--side) 26%, transparent) 50%,
+      color-mix(in srgb, var(--side) 31.9%, transparent) 58%,
+      color-mix(in srgb, var(--side) 37.6%, transparent) 67%,
+      color-mix(in srgb, var(--side) 42.5%, transparent) 75%,
+      color-mix(in srgb, var(--side) 46.4%, transparent) 83%,
+      color-mix(in srgb, var(--side) 49.1%, transparent) 92%,
+      color-mix(in srgb, var(--side) 50%, transparent) 100%
+    );
+    filter: blur(14px);
+  }
+
+  .fx::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 46% 10% at 50% 89%,
+      color-mix(in srgb, var(--side) 80%, transparent) 0%,
+      color-mix(in srgb, var(--side) 78.4%, transparent) 8%,
+      color-mix(in srgb, var(--side) 74.1%, transparent) 17%,
+      color-mix(in srgb, var(--side) 67.5%, transparent) 25%,
+      color-mix(in srgb, var(--side) 59.3%, transparent) 33%,
+      color-mix(in srgb, var(--side) 49.9%, transparent) 42%,
+      color-mix(in srgb, var(--side) 40%, transparent) 50%,
+      color-mix(in srgb, var(--side) 30.1%, transparent) 58%,
+      color-mix(in srgb, var(--side) 20.7%, transparent) 67%,
+      color-mix(in srgb, var(--side) 12.5%, transparent) 75%,
+      color-mix(in srgb, var(--side) 5.9%, transparent) 83%,
+      color-mix(in srgb, var(--side) 1.6%, transparent) 92%,
+      color-mix(in srgb, var(--side) 0%, transparent) 100%
+    );
+    filter: blur(5px);
+  }
+
+  .art {
+    position: absolute;
+    inset: 8% 6% 10%;
+    margin: 0;
+  }
+
+  .art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .caption {
+    margin: 0;
+    max-width: 22rem;
+    min-height: 3.2em;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--body);
+  }
+
+  .tab {
+    position: relative;
+    min-height: 3rem;
+    padding: 0.5rem 0.25rem 1rem;
+    color: var(--dim);
+    font-size: clamp(0.95rem, 0.7rem + 1.2vw, 1.625rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    transition: color 0.25s;
+  }
+
+  .tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--side);
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .tab.on {
+    color: var(--side);
+  }
+
+  .tab.on::after {
+    transform: scaleX(1);
+  }
+
+  @media (max-width: 800px) {
+    .scenes {
+      grid-template-columns: 1fr;
+      margin-top: 1.25rem;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 26rem;
+      margin-top: 1.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .scene h2 {
+      display: none;
+    }
+
+    .scene:not(.on) {
+      display: none;
+    }
+  }
+
+  .rows {
+    margin-top: clamp(2rem, 5vw, 4rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .row {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    padding: clamp(1.25rem, 3vw, 2.25rem) clamp(0.75rem, 2vw, 1.25rem);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .row::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .row[data-side='tech']::before {
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--tech) 50%, transparent),
+      color-mix(in srgb, var(--t2) 18%, transparent) 45%,
+      transparent 70%
+    );
+  }
+
+  .row[data-side='fit']::before {
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--fit) 50%, transparent),
+      color-mix(in srgb, var(--f2) 18%, transparent) 45%,
+      transparent 70%
+    );
+  }
+
+  .row:hover::before,
+  .row:focus-visible::before,
+  .row.on::before {
+    opacity: 1;
+  }
+
+  .row-word {
+    font-size: clamp(3.5rem, 1rem + 10.5vw, 9.5rem);
+    line-height: 0.9;
+    font-weight: 600;
+    letter-spacing: -0.065em;
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .row:hover .row-word {
+    transform: translateX(1rem);
+  }
+
+  .row.on .row-word {
+    transform: translateX(0.75rem);
+  }
+
+  .row-text {
+    flex: 1 1 16rem;
+    max-width: 21rem;
+    color: var(--body);
+  }
+
+  .reveal.shown {
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  }
+
+  .hello {
+    display: grid;
+    gap: 2.5rem;
+    margin-top: clamp(4rem, 9vw, 7rem);
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    border-top: 1px solid var(--line);
+  }
+
+  @media (min-width: 900px) {
+    .hello {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      align-items: end;
+    }
+  }
+
+  .hello-title {
+    font-size: clamp(2.75rem, 1.2rem + 5.6vw, 5rem);
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -0.055em;
+  }
+
+  .hello-lede {
+    margin-top: 1rem;
+    max-width: 36rem;
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--body);
+  }
+
+  .socials {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .socials a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0 1.125rem;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: var(--panel);
+    color: var(--muted);
+    transition:
+      color 0.15s,
+      border-color 0.15s,
+      transform 0.2s;
+  }
+
+  .socials a:hover {
+    color: var(--fg);
+    border-color: var(--line-2);
+    transform: translateX(4px);
+  }
+
+  .socials span {
+    flex: 1;
+    font-weight: 500;
+  }
+
+  .socials i {
+    font-style: normal;
+    color: var(--dim);
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.tab');
+  const scenes = document.querySelectorAll<HTMLElement>('.scene');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.classList.toggle('on', on);
+        t.setAttribute('aria-selected', String(on));
+      });
+      scenes.forEach((s) => s.classList.toggle('on', s.dataset.index === tab.dataset.index));
+    });
+  });
+
+  const rows = document.querySelectorAll<HTMLElement>('.row');
+  const narrow = matchMedia('(hover:none),(max-width:899px)');
+
+  function markMiddleRow() {
+    rows.forEach((r) => r.classList.remove('on'));
+    if (!narrow.matches) return;
+    const middle = innerHeight / 2;
+    let best: HTMLElement | null = null;
+    let bestDistance = Infinity;
+    rows.forEach((r) => {
+      const box = r.getBoundingClientRect();
+      const distance = Math.abs(box.top + box.height / 2 - middle);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        best = r;
+      }
+    });
+    if (best && bestDistance < innerHeight * 0.35) (best as HTMLElement).classList.add('on');
+  }
+
+  const revealer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('shown');
+        revealer.unobserve(e.target);
+      });
+    },
+    { rootMargin: '0px 0px -10% 0px' },
+  );
+  document.querySelectorAll('.reveal').forEach((el) => revealer.observe(el));
+
+  addEventListener('scroll', markMiddleRow, { passive: true });
+  addEventListener('resize', markMiddleRow);
+  markMiddleRow();
+</script>
