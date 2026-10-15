@@ -241,36 +241,15 @@ test('sidebar never scrolls sideways', async ({ page }) => {
   }
 });
 
-test('Home footer is only the copyright on a laptop, other pages keep Home, About and Contact', async ({ page }) => {
+test('Home footer has About and Contact, other pages add Home', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveCount(0);
-  await expect(page.locator('footer')).toContainText('All Rights Reserved.');
+  await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText(['About', 'Contact']);
   await page.goto('/404.html');
   await expect(page.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveText([
     'Home',
     'About',
     'Contact',
   ]);
-});
-
-test('the focus row on a phone moves down with the scroll, never jumps back, and reaches the last row', async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/');
-  const rows = page.locator('.rows .row');
-  const count = await rows.count();
-  const reach = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
-  const seen: number[] = [];
-  for (let y = 0; y <= reach; y += 40) {
-    await page.evaluate((top) => scrollTo(0, top), y);
-    await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
-    const on = await rows.evaluateAll((all) => all.flatMap((r, i) => (r.classList.contains('on') ? [i] : [])));
-    expect(on.length).toBeLessThanOrEqual(1);
-    if (on.length === 1) seen.push(on[0]);
-  }
-  expect(seen).toEqual([...seen].sort((a, b) => a - b));
-  expect(seen.at(-1)).toBe(count - 1);
 });
 
 test('cards stay small on a phone however long the text is', async ({ page }) => {
@@ -290,8 +269,8 @@ test('a section heading is bigger than the chapter cards under it', async ({ pag
   expect(section).toBeGreaterThan(card * 1.2);
 });
 
-test('the top nav stays on screen while scrolling Home, Blog and a content page', async ({ page }) => {
-  for (const path of ['/', '/blog/', '/tech/knowledge-base/system-design/caching/']) {
+test('the top bar stays on screen while scrolling Blog and a content page', async ({ page }) => {
+  for (const path of ['/blog/', '/tech/knowledge-base/system-design/caching/']) {
     await page.goto(path);
     await page.evaluate(() => scrollTo(0, 1e6));
     await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
@@ -319,10 +298,10 @@ test('the footer rule is as wide as the text above it', async ({ page }) => {
   expect(Math.round(rule)).toBe(Math.round(title));
 });
 
-test('phone header is one row with the full name, Tech, Fitness, Blog and the theme button', async ({ page }) => {
+test('phone header on Blog is one row with the full name, Tech, Fitness, Blog and the theme button', async ({ page }) => {
   for (const width of [360, 390]) {
     await page.setViewportSize({ width, height: 800 });
-    await page.goto('/');
+    await page.goto('/blog/');
     await expect(page.getByRole('link', { name: 'Apoorva Sharma' })).toBeVisible();
     await expect(page.getByRole('navigation', { name: 'Main' }).getByRole('link')).toHaveText(['Tech', 'Fitness', 'Blog']);
     await expect(page.getByRole('button', { name: 'Switch theme' })).toBeVisible();
@@ -359,7 +338,7 @@ test('Home rows, Say Hello, Overview rows and the 404 heading share one display 
 
 test('phone nav links are spaced evenly between the name and the theme button', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 700 });
-  await page.goto('/');
+  await page.goto('/blog/');
   const gaps = await page.evaluate(() => {
     const edges = [document.querySelector('.brand'), ...document.querySelectorAll('header .link:not(.secondary)'), document.querySelector('.theme-toggle')].map((e) => e!.getBoundingClientRect());
     return edges.slice(1).map((r, i) => r.left - edges[i].right);
@@ -398,50 +377,6 @@ test('on a phone each Home row shows its word above its description', async ({ p
   }
 });
 
-test('each Home row stays lit for a stretch of scrolling instead of flashing past', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/');
-  const reach = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
-  const lit: number[] = [];
-  for (let y = 0; y <= reach; y += 20) {
-    await page.evaluate((top) => scrollTo(0, top), y);
-    await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
-    lit.push(await page.locator('.rows .row').evaluateAll((all) => all.findIndex((r) => r.classList.contains('on'))));
-  }
-  for (const row of [0, 1]) expect(lit.filter((i) => i === row).length * 20).toBeGreaterThanOrEqual(200);
-  expect(lit.filter((_, i) => i > 0 && lit[i] !== lit[i - 1]).length).toBeLessThanOrEqual(1);
-});
-
-test('a short page on a phone still lights one row, and holds it while the page nudges', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  for (const path of ['/tech/', '/fitness/']) {
-    await page.goto(path);
-    await expect(page.locator('.rows .row.on')).toHaveCount(1);
-    const reach = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
-    const lit: number[] = [];
-    for (let y = 0; y <= reach; y += 10) {
-      await page.evaluate((top) => scrollTo(0, top), y);
-      await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
-      lit.push(await page.locator('.rows .row').evaluateAll((all) => all.findIndex((r) => r.classList.contains('on'))));
-    }
-    expect(lit.filter((_, i) => i > 0 && lit[i] !== lit[i - 1]).length).toBeLessThanOrEqual(1);
-  }
-});
-
-test('the row glow also applies while a row is pressed, which is the touch feedback', async ({ page }) => {
-  await page.goto('/tech/');
-  const pressed = await page.evaluate(() =>
-    [...document.styleSheets].some((sheet) => {
-      try {
-        return [...sheet.cssRules].some((rule) => rule instanceof CSSStyleRule && rule.selectorText.includes('.row:active::before'));
-      } catch {
-        return false;
-      }
-    }),
-  );
-  expect(pressed).toBe(true);
-});
-
 test('page content starts close under the top bar on every page type', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   for (const [path, selector] of [['/tech/knowledge-base/system-design/caching/', 'h1'], ['/tech/blog/', 'h1'], ['/tech/', '.lede']] as const) {
@@ -449,4 +384,62 @@ test('page content starts close under the top bar on every page type', async ({ 
     const gap = await page.locator(selector).first().evaluate((el) => el.getBoundingClientRect().top - 64);
     expect(gap).toBeLessThanOrEqual(40);
   }
+});
+
+test.describe('phone row focus (touch screen)', () => {
+  test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
+
+  const litRows = (page: import('@playwright/test').Page) =>
+    page.locator('.rows .row').evaluateAll((all) => all.flatMap((r, i) => (r.classList.contains('on') ? [i] : [])));
+  const settle = (page: import('@playwright/test').Page) =>
+    page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+
+  test('Home lights one row at a time, in order, and the last row at the end', async ({ page }) => {
+    await page.goto('/');
+    const reach = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
+    const seen: number[] = [];
+    for (let y = 0; y <= reach; y += 20) {
+      await page.evaluate((top) => scrollTo(0, top), y);
+      await settle(page);
+      const lit = await litRows(page);
+      expect(lit.length).toBeLessThanOrEqual(1);
+      if (lit.length === 1) seen.push(lit[0]);
+    }
+    expect(seen).toEqual([...seen].sort((a, b) => a - b));
+    expect(seen.at(-1)).toBe(2);
+    expect(new Set(seen).size).toBe(3);
+  });
+
+  test('Overview lights the first row at rest, one at a time, the last at the end', async ({ page }) => {
+    for (const path of ['/tech/', '/fitness/']) {
+      await page.goto(path);
+      await settle(page);
+      expect(await litRows(page)).toEqual([0]);
+      const reach = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
+      const count = await page.locator('.rows .row').count();
+      const seen: number[] = [];
+      for (let y = 0; y <= reach; y += 10) {
+        await page.evaluate((top) => scrollTo(0, top), y);
+        await settle(page);
+        const lit = await litRows(page);
+        expect(lit.length).toBe(1);
+        seen.push(lit[0]);
+      }
+      expect(seen).toEqual([...seen].sort((a, b) => a - b));
+      if (reach > 8) expect(seen.at(-1)).toBe(count - 1);
+    }
+  });
+
+  test('hovering a row does not light a second one on a touch screen', async ({ page }) => {
+    await page.goto('/tech/');
+    await settle(page);
+    const second = page.locator('.rows .row').nth(1);
+    expect(await second.evaluate((el) => getComputedStyle(el, '::before').opacity)).toBe('0');
+  });
+});
+
+test('on a laptop a row lights on hover only, with no scroll-driven row', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/tech/');
+  await expect(page.locator('.rows .row.on')).toHaveCount(0);
 });

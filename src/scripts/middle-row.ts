@@ -1,5 +1,5 @@
 const rows = [...document.querySelectorAll<HTMLElement>('.row')];
-const narrow = matchMedia('(hover:none),(max-width:899px)');
+const touch = matchMedia('(hover:none)');
 let marked: HTMLElement | undefined;
 let queued = false;
 
@@ -8,15 +8,16 @@ const visible = (row: HTMLElement) => {
   return box.bottom > 0 && box.top < innerHeight;
 };
 
-// The row nearest the middle of the screen is lit, on short pages too. At the very end of the page the last row is lit,
-// since it may never reach the middle; iOS overscroll counts as the end, so it cannot bounce back.
+// Touch screens have no hover, so one row is lit instead: the first at the top of the page, the last at
+// the bottom (overscroll counts as the ends, so rubber-banding cannot flip it), otherwise the row nearest
+// the middle of the screen. Mouse users get the hover glow only.
 function markFocusRow() {
   queued = false;
   let best: HTMLElement | undefined;
-  const reach = document.documentElement.scrollHeight - innerHeight;
-  if (narrow.matches) {
-    const last = rows.at(-1);
-    if (last && reach > 8 && scrollY >= reach - 2 && visible(last)) best = last;
+  if (touch.matches) {
+    const reach = document.documentElement.scrollHeight - innerHeight;
+    const end = scrollY <= 2 ? rows[0] : reach > 8 && scrollY >= reach - 2 ? rows.at(-1) : undefined;
+    if (end && visible(end)) best = end;
     else {
       let bestDistance = innerHeight * 0.4;
       for (const row of rows) {
@@ -44,6 +45,3 @@ function queue() {
 addEventListener('scroll', queue, { passive: true });
 addEventListener('resize', queue);
 markFocusRow();
-
-// iOS Safari only styles :active when some touch listener exists on the page.
-document.addEventListener('touchstart', () => {}, { passive: true });

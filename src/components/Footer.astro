@@ -14,8 +14,8 @@ const year = new Date().getFullYear();
     <span>© {year} {site.name}. All Rights Reserved.</span>
     <nav class="footer-links" aria-label="Footer">
       {!onHome && <a href="/">Home</a>}
-      <a class:list={{ 'phone-only': onHome }} href="/about/">About</a>
-      <a class:list={{ 'phone-only': onHome }} href="/contact/">Contact</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
     </nav>
   </div>
 </footer>
@@ -53,12 +53,6 @@ const year = new Date().getFullYear();
 
   .footer-links a:hover {
     color: var(--fg);
-  }
-
-  @media (min-width: 641px) {
-    .footer-links a.phone-only {
-      display: none;
-    }
   }
 
   @media (max-width: 640px) {

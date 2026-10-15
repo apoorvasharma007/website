@@ -57,6 +57,11 @@ ul {
   --side-2: var(--f2);
 }
 
+[data-side='blog'] {
+  --side: var(--tech);
+  --side-2: var(--fit);
+}
+
 .display {
   font-size: var(--t-section);
   line-height: 0.95;
@@ -91,11 +96,15 @@ ul {
   );
 }
 
-.row:hover::before,
-.row:active::before,
 .row:focus-visible::before,
 .row.on::before {
   opacity: 1;
+}
+
+@media (hover: hover) {
+  .row:hover::before {
+    opacity: 1;
+  }
 }
 
 .skip {

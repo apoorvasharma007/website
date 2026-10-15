@@ -29,4 +29,10 @@ export const sideRows = [
     description:
       'Knowledge bases on training, nutrition and programming, plus programs and my live dashboard.',
   },
+  {
+    side: 'blog',
+    word: 'Blog',
+    href: '/blog/',
+    description: 'Posts from both sides.',
+  },
 ] as const;

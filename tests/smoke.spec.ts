@@ -23,17 +23,14 @@ for (const path of pages) {
   });
 }
 
-test('home lists both sides and the four nav links', async ({ page }) => {
+test('home has no top nav, three rows, and the name only once', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText("Hi, I'm Apoorva.");
-  await expect(page.getByRole('navigation', { name: 'Main' }).getByRole('link')).toHaveText([
-    'Tech',
-    'Fitness',
-    'Blog',
-    'About',
-    'Contact',
-  ]);
-  await expect(page.locator('.row')).toHaveCount(2);
+  await expect(page.locator('header')).toHaveCount(0);
+  await expect(page.getByRole('navigation', { name: 'Main' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Apoorva Sharma' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Switch theme' })).toBeVisible();
+  await expect(page.locator('.row .display')).toHaveText(['Tech', 'Fitness', 'Blog']);
 });
 
 test('phone shows one scene at a time and tabs switch it', async ({ page }) => {
