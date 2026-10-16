@@ -3,6 +3,7 @@ export const site = {
   url: 'https://apoorvasharma7.com',
   description:
     'Apoorva Sharma builds cloud software and trains movement. Knowledge bases, projects, programs and blog posts on both.',
+  email: 'apoorva.c.sharma@gmail.com',
   resume: '/resume.pdf',
   youtube: 'https://www.youtube.com',
   instagram: 'https://www.instagram.com',

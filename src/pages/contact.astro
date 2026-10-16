@@ -1,0 +1,52 @@
+---
+import { site } from '../data/site';
+import TextPage from '../components/TextPage.astro';
+---
+
+<TextPage
+  title="Contact"
+  intro="Best way to reach me is email."
+  description="How to reach Apoorva Sharma."
+>
+  <div class="mail">
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+    <button class="btn" type="button" data-copy={site.email}>Copy</button>
+  </div>
+  <div class="cta">
+    <a class="btn" href={site.github}>GitHub</a>
+    <a class="btn" href={site.youtube}>YouTube</a>
+    <a class="btn" href={site.instagram}>Instagram</a>
+  </div>
+  <p class="note">A contact form is coming. Email works until then.</p>
+</TextPage>
+
+<script>
+  document.querySelector<HTMLButtonElement>('[data-copy]')?.addEventListener('click', async (event) => {
+    const button = event.currentTarget as HTMLButtonElement;
+    await navigator.clipboard.writeText(button.dataset.copy!);
+    button.textContent = 'Copied';
+    setTimeout(() => (button.textContent = 'Copy'), 1500);
+  });
+</script>
+
+<style>
+  .mail {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+  }
+
+  .mail a {
+    font-size: var(--fs-item);
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+
+  .note {
+    margin-top: 2rem;
+    font-size: var(--fs-small);
+    color: var(--dim);
+  }
+</style>

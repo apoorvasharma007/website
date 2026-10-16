@@ -1,0 +1,53 @@
+---
+import { site } from '../data/site';
+import DocHead from './DocHead.astro';
+import FullLayout from '../layouts/FullLayout.astro';
+
+interface Props {
+  title: string;
+  intro: string;
+  description: string;
+}
+
+const { title, intro, description } = Astro.props;
+---
+
+<FullLayout title={`${title} | ${site.name}`} description={description}>
+  <div class="wrap">
+    <DocHead title={title} intro={intro} />
+    <div class="narrow">
+      <slot />
+    </div>
+  </div>
+</FullLayout>
+
+<style>
+  .wrap {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: var(--top) var(--gutter) 6rem;
+  }
+
+  .narrow {
+    max-width: 46rem;
+  }
+
+  .narrow :global(h2) {
+    margin: var(--space-section) 0 1rem;
+    font-size: var(--t-section);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  .narrow :global(p:not(.note)),
+  .narrow :global(li) {
+    font-size: var(--fs-desc);
+    line-height: var(--lh-desc);
+    color: var(--body);
+  }
+
+  .narrow :global(ul) {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+</style>

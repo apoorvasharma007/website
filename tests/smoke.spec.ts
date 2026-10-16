@@ -253,3 +253,21 @@ test.describe('phone carousel autoplay', () => {
   });
 
 });
+
+test('about shows its four sections and the résumé button', async ({ page }) => {
+  await page.goto('/about/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('About');
+  await expect(page.getByRole('heading', { level: 2 })).toHaveText(['Who I am', 'What I do', 'What I train', 'Where to find me']);
+  await expect(page.getByRole('link', { name: 'Résumé' })).toHaveAttribute('href', '/resume.pdf');
+});
+
+test('contact shows the email with a working copy button and no overflow on a phone', async ({ page, context, browserName }) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto('/contact/');
+  await expect(page.getByRole('link', { name: 'apoorva.c.sharma@gmail.com' })).toHaveAttribute('href', 'mailto:apoorva.c.sharma@gmail.com');
+  if (browserName === 'chromium') await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.getByRole('button', { name: 'Copy' }).click();
+  await expect(page.getByRole('button', { name: 'Copied' })).toBeVisible();
+  if (browserName === 'chromium') expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('apoorva.c.sharma@gmail.com');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+});
