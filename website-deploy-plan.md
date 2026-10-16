@@ -111,10 +111,10 @@ Every DNS change is shown first and made only on his explicit yes in that sessio
 
 ## ▶ Resume here
 
-2026-10-15. Steps 3 and 4 are squashed into `refactor/astro-rebuild`, not pushed. Nothing is on GitHub except `main`. Apoorva wants to keep building locally and test Cloudflare later (Phase 2 above is paused). His Cloudflare Workers project exists and fails harmlessly on `main` (Hugo and Zola detected).
+2026-10-16. Steps 3, 4 and 6 are squashed into `refactor/astro-rebuild`, now pushed as a branch for a cloud agent. `main` is untouched and still serves the Hugo site. Apoorva wants to keep building locally and test Cloudflare later (Phase 2 above is paused). His Cloudflare Workers project exists and fails harmlessly on `main` (Hugo and Zola detected); a push of another branch may trigger a failing build there, which is harmless.
 
-Next action: Apoorva reviews the step 4 template pages locally (see `website-rebuild-plan.md` Resume), then step 5 (content migration) gets his yes.
+Next action: step 5, content migration, after his yes (see `website-rebuild-plan.md` Resume).
 
-Open placeholders: YouTube and Instagram URLs in `src/data/site.ts`, hero captions in `src/data/home.ts`, site description in `src/data/site.ts`, phone side margin 16px versus 24px (his call).
+Open placeholders: YouTube and Instagram URLs in `src/data/site.ts`, site description in `src/data/site.ts`, phone side margin 16px versus 24px (his call).
 
 Run locally: `npm run dev` (http://localhost:4321) or `npm run build && npm run preview`. Tests: `npm test`. Dev toolbar is off because it froze the art animations in WebKit.
