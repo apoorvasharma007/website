@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Sticker ideas">
+  <main class="lab">
+    <p class="note">Three ways to put "I like" and "I love" over the two phrases. Same hero text, phone width.</p>
+
+    <h2>A. Tilted text stickers</h2>
+    <section class="hero">
+      <h1>Hi, I'm Apoorva.</h1>
+      <div class="pair a">
+        <div class="item tech"><span class="tag">I like</span><b>Engineering Systems</b></div>
+        <div class="item fit"><span class="tag">I love</span><b>Training Movement</b></div>
+      </div>
+    </section>
+
+    <h2>B. Emoji stickers</h2>
+    <section class="hero">
+      <h1>Hi, I'm Apoorva.</h1>
+      <div class="pair b">
+        <div class="item tech"><span class="emo">👍</span><span class="tag">I like</span><b>Engineering Systems</b></div>
+        <div class="item fit"><span class="emo">❤️</span><span class="tag">I love</span><b>Training Movement</b></div>
+      </div>
+    </section>
+
+    <h2>C. Round badges on the corner</h2>
+    <section class="hero">
+      <h1>Hi, I'm Apoorva.</h1>
+      <div class="pair c">
+        <div class="item tech"><b>Engineering Systems</b><span class="badge"><i>I</i>like</span></div>
+        <div class="item fit"><b>Training Movement</b><span class="badge"><i>I</i>love</span></div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .lab { max-width: 26rem; margin: 0 auto; padding: 1.5rem var(--gutter) 6rem; }
+  .note { color: var(--muted); font-size: 0.9375rem; }
+  h2 { margin-top: 3rem; font-size: 0.9375rem; font-weight: 500; color: var(--muted); }
+  .hero { margin-top: 1rem; padding: 1.5rem 0 1rem; text-align: center; border: 1px dashed var(--line-2); border-radius: var(--r-lg); }
+  h1 { font-size: var(--t-hero); letter-spacing: -0.06em; line-height: 0.98; font-weight: 600; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: var(--space-section); padding-inline: 0.5rem; }
+  .item { position: relative; display: grid; justify-items: center; gap: 0.5rem; }
+  .tech { --side: var(--tech); }
+  .fit { --side: var(--fit); }
+  b { color: var(--side); font-size: 1rem; font-weight: 600; letter-spacing: -0.03em; }
+
+  .tag { display: inline-block; padding: 0.2rem 0.65rem; border-radius: var(--r-pill); background: color-mix(in srgb, var(--side) 22%, transparent); border: 1px solid color-mix(in srgb, var(--side) 55%, transparent); color: var(--fg); font-size: 0.8125rem; font-weight: 600; }
+  .a .tech .tag { transform: rotate(-5deg); }
+  .a .fit .tag { transform: rotate(4deg); }
+
+  .b .emo { font-size: 2.25rem; line-height: 1; }
+  .b .tech .emo { transform: rotate(-8deg); }
+  .b .fit .emo { transform: rotate(8deg); }
+  .b .tag { margin-top: -0.25rem; }
+
+  .c .item { padding-top: 0.5rem; }
+  .badge { position: absolute; top: -2.6rem; right: 0.5rem; display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: var(--side); color: #fff; font-size: 0.6875rem; font-weight: 700; line-height: 1; transform: rotate(10deg); box-shadow: 0 0 0 3px var(--bg); }
+  .badge i { font-style: normal; font-size: 1rem; }
+</style>

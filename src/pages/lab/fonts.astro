@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const fonts = [
+  ['Caveat', 'Caveat, cursive', 'Neat handwriting. Easiest to read.'],
+  ['Gochi Hand', "'Gochi Hand', cursive", 'Chunky and cheerful, like a school notebook.'],
+  ['Kalam', 'Kalam, cursive', 'Relaxed pen writing, a bit more grown up.'],
+  ['Reenie Beanie', "'Reenie Beanie', cursive", 'Quick scribble, tall and thin.'],
+  ['Rock Salt', "'Rock Salt', cursive", 'Loud marker. Biggest personality, hardest to read small.'],
+];
+---
+<BaseLayout title="Sticker fonts">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Gochi+Hand&family=Kalam:wght@700&family=Reenie+Beanie&family=Rock+Salt&display=swap" />
+  <main class="lab">
+    <p class="note">Each sticker wobbles slightly, like a line that was drawn by hand. Phone width, real hero text.</p>
+    {fonts.map(([name, family, about]) => (
+      <section class="card" style={`--f:${family}`}>
+        <h2>{name}<span>{about}</span></h2>
+        <div class="pair">
+          <div class="item tech"><span class="sticker one">I like</span><b>teaching computers new tricks</b></div>
+          <div class="item fit"><span class="sticker two">I love</span><b>teaching my body new tricks</b></div>
+        </div>
+      </section>
+    ))}
+  </main>
+</BaseLayout>
+
+<style>
+  .lab { max-width: 26rem; margin: 0 auto; padding: 1.5rem var(--gutter) 6rem; display: grid; gap: 1.25rem; }
+  .note { color: var(--muted); font-size: 0.9375rem; }
+  .card { border: 1px solid var(--line-2); border-radius: var(--r-lg); padding: 1rem 0.75rem 1.25rem; }
+  h2 { font-size: 0.9375rem; font-weight: 550; padding-inline: 0.5rem; }
+  h2 span { display: block; margin-top: 0.125rem; font-size: 0.8125rem; font-weight: 400; color: var(--muted); }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.5rem; text-align: center; }
+  .item { display: grid; justify-items: center; align-content: start; gap: 0.5rem; }
+  .tech { --side: var(--tech); }
+  .fit { --side: var(--fit); }
+  b { color: var(--side); font-size: 1rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.25; }
+  .sticker { display: inline-block; font-family: var(--f); font-size: 2.25rem; line-height: 1; color: var(--fg); animation: boil 0.9s steps(1) infinite; }
+  .one { transform: rotate(-4deg); }
+  .two { transform: rotate(3deg); animation-delay: -0.45s; }
+  @keyframes boil {
+    0% { transform: rotate(-4deg) translateY(0); }
+    33% { transform: rotate(-2.6deg) translateY(-1px); }
+    66% { transform: rotate(-5deg) translateY(1px); }
+  }
+  .two { animation-name: boil2; }
+  @keyframes boil2 {
+    0% { transform: rotate(3deg) translateY(0); }
+    33% { transform: rotate(4.4deg) translateY(1px); }
+    66% { transform: rotate(2deg) translateY(-1px); }
+  }
+</style>
