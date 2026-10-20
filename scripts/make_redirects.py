@@ -59,7 +59,8 @@ def main() -> None:
     for old, new in rules.items():
         if new.startswith("/") and not exists(new):
             raise SystemExit(f"{old} points at {new}, which the build does not have.")
-    lines = [f"{old} {new} 301" for old, new in rules.items()]
+    # Cloudflare matches the exact path, so list each old URL with and without its trailing slash.
+    lines = [f"{path} {new} 301" for old, new in rules.items() for path in (old, old.rstrip("/"))]
     (ROOT / "static/_redirects").write_text("\n".join(lines) + "\n")
     print(f"{len(lines)} redirects, {len(old_urls) - len(rules) + len(EXTRA)} old URLs kept as they are")
 
