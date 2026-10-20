@@ -1,0 +1,70 @@
+---
+import { render } from 'astro:content';
+import { site } from '../data/site';
+import ShellLayout from '../layouts/ShellLayout.astro';
+import Doc from '../components/Doc.astro';
+import DocHead from '../components/DocHead.astro';
+import ChapterList from '../components/ChapterList.astro';
+import LinkCards from '../components/LinkCards.astro';
+import Outline from '../components/Outline.astro';
+import Pager from '../components/Pager.astro';
+import { childrenOf, crumbsOf, formatDate, getPublished, pageUrl, siblingsOf } from '../lib/pages';
+
+export async function getStaticPaths() {
+  const pages = await getPublished();
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { data } = page;
+const pages = await getPublished();
+const { Content, headings } = await render(page);
+
+const isBook = childrenOf(pages, page).length > 0;
+const bottom =
+  data.type === 'Program'
+    ? { heading: 'Sources', items: data.sources }
+    : {
+        heading: 'Links',
+        items: [
+          { title: 'Source', url: data.sourceUrl },
+          { title: 'Docs', url: data.docsUrl },
+          { title: 'Live', url: data.liveUrl },
+        ].flatMap(({ title, url }) => (url ? [{ title, url, note: new URL(url).hostname }] : [])),
+      };
+
+const outline = [
+  ...headings.filter((heading) => heading.depth === 2),
+  ...(bottom.items.length > 0 ? [{ slug: bottom.heading.toLowerCase(), text: bottom.heading }] : []),
+].map(({ slug, text }) => ({ slug, text }));
+
+const paged = !isBook && ['Knowledge Base', 'Blog', 'Tutorial'].includes(data.type);
+const siblings = siblingsOf(pages, page);
+const at = siblings.findIndex((sibling) => sibling.id === page.id);
+---
+
+<ShellLayout
+  title={`${data.title} | ${site.name}`}
+  description={data.description}
+  side={data.side}
+  crumbs={crumbsOf(pages, page)}
+  pages={pages}
+  current={pageUrl(page)}
+>
+  <Doc>
+    <DocHead title={data.title} intro={data.description} date={formatDate(data.date)} />
+    {
+      isBook ? (
+        <ChapterList pages={pages} parent={page} />
+      ) : (
+        <>
+          <Outline headings={outline} inline />
+          <Content />
+          <LinkCards heading={bottom.heading} items={bottom.items} />
+          {paged && <Pager prev={siblings[at - 1]} next={siblings[at + 1]} />}
+        </>
+      )
+    }
+    {!isBook && <Outline slot="outline" headings={outline} />}
+  </Doc>
+</ShellLayout>

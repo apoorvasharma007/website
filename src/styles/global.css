@@ -1,0 +1,273 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 1rem/1.6 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+[data-side='tech'] {
+  --side: var(--tech);
+  --side-2: var(--t2);
+}
+
+[data-side='fit'] {
+  --side: var(--fit);
+  --side-2: var(--f2);
+}
+
+[data-side='blog'] {
+  --side: var(--tech);
+  --side-2: var(--fit);
+}
+
+.display {
+  font-size: var(--t-section);
+  line-height: 0.95;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+}
+
+.row-desc {
+  font-size: var(--fs-desc);
+  line-height: var(--lh-desc);
+  color: var(--body);
+}
+
+.row {
+  position: relative;
+  isolation: isolate;
+}
+
+.row::before {
+  content: '';
+  position: absolute;
+  inset: 0 calc(-1 * var(--bleed));
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-slow);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--side) 50%, transparent),
+    color-mix(in srgb, var(--side-2) 22%, transparent) 62%,
+    transparent 100%
+  );
+}
+
+.row:focus-visible::before {
+  opacity: 1;
+}
+
+/* A press lights the row at once, so nothing visibly fills in. */
+.row:active::before {
+  opacity: 1;
+  transition: none;
+}
+
+@media (hover: hover) {
+  .row:hover::before {
+    opacity: 1;
+  }
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.625rem 1rem;
+  border-radius: var(--r-sm);
+  background: var(--fg);
+  color: var(--bg);
+  font-weight: 500;
+}
+
+.skip:focus {
+  top: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 2.75rem;
+  padding: 0 1.125rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  background: var(--panel);
+  font-weight: 500;
+  font-size: var(--fs-ui);
+  transition:
+    background-color var(--dur-fast),
+    border-color var(--dur-fast),
+    transform var(--dur);
+}
+
+.btn:hover {
+  background: var(--panel-2);
+  border-color: var(--muted);
+  transform: translateY(-1px);
+}
+
+.btn.primary {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.btn.primary:hover {
+  background: var(--fg);
+  opacity: 0.9;
+}
+
+.btn.resume {
+  background: #ffe600;
+  border-color: #ffe600;
+  color: #111;
+}
+
+.btn.resume:hover {
+  background: #ffe600;
+  border-color: #ffe600;
+  opacity: 0.9;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: 2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* One motion system for every page. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--dur-page);
+  animation-timing-function: var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+/* The page chrome stays put while the content cross-fades. */
+.bar,
+.top {
+  view-transition-name: topbar;
+}
+
+.side {
+  view-transition-name: sidebar;
+}
+
+.footer {
+  view-transition-name: footer;
+}
+
+.float {
+  view-transition-name: theme;
+}
+
+
+/* One hover for every link: a soft grey plate behind it, never an underline and never greyed text. */
+:where(.prose p a, .prose li a, .crumb a, .footer-links a, .side-foot a, .pager a, h2 a, .brand, .side-head) {
+  border-radius: var(--r-sm);
+  transition:
+    background-color var(--dur),
+    box-shadow var(--dur);
+}
+
+:where(.prose p a, .prose li a, .crumb a, .footer-links a, .side-foot a, .pager a, h2 a, .brand, .side-head):active {
+  background: var(--plate-hot);
+  box-shadow: 0 0 0 0.3em var(--plate-hot);
+  transition: none;
+}
+
+@media (hover: hover) {
+  :where(.prose p a, .prose li a, .crumb a, .footer-links a, .side-foot a, .pager a, h2 a, .brand, .side-head):hover {
+    background: var(--plate);
+    box-shadow: 0 0 0 0.3em var(--plate);
+  }
+}
+
+/* iOS adds its own grey tap box, a link preview and text selection on a long press. We draw our own pressed look. */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+@media (hover: none) {
+  a,
+  button {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}

@@ -1,0 +1,53 @@
+---
+import { pageUrl, type Page } from '../lib/pages';
+
+interface Props {
+  prev?: Page;
+  next?: Page;
+}
+
+const { prev, next } = Astro.props;
+---
+
+{
+  (prev || next) && (
+    <nav class="pager" aria-label="Previous and Next">
+      {prev && <a class="prev" href={pageUrl(prev)} aria-label={`Previous: ${prev.data.title}`}>Previous</a>}
+      {next && <a class="next" href={pageUrl(next)} aria-label={`Next: ${next.data.title}`}>Next</a>}
+    </nav>
+  )
+}
+
+<style>
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    font-size: var(--fs-ui);
+    color: var(--muted);
+    transition: color var(--dur-fast);
+  }
+
+  a:hover {
+    color: var(--fg);
+  }
+
+  .prev::before {
+    content: '←';
+  }
+
+  .next {
+    margin-left: auto;
+  }
+
+  .next::after {
+    content: '→';
+  }
+</style>

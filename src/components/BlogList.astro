@@ -1,0 +1,49 @@
+---
+import { site } from '../data/site';
+import DocHead from './DocHead.astro';
+import ItemRow from './ItemRow.astro';
+import ItemList from './ItemList.astro';
+import FullLayout from '../layouts/FullLayout.astro';
+import { formatDate, pageUrl, sides, type Page } from '../lib/pages';
+
+interface Props {
+  posts: Page[];
+  title: string;
+  description: string;
+  showSide?: boolean;
+}
+
+const { posts, title, description, showSide = false } = Astro.props;
+---
+
+<FullLayout title={`${title} | ${site.name}`} description={description}>
+  <div class="wrap">
+    <DocHead title={title} />
+    <div class="narrow">
+    <ItemList>
+      {
+        posts.map((post) => (
+          <ItemRow
+            href={pageUrl(post)}
+            title={post.data.title}
+            description={post.data.description}
+            meta={showSide ? `${sides[post.data.side].label}, ${formatDate(post.data.date)}` : formatDate(post.data.date)}
+          />
+        ))
+      }
+    </ItemList>
+    </div>
+  </div>
+</FullLayout>
+
+<style>
+  .wrap {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: var(--top) var(--gutter) 6rem;
+  }
+
+  .narrow {
+    max-width: 46rem;
+  }
+</style>

@@ -1,0 +1,66 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description?: string;
+  meta?: string;
+  external?: boolean;
+}
+
+const { href, title, description, meta, external = false } = Astro.props;
+---
+
+<a class="card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+  <strong>{title}</strong>
+  {description && <span class="desc">{description}</span>}
+  {meta && <span class="meta">{meta}</span>}
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    background: var(--panel);
+    transition:
+      border-color var(--dur),
+      transform var(--dur) var(--ease);
+  }
+
+  .card:hover {
+    border-color: var(--line-2);
+    transform: translateY(-2px);
+  }
+
+  strong,
+  .desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  strong {
+    -webkit-line-clamp: 2;
+    font-size: var(--fs-ui);
+    line-height: 1.35;
+    font-weight: 550;
+    letter-spacing: -0.01em;
+  }
+
+  .desc {
+    -webkit-line-clamp: 2;
+    font-size: var(--fs-desc);
+    line-height: var(--lh-desc);
+    color: var(--body);
+  }
+
+  .meta {
+    margin-top: auto;
+    padding-top: 0.25rem;
+    font-size: var(--fs-small);
+    color: var(--dim);
+  }
+</style>

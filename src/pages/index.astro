@@ -1,0 +1,599 @@
+---
+import FullLayout from '../layouts/FullLayout.astro';
+import Icon from '../components/Icon.astro';
+import { heroScenes, sideRows } from '../data/home';
+import { site } from '../data/site';
+
+const socials = [
+  { label: 'YouTube', href: site.youtube, icon: 'youtube' },
+  { label: 'Instagram', href: site.instagram, icon: 'instagram' },
+  { label: 'GitHub', href: site.github, icon: 'github' },
+] as const;
+---
+
+<FullLayout title={site.name} onHome>
+  <div class="wrap">
+    <section class="hero">
+      <h1 class="hero-name rise" style="--i:0">Hi, I'm Apoorva.</h1>
+      <div class="picks rise" style="--i:1" role="tablist" aria-label="Choose a story">
+        {
+          heroScenes.map((scene, i) => (
+            <button
+              class:list={['pick', { on: i === 0 }]}
+              type="button"
+              role="tab"
+              aria-selected={i === 0}
+              data-side={scene.side}
+            >
+              <span class="sticker">{scene.lead}</span>
+              <span class="phrase">{scene.phrase}</span>
+            </button>
+          ))
+        }
+        <span class="bar" aria-hidden="true"></span>
+      </div>
+      <div class="scenes rise" style="--i:2">
+        {
+          heroScenes.map((scene, i) => (
+            <div class:list={['scene', { on: i === 0 }]} data-side={scene.side} data-index={i}>
+              <h2 class="display">
+                <span class="sticker">{scene.lead}</span>
+                {scene.phrase}
+              </h2>
+              <div class="stage" aria-hidden="true">
+                <div class="fx" />
+                <figure class="art">
+                  <img src={scene.art} alt="" loading="lazy" />
+                </figure>
+              </div>
+              <p class="caption">{scene.caption}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="rows" id="rows" aria-label="Two sides">
+      {
+        sideRows.map((row) => (
+          <a class="row" data-side={row.side} href={row.href}>
+            <span class="display">{row.word}</span>
+            <span class="row-text row-desc">{row.description}</span>
+          </a>
+        ))
+      }
+    </section>
+
+    <section class="hello">
+      <div>
+        <h2 class="display">Say Hello</h2>
+        <p class="hello-lede">Hiring, collaborating, or training together. Send a note.</p>
+        <div class="cta">
+          <a class="btn primary" href="/contact/">Contact Me</a>
+          <a class="btn resume" href={site.resume}>Résumé</a>
+        </div>
+      </div>
+      <ul class="socials">
+        {
+          socials.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener">
+                <Icon name={s.icon} />
+                <span>{s.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+  <a class="cue" href="#rows" aria-label="Scroll to the pages">
+    <svg viewBox="0 0 32 26" width="48" height="39" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 4 13 7 13-7" /><path d="m3 14 13 7 13-7" /></svg>
+  </a>
+</FullLayout>
+
+<script>
+  const cue = document.querySelector<HTMLElement>('.cue');
+  addEventListener('scroll', () => cue?.classList.toggle('gone', scrollY > 40), { passive: true });
+</script>
+
+<style>
+  .wrap {
+    position: relative;
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 5rem;
+  }
+
+  .rise {
+    animation: rise 0.7s var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 55ms);
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: var(--bar-h) 0;
+    text-align: center;
+  }
+
+  .hero-name {
+    font-size: var(--t-hero);
+    line-height: 0.98;
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    text-wrap: balance;
+  }
+
+  .scenes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 4vw, 4rem);
+    width: 100%;
+    margin: var(--space-section) auto 0;
+  }
+
+  .scene {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    align-content: start;
+    gap: var(--space-block);
+    min-width: 0;
+  }
+
+  .scene h2 {
+    margin: 0;
+    color: var(--side);
+    text-wrap: balance;
+  }
+
+  .sticker {
+    display: block;
+    margin-bottom: 0.15em;
+    font-family: 'Kalam', cursive;
+    font-size: max(1.375rem, calc(var(--t-section) * 0.4));
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1;
+    color: var(--fg);
+    transform: rotate(var(--tilt));
+  }
+
+  [data-side='tech'] {
+    --tilt: -4deg;
+  }
+
+  [data-side='fit'] {
+    --tilt: 3deg;
+  }
+
+  .stage {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .fx {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 36% 48% at 50% 60%,
+      color-mix(in srgb, var(--side) 30%, transparent),
+      transparent
+    );
+  }
+
+  .fx::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(36% 0, 64% 0, 96% 100%, 4% 100%);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--side) 2%, transparent) 0%,
+      color-mix(in srgb, var(--side) 2.9%, transparent) 8%,
+      color-mix(in srgb, var(--side) 5.6%, transparent) 17%,
+      color-mix(in srgb, var(--side) 9.5%, transparent) 25%,
+      color-mix(in srgb, var(--side) 14.4%, transparent) 33%,
+      color-mix(in srgb, var(--side) 20.1%, transparent) 42%,
+      color-mix(in srgb, var(--side) 26%, transparent) 50%,
+      color-mix(in srgb, var(--side) 31.9%, transparent) 58%,
+      color-mix(in srgb, var(--side) 37.6%, transparent) 67%,
+      color-mix(in srgb, var(--side) 42.5%, transparent) 75%,
+      color-mix(in srgb, var(--side) 46.4%, transparent) 83%,
+      color-mix(in srgb, var(--side) 49.1%, transparent) 92%,
+      color-mix(in srgb, var(--side) 50%, transparent) 100%
+    );
+    filter: blur(14px);
+  }
+
+  .fx::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 46% 10% at 50% 89%,
+      color-mix(in srgb, var(--side) 80%, transparent) 0%,
+      color-mix(in srgb, var(--side) 78.4%, transparent) 8%,
+      color-mix(in srgb, var(--side) 74.1%, transparent) 17%,
+      color-mix(in srgb, var(--side) 67.5%, transparent) 25%,
+      color-mix(in srgb, var(--side) 59.3%, transparent) 33%,
+      color-mix(in srgb, var(--side) 49.9%, transparent) 42%,
+      color-mix(in srgb, var(--side) 40%, transparent) 50%,
+      color-mix(in srgb, var(--side) 30.1%, transparent) 58%,
+      color-mix(in srgb, var(--side) 20.7%, transparent) 67%,
+      color-mix(in srgb, var(--side) 12.5%, transparent) 75%,
+      color-mix(in srgb, var(--side) 5.9%, transparent) 83%,
+      color-mix(in srgb, var(--side) 1.6%, transparent) 92%,
+      color-mix(in srgb, var(--side) 0%, transparent) 100%
+    );
+    filter: blur(5px);
+  }
+
+  .art {
+    position: absolute;
+    inset: 8% 6% 10%;
+    margin: 0;
+  }
+
+  /* Each drawing is nudged so its figure sits under the middle of the spotlight. */
+  .scene[data-side='tech'] .art img {
+    transform: translateX(-5%);
+  }
+
+  .scene[data-side='fit'] .art img {
+    transform: translateX(-7%);
+  }
+
+  .art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .caption {
+    margin: 0;
+    max-width: 24rem;
+    font-size: var(--fs-desc);
+    line-height: var(--lh-desc);
+    color: var(--body);
+  }
+
+  .picks {
+    display: none;
+  }
+
+  @media (max-width: 800px) {
+    .scenes {
+      margin-top: var(--space-block);
+      column-gap: 0;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+    }
+
+    .scenes::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scene {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    .fx::before {
+      clip-path: polygon(22% 0, 78% 0, 98% 100%, 2% 100%);
+    }
+
+    .scene[data-side='tech'] .art img {
+      transform: translateX(-8%);
+    }
+
+    .picks {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      margin: var(--space-section) 0 0;
+    }
+
+    .pick {
+      display: grid;
+      justify-items: center;
+      align-content: start;
+      gap: 0.25rem;
+      min-height: 3.5rem;
+      padding: 0 0.25rem 0.875rem;
+    }
+
+    .pick .sticker {
+      margin: 0;
+      font-size: 1.125rem;
+      opacity: 0.6;
+      transition: opacity var(--dur);
+    }
+
+    .pick .phrase {
+      font-size: clamp(1.25rem, calc((100vw - 2.5rem) * 0.07), 1.75rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      white-space: nowrap;
+      color: var(--dim);
+      transition: color var(--dur);
+    }
+
+    .pick.on .sticker {
+      opacity: 1;
+    }
+
+    .pick.on .phrase {
+      color: var(--side);
+    }
+
+    .bar {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50%;
+      height: 2px;
+      background: color-mix(in srgb, var(--fit) calc(var(--p, 0) * 100%), var(--tech));
+      transform: translateX(calc(var(--p, 0) * 100%));
+    }
+
+    .scene h2 {
+      display: none;
+    }
+  }
+
+  .rows {
+    margin-top: var(--space-section);
+    border-top: 1px solid var(--line);
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    padding: clamp(1.75rem, 4vw, 2.25rem) 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .row-text {
+    flex: 1 1 16rem;
+    max-width: 21rem;
+  }
+
+  @media (max-width: 899px) {
+    .row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .row-text {
+      flex: none;
+    }
+  }
+
+
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) {
+      scroll-behavior: auto;
+    }
+  }
+
+  .cue {
+    position: fixed;
+    bottom: 0.25rem;
+    left: 50%;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-left: -1.75rem;
+    border-radius: var(--r-pill);
+    color: var(--fg);
+    transition: opacity var(--dur);
+  }
+
+  .cue.gone {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 800px) {
+    .cue {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-left: -1.25rem;
+    }
+
+    .cue svg {
+      width: 28px;
+      height: auto;
+      stroke-width: 2;
+    }
+  }
+
+  .cue path {
+    animation: flow 1.6s ease-in-out infinite;
+  }
+
+  .cue path:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes flow {
+    0%,
+    60%,
+    100% {
+      opacity: 0.2;
+    }
+    30% {
+      opacity: 0.95;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cue path {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
+
+  .hello {
+    display: grid;
+    gap: 2.5rem;
+    margin-top: var(--space-section);
+  }
+
+  @media (min-width: 900px) {
+    .hello {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      align-items: end;
+    }
+  }
+
+  .hello-lede {
+    margin-top: 1rem;
+    max-width: 36rem;
+    font-size: var(--fs-desc);
+    line-height: var(--lh-desc);
+    color: var(--body);
+  }
+
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .socials a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.5rem;
+    padding: 0 0.875rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r-pill);
+    font-size: var(--fs-ui);
+    background: var(--panel);
+    color: var(--muted);
+    transition:
+      color var(--dur-fast),
+      border-color var(--dur-fast),
+      transform var(--dur);
+  }
+
+  .socials a:hover {
+    color: var(--fg);
+    border-color: var(--line-2);
+    transform: translateY(-1px);
+  }
+
+  .socials span {
+    font-weight: 500;
+  }
+</style>
+
+<script>
+  const scenes = document.querySelector<HTMLElement>('.scenes')!;
+  const slides = [...scenes.querySelectorAll<HTMLElement>('.scene')];
+  const picks = [...document.querySelectorAll<HTMLButtonElement>('.pick')];
+  const phone = matchMedia('(max-width: 800px)');
+
+  function show(index: number) {
+    picks.forEach((pick, i) => {
+      pick.classList.toggle('on', i === index);
+      pick.setAttribute('aria-selected', String(i === index));
+    });
+    slides.forEach((slide, i) => slide.classList.toggle('on', i === index));
+  }
+
+  scenes.addEventListener(
+    'scroll',
+    () => {
+      if (!phone.matches) return;
+      show(Math.round(scenes.scrollLeft / scenes.clientWidth));
+      picks[0].parentElement!.style.setProperty('--p', String(scenes.scrollLeft / (scenes.scrollWidth - scenes.clientWidth)));
+    },
+    { passive: true },
+  );
+
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let slide = 0;
+  let autoplay: ReturnType<typeof setTimeout> | undefined;
+
+  // Moves the carousel with our own easing, because the browser's smooth scroll is too fast to notice.
+  function slideTo(index: number, ms: number) {
+    const id = ++slide;
+    const from = scenes.scrollLeft;
+    const to = index * scenes.clientWidth;
+    const start = performance.now();
+    scenes.style.scrollSnapType = 'none';
+    const step = (now: number) => {
+      if (id !== slide) return;
+      const t = ms === 0 ? 1 : Math.min((now - start) / ms, 1);
+      scenes.scrollLeft = from + (to - from) * (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
+      if (t < 1) requestAnimationFrame(step);
+      else scenes.style.scrollSnapType = '';
+    };
+    requestAnimationFrame(step);
+  }
+
+  const stop = () => {
+    slide++;
+    scenes.style.scrollSnapType = '';
+    clearTimeout(autoplay);
+  };
+
+  picks.forEach((pick, i) => pick.addEventListener('click', () => (stop(), slideTo(i, calm ? 0 : 600))));
+
+  // The tech art's robot flies out of frame at about 7s of its 8s loop. Right then the carousel slides
+  // to the fitness scene, where the mirrored robot waits on the left. Both loops last 8s, so sliding every
+  // 8s keeps going back and forth in step with them, for about a minute or until the first touch.
+  const AUTO_AFTER_MS = 7000;
+  const EVERY_MS = 8000;
+  const SLIDES = 8;
+  let shown = 0;
+  const flip = () => {
+    if (!phone.matches) return;
+    shown++;
+    slideTo(shown % 2, 1600);
+    if (shown < SLIDES) autoplay = setTimeout(flip, EVERY_MS);
+  };
+  const firstArt = slides[0].querySelector('img')!;
+  const arm = () => {
+    if (calm || !phone.matches) return;
+    autoplay = setTimeout(flip, AUTO_AFTER_MS);
+  };
+  if (firstArt.complete) arm();
+  else firstArt.addEventListener('load', arm, { once: true });
+  ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach((type) =>
+    scenes.addEventListener(type, stop, { passive: true, once: true }),
+  );
+</script>

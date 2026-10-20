@@ -1,0 +1,35 @@
+---
+import FullLayout from '../layouts/FullLayout.astro';
+---
+
+<FullLayout title="Page Not Found">
+  <div class="missing">
+    <h1 class="display">Page Not Found</h1>
+    <p>This page may have moved.</p>
+    <div class="cta">
+      <a class="btn primary" href="/">Home</a>
+    </div>
+  </div>
+</FullLayout>
+
+<style>
+  .missing {
+    min-height: 60vh;
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: 1rem;
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4rem) var(--gutter);
+  }
+
+  h1 {
+    color: var(--tech);
+  }
+
+  p {
+    font-size: var(--fs-desc);
+    color: var(--body);
+  }
+</style>

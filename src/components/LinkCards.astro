@@ -1,0 +1,35 @@
+---
+import ItemCard from './ItemCard.astro';
+
+interface Props {
+  heading: string;
+  items: { title: string; url: string; note?: string }[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section>
+      <h2 id={heading.toLowerCase()}>{heading}</h2>
+      <div class="cards">
+        {items.map((item) => <ItemCard href={item.url} title={item.title} description={item.note} external />)}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .cards {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

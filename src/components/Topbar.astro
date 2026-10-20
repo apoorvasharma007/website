@@ -1,0 +1,122 @@
+---
+import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  crumbs: { label: string; href?: string }[];
+}
+
+const { crumbs } = Astro.props;
+---
+
+<header class="top">
+  <div class="top-l">
+    <button class="menu" id="menu" type="button" aria-label="Open menu" aria-controls="side">
+      <Icon name="menu" />
+    </button>
+    <nav class="crumb" aria-label="Breadcrumb">
+      {
+        crumbs.map((crumb, i) => (
+          <>
+            {i > 0 && <i aria-hidden="true">/</i>}
+            {crumb.href ? (
+              <a href={crumb.href}>{crumb.label}</a>
+            ) : (
+              <span aria-current={i === crumbs.length - 1 ? 'page' : undefined}>{crumb.label}</span>
+            )}
+          </>
+        ))
+      }
+    </nav>
+  </div>
+  <ThemeToggle />
+</header>
+
+<style>
+  .top {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    height: var(--bar-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 clamp(0.75rem, 3vw, 1.5rem);
+    background: var(--bar);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .top-l {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .menu {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    border-radius: var(--r-sm);
+    color: var(--muted);
+    transition:
+      background-color var(--dur-fast),
+      color var(--dur-fast);
+  }
+
+  .menu:hover {
+    background: var(--plate);
+    color: var(--fg);
+  }
+
+  @media (min-width: 1024px) {
+    .menu {
+      display: none;
+    }
+  }
+
+  .crumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    font-size: var(--fs-ui);
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .crumb a:hover {
+    color: var(--fg);
+  }
+
+  .crumb span:last-child {
+    color: var(--fg);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .crumb i {
+    font-style: normal;
+    color: var(--dim);
+  }
+
+  @media (max-width: 640px) {
+    .crumb > :nth-last-child(n + 4) {
+      display: none;
+    }
+  }
+
+  /* Frosted bars over moving art flicker on phones, so touch screens get a plain bar. */
+  @media (hover: none) {
+    .top {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+    }
+  }
+</style>

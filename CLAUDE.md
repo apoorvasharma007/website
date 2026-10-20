@@ -1,5 +1,10 @@
 # website (apoorvasharma7.com)
 
+> **Rebuild in progress (approved 2026-10-14):** see `website-rebuild-plan.md`. Its decisions replace the
+> conflicting rules below: "No JS", "No Notion", "No JavaScript for any visual/animation effect", and
+> "Do not modify the deploy workflow" (changes still shown first). Font/accent rules are decided at the
+> mockup step. This file is rewritten for Astro in plan step 11.
+
 ## What this project is
 Personal site for Apoorva Sharma. Built with Hugo — no themes, no JS, minimal CSS.
 

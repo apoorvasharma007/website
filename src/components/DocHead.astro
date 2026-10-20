@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  intro?: string;
+  date?: string;
+}
+
+const { title, intro, date } = Astro.props;
+---
+
+<h1 class="title">{title}</h1>
+{intro && <p class="intro">{intro}</p>}
+{date && <p class="meta">{date}</p>}
+
+<style>
+  .title {
+    margin: 0;
+    font-size: var(--t-title);
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  .intro {
+    margin-top: 1.25rem;
+    font-size: var(--fs-desc);
+    line-height: var(--lh-desc);
+    color: var(--muted);
+  }
+
+  .meta {
+    margin-top: 1rem;
+    font-size: var(--fs-small);
+    color: var(--muted);
+  }
+</style>

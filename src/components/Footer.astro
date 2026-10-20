@@ -1,0 +1,71 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  onHome?: boolean;
+}
+
+const { onHome = false } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="inner">
+    <span>© {year} {site.name}. All Rights Reserved.</span>
+    <nav class="footer-links" aria-label="Footer">
+      {!onHome && <a href="/">Home</a>}
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    width: 100%;
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 0 var(--gutter) env(safe-area-inset-bottom, 0px);
+  }
+
+  .inner {
+    padding: 1.25rem 0 1.5rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    color: var(--dim);
+    font-size: var(--fs-small);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .footer-links a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+
+  .footer-links a:hover {
+    color: var(--fg);
+  }
+
+  @media (max-width: 640px) {
+    .inner {
+      flex-direction: column;
+      gap: 0.25rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      order: -1;
+      justify-content: center;
+      gap: 2rem;
+    }
+  }
+</style>

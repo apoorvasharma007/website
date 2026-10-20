@@ -1,0 +1,102 @@
+---
+import { nav, site } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="bar">
+  <div class="header">
+    <a class="brand" href="/">{site.name}</a>
+    <nav class="links" aria-label="Main">
+      {
+        nav.map((item) => (
+          <a class:list={['link', { secondary: 'secondary' in item }]} href={item.href}>{item.label}</a>
+        ))
+      }
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+
+<style>
+  .bar {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: var(--bar);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    backdrop-filter: blur(20px) saturate(1.4);
+  }
+
+  .header {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    height: var(--bar-h);
+    padding: 0 var(--gutter);
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas: 'brand nav theme';
+    align-items: center;
+    gap: 0.25rem 1rem;
+  }
+
+  .brand {
+    grid-area: brand;
+    font-weight: 550;
+    letter-spacing: -0.01em;
+  }
+
+  .links {
+    grid-area: nav;
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+  }
+
+  .link {
+    display: flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 0.875rem;
+    border-radius: var(--r-sm);
+    color: var(--muted);
+    font-size: var(--fs-ui);
+    transition:
+      background-color var(--dur-fast),
+      color var(--dur-fast);
+  }
+
+  .link:hover {
+    background: var(--plate);
+    color: var(--fg);
+  }
+
+  @media (max-width: 640px) {
+    .header {
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: 'brand nav theme';
+      gap: 0;
+    }
+
+    .secondary {
+      display: none;
+    }
+
+    .links {
+      justify-content: space-evenly;
+    }
+
+    .link {
+      padding: 0;
+      font-size: var(--fs-small);
+    }
+  }
+
+  /* Frosted bars over moving art flicker on phones, so touch screens get a plain bar. */
+  @media (hover: none) {
+    .bar {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+    }
+  }
+</style>

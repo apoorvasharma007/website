@@ -1,0 +1,116 @@
+---
+import '../styles/prose.css';
+import { site } from '../data/site';
+import BaseLayout from './BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Topbar from '../components/Topbar.astro';
+import Footer from '../components/Footer.astro';
+import type { Page } from '../lib/pages';
+
+interface Props {
+  title: string;
+  description?: string;
+  side: Page['data']['side'];
+  crumbs: { label: string; href?: string }[];
+  pages: Page[];
+  current: string;
+}
+
+const { title, description = site.description, side, crumbs, pages, current } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="app" data-side={side}>
+    <div class="scrim" id="scrim"></div>
+    <Sidebar pages={pages} current={current} />
+    <div class="main">
+      <Topbar crumbs={crumbs} />
+      <main id="main">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .app {
+    min-height: 100vh;
+  }
+
+  @media (min-width: 1024px) {
+    .app {
+      display: grid;
+      grid-template-columns: 17.5rem minmax(0, 1fr);
+    }
+  }
+
+  .app[data-side='fit'] {
+    --accent: var(--fit);
+  }
+
+  .main {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  .scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur);
+  }
+
+  .app.menu-open .scrim {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .scrim {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const app = document.querySelector('.app')!;
+  const closeMenu = () => app.classList.remove('menu-open');
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+
+    const toggle = target.closest('.sgrp > button.nl, .sgrow > .tg');
+    if (toggle) {
+      const open = toggle.closest('.sgrp')!.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    if (target.closest('#menu')) app.classList.add('menu-open');
+    if (target.closest('#scrim')) closeMenu();
+
+    const copy = target.closest('.copy');
+    if (copy) {
+      const code = copy.closest('.code')!.querySelector('pre')!.textContent!;
+      navigator.clipboard.writeText(code).then(
+        () => (copy.textContent = 'Copied'),
+        () => (copy.textContent = 'Select And Copy'),
+      );
+      setTimeout(() => (copy.textContent = 'Copy'), 1600);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+</script>
