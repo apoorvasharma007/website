@@ -115,8 +115,9 @@ Every DNS change is shown first and made only on his explicit yes in that sessio
 
 Next actions, in order:
 1. About a week after launch: retire the old Hugo files (`content/`, `layouts/`, `assets/`, `config.toml`, `archetypes/`, `HOSTINGER-DEPLOYMENT.md`, `public/`) and the GitHub Pages setting. Needs his yes.
-2. Check the Cloudflare billing page after the first week (build minutes), and optionally turn on Cloudflare's AI-crawler block (`robots.txt` already disallows the AI bots).
-3. Add the site in Google Search Console and submit `sitemap-index.xml` so Google picks up the redirects faster. Keep the redirects for at least a year.
-4. Step 8 Notion loader plus deploy hook and 6-hour cron, step 9 perf gate, step 11 rewrite `website/CLAUDE.md`, then his first real articles and the email automation reminder.
+2. Check the Cloudflare billing page after the first week (build minutes).
+3. Google Search Console: done 2026-10-21 (Domain property, sitemap `https://apoorvasharma7.com/sitemap-index.xml` accepted, full URL needed). Keep the redirects for at least a year.
+3b. Parked: Cloudflare AI-crawler block. He could not find the setting in the dashboard and thinks he enabled something somewhere; `robots.txt` already disallows 18 AI bots. Revisit only if he wants.
+4. Step 8 Notion loader plus deploy hook and 6-hour cron, step 9 perf gate, step 11 rewrite `website/CLAUDE.md`, then his first real articles (next session starts here: he picks Tech or Fitness and gives a one-line idea, then we outline together) and the email automation reminder.
 
-Open issues: the Back swipe on iPhone Safari could not be reproduced in tests (he later said Back, Copy and speed were all good on the preview). Parked: a cue for the second hero scene on phones.
+Open issues: (a) on 2026-10-21 his iPhone still showed the old site, though public DNS and the server both serve the new one, so it is a device cache; tomorrow try Safari, Settings, Clear History and Website Data, or mobile data. (b) The Back swipe on iPhone Safari could not be reproduced in tests (he later said Back, Copy and speed were all good on the preview). Parked: a cue for the second hero scene on phones.
