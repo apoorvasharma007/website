@@ -111,10 +111,12 @@ Every DNS change is shown first and made only on his explicit yes in that sessio
 
 ## ▶ Resume here
 
-2026-10-16. Steps 3, 4 and 6 are squashed into `refactor/astro-rebuild`, now pushed as a branch for a cloud agent. `main` is untouched and still serves the Hugo site. Apoorva wants to keep building locally and test Cloudflare later (Phase 2 above is paused). His Cloudflare Workers project exists and fails harmlessly on `main` (Hugo and Zola detected); a push of another branch may trigger a failing build there, which is harmless.
+2026-10-21. THE SITE IS LIVE. `https://apoorvasharma7.com` serves the Astro build from Cloudflare Workers (`website`, Git branch `main`). Nameservers moved to Cloudflare (`anita` and `cartman`), `www` redirects to the apex by a Redirect Rule, all 116 redirects verified on the real domain, `/lab/` pages removed (they had been committed by mistake in `9881124` and were live for a short time). Merge commit `7a3290d` on `main`; the Hugo deploy workflow is deleted. Cloudflare Free plan, nothing paid.
 
-Next action: step 5, content migration, after his yes (see `website-rebuild-plan.md` Resume).
+Next actions, in order:
+1. About a week after launch: retire the old Hugo files (`content/`, `layouts/`, `assets/`, `config.toml`, `archetypes/`, `HOSTINGER-DEPLOYMENT.md`, `public/`) and the GitHub Pages setting. Needs his yes.
+2. Check the Cloudflare billing page after the first week (build minutes), and optionally turn on Cloudflare's AI-crawler block (`robots.txt` already disallows the AI bots).
+3. Add the site in Google Search Console and submit `sitemap-index.xml` so Google picks up the redirects faster. Keep the redirects for at least a year.
+4. Step 8 Notion loader plus deploy hook and 6-hour cron, step 9 perf gate, step 11 rewrite `website/CLAUDE.md`, then his first real articles and the email automation reminder.
 
-Open placeholders: YouTube and Instagram URLs in `src/data/site.ts`, site description in `src/data/site.ts`, phone side margin 16px versus 24px (his call).
-
-Run locally: `npm run dev` (http://localhost:4321) or `npm run build && npm run preview`. Tests: `npm test`. Dev toolbar is off because it froze the art animations in WebKit.
+Open issues: the Back swipe on iPhone Safari could not be reproduced in tests (he later said Back, Copy and speed were all good on the preview). Parked: a cue for the second hero scene on phones.

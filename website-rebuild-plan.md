@@ -116,11 +116,12 @@ Decisions made while building, for step 5 and 8:
 
 ## ▶ Resume here
 
-2026-10-21. Steps 4, 5, 6 and 7 are done locally and squashed into `refactor/astro-rebuild`. Full suite 323 passed, 0 skipped (includes `tests/sizes.spec.ts`, 9 screen sizes from 320 to 1920). Launch scope, redirects, social links, description (option 5), lowercase "i like" and "i love", and a 20px phone gutter are decided and built. `main` is untouched and still serves Hugo. Cloudflare, DNS and merging to `main` stay paused until Apoorva says yes in-session; see `website-deploy-plan.md`.
+2026-10-21. THE SITE IS LIVE. `https://apoorvasharma7.com` serves the Astro build from Cloudflare Workers (`website`, Git branch `main`). Nameservers moved to Cloudflare (`anita` and `cartman`), `www` redirects to the apex by a Redirect Rule, all 116 redirects verified on the real domain, `/lab/` pages removed (they had been committed by mistake in `9881124` and were live for a short time). Merge commit `7a3290d` on `main`; the Hugo deploy workflow is deleted. Cloudflare Free plan, nothing paid.
 
-Next action: Apoorva checks the dev server on his phone (his Mac's LAN address changes, run `ipconfig getifaddr en0`; start with `npx astro dev --ignore-lock --host --port 4331`) and tests Back on the built preview, not `astro dev`. Then Cloudflare Phase 2 with his yes (`wrangler.jsonc`, preview deploy), then step 10 cutover. After launch, in order: step 8 Notion loader, step 9 perf gate, step 11 `website/CLAUDE.md`, his first real articles, email automation reminder.
+Next actions, in order:
+1. About a week after launch: retire the old Hugo files (`content/`, `layouts/`, `assets/`, `config.toml`, `archetypes/`, `HOSTINGER-DEPLOYMENT.md`, `public/`) and the GitHub Pages setting. Needs his yes.
+2. Check the Cloudflare billing page after the first week (build minutes), and optionally turn on Cloudflare's AI-crawler block (`robots.txt` already disallows the AI bots).
+3. Add the site in Google Search Console and submit `sitemap-index.xml` so Google picks up the redirects faster. Keep the redirects for at least a year.
+4. Step 8 Notion loader plus deploy hook and 6-hour cron, step 9 perf gate, step 11 rewrite `website/CLAUDE.md`, then his first real articles and the email automation reminder.
 
-Before cutover also delete `src/pages/lab/` (untracked mock-ups) and the empty `static/training-almanac/`. Fitness Blog is empty at launch and shows "Soon".
-
-Open issues (2026-10-21, from Apoorva's phone): (1) Swipe-from-edge Back on iPhone Safari returned to the top of Tech Overview after Overview, Tech Blog, a post; Playwright (Chromium and WebKit) restores scroll on the built preview, so it needs a real-device repro. (2) Home has no cue to scroll on laptop; the whole first screen is the hero (proposal pending). (3) He has "some design issues" on that Back path to fix later. (4) Copy on Contact fails over HTTP on the LAN address by design, retest on the HTTPS preview.
-Parked (2026-10-21): a cue that the phone hero has a second scene to swipe to. Tried a dimmed pink inactive tab, it was less visible than grey and was reverted. Untried options: peek of the next scene at the right edge, two dots, edge arrow, one-time nudge. Apoorva dropped it for now.
+Open issues: the Back swipe on iPhone Safari could not be reproduced in tests (he later said Back, Copy and speed were all good on the preview). Parked: a cue for the second hero scene on phones.
