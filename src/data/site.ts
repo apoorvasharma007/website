@@ -2,11 +2,11 @@ export const site = {
   name: 'Apoorva Sharma',
   url: 'https://apoorvasharma7.com',
   description:
-    'Apoorva Sharma builds cloud software and trains movement. Knowledge bases, projects, programs and blog posts on both.',
+    'Apoorva Sharma. Software engineering and gym stuff. Projects, articles, and notes so future me stops googling the same things.',
   email: 'apoorva.c.sharma@gmail.com',
   resume: '/resume.pdf',
-  youtube: 'https://www.youtube.com',
-  instagram: 'https://www.instagram.com',
+  youtube: 'https://www.youtube.com/@apoorvasharma.7',
+  instagram: 'https://www.instagram.com/apoorvasharma.7',
   github: 'https://github.com/apoorvasharma007',
   dashboard: 'https://apoorvasharma007.github.io/traininglogs/',
 } as const;

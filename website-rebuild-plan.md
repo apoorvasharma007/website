@@ -55,9 +55,9 @@ Cloudflare Pages so every PR gets a free preview link.
 - [x] 2. Design mockups for every page, approved and locked (2026-10-15). Spec `website-build-spec.md`, prototype `mockups/astro-rebuild/site-final.html`
 - [x] 3. (Done 2026-10-15 locally, Cloudflare part moved to `website-deploy-plan.md` Phase 2) Scaffold Astro + Cloudflare Pages; tokens, shell, Home, 404, robots, sitemap; PR preview working (detail below)
 - [x] 4. (Done 2026-10-15 locally, detail below) Page layouts and body components for Knowledge Base chapter and book, Article, Project, Program (callout, table, code with copy, YouTube embed, video and demo slots, Previous and Next, Links, Sources)
-- [ ] 5. Migrate the 54 Markdown pages into content collections (Parent hierarchy, Side, Type, Date, Description), blog posts split Tech 8 and Fitness 7, generate the redirects file and show the full list before checking every old URL
+- [x] 5. (Done 2026-10-21, scope cut by Apoorva) No bulk migration. Launch keeps the 14 pages already in Astro minus 3 dropped, plus a website project stub. `scripts/make_redirects.py` writes `static/_redirects` (58 rules) from `scripts/old-urls.txt`, the live sitemap snapshot
 - [x] 6. (Done 2026-10-16) Overview pages, tree and breadcrumb generated from the hierarchy, About and Contact with Apoorva's approved copy
-- [ ] 7. `/dashboard/` and `/movement/dashboard/` redirect to the traininglogs dashboard
+- [x] 7. (Done 2026-10-21, inside the redirects file) `/dashboard/` and `/movement/dashboard/` redirect to the traininglogs dashboard
 - [ ] 8. Notion loader on the one content database (fields in the spec), Draft and Published, scheduled build twice a day
 - [ ] 9. Perf gate in CI (first-load JS at most 120 KB, Lighthouse mobile 95 or higher)
 - [ ] 10. Cutover: DNS to Cloudflare (needs explicit yes, each DNS change shown first), verify, retire the GitHub Pages deploy; confirm AI-crawler blocking in Cloudflare
@@ -107,11 +107,17 @@ Decisions made while building, for step 5 and 8:
 - Tech and Fitness Overview pages were pulled forward from step 6 on 2026-10-15 because Home linked to them (`src/pages/[side]/index.astro`, rows from `overviewRows` in `src/lib/pages.ts`). About and Contact still 404 until step 6.
 - The sample migration script lives in the session scratchpad only. Step 5 should turn it into a committed script (Python, `scripts/`) that also writes the redirects file.
 
+### Launch scope decisions (grill-me, 2026-10-21)
+- Launch set: Home, About, Contact, Tech and Fitness overviews, Blog lists, `traininglogs` project page, `building-traininglogs` post, the 9 knowledge-base skeleton pages already in Astro (5 training, 4 system design), and a short stub for the website project page (rewrite for Astro; the Hugo text is wrong).
+- Dropped and redirected to their section page: `testing-in-python`, `building-a-sustainable-training-habit`, `morning-sunlight`, and every other Hugo page. No bulk migration, so step 5 shrinks to the redirects file, the stub page and fixing the two test fixtures in `tests/shell.spec.ts`.
+- "Knowledge Base" name stays. Notion loader (step 8) comes after launch.
+- YouTube and Instagram set in `src/data/site.ts` (`@apoorvasharma.7`); verify they resolve.
+- Later list: email automation on apoorva.c.sharma@gmail.com (reminder saved in memory, raise after launch).
+
 ## ▶ Resume here
 
-2026-10-16. Steps 4 and 6 are done locally and squashed into `refactor/astro-rebuild` (HEAD is the About and Contact commit). Full Playwright suite: 145 passed, 0 skipped. Home, Overview, Blog lists, About, Contact, the docs shell and the 12 sample pages are built and approved by Apoorva. The branch is pushed to origin for a cloud agent; `main` is untouched. Cloudflare, DNS and merging to `main` stay paused until Apoorva says yes in-session; see `website-deploy-plan.md`.
+2026-10-21. Steps 4, 5, 6 and 7 are done locally and squashed into `refactor/astro-rebuild`. Full suite 323 passed, 0 skipped (includes `tests/sizes.spec.ts`, 9 screen sizes from 320 to 1920). Launch scope, redirects, social links, description (option 5), lowercase "i like" and "i love", and a 20px phone gutter are decided and built. `main` is untouched and still serves Hugo. Cloudflare, DNS and merging to `main` stay paused until Apoorva says yes in-session; see `website-deploy-plan.md`.
 
-Next action: step 5, migrating the other Hugo pages. Apoorva must say yes to the detail first (strip markdown markers from descriptions, first paragraph becomes the description, convert callouts, generate the redirects file and show it in full, turn the scratch migration script into a committed `scripts/` Python script). `website-build-spec.md` is the append-only log of every decision. All of Apoorva's copy must read human, simple and fun, and he checks proposed copy before it is built in.
+Next action: Apoorva checks the dev server on his phone (his Mac's LAN address changes, run `ipconfig getifaddr en0`; start with `npx astro dev --ignore-lock --host --port 4331`) and tests Back on the built preview, not `astro dev`. Then Cloudflare Phase 2 with his yes (`wrangler.jsonc`, preview deploy), then step 10 cutover. After launch, in order: step 8 Notion loader, step 9 perf gate, step 11 `website/CLAUDE.md`, his first real articles, email automation reminder.
 
-Open placeholders: YouTube and Instagram URLs in `src/data/site.ts`, site description in `src/data/site.ts`, phone side margin 16px versus 24px (his call), the not-built prototype extras listed above.
-Untracked scratch files in `mockups/astro-rebuild/` (landing v2 to v8, animations-attempt-1, tech-landing.html, art-fit-test.html) and the root `clean-and-jerk.svg` and `whack-a-bug.svg` are intentionally not committed; the committed copies of the SVGs are in `mockups/astro-rebuild/art/` and the site's minified copies in `static/art/`.
+Before cutover also delete `src/pages/lab/` (untracked mock-ups) and the empty `static/training-almanac/`. Fitness Blog is empty at launch and shows "Soon".

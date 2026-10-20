@@ -40,7 +40,7 @@ test('phone: both phrases show at once, tapping one moves the carousel and the l
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   const picks = page.getByRole('tab');
-  await expect(picks).toHaveText(['I likeBuilding Tech', 'I loveWorking Out']);
+  await expect(picks).toHaveText(['i likeBuilding Tech', 'i loveWorking Out']);
   for (const pick of await picks.all()) await expect(pick).toBeVisible();
   await expect(picks.nth(0)).toHaveAttribute('aria-selected', 'true');
   await picks.nth(1).click();

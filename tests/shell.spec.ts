@@ -3,12 +3,11 @@ import { expect, test } from '@playwright/test';
 const chapter = '/tech/knowledge-base/system-design/caching/';
 const book = '/tech/knowledge-base/system-design/';
 const article = '/tech/blog/building-traininglogs/';
-const bareArticle = '/fitness/blog/building-a-sustainable-training-habit/';
+const bareArticle = '/tech/projects/website/';
 const project = '/tech/projects/traininglogs/';
-const program = '/fitness/programs/morning-sunlight/';
 const fitChapter = '/fitness/knowledge-base/training/foundations/principles/';
 
-const everyPage = [chapter, book, article, bareArticle, project, program, fitChapter];
+const everyPage = [chapter, book, article, bareArticle, project, fitChapter];
 
 for (const path of everyPage) {
   test(`${path} has the footer and no sideways scroll at 390`, async ({ page }) => {
@@ -64,7 +63,6 @@ test('book page lists its chapters and section headings, with no outline or page
     'Caching Strategies',
   ]);
   await expect(page.locator('[data-ol]')).toHaveCount(0);
-  await expect(page.getByRole('navigation', { name: 'Previous and Next' })).toHaveCount(0);
 
   await page.goto('/fitness/knowledge-base/training/');
   await expect(page.locator('.items .entry')).toHaveCount(3);
@@ -76,11 +74,10 @@ test('book page lists its chapters and section headings, with no outline or page
   ]);
 });
 
-test('article has Previous only, outline from its headings', async ({ page }) => {
+test('a lone article has an outline from its headings and no pager', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(article);
-  const pager = page.getByRole('navigation', { name: 'Previous and Next' });
-  await expect(pager.getByRole('link')).toHaveText(['Previous']);
+  await expect(page.getByRole('navigation', { name: 'Previous and Next' })).toHaveCount(0);
   const outline = page.getByRole('navigation', { name: 'On This Page' }).last();
   await expect(outline).toBeVisible();
   await expect(outline.getByRole('link')).toHaveCount(4);
@@ -89,7 +86,6 @@ test('article has Previous only, outline from its headings', async ({ page }) =>
 test('a page with fewer than two headings has no outline', async ({ page }) => {
   await page.goto(bareArticle);
   await expect(page.locator('[data-ol]')).toHaveCount(0);
-  await expect(page.getByRole('navigation', { name: 'Previous and Next' })).toHaveCount(0);
 });
 
 test('outline sits beside the text on a laptop and above it on a phone', async ({ page }) => {
@@ -121,9 +117,8 @@ test('project shows only the links that are filled in', async ({ page }) => {
   await expect(links.first()).toHaveAttribute('href', 'https://github.com/apoorvasharma007/traininglogs');
 });
 
-test('program lists its sources and takes the Fitness colour', async ({ page }) => {
-  await page.goto(program);
-  await expect(page.locator('.card')).toHaveText([/^Huberman Lab/]);
+test('a Fitness page takes the Fitness colour', async ({ page }) => {
+  await page.goto(fitChapter);
   const accent = await page
     .locator('.app')
     .evaluate((el) => getComputedStyle(el).getPropertyValue('--accent').trim());
@@ -185,13 +180,13 @@ test('Tech on Home opens the Tech overview, whose rows lead to real pages', asyn
   await expect(page).toHaveURL('/tech/knowledge-base/system-design/');
 });
 
-test('Fitness overview links the dashboard out and has no dead rows', async ({ page }) => {
+test('Fitness overview links the dashboard out and marks Programs as soon', async ({ page }) => {
   await page.goto('/fitness/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Overview');
   const dashboard = page.locator('.rows .row', { hasText: 'Dashboard' });
   await expect(dashboard).toHaveAttribute('href', 'https://apoorvasharma007.github.io/traininglogs/');
   await expect(dashboard).toHaveAttribute('target', '_blank');
-  await expect(page.locator('.rows .row.soon')).toHaveCount(0);
+  await expect(page.locator('.rows .row.soon .word')).toHaveText(['ProgramsSoon', 'BlogSoon']);
   await expect(page.getByRole('navigation', { name: 'Breadcrumb' })).toHaveText('Fitness/Overview');
 });
 
@@ -208,15 +203,14 @@ test('blog lists posts newest first, as separate cards, per side and for both', 
   ]);
   await expect(page.locator('.items .entry strong')).toHaveText([
     'Building traininglogs: A Python Pipeline for My Gym Data',
-    'Testing in Python: What to Test and What to Skip',
   ]);
   await expect(page.locator('.items .entry').first()).toContainText('2 Apr 2026');
 
   await page.goto('/fitness/blog/');
-  await expect(page.locator('.items .entry strong')).toHaveText(['Building a Sustainable Training Habit']);
+  await expect(page.locator('.items .entry')).toHaveCount(0);
 
   await page.goto('/blog/');
-  await expect(page.locator('.items .entry')).toHaveCount(3);
+  await expect(page.locator('.items .entry')).toHaveCount(1);
   await expect(page.locator('.items .entry').first()).toContainText('Tech, 2 Apr 2026');
 });
 
