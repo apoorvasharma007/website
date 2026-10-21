@@ -163,14 +163,14 @@ ul {
 }
 
 .btn.resume {
-  background: #ffe600;
-  border-color: #ffe600;
-  color: #111;
+  background: var(--resume);
+  border-color: var(--resume);
+  color: var(--resume-ink);
 }
 
 .btn.resume:hover {
-  background: #ffe600;
-  border-color: #ffe600;
+  background: var(--resume);
+  border-color: var(--resume);
   opacity: 0.9;
 }
 
