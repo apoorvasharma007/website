@@ -123,10 +123,25 @@ Cloud threads use my Claude Pro usage, no extra bill. Cloudflare Workers Builds 
 plan (check build minutes at the one-week billing check already planned). GitHub Actions is free for public
 repos. No paid API calls. Anything that adds a paid service stops and asks first.
 
-## Open questions for Apoorva
+## Decisions (2026-10-22, Apoorva)
 
-1. Source of truth for articles: Markdown in the repo (recommended) or Notion with a loader?
-2. First article topic and side (Tech or Fitness), in one line, so the template exists before the skill.
+1. Two skills, not one skill with modes: `.claude/skills/website-code` (was `tweak`) and
+   `.claude/skills/website-content` (was `publish`), as traininglogs splits its skills.
+2. Drafts are written in Notion (AI drafts there, Apoorva edits there). On request, `website-content` fetches
+   the page through the Notion connector, converts it to Markdown in `src/content/pages/`, and opens a PR with
+   a preview link. No build-time loader, no Notion token in Cloudflare, no cron. Notion-only blocks (toggles,
+   columns, some callouts) are mapped or dropped by the skill.
+3. Order: skills (with a `CLAUDE.md` rewrite first, since threads read it), then the Notion draft flow, then
+   content curation, then the rest of the context and code cleanup last.
+
+Facts found in code:
+- `getPublished()` (`src/lib/pages.ts:65`) drops non-Published pages from every build, previews included.
+  A Draft PR therefore previews nothing. `website-content` needs drafts visible on preview builds and hidden
+  on `main`. Verify which branch variable Cloudflare Workers Builds exposes before designing this.
+
+Open:
+- Do cloud threads in Claude Projects get the Notion connector? Settle in the spike.
+- First article topic. Suggested: T1 in `website-content-candidates.md`.
 
 ## Side paths to avoid
 
@@ -134,9 +149,14 @@ This plan is large. The risk is building the pipeline before writing a single ar
 smallest useful piece and Part B waits for it. Park anything else below.
 
 Parked ideas:
+- Notion-style article reading (column width, block spacing, quiet headings) inside the existing shell.
+  Restyle `Doc.astro` and `TextPage.astro` so every text page adopts it: all Markdown pages (Knowledge Base,
+  Project, Blog) plus About and Contact. Mockup first; the look is locked without Apoorva's yes.
 
 ## ▶ Resume here
 
-Status: plan written 2026-10-22, nothing implemented.
-Next action: answer the two open questions, then start `website-agent-context-plan.md` step 1.
-State: branch `main`, Website project does not exist yet, Notion "Alfred" database and capture Shortcut work.
+Status: decisions recorded 2026-10-22 (see Decisions). Part A and B wording above predates them; the
+Decisions section wins where they differ. Nothing implemented.
+Next action: rewrite `CLAUDE.md` for Astro, then write `website-code`.
+State: branch `docs/agent-plans`, not pushed. Website project does not exist yet. Notion "Alfred" database
+and capture Shortcut work.
