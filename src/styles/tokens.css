@@ -28,6 +28,8 @@
   --fs-item: 1.1875rem;
   --lh-desc: 1.55;
   --t-title: clamp(2rem, 1.4rem + 2.2vw, 2.875rem);
+  --resume: #ffe600;
+  --resume-ink: #111;
 }
 
 :root {
