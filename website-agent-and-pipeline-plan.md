@@ -139,6 +139,17 @@ Facts found in code:
   A Draft PR therefore previews nothing. `website-content` needs drafts visible on preview builds and hidden
   on `main`. Verify which branch variable Cloudflare Workers Builds exposes before designing this.
 
+Facts from the first cloud-thread test (PR #2, closed, brief from a Claude chat on 2026-10-21):
+- Preview URL: `https://<branch, "/" replaced by "-">-website.apoorvasharmaonwww.workers.dev`. The
+  Cloudflare bot also posts it on the PR.
+- PR preview builds failed. Workarounds that worked there, never merged: `"previews": {}` in
+  `wrangler.jsonc`, and `"postinstall": "astro build"` because the preview step ran without a build.
+  Root cause unconfirmed. PR #3 (`fix/resume-token`) failed the same check on 2026-10-22.
+- "Retry build" re-runs the old commit. Push a new commit to test a fix.
+- GitHub shows no build log. The tail comes from the Cloudflare dashboard.
+- Skills must never claim a deploy or fix without reading the check status or fetching the page.
+- Open: should a skill own the twice-daily rebuild and the weekly dependency and link checks?
+
 Open:
 - Do cloud threads in Claude Projects get the Notion connector? Settle in the spike.
 - First article topic. Suggested: T1 in `website-content-candidates.md`.
