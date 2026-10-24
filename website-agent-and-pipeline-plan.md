@@ -166,8 +166,9 @@ Parked ideas:
 
 ## ▶ Resume here
 
-Status: decisions recorded 2026-10-22 (see Decisions). Part A and B wording above predates them; the
-Decisions section wins where they differ. Nothing implemented.
-Next action: rewrite `CLAUDE.md` for Astro, then write `website-code`.
-State: branch `docs/agent-plans`, not pushed. Website project does not exist yet. Notion "Alfred" database
-and capture Shortcut work.
+Status 2026-10-25: preview builds work (`"previews": {}` in `wrangler.jsonc`, PR #3 merged, live site
+checked). PR #4 removes the Hugo site and dead files, adds `docs/design-rules.md` and CI (Linux job runs
+`npm test`, macOS job runs `npm run test:device`); all three checks green, preview checked.
+Next action: after PR #4 merges, write `.claude/skills/website-code/SKILL.md` and test it on one real small
+change. Then `website-content` (Notion draft to Markdown PR; make Draft pages build on previews only).
+State: Website project in Claude Projects does not exist yet. Notion connector in cloud threads unverified.
