@@ -1,6 +1,5 @@
 export const site = {
   name: 'Apoorva Sharma',
-  url: 'https://apoorvasharma7.com',
   description:
     'Apoorva Sharma. Software engineering and gym stuff. Projects, articles, and notes so future me stops googling the same things.',
   email: 'apoorva.c.sharma@gmail.com',

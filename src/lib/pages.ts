@@ -2,7 +2,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { site } from '../data/site';
 
 export type Page = CollectionEntry<'pages'>;
-export type Side = Page['data']['side'];
+type Side = Page['data']['side'];
 
 export interface TreeItem {
   label: string;
@@ -69,7 +69,7 @@ export async function getPublished() {
 
 export const pageUrl = (page: Page) => `/${page.id}/`;
 
-export const blogUrl = (side: Side) => `/${sides[side].dir}/blog/`;
+const blogUrl = (side: Side) => `/${sides[side].dir}/blog/`;
 
 export const blogPosts = (pages: Page[], side?: Side) =>
   pages

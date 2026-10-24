@@ -1,9 +1,7 @@
 # website (apoorvasharma7.com)
 
 Rules for working in this repo, for Apoorva and any coding agent. The site is Astro 7, built and served
-by Cloudflare Workers. Content is Markdown, tests are Playwright. The old Hugo files (`content/`,
-`layouts/`, `assets/`, `archetypes/`, `config.toml`) are dead and get deleted later. Never edit them or
-read them as current.
+by Cloudflare Workers. Content is Markdown, tests are Playwright.
 
 ## Where to start
 
