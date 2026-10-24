@@ -14,6 +14,8 @@ by Cloudflare Workers. Content is Markdown, tests are Playwright.
 - `npm run dev`: local site with live reload.
 - `npm run build`, then `npm run preview`: the production build, served locally.
 - `npm test`: builds, serves on port 4321, and runs Playwright on chromium and webkit.
+- `npm run test:device`: the `@device` tests (hero art motion, finger swipe). They need macOS, where
+  WebKit is closest to Safari, so CI runs them in a separate macOS job and `npm test` skips them.
 - `npm run check`: Astro and TypeScript type check.
 
 ## Branches and deploys

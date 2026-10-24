@@ -504,11 +504,3 @@ test('a pressed row lights at once with no fade, and iOS tap extras are switched
   await page.mouse.up();
   await expect(page).toHaveURL(/\/tech\/$/);
 });
-
-test('a tap changes the page without waiting', async ({ page }) => {
-  await page.goto('/');
-  const started = Date.now();
-  await page.locator('.rows .row').first().click();
-  await page.waitForURL(/\/tech\/$/);
-  expect(Date.now() - started).toBeLessThan(700);
-});

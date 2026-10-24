@@ -11,7 +11,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test": "playwright test"
+    "test": "playwright test --grep-invert @device",
+    "test:device": "playwright test --grep @device"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "^0.4.3",

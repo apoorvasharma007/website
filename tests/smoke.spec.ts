@@ -163,7 +163,7 @@ for (const [file, count] of [
   });
 }
 
-test('both hero scenes visibly move on the laptop layout', async ({ page }) => {
+test('both hero scenes visibly move on the laptop layout', { tag: '@device' }, async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   for (const side of ['tech', 'fit']) {
@@ -176,7 +176,7 @@ test('both hero scenes visibly move on the laptop layout', async ({ page }) => {
   }
 });
 
-test('the phone scene art moves, including after switching scenes', async ({ page }) => {
+test('the phone scene art moves, including after switching scenes', { tag: '@device' }, async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   for (const index of [0, 1]) {
