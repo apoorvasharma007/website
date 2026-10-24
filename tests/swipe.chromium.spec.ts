@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 const sceneIndex = (page: import('@playwright/test').Page) =>
   page.locator('.scenes').evaluate((el) => Math.round(el.scrollLeft / el.clientWidth));
 
-test('phone: a finger swipe over the scene moves to the other scene and back', async ({ browser }) => {
+test('phone: a finger swipe over the scene moves to the other scene and back', { tag: '@device' }, async ({ browser }) => {
   const context = await browser.newContext({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   await page.goto('/');
