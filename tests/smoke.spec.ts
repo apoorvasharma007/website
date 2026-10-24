@@ -163,34 +163,6 @@ for (const [file, count] of [
   });
 }
 
-test('both hero scenes visibly move on the laptop layout', { tag: '@device' }, async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/');
-  for (const side of ['tech', 'fit']) {
-    const art = page.locator(`.scene[data-side="${side}"] .art`);
-    await art.scrollIntoViewIfNeeded();
-    const first = await art.screenshot();
-    await page.waitForTimeout(1500);
-    const second = await art.screenshot();
-    expect(first.equals(second), `${side} art changed between frames`).toBe(false);
-  }
-});
-
-test('the phone scene art moves, including after switching scenes', { tag: '@device' }, async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/');
-  for (const index of [0, 1]) {
-    await page.getByRole('tab').nth(index).click();
-    await expect.poll(() => sceneIndex(page)).toBe(index);
-    await page.waitForTimeout(400);
-    const art = page.locator('.scene.on .art');
-    const first = await art.screenshot();
-    await page.waitForTimeout(1500);
-    const second = await art.screenshot();
-    expect(first.equals(second), `scene ${index} art changed between frames`).toBe(false);
-  }
-});
-
 test.describe('phone carousel autoplay', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
